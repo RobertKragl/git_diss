@@ -3,24 +3,83 @@
 
 \section{Design}
 
-Therefore, a replica of an active shunt of \cite{shillaber_gigahertz_2020,shillaber_ultrafast_2022} was desgined, which equivalent circuit is shown in \fref{fig:ESBActiveShunt}.
-This provides multiple advantages:
-First a small shunt value can be used, while still maintaing a rather high sense output due to the amplification of the operational amplifier.
-Furthermore, the low pass filter of the active shunt compensates the high pass characteristic of the shunt resistance achieving remarkable bandwidth.
-Lastly, the active shunts creates a \SI{50}{\ohm} signal, which can be either sent to a filter stage for high pass EMC measurements or be measured with a optical-isolated voltage probe and thereby providing galvanic isolation.
+While at lower frequencies the capacitive coupling from the switching node potential to the cooler dominates EMC concerns, recent studies indicate that inductive couplings become significant at higher frequencies as well~\cite{hamami_identifying_2026}.
+Therefore, it is necessary to measure not only the high-frequency components of the voltage transient but also of the current transient.
 
-\begin{figure}[h]
+Measuring the EMC-relevant components of the commutation current requires meeting several requirements.
+First, as with the voltage measurement, a bandwidth of at least \SI{500}{MHz} is required.
+This makes commercial Rogowski coils unsuitable, which are in the range of \SIrange{20}{50}{MHz}~\cite{xin_review_2022}.
+
+Furthermore, as with the voltage probe, a \SI{50}{\ohm} output is required to feed the signal into both a low-pass and a high-pass filter.
+Hence, a passive shunt is not feasible.
+% Furthermore, a galvanically isolated measurement is necessary, since the oscilloscope ground is fixed to the aluminum plate, which is also the ground of the LISNs.
+% Hence, classical passive shunts, which would set the oscilloscope ground to DC+ or DC$-$, are not feasible.
+\begin{figure}[ht]
 	\centering
-	\import{./figures/}{CompensatedCurrentShunt.pdf_tex}
-	\caption{Schematic overview of active current shunt.}
-	\label{fig:ESBActiveShunt}
+	\import{./figures/5_CurrentProbe/}{"CompensatedCurrentShunt.pdf_tex"}
+	\caption{Schematic overview of active current shunt.}\label{fig:ESBActiveShunt}
 \end{figure}
 
+Lastly, the introduced measurement resistance must be one decade smaller than the \mi{R}{DS,on} of the DUT.
+This is because one of the main EMC-relevant characteristics of the transient is the quality factor of the excited resonance.
+The presented measurement setup is designed for \SI{750}{V} and \SI{1200}{V} SiC discretes in a D2PAK package, where $\mi{R}{DS,on} = \SI{20}{m\ohm}\dots\SI{50}{m\ohm}$~\cite{robert_bosch_gmbh_datasheet_2023,robert_bosch_gmbh_datasheet_2023-1}.
+Therefore, the sense resistance must be \SI{2}{m\ohm} or smaller.
+This creates a challenge for conventional shunts when bandwidth is considered.
+Every shunt resistance has some parasitic inductance and the bandwidth of the shunt corresponds to
 
-S21 >> S12, um  passive parasitäre übertragung zu negieren.
+\begin{equation}
+    \mi{f}{bw,shunt} = \frac{1}{2\pi \tau_\text{shunt}} = \frac{\mi{R}{shunt}}{2\pi\mi{L}{shunt}} 
+\end{equation}
+
+Therefore, in classical shunt design, higher bandwidth can be achieved with higher shunt-resistance values.
+However, this is not feasible for the EMC measurement.
+
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/5_CurrentProbe/}{"Pic_AShunt.pdf_tex"}
+	\caption{Photograph of active current shunt.}\label{fig:ESBActiveShuntPhoto}
+\end{figure}
+
+Therefore, a replica of the active shunt presented in~\cite{shillaber_gigahertz_2020,shillaber_ultrafast_2022} was designed. 
+Its simplified equivalent circuit is shown in \fref{fig:ESBActiveShunt}, and a photograph of the prototype is shown in \fref{fig:ESBActiveShuntPhoto}.
+This design offers multiple advantages:
+First, a small shunt resistance can be used while still maintaining a sufficiently high sense output due to the amplification of the operational amplifier.
+Furthermore, the low-pass filter of the active shunt compensates the high-pass characteristic of the shunt resistance, thereby achieving a remarkably high bandwidth.
+Lastly, the compensation operational amplifier of the active shunt produces a defined output signal, which can either be fed into a filter stage for high-pass EM noise measurements or measured with an optically isolated voltage probe, thus providing galvanic isolation.
 
 
 
+In contrast to~\cite{shillaber_gigahertz_2020,shillaber_ultrafast_2022}, extensive effort was required to sufficiently shield the sensitive active amplification from capacitive coupling from the switching-node potential, which would otherwise contaminate the measurement.
+Best results were achieved with an ``EMC shield'' made of a nickel-silver alloy, which attenuates both capacitive and inductive coupling.
+In addition to the shield, the transmission line between the passive shunt and the compensation amplifier was routed in the two inner PCB layers and enclosed by top and bottom ground planes connected by a via fence.
+
+
+\begin{figure}[ht]
+	\centering
+	\input{"figures/5_CurrentProbe/VNA_Shunt_LP.tex"}
+	\caption{VNA measurement of low-pass of active current shunt.}\label{fig:VNA_Shunt_LP}
+\end{figure}
+
+The VNA measurements of the low-pass and high-pass channels are shown in \fref{fig:VNA_Shunt_LP} and~\ref{fig:VNA_Shunt_HP}, respectively.
+For the low-pass channel, a bandwidth of approximately \SI{300}{MHz} is observed before the gain starts to increase.
+The high-pass channel exhibits an approximately linear gain increase of \SI{+40}{dB/dec} from \SI{10}{MHz} up to \SI{350}{MHz}.
+
+\begin{figure}[ht]
+	\centering
+	\input{"figures/5_CurrentProbe/VNA_Shunt_HP.tex"}
+	\caption{VNA measurement of high-pass of active current shunt.}\label{fig:VNA_Shunt_HP}
+\end{figure}
+
+For the transfer-function calculation of the current shunt, the \SI{50}{\ohm} VNA port termination cannot be neglected, unlike in the voltage-probe case with high input impedance in \eref{eq:TF_probe}.
+Therefore, the shunt transfer function is derived from the impedance matrix $Z$, obtained from the measured VNA $S$-parameter matrix.
+Accordingly, \mi{a}{shunt} is calculated as
+
+\begin{align}
+    \mi{a}{shunt} &= \frac{\mi{v}{LP}}{\mi{i}{shunt}} \\
+					&= \mi{Z}{21}\cdot \frac{1}{1+\frac{\mi{Z}{22}}{\SI{50}{\ohm}}}
+	\label{eq:TF_Shunt}
+\end{align}
 
 \subsection{Shunt}
 \subsection{Amplification}

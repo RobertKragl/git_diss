@@ -2,25 +2,33 @@
 %!encoding = UTF-8 Unicode
 
 \section{Oversampling and Averaging}
-The previous section explains the challenges to measure high-frequency components of a signal.
-Firstly, classical digital noise reduction can be applied, which address the thermal noise \mi{v}{noise,therm}: Oversampling and averaging.
+The previous section discussed how small high-frequency components fall below the noise floor quickly after the resonance frequency.
+As a first countermeasure, classical digital noise-reduction techniques are applied: oversampling and averaging.
 
-By oversampling and averaging afterwards, the effective number of bits (ENOB) can be increased by \cite{silicon_laboratories_an118_2013}.
-
-\begin{equation}
-	\mti{N}{ENOB} = \mti{N}{ADC} + 0.5\cdot \log_2(\frac{\mi{f}{s}}{2\mi{f}{max}})
-\end{equation}
-
-Here \mi{N}{ADC} is the nominal ADC resolution, \mi{f}{s} is the sampling frequency of the oscilloscope and \mi{f}{max} the maximum frequency of interest.
-Furthermore, the factor of 2 in the denumerator is due to the nyquist sampling theorem.
-This can be done internally in the oscilloscope.
-
-As this cannot be pushed limitless due to hardware-restrictions of the maximum sampling speed of modern oscilloscopes, the number of signal points can be increased by not measuring one single pulse, but a pulse chain of $M$ pulses.
-This further increases the ENOB to \cite{kragl_active_2025}
+Oversampling and subsequent averaging increases the effective number of bits (ENOB)~\cite{silicon_laboratories_an118_2013}:
 
 \begin{equation}
-	\mti{N}{ENOB} = \mti{N}{ADC} + 0.5\cdot \log_2(\frac{\mi{f}{s}}{2\mi{f}{max}}) + 0.5\log_2(M)
+	\mti{N}{ENOB} = \mti{N}{ADC} + 0.5\cdot \log_2\left(\frac{\mi{f}{s}}{2\mi{f}{max}}\right)
 \end{equation}
 
-These gains are realized only if the dominant noise is random, uncorrelated with the signal, and greater than the quantization step \cite{silicon_laboraties_an118_2013}. 
-As discussed above, in power electronics the high‑frequency voltage components often fall below or near the ADC quantization level; therefore oversampling and averaging alone are insufficient and must be combined with a high‑pass measurement method introduced next.
+Here, \mti{N}{ADC} is the nominal ADC resolution, \mi{f}{s} is the sampling frequency, and \mi{f}{max} is the highest frequency of interest.
+The factor of 2 follows from the Nyquist criterion.
+In practice, this improvement is limited by the maximum sampling rate of the oscilloscope and by the required analysis bandwidth, which is set to \SI{500}{MHz} in this work.
+
+In addition, the effective noise floor can be reduced by recording a pulse chain (PC) with $M$ pulses instead of a single pulse (SP).
+For FFT-based evaluation, this increases the number of samples and lowers the thermal-noise floor by
+
+\begin{equation}
+	\mi{V}{th,PC} = \frac{\mi{V}{th,SP}}{\sqrt{M}}
+\end{equation}
+
+according to Eq.~\ref{eq:RMStoAmplitudePlot}.
+Consequently, the SNR improves by the same factor $\sqrt{M}$, because random noise is spread over the spectrum while deterministic switching components remain at fixed frequencies (multiples of \mi{f}{sw}).
+The maximum usable value of $M$ is constrained by the oscilloscope single-shot memory.
+
+Figure~\ref{fig:QuantNoise} illustrates this behavior by comparing a single-pulse spectrum $Q(\mi{V}{DS,SP}+\mi{V}{n,th})$ with a 100-pulse spectrum $Q(\mi{V}{DS,PC}+\mi{V}{n,th})$ and with the corresponding non-quantized pulse chain $\mi{V}{DS,PC}+\mi{V}{n,th}$.
+An SNR improvement of about \SI{20}{dB} is obtained for the pulse chain.
+However, once thermal noise is sufficiently suppressed, quantization noise becomes dominant and limits further improvement.
+Hence, as also reported in~\cite{silicon_laboratories_an118_2013}, oversampling and averaging are effective only while thermal noise dominates and remains larger than the quantization step.
+To access the full EMC-relevant frequency range, an additional measure is required.
+Therefore, the next subsection introduces a high-pass measurement method.

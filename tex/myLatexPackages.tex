@@ -1,11 +1,15 @@
-
-%!TEX root = main.tex
 \usepackage{shellesc}
 
 \usepackage{amsmath}
 \usepackage{url}
 \usepackage{graphicx}
-\usepackage{siunitx}									
+\usepackage{siunitx}	
+\sisetup{
+% group-separator = {\thinspace},
+group-separator = {},
+group-minimum-digits = 4
+}
+								
 \usepackage{lipsum}
 \usepackage{enumitem}
 \usepackage{xcolor}
@@ -13,9 +17,9 @@
 % \usepackage{amssymb}			
 \usepackage{upgreek}				
 \usepackage{icomma}	  						
-\usepackage{trsym}											
-\usepackage{trfsigns}
-%\usepackage{subcaption}
+% \usepackage{trsym}											
+% \usepackage{trfsigns}
+\usepackage{subcaption}
 \usepackage[right]{eurosym}					
 \usepackage{textcomp}									
 			
@@ -31,6 +35,7 @@
 \newcommand{\ddt}[1]{\ensuremath{\frac{\textnormal{d}#1}{\textnormal{d}t}}}
 \newcommand{\sddt}[1]{\ensuremath{\sfrac{\textnormal{d}#1}{\textnormal{d}t}}}
 \newcommand{\fref}[1]{Fig.~\ref{#1}}
+\newcommand{\eref}[1]{Eq.~\ref{#1}}
 
 
 % \newcommand{\linebreakand}{%
@@ -61,6 +66,7 @@
 \pgfplotsset{compat=newest}						%% behebt einige Fehler, die beim Rendern der Grafiken auftreten können
 \usetikzlibrary{plotmarks,shapes,positioning,fit}
 %\pgfkeys{/pgf/number format/.cd ,use comma ,set thousands separator={.}} %Globale einstellungen für Grafiken mit tikz/pgf.
+\pgfkeys{/pgf/number format/.cd, set thousands separator={}} % Global settings for number grouping in tikz/pgf plots.
 %\usetikzlibrary{spy} 							%% kann bei Bedarf eingebunden werden, um Lupeneffekt bei Grafiken zu ermöglichen
 \tikzset{every picture/.style={line join=round}}
 

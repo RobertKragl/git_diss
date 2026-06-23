@@ -1,0 +1,73 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+\definecolor{mycolor4}{rgb}{0.49400,0.18400,0.55600}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=2.746in,
+height=2.445in,
+at={(0.461in,0.468in)},
+scale only axis,
+xmin=0.5,
+xmax=3,
+xlabel style={font=\color{white!15!black}},
+xlabel={$\text{E}_{\text{sw,tot}}\text{ in mJ}$},
+ymin=65,
+ymax=90,
+ylabel style={font=\color{white!15!black}},
+ylabel={$\bar{V}_\mathrm{20-300MHz}^\mathrm{LS,HS}$ in dB\textmu V},
+axis background/.style={fill=white},
+xmajorgrids,
+ymajorgrids,
+grid style={dotted},
+legend style={at={(0.03,0.03)}, anchor=south west, legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1, line width=1.5pt, mark=o, mark options={solid, mycolor1}]
+  table[row sep=crcr]{%
+0.755	87.5\\
+1.133	85.5\\
+1.979	75.5\\
+2.737	70\\
+3.25	68.34516129\\
+};
+\addlegendentry{Chip A}
+
+\addplot [color=mycolor2, line width=1.5pt, mark=o, mark options={solid, mycolor2}]
+  table[row sep=crcr]{%
+0.672	90\\
+1.115	85\\
+1.915	79.5\\
+2.72	72.5\\
+3.25	67.82658393\\
+};
+\addlegendentry{Chip B}
+
+\addplot [color=mycolor3, line width=1.5pt, mark=o, mark options={solid, mycolor3}]
+  table[row sep=crcr]{%
+0.919	89\\
+1.743	83.5\\
+2.316	80\\
+3.25	76.45675266\\
+};
+\addlegendentry{Chip C}
+
+\addplot [color=mycolor4, line width=1.5pt, mark=o, mark options={solid, mycolor4}]
+  table[row sep=crcr]{%
+0.721	87.5\\
+1.098	84.5\\
+1.694	81\\
+2.328	77\\
+3.25	70.85333333\\
+};
+\addlegendentry{Chip D}
+
+\end{axis}
+\end{tikzpicture}%

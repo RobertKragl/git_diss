@@ -2,74 +2,57 @@
 %!encoding = UTF-8 Unicode
 
 \section{Switching Event Separation}
-In the analysis of the switching behavior of power electronics it is common practice to analyze the four switching events separately - active-off/passive-on and active-on/passive-off \cite{fritz_toward_2020}. 
-Here, the active device is the switch, which initiates the switching transient while the passive switch is turned off and the body diode operates during the commutation process.
-This separated analysis is also desirable for the EMC analysis to identify the switching event that is dominating the frequency spectrum for the respective frequency band of interest.
-This is enabled by-and one of the main advantages-of the measurement directly at the semiconductor ports. 
-Conventional EMC measurements at LISNs or antennas can only measure the conglomerated noise of all switching events and noise sources in the system.
+In power electronics analysis, it is standard practice to evaluate four distinct switching transients separately: active-on (device turn-on), active-off (device turn-off), passive-on (body-diode turn-on), and passive-off (body-diode turn-off)~\cite{fritz_toward_2020}. Here, the active device initiates the transient while the passive device (conducting body diode) is turned off during commutation.
 
-However, to achieve this separated analysis in the frequency domain, a method introduced in \cite{kragl_impact_2024} must be used, called snap-and-mirror function.
+For EMC analysis, this separation is particularly valuable: it identifies which switching event dominates in each frequency band, enabling targeted understanding of noise generation mechanisms. 
+Direct measurement at the semiconductor ports enables this separation, a key advantage unavailable in conventional system level EMC measurements, which capture only the aggregated noise from all events.
 
-\begin{figure}
-	\begin{subfigure}[t]{0.48\textwidth}
+ \begin{figure*}[htb]
+	\centering
+	\begin{subfigure}{0.48\textwidth}
 		\centering
-		\import{./figures/}{3_Methods/SnapNMirror/DPT_TD.tex}
-		\subcaption{Active and passive switching signals in time domain.}
+		\input{"3_Methods/SnapNMirror/DPT_TD.tex"}
+		\caption{Time domain simulation of double pulse test.}
+	\end{subfigure} %
+	\hfill
+	\begin{subfigure}{0.48\textwidth}
+		\centering
+		\input{"3_Methods/SnapNMirror/DPT_FD.tex"}
+		\caption{Frequency spectrum of simulated double pulse test.}
+	\end{subfigure} %
+	\begin{subfigure}{0.48\textwidth}
+		\centering
+		\input{"3_Methods/SnapNMirror/Snapped_TD.tex"}
+		\caption{Four artificial signals containing frequency components of one switching event only.}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[t]{0.48\textwidth}
+	\begin{subfigure}{0.48\textwidth}
 		\centering
-		\import{./figures/}{3_Methods/SnapNMirror/DPT_FD.tex}
-		\subcaption{Spectrum of active and passive switch.}
+		\raisebox{-2mm}[0pt][0pt]{\input{"3_Methods/SnapNMirror/Snapped_FD.tex"}}
+		\caption{Frequency spectrum envelopes of all four switching events separated.}
 	\end{subfigure}
-	
-	\begin{subfigure}[t]{0.48\textwidth}
-		\centering
-		\import{./figures/}{3_Methods/SnapNMirror/Snapped_TD.tex}
-		\subcaption{Snapped and mirrored time domain signals.}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[t]{0.48\textwidth}
-		\centering
-		\import{./figures/}{3_Methods/SnapNMirror/Snapped_FD.tex}
-		\subcaption{Spectrum of snapped and mirrored signals.}
-	\end{subfigure}
-	\label{fig:SnM_snapped_FD}
-	\vspace{1cm}
-\end{figure}
-
-% \begin{figure}[h!]
-% 	\centering\import{./figures/}{2_SnapNMirror/DPT_TD.tex}
-% 	\caption{Principle functionality of snap and mirror function for the separated EMC analysis of all four switching events.}
-% 	\label{fig:SnapNMirror}
-% \end{figure}
+	\caption{Methodology of the snap-and-mirror function for separated EMC analysis of all four switching events.}\label{fig:SnapNMirror}
+\end{figure*}
 
 
+To achieve event-resolved separation in the frequency domain, the snap-and-mirror method is applied~\cite{kragl_impact_2024}, whose operating principle is shown in \fref{fig:SnapNMirror}. 
+The procedure works by mirroring the measured signal around each switching cycle midpoint, producing four synthetic signals (one per event type), which can then be analyzed separately.
 
-\begin{figure}[h!]
-	\centering\import{./figures/}{Snap_n_Mirror_vertical_v3_tex.pdf_tex}
-	\caption{Principle functionality of snap and mirror function for the separated EMC analysis of all four switching events.}
-	\label{fig:SnapNMirror}
-\end{figure}
-
-This function identifies the mid-points of each switching cycle \mi{t}{mid,n} and mirrors them around this axis, which can be formulated as
+This function identifies the midpoints of each switching cycle \mi{t}{m,n} and mirrors the signal around this axis, which can be formulated as
 
 \begin{equation}
-	\small 
-	\mathrm{s}_\mathrm{new}(t) = 
+	s_\mathrm{new}(t) = 
 	\begin{cases}
-		s(t) 					 		& \text{, for } \mi{t}{mid,n}~~~   < t < \mi{t}{mid,n+1} \\
-		s(-t + 2\cdot\mi{t}{mid,n+1}) 	& \text{, for } \mi{t}{mid,n+1} < t < \mi{t}{mid,n+2} \\
-		s(t) 					 		& \text{, for } \mi{t}{mid,n+2} < t < \mi{t}{mid,n+3} \\
-		s(-t + 2\cdot\mi{t}{mid,n+3}) 	& \text{, for } \mi{t}{mid,n+3} < t < \mi{t}{mid,n+4} \\
-		...\\
+		s(t) 					 		& \text{, for } \mi{t}{m,n}~~~< t < \mi{t}{m,n+1} \\
+		s(-t + 2\cdot\mi{t}{m,n+1}) 	& \text{, for } \mi{t}{m,n+1} < t < \mi{t}{m,n+2} \\
+		s(t) 					 		& \text{, for } \mi{t}{m,n+2} < t < \mi{t}{m,n+3} \\
+		s(-t + 2\cdot\mi{t}{m,n+3}) 	& \text{, for } \mi{t}{m,n+3} < t < \mi{t}{m,n+4} \\
+		\cdots
 	\end{cases}
 	\label{eq:snap}
 \end{equation}
 
-This is done for both the turn-on and turn-off event for both the active and the passive switch, thereby creating four artificial signals out of the two measured voltages of active and passive switch.
-
-Because only the signal amplitude in the frequency domain is analyzed this is a valid operation since the mirroring and the time shift of a signal has only influence on the phase of the fourier transform.
+This transformation is valid for amplitude-spectrum analysis because time mirroring and shifting affect only the phase of the Fourier transform, not its magnitude. Specifically:
 
 \begin{equation}
 	\mathcal{F}\{s(-t)\} = S(-f) = S^\ast(f)
@@ -78,3 +61,11 @@ Because only the signal amplitude in the frequency domain is analyzed this is a 
 \begin{equation}
 	\mathcal{F}\{s(t-\mi{t}{0})\} = S(f)e^{-j\omega \mi{t}{0}}
 \end{equation}
+
+Therefore, the amplitude spectrum $|S(f)|$ remains unchanged. 
+
+This method performs best when the spectrum is evaluated with a peak detector in post-processing.
+If a normal FFT or an average detector is used, the spectral content is increased by a factor of up to 2, because the mirrored signal adds to the original signal.
+
+
+

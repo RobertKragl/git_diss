@@ -1,0 +1,49 @@
+
+%%=============================================================================
+\chapter{Anhang}
+\label{chap:anhang}
+%%=============================================================================
+
+
+%%=============================================================================
+\section{Schaltplan}
+\label{sec:APP.Sch}
+
+\begin{table}[h]
+    \centering
+        \small
+        \begin{tabular} {rll}  \hline
+    Seite& Titel & Beschreibung \\ \hline
+      1  & Forth-Board &   CPU, Port- und Signalbelegung \\
+      2  & Adressdekod. D/A-Wandler, LED's & Daten- u. Adressbus, Analogausgänge \\
+      3  & Analogsignalverarbeitung    &   Analogeingänge mit Schutzbeschaltung \\
+      4  & Einspeisung, Reset-Signal   &       \\
+      5  & Stromerfassung  &   Anschl. LEM-Wandler, INA114 \\
+      6  & Toleranzbandregelung Phasenströme   &   Komparatoren \\
+      7  & I1\_aus, Überspannungserkennung  & \\
+      8  & Stromregellogik, Strangfreigaben    & GALs\\
+      9  & Treiberstufen   &       \\
+     10  &      &       \\
+     11  & Messung Phasen- u. ZWK-Spannung &   U-Messung, Differenzverstärker   \\
+     12  &     &       \\
+     13  & Drehmomentberechnung    &   DATC \\
+     14  & Momentberechnung Sample\&Hold    &   T\_Sample \\
+     15  &     &       \\
+     16  & Lagegebersignalverarbeitung &    \\
+     17  & Temp.-Überwachung Machine + UMR &    \\
+     18  & Schnittstellen: RS232, CAN &     \\  \hline
+        \end{tabular}
+        \caption{Übersicht über den Schaltplan \ttt{OKOFEH\_CONTROL}}
+        \label{tab:Inhalt-OKOFEH-Control}
+\end{table}
+
+\newpage
+\ifpdf
+	\begin{landscape}		%% Landscape/Querformat im PDF-Dokument
+\fi
+	\centering
+	\includegraphics*[height=.85\textheight]{cntr-s01}
+  \label{sch:cs1}
+\ifpdf
+	\end{landscape}
+\fi

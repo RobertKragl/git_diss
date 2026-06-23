@@ -1,0 +1,493 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+%%===========================================================================%%
+%%===                          ISEA-TeX-Vorlage                           ===%%
+%%===         LaTeX-Vorlage für eine schriftliche Arbeit am ISEA          ===%%
+%%===		  Eine Änderungshistorie ist im GIT-Repository unter		  ===%%
+%%===		 https://git.isea.rwth-aachen.de/mro-mla/latex-vorlage		  ===%%
+%%===							einzusehen.								  ===%%
+%%===																	  ===%%
+%%===				   Vorlagenbetreuer: Michael Laumen			  		  ===%%
+%%===			Anregungen/Feedback an mla@isea.rwth-aachen.de			  ===%%
+%%===========================================================================%%
+
+
+%%=============================================================================
+%%	
+%%	Die ISEA-TeX-Vorlage wurde 2007 von Matthias Bösing erstellt und von Frühjahr 2011 bis 2016 von Jens Münnix (jmu) betreut. Aktueller Betreuer (seit Mai 2016) ist Michael Laumen.
+%%		
+%%	
+%%	Die in dieser Vorlage definierten Formatierungen sind nicht 
+%%	verbindlich. Eine Anpassung des Formats an die eigenen Bedürfnisse ist ggf.
+%% 	nach Rücksprache mit dem betreuenden Assistenten möglich.
+%%
+%%---
+
+%%	Dokumentation zu (La)TeX findet sich lokal unter
+%%		C:\Programme\MiKTeX X.Y\doc bzw. C:\Programme\MiKTeX X.Y\doc\tex\latex
+%%		(der MiKTeX-Pfad ist ggf. anzupassen)
+%%	Diese Vorlage verwendet das KOMA-Skript. Dokumenation:
+%%		deutsch:	C:\Programme\MiKTeX X.Y\doc\latex\koma-script\scrguide.pdf
+%%		englisch:	C:\Programme\MiKTeX X.Y\doc\latex\koma-script\scrguien.pdf
+%%	Internetseite zum KOMA-Script-Paket mit Diskussionsforum:	
+%%  	http://www.komascript.de
+%%	Auf alle weiteren Fragen eine Antwort hat http://www.google.de.
+%%
+%%=============================================================================
+\RequirePackage[utf8]{luainputenc}
+
+%%=============================================================================
+%% === Allgemeine Einstellungen ===
+%%=============================================================================
+%%	Diese allgemeinen Einstellungen sind vom Autor anzupassen.
+
+%%= Sprache des Dokuments (german, english)
+%% clear the precompiled files after changing the language! (tex/*.aux, tex/Main.* [except Main.tex])
+\newcommand{\varLanguage}{english}
+
+%%= Wahl des Dokumententyps (scrbook, scrartcl)
+%% Hinweise: bei der Wahl von scrartcl existieren keine "chapter" und auch kein front/main/backmatter; die Vorlage ist also nicht direkt kompilierbar;
+\newcommand{\varDocType}{scrbook}
+
+%%= Doppelseitiges Dokument (true/false)
+\newcommand{\varTwoside}{true}
+
+%%= Autorenname (für Titelseite, PDF-Info und Erklärung)
+\newcommand{\varAuthorGiven}{Robert}
+\newcommand{\varAuthorFamily}{Kragl}
+%%= Erstprüfer
+\newcommand{\varSupA}{Univ.-Prof. Dr. Ingmar Kallfass}
+%%= Zweitprüfer (wird nur bei Wirt.-Ing. angezeigt)
+\newcommand{\varSupB}{Univ.-Prof. Dr. tbd}
+
+%%= Datum (für Titelseite und Erklärung)
+\newcommand{\varDate}{\today}
+
+%%= Titel der Arbeit (für PDF-Info und Formblatt)
+%%=	(Angabe auf Titelseite manuell, um Zeilenumbrüche selbst zu definieren)
+\newcommand{\varTitle}{Measurement Environment for the EMC Characterization of Power Semiconductor Devices}
+
+%%= Thema der Arbeit (für Titelseite, PDF-Info und Formblatt) 
+\newcommand{\varSubject}{Dissertation}
+
+%% Ist der Autor ein Wirt.-Ing? (Wichtig für Titelseite)
+\newcommand{\varWirtIng}{false}
+
+%%= Vor- oder Abgabeverision? 
+%%= (bei Vorversion ist Datum in Kopfzeile und "Vorversion" mit Datum auf Titelseite)
+\newcommand{\varFinalVersion}{false}
+
+%%Dateiname der Literaturdatei (*.bib) ohne Endung
+\newcommand{\varBib}{Diss}
+
+%%= Studienrichtung
+\newcommand{\varFieldOfStudy}{Electrical Engineering}
+
+%% Institut für Logo und anpassung Declaration (Typen ISEA oder PGS)
+\newcommand{\varInstitute}{ILH}
+
+%%= 5-10 Stichworte (für PDF-Info und Formblatt)
+\newcommand{\varKeywords}{Institute of Robust Power Semiconductor Systems}
+
+%%= Wurde die Arbeit extern angefertigt? false/true (Formblatt)
+\newcommand{\varExtern}{true}
+
+%%= Bei externen Arbeiten: Firmenname der Anfertigung
+\newcommand{\varExternName}{Robert Bosch GmbH}
+
+%%= Betreuender Assistent
+\newcommand{\varAssiName}{Maxime Musterfrau}
+
+
+
+%%=============================================================================
+%% === Erweiterte Einstellungen ===
+%%=============================================================================
+%%	Hier können die Standardeinstellungen bei Bedarf angepasst werden.
+
+\RequirePackage{ifthen}
+
+\ifthenelse{\equal{\varLanguage}{german}}
+{
+	\newcommand{\varClassLang}{ngerman}
+}
+{
+	\newcommand{\varClassLang}{english}
+}
+
+
+%%=== Layout ===
+%% Auswahl von Dokumentklasse und Optionen
+\documentclass[%				
+	BCOR=5mm,%							%% Bindekorrektur am Rand der Seite
+	DIV=15,%							%% für Satzspiegel; bestimmt Größe des Textbereichs auf der Seite
+	twoside=\varTwoside,%				%% s.o.
+	cleardoublepage=plain,%	%% \cleardoublepage erzeugt Seite im Seitenstil 'plain'
+	parskip=half,%				%% Definition von Absatzeinzug bzw. Absatzabstand
+	headsepline,%					%% horizontale Linie unter Kopfzeile		
+	fontsize=12pt,%				%% Schriftgröße
+	listof=totoc,%				%% Eintrag ins Inhaltsverzeichnis für Abbildungs- und Tabellenverzeichnis
+	index=totoc,%					%% ... für Abkürzungs- und Symbolverzeichnis
+	headings=normal,%  		%% normale Größe der Überschriften
+	numbers=noenddot,%		%% Punkte hinter Kapitel-, Tabellen- und Abbildungsnummerierungen vermeiden
+	\varClassLang			%% Spache als globale Option 
+	]%
+{\varDocType}						%% s.o.
+%% weitere/andere Optionen siehe KOMA-Anleitung
+ 
+ 
+%%===
+
+%\usepackage{morewrites}	%% falls Fehler "no room for a new \write" kommt, hier TESTWEISE auskommentieren
+		
+%%=== Sprachanpassung ===
+% \ifthenelse{\equal{\varLanguage}{german}}
+% {
+% 	\usepackage[ngerman]{babel}
+% 	\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}	%% Orthographie nach neuer deutscher Rechtschreibung	
+% 	\addto\extrasngerman{\sisetup{locale = DE}}				%% autoload DE locale in siunitx for ngerman
+	
+% }			
+% {
+% 	\usepackage[english]{babel}			%% Englisch
+% }
+
+\usepackage[useregional]{datetime2}
+
+%%=== Eingabe-Kodierung & Schriftarten ===
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+%%=== Kopf- und Fußzeilen ===
+\usepackage[%
+	automark,%												%% automatische Aktualisierung der Inhalte von Kopf- und Fußzeile
+	autooneside%											%% Argumente für doppelseitige Dokumente werden bei einseitigen ignoriert
+]{scrlayer-scrpage}													%% Paket zur Kontrolle über Format und Inhalt von Kopf- und Fußzeile	
+\pagestyle{scrheadings}							%% Auswahl des Stils von Kopf- und Fußzeilen
+\automark[section]{chapter}					%% Auswahl der automatisch zu generierenden Inhalte;
+	%% auf Hauptargument (hier 'chapter' = Kapitelname) wird durch \leftmark  zugegriffen;
+	%% Optionales Argument (hier 'section' = Abschnittsname) wird durch \rightmark ausgewählt
+\ifthenelse{\equal{\varFinalVersion}{true}}
+	{\ohead{\pagemark}}								%% Seitenzahlen im Kopf aussen
+	{\ohead{(\today) \quad \pagemark}}%% zusaetzlich Datum bei Vorversion
+\chead{}														%% Mitte der Kopfzeile bleibt frei in Abgabeversion
+\lohead{\leftmark}									%% Kapitelname rechts oben 
+\rehead{\rightmark}									%% Abschnittsname links oben (nur bei doppelseitigem Druck)
+\ofoot{}\cfoot{}\ifoot{}						%% Leere Fußzeile
+
+
+%%===Fußnoten ===
+\usepackage[multiple]{footmisc}
+\renewcommand{\thefootnote}{(\roman{footnote})} %% Fußnoten im Stil: (i),(ii) etc.
+%\renewcommand{\thempfootnote}{(\Roman{mpfootnote})}%% Fußnoten in Tabellen im Stil: (I),(II) etc.
+%\deffootnote[Markenbreite]{Einzug}{Absatzeinzug}{Markendefinition}
+\deffootnote[0.9em]{0.9em}{0.0em}{\flushbottom\textsuperscript{\thefootnotemark}}
+
+
+%%=== Inhaltsverzeichnis ===
+\addtocounter{secnumdepth}{+1}			%% Gliederungsebenen noch eine Ebene tiefer als voreingestellt nummerieren
+\addtocounter{tocdepth}{0}					%% Ebenentiefe für Inhaltsverzeichnis bestimmen
+
+
+%%=== Zeilenabstand ===
+\usepackage{setspace}								%% Erlaubt die Aenderung des Zeilenabstands z.B. mittels \onehalfspacing					 %% 1 1/2 facher Zeilenabstand	
+
+\setlength{\parindent}{0pt}			%% Kein Einzug des ersten Satzes nach einem Absatz
+
+
+%%=== Mathematik ===
+\usepackage{amssymb}										%% Erweiterte mathematische Formatierungen und Symbole
+\usepackage{upgreek}										%% aufrechte grichische Symbole (z.B. \uppi}
+\usepackage{icomma}	  									%% Abstandsanpassung hinter Dezimalkommas
+% \usepackage{trsym}											%% Transformation Sybols (e.g. Vertical Laplace Sybmol)
+% \usepackage{trfsigns}										%% \e Eulersche-Zahl und \j imaginäre Einheit
+%\usepackage{dsfont}										%% fuer N bei Menge der nat. Zahlen (\mathds{N})
+%\usepackage{esint}											%% fuer \oiint (Umlaufintegral über Linie, Fläche)
+
+\usepackage[right]{eurosym}						%% Euro-Symbol über \euro{}; mit Betrag über \EUR{3.142}
+\usepackage{textcomp}										%% erweiterte Symbole in 
+
+\usepackage{xfrac}											%% Bruch-Funktionen (\sfrac, \dfrac, etc.)
+
+% \usepackage[separate-uncertainty]{siunitx}					%% siunitx für Einheiten, etc.
+\usepackage[uncertainty-mode=separate]{siunitx}
+
+\ifthenelse{\equal{\varLanguage}{german}}
+{
+	\sisetup{quotient-mode=fraction,fraction-function=\frac,per-mode=fraction, range-phrase=\text{~bis~}}	
+}			
+{
+	\sisetup{quotient-mode=fraction,fraction-function=\frac,per-mode=fraction, range-phrase=\text{~to~}}
+}
+
+		
+
+\usepackage{nicefrac}
+
+
+%%=== Chemie ===
+\usepackage{datatool}						%% um csv (u.a.) Dateien usw einzulesen und verarbeiten zu können
+\usepackage{chemfig}						%% Paket um Strukturen zu zeichnen
+\usepackage[version=3,arrows=pgf]{mhchem} 	%% Paket um Strukturen und Formeln zu zeichnen
+%\usepackage[xspace]{chemmacros}			%% lädt automatisch siunitx, es gibt damit ein Problem mit unitsdef
+
+
+%%=== Tabellen und Spalten ===
+%\usepackage{longtable}						%% ermöglicht mehrseitige Tabellen mit gleicher Spaltenbreite
+%\usepackage{supertabular}					%% ermöglicht mehrseitige Tabellen
+%\usepackage{dcolumn}						%% Dezimalpunkt steht untereinander in Tabs -- "may clash with longtable package"
+\usepackage{multicol}						%% Wechsel zu mehrspalt. Text innerhalb einer Seite
+\usepackage{multirow}						%% multirow ist ein Paket, das den gleichnamigen Befehl definiert. Es erlaubt, in einer Spalte einer Tabelle die Felder mehrerer Zeilen zu einem zusammenzufassen. 
+
+\usepackage{booktabs}						%% schöne Tabellen
+
+\usepackage{tabularx}
+\usepackage{tablefootnote}					%% Ermöglicht Fussnoten auch in Tabellen
+
+%\usepackage{bchart}							%% Erstellt bar-Charts sehr einfach
+
+\usepackage{paralist}						%% Mehr Möglichketen bei Listen
+
+\usepackage{listings}						%% Um quellcode abzubilden
+
+%%=== Abbildungen ===
+%\usepackage{flafter}									%% sorgt dafür, dass alle Float-Grafiken immer erst nach der entsprechenden Stelle eingefügt werden.
+
+\usepackage[section]{placeins}				%% Grafiken werden nur in der dazugehörigen section eingefügt, d.h  ein zu spätes Einfügen in der nächsten section wird verhindert \FloatBarrier an Stelle, die nicht überschritten werden soll, einfügen
+
+% \usepackage{subfig}										%% provides support for inclusion of small, `sub', figures and tables. It simplifies the positioning, captioning and labeling of such objects within a single figure or table environment and to continue a figure 
+																			%% or table across multiple pages. 
+
+%\usepackage{sidecap} 									%% defines environments SCfigure and SCtable, analogous to figure and table, which make it easy to typeset captions sideways. Additionally, a wide  environment is defined; it allows to use the margin area, e.g., for figures  wider than \textwidth.
+
+\usepackage[labelfont=bf]{caption}								%% provides ways to customise captions in floating environments such as figure and table. 
+\usepackage[list=true]{subcaption}						%%Damit kann man Unterbeschriftunge erstellen. Die Option list=true lässt diese im jeweiligen Verzeichnis erscheinen.
+\usepackage{scrhack}								%% Behebt eine Warnung zwischen float und komascript
+\usepackage[abs]{overpic}							%%Damit können Bilder mit einem Raster überlagert werden um Positionierungen zu vereinfachen.
+
+\usepackage{tikz,pgf,pgfplots}					%% Auch wenn tikz kein Zeichenprogramm ist, es macht schöne Grafiken
+\pgfplotsset{compat=1.3}						%% behebt einige Fehler, die beim Rendern der Grafiken auftreten können
+\usetikzlibrary{plotmarks,shapes,positioning,fit}
+\pgfkeys{/pgf/number format/.cd ,use comma ,set thousands separator={.}} %Globale einstellungen für Grafiken mit tikz/pgf.
+\usetikzlibrary{spy} 							%% kann bei Bedarf eingebunden werden, um Lupeneffekt bei Grafiken zu ermöglichen
+
+\pgfplotsset{
+	every axis plot post/.style={
+		line join=round
+	}
+}
+
+
+%% Parameter für Grafikgröße (tikz)
+\newlength\figureheight
+\newlength\figurewidth 
+
+%% Folgende Zeile einkommentieren, um externalize zu aktivieren und alle mit tikz erstellten Grafiken als pdf auszugeben.
+%% -> Zwischenspeicherung der gerenderten Bilder ermöglicht schnelleres kompilieren
+% \usepgfplotslibrary{external}
+% \pgfkeys{/pgf/images/include external/.code=\includegraphics{#1}}
+
+% \usepackage{filemod}
+
+% \ifdef{\tikzexternalize}{
+% 	\tikzexternalize[prefix=imgs/]					%% Zwischenspeicher im Unterordner imgs/ des tex/-Ausgabeordners
+% 	\newcommand{\includetikz}[1]{
+% 	  \tikzsetnextfilename{#1}
+% 	  \filemodCmp{../images/tikz/#1.tex}{imgs/#1.pdf}
+% 	    {\tikzset{external/remake next}}{}
+% 	  \input{../images/tikz/#1.tex}
+% 	}
+% }
+% {
+% 	\newcommand{\includetikz}[1]{
+% 		\input{../images/tikz/#1.tex}
+% 	}
+% }
+
+\setcounter{secnumdepth}{4} % To number paragraphs
+\setcounter{tocdepth}{4}
+
+
+\usepackage{import}     % For better handling of included files with relative paths
+\usepackage{standalone} % For correctly embedding standalone LaTeX figures
+
+\usepackage{tikz}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikz_extern/]
+\graphicspath{{./figures/}}
+\makeatletter
+\def\input@path{{./figures/}}
+
+
+
+
+%%=== Sonstiges ===
+\usepackage{graphicx}						%% \usepackage[draft]{graphicx} --> Grafiken werden nur als leere Box ausgegeben
+\usepackage{color}
+\usepackage{pdflscape}						%% (einzelne) Seiten koennen im Querformat ins PDF gestellt werden
+
+\definecolor{isea_blue}{rgb}{0.031, 0.020, 0.580}	%% ISEA-Blau fuer PDF links,
+	%% wird in CustomVariables.tex erneut defniniert; hier, um in PDF-links nutzbar zu sein;
+	%% CustomVariables.tex wird erst in Main.tex eingebunden, um fuer den Nutzer, der eigene Eintraege 
+	%% dort ergaenzen kann, erkennbar zu sein
+
+\ifthenelse{\equal{\varLanguage}{german}}
+	{%\usepackage[ngerman]{cleveref}						%%Für Kommentare und ToDo Listen
+	\usepackage[ngerman]{todonotes}}
+	{%\usepackage[english]{cleveref}						%%Für Kommentare und ToDo Listen
+	\usepackage[english]{todonotes}}
+
+\usepackage{pdfpages}
+\usepackage{pdfcomment}
+
+\newcommand{\mypdfcomment}[1]{\pdfcomment[author=\varAuthorGiven,markup=Highlight,color=yellow]{#1}}
+\newcommand{\pdftext}[1]{\pdfannot{/Subtype/Text/Contents(#1)}}
+\newcommand{\mypdfmarkupcomment}[2]{\pdfmarkupcomment[author=\varAuthorGiven{} \varAuthorFamily{},markup=Highlight,color=yellow]{#1}{#2}}
+\newcommand{\mypdfmargincomment}[1]{\pdfmargincomment[author=\varAuthorGiven{} \varAuthorFamily{},markup=Highlight,color=yellow]{#1}}
+
+%%== Anführungszeichen setzen ==
+\ifthenelse{\equal{\varLanguage}{german}}
+	{\usepackage[autostyle=true,german=quotes]{csquotes}}			%% Eine Ergänzung für Anführungszeichen
+	{\usepackage[autostyle=true,english=british]{csquotes}}			%% Englisch
+%% Doku zu csquotes: http://www.ctan.org/tex-archive/macros/latex/contrib/csquotes/csquotes.pdf
+
+%%== Literaturverzeichnis ==
+\usepackage[style=numeric-comp, minnames=1, maxnames=2, hyperref=true, backend=biber, bibencoding=utf8]{biblatex}		%% Lädt das Biblatex Paket und definert den Style
+
+
+%% Styles: numeric für Zahlen in eckigen Klammern [1]
+
+%\newcounter{biburllcpenalty} % definiere die neuen counter
+%\newcounter{biburlucpenalty} % definiere die neuen counter
+
+\apptocmd{\UrlBreaks}{\do\f\do\m}{}{} % Einstellung um URLs korrekt darzustellen (Zeilenumbruch)
+\setcounter{biburllcpenalty}{9000}% Kleinbuchstaben
+\setcounter{biburlucpenalty}{9000}% Großbuchstaben
+
+
+%%== Literaturverzeichnis (alternativ, nutzt den Bibkey als Text ([Gru96] statt [1])
+%\usepackage[style=alphabetic, minnames=1, maxnames=2, hyperref=true, backend=biber, bibencoding=utf8]{biblatex}
+%\DeclareFieldFormat{labelalpha}{\thefield{entrykey}}
+%\DeclareFieldFormat{extraalpha}{}
+%%== Ende Literaturverzeichnis (alternativ)
+	
+\ifthenelse{\equal{\varLanguage}{german}}
+	{\DefineBibliographyStrings{ngerman}{bibliography={Literaturverzeichnis}}
+	\DefineBibliographyStrings{ngerman}{mathesis={Masterarbeit}}
+	\DefineBibliographyStrings{ngerman}{phdthesis={Dissertation}}
+	}% NICHT references
+	{}
+
+\makeatletter
+\@ifpackagelater{biblatex}{2016/03/03} % biblatex syntax changed with version 3.3 released on 2016/03/03
+{ % biblatex version >= 3.3
+	% New syntax for flexible back end
+	\DeclareNameFormat{default}{%
+		\renewcommand*{\multinamedelim}{\addsemicolon\addspace}%
+		\nameparts{#1}%
+		\usebibmacro{name:family-given}
+		{\namepartfamily}
+		{\namepartgiveni}
+		{\namepartprefixi}
+		{\namepartsuffixi}%
+		\usebibmacro{name:andothers}%
+	}
+	
+	\DeclareNameFormat{labelname}{%
+		\renewcommand*{\multinamedelim}{\addcomma\addspace}%
+		\nameparts{#1}%
+		\usebibmacro{name:family-given}
+		{\namepartfamily}
+		{\namepartgiveni}
+		{\namepartprefixi}
+		{\namepartsuffixi}%
+		\usebibmacro{name:andothers}%
+	}
+	
+	\DeclareNameFormat{sortname}{%
+		\renewcommand*{\multinamedelim}{\addcomma\addspace}%
+		\nameparts{#1}%
+		\usebibmacro{name:family-given}
+		{\namepartfamily}
+		{\namepartgiveni}
+		{\namepartprefixi}
+		{\namepartsuffixi}%
+		\usebibmacro{name:andothers}%
+	}	
+}
+{ % biblatex version < 3.3
+	%%Literaturverzeichnis mit Nachname, Vorname (abgekürzt)
+	\DeclareNameFormat{default}{%
+		\usebibmacro{name:last-first}{#1}{#4}{#6}{#8}%
+		\usebibmacro{name:andothers}}
+	\DeclareNameFormat{labelname}{%
+		\usebibmacro{name:last-first}{#1}{#4}{#6}{#8}%
+		\usebibmacro{name:andothers}}
+	\DeclareNameFormat{sortname}{%
+		\usebibmacro{name:last-first}{#1}{#4}{#6}{#8}%
+		\usebibmacro{name:andothers}}
+}
+\makeatother
+
+\bibliography{../literature/\varBib}		%% Pfad der Bibliotheks-Datei. Hier nichts ändern!
+
+%%=== Index ===
+%\usepackage{makeidx}
+%\makeindex
+
+%%=== PDF ===
+\usepackage{ifpdf}
+
+\newboolean{bool_hyperref}
+\setboolean{bool_hyperref}{true}		%% Soll hyperref (pdf-links) geladen werden?
+
+\ifpdf
+	\ifthenelse{\boolean{bool_hyperref}}{
+	    \usepackage{hyperref}   				%% Hyperlinks	(hyperref als allerletztes Paket laden!!!)
+	    \hypersetup
+	    {
+	        pdftitle		={\varTitle},
+	        pdfsubject	={\varSubject},
+	        pdfauthor		={\varAuthorGiven{} \varAuthorFamily{}},
+	        pdfkeywords	={\varKeywords},
+	        colorlinks	=true,
+	        linkcolor		=black, 
+	        citecolor		=black, 
+	        urlcolor		=black,
+	        pdfstartview=Fit, %FitH, FitB	
+	        %plainpages=false
+	    }
+		\ifthenelse{\equal{\varTwoside}{true}}
+		{
+			\hypersetup{pdfduplex=DuplexFlipLongEdge}
+		}{
+			\hypersetup{pdfduplex=Simplex}
+		}
+	}{ }
+    \graphicspath{{../images/}{../images/}}
+    \ifthenelse{\equal{\varFinalVersion}{true}}
+    	{\pdfcompresslevel=9}    				%% höchste und langsamste Kompression
+    	{\pdfcompresslevel=0}    				%% geringste und schnellste Kompression
+    %\pdfhorigin	= 1cm
+    %\pdfvorigin	=	1cm
+    %\hoffset			=	0.7mm
+    %\voffset			=	5mm
+\else
+    \graphicspath{{../images/}}
+		%\hoffset			= 0.7mm
+		%\voffset			= -0.2mm
+\fi
+
+%%=== Verzeichnisse (Symbol, Abkürzungen usw.) ===
+
+\usepackage[toc=true,nonumberlist,acronym,acronymlists={symbolslist},nomain]{glossaries}
+%% ftp://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/macros/latex/contrib/glossaries/glossaries-user.pdf
+%% ftp://ftp.dante.de/tex-archive/macros/latex/contrib/glossaries/glossariesbegin.pdf
+
+\renewcommand*{\glspostdescription}{}		%% Schaltet den Punkt am Ende der Erklärung ab.
+\newglossary[sya]{symbolslist}{syb}{syc}{Symbolverzeichnis}
+%\newglossary[fra]{fremdwort}{frb}{frc}{Fremdwörterverzeichnis}
+
+%Glossar Befehle einschalten
+\makeglossaries

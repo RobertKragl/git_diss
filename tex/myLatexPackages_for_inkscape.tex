@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+%!TEX root = main.tex
+\usepackage{shellesc}
+
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{siunitx}									
+\usepackage{lipsum}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{xfrac}	
+% \usepackage{amssymb}			
+\usepackage{upgreek}				
+\usepackage{icomma}	  						
+\usepackage{trsym}											
+\usepackage{trfsigns}
+%\usepackage{subcaption}
+\usepackage[right]{eurosym}					
+\usepackage{textcomp}									
+			
+			
+%\usepackage[sorting=none, url=false]{biblatex}
+
+
+\newcommand{\tsup}{\textsuperscript}
+\newcommand{\tsub}{\textsubscript}
+\newcommand{\mi}[2]{\ensuremath{#1_{\text{#2}}}}
+\newcommand{\mis}[3]{\ensuremath{#1_{\text{#2}}^{\text{#3}}}}
+\newcommand{\mtis}[3]{\ensuremath{\text{#1}_{\text{#2}}^{\text{#3}}}}
+\newcommand{\mti}[2]{\ensuremath{\text{#1}_{\text{#2}}}}
+\newcommand{\ddt}[1]{\ensuremath{\frac{\textnormal{d}#1}{\textnormal{d}t}}}
+\newcommand{\sddt}[1]{\ensuremath{\sfrac{\textnormal{d}#1}{\textnormal{d}t}}}
+\newcommand{\fref}[1]{Fig.~\ref{#1}}
+
+
+% \newcommand{\linebreakand}{%
+%     \end{@IEEEauthorhalign}
+%     \hfill\mbox{}\par
+%     \mbox{}\hfill\begin{@IEEEauthorhalign}
+% }
+
+
+\usepackage{tikz}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikz_extern/]
+
+%\usepackage{subfig}
+%\usepackage{subcaption}
+%\usepackage{subfloat}
+
+ % ,pgf,pgfplots}					%% Auch wenn tikz kein Zeichenprogramm ist, es macht schöne Grafiken
+%\usepgfplotslibrary{groupplots}
+
+\graphicspath{{./figures/}}
+\makeatletter
+\def\input@path{{./figures/}}
+
+\usepackage{pgf,pgfplots}					%% Auch wenn tikz kein Zeichenprogramm ist, es macht schöne Grafiken
+%\usepgfplotslibrary{groupplots} %\usepgfplotslibrary{external} 
+%\usepackage[european,straightvoltages,siunitx]{circuitikz}
+\pgfplotsset{compat=newest}						%% behebt einige Fehler, die beim Rendern der Grafiken auftreten können
+\usetikzlibrary{plotmarks,shapes,positioning,fit}
+%\pgfkeys{/pgf/number format/.cd ,use comma ,set thousands separator={.}} %Globale einstellungen für Grafiken mit tikz/pgf.
+%\usetikzlibrary{spy} 							%% kann bei Bedarf eingebunden werden, um Lupeneffekt bei Grafiken zu ermöglichen
+\tikzset{every picture/.style={line join=round}}
+
+%Doku matlab2tikz:
+\pgfplotsset{plot coordinates/math parser=false} 
+
+%sets search directory for pgfplots input files 
+%\pgfplotsset{table/search path={tikz/tikzData}}
+%
+%\pgfplotsset{
+%	every axis plot post/.style={
+%		line join=round
+%	}
+%}
+
+
+%% Parameter für Grafikgröße (tikz)
+\newlength\figureheight
+\newlength\figurewidth 
+
+%% Folgende Zeile einkommentieren, um externalize zu aktivieren und alle mit tikz erstellten Grafiken als pdf auszugeben.
+%% -> Zwischenspeicherung der gerenderten Bilder ermöglicht schnelleres kompilieren
+%\usepgfplotslibrary{external}						% this one kills it with lulatex
+%\pgfkeys{/pgf/images/include external/.code=\includegraphics{#1}}
+
+\usepackage{filemod}
+
+%\ifdef{\tikzexternalize}{
+%\tikzexternalize[prefix=imgs/]					%% Zwischenspeicher im Unterordner imgs/ des tex/-Ausgabeordners
+%\newcommand{\includetikz}[1]
+%{
+%	\tikzsetnextfilename{#1}
+%	\filemodCmp{tikz/#1.tex}{imgs/#1.pdf}
+%	{\tikzset{external/remake next}}{}
+%	\input{tikz/#1.tex}
+%}
+%}
+%{
+%	\newcommand{\includetikz}[1]{
+%		\input{tikz/#1.tex}
+%	}
+%}
+%
+%\input{kob_pgfplots}
+%\input{rwth-colors}
+
+\definecolor{mycolor}{RGB}{33, 95, 139}
+            
+\definecolor{BoschRGB1} {rgb}{0.8863    ,0    	  ,0.0824 }
+\definecolor{BoschRGB2} {rgb}{0.7255    ,0.0078    ,0.4627}
+\definecolor{BoschRGB3} {rgb}{0.3137    ,0.1373    ,0.4980}
+\definecolor{BoschRGB4} {rgb}{0    		,0.3373    ,0.5686}
+\definecolor{BoschRGB5} {rgb}{0    		,0.5569    ,0.8118}
+\definecolor{BoschRGB6} {rgb}{0    		,0.6588    ,0.6902}
+\definecolor{BoschRGB7} {rgb}{0.4706    ,0.7451    ,0.1255}
+\definecolor{BoschRGB8} {rgb}{0   		,0.3843    ,0.2863}
+\definecolor{BoschRGB9} {rgb}{0.3216    ,0.3725    ,0.4196}
+\definecolor{BoschRGB10}{rgb}{0.7529    ,0.7529    ,0.7608}  
+\definecolor{BoschRGB11}{rgb}{0     	,0     	  ,0}  
+\definecolor{BoschRGB12}{rgb}{1			,1 		  ,1}

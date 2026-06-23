@@ -1,0 +1,70 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+
+\section{Design}
+
+\subsection{Frequency compensated voltage divider}
+\subsection{Amplification}
+
+For the measurement of the drain-source voltage, a dual-channel differential active voltage probe is utilized. 
+This probe enables simultaneous measurement of the drain-source voltages across both switching devices. The probe is connected directly to the respective drain and source terminals, without the use of any cables, which change their impedance and transfer function in dependence of their positioning.
+Furthermore this approach minimizes parasitic effects. 
+
+\begin{figure}[h]
+	\centering
+	\import{./figures/}{SchematicOverviewEMEProbe.pdf_tex}
+	\caption{Schematic overview of probe functionality.}
+	\label{fig:OverviewEMEProbe}
+\end{figure}
+
+In contrast to conventional differential probes the signal is split after the unity gain amplifier to a second channel, which has a 2nd order high-pass characteristic.
+The probe is a new version of the design of \cite{kragl_active_2025} incorporating an additional shielding layer in a now 6-layer PCB.
+Furthermore, the HV PCB capacitor can be now trimmed by adding or removing the effective area of the outer capacitor side.
+The new design was verified with the methods introduced in \cite{kragl_active_2025} for both large signal as small signal response.
+The VNA measurement results are additionally shown in \fref{fig:VNA_LP} anf \fref{fig:VNA_HP}.
+
+
+As was explained in \cite{kragl_active_2025} each probe is verified with 3 measurements: VNA Small signal, Pulse Generator Large signal, and i-situ measuremnt in parallel with commercial measurement (for lowpass measurements - \SI{80}{mR} passive shunt and \SI{10}{MR} passive probe). 
+the last is necessary for the verification of not having any parasitic capacitive or inductive couplings into the measurement path.
+
+
+% \begin{figure}[ht]
+% 	\centering
+% 	\input{"VNA_Probe_LP.tex"}
+% 	\caption{VNA measurement of low pass.}
+% 	\label{fig:VNA_LP1}
+% \end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/}{VNA_LP.tex}
+	\caption{VNA measurement of low pass.}
+	\label{fig:VNA_LP}
+\end{figure}
+
+The voltage gain \mti{a}{probe} of the probe can be calculated from the S-parameter measurement as 
+\begin{align}
+	\mti{a}{probe} 	&= \frac{\mi{v}{out}}{\mi{v}{HV+}-\mi{v}{HV-}} \\
+					&= \frac{\mti{S}{21}}{1 + \mti{S}{11}}.
+\end{align}
+
+Since \mti{S}{11} remains mostly flat at \SI{0}{dB} due to the high-impedance input of the probe, the primary parameter of interest for the voltage gain is \mti{S}{21}.
+
+The low-pass signal exhibits a bandwidth of approximately \SI{250}{MHz} before the gain begins to drop, a limitation attributed to the characteristics of the operational amplifier employed in the output stage.
+
+% \begin{figure}[ht]
+% 	\centering
+% 	\input{"VNA_Probe_HP.tex"}
+% 	\caption{VNA measurement of high pass.}
+% 	\label{fig:VNA_HP}
+% \end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/}{VNA_HP.tex}
+	\caption{VNA measurement of high pass.}
+	\label{fig:VNA_HP}
+\end{figure}
+
+Considering the high pass transfer function the constant rise of gain over frequency was achieved with an additional input inductance in front of the unity gain amplifier. 
+This compensates capacitive input behavior of the used 

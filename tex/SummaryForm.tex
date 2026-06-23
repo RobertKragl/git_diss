@@ -1,0 +1,92 @@
+%%=============================================================================
+%%===   ISEA-TEX-Vorlage   ===
+%%=== Formblatt zur Arbeit ===
+%%===        mla 2016      ===
+%%=============================================================================
+
+%%	Diese Datei braucht i.d.R. nicht editiert zu werden, es werden die Werte aus isea_tex_def übernommen.
+
+\label{SummaryForm}
+
+\thispagestyle{empty}
+%\edef\pagenumstart{\value{page}}
+
+\small
+Diese Seite wird nicht mitgebunden und ist als separate Seite bei der Abgabe der Arbeit mit abzugeben.
+%\normalsize
+\vspace{5mm}
+
+\varTitle
+\vspace{5mm}
+
+\varDate
+\vspace{5mm}
+
+Autor: \varAuthorFamily{}, \varAuthorGiven{}
+
+Betreuende/r Mitarbeiter/in: \varAssiName
+
+Betreuender Professor: \varSupA
+
+\vspace{5mm}
+\ifthenelse{\equal{\varInstitute}{ISEA}}
+{
+	Arbeit außerhalb des ISEA angefertigt: \textbf{\ifthenelse{\equal{\varExtern}{true}}{ja}{nein}}
+}
+{
+	Arbeit außerhalb des PGS angefertigt: \textbf{\ifthenelse{\equal{\varExtern}{true}}{ja}{nein}}
+}
+
+\ifthenelse{\equal{\varExtern}{true}}
+{
+	Firma der Anfertigung: \varExternName
+}
+{}
+
+\vspace{5mm}
+
+Studienrichtung: \varFieldOfStudy
+
+Sprache: \ifthenelse{\equal{\varLanguage}{german}}{Deutsch}{Englisch}
+
+\vspace{7mm}
+Vertraulichkeit:
+
+\ifthenelse{\equal{\varInstitute}{ISEA}}
+{
+	$\square$ Diese Arbeit fällt unter eine Geheimhaltungsvereinbarung des ISEAs und beinhaltet vertrauliche Daten.
+}
+{
+	$\square$ Diese Arbeit fällt unter eine Geheimhaltungsvereinbarung des PGS und beinhaltet vertrauliche Daten.	
+}
+
+$\square$ Diese Arbeit steht unter erweiterten Geheimhaltungsvereinbarungen mit Dritten oder zum Schutz von Erfindungsrechten.
+
+$\square$ Diese Arbeit hat einen Sperrvermerk bis zum \ldots \ldots \ldots .
+
+\vspace{5mm}
+
+Stichworte:
+\begin{multicols}{2}
+	\begin{itemize}
+		\itemsep 0pt
+		\makeatletter
+		\@for\tmp:=\varKeywords\do{\item \tmp}
+		\makeatother
+	\end{itemize}
+\end{multicols}
+
+
+\vspace{5mm}
+
+Zusammenfassung:
+
+
+Hier steht eine kurze Zusammenfassung der Arbeit. Der Umfang der Zusammenfassung sollte vier bis acht Zeilen betragen.
+
+Dieser Text ist in der Datei \textbf{SummaryForm.tex} zu finden, weitere Parameter (Betreuer, Studienrichtung, ...) können entweder in der \textbf{isea\_tex\_def.tex} oder direkt in dieser Datei angepasst werden.
+
+
+\cleardoubleemptypage
+\normalsize
+%\setcounter{page}{\pagenumstart-1}	% Zähler zurücksetzen, als ob Seite nicht vorhanden wäre

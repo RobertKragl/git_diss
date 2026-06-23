@@ -1,0 +1,124 @@
+%!TEX TS-program = pdflatex
+%!encoding = UTF-8 Unicode
+%%=============================================================================
+%%=== ISEA-TEX-Vorlage ===
+%%===   Hilfsvariablen ===
+%%===      jmu 05.07.2012     ===
+%%=============================================================================
+
+
+%%=============================================================================
+%%= Einheiten
+%%=============================================================================
+
+% Die \unit-Befehle sind veraltet und sollten nicht mehr für neue Dokumente
+% verwendet werden. Stattdessen sollte \SI direkt verwendet werden.
+
+% \newcommand{\unit}[2]{\SI{#1}{#2}}
+% \newcommand{\unitfrac}[3]{\SI[per-mode=fraction]{#1}{#2\per#3}}
+% \newcommand{\nunitfrac}[3]{\SI[per-mode=fraction,fraction-function=\sfrac]{#1}{#2\per#3}}
+
+%% Kürzel für mathrm: $U_\s{GS}$ statt $U_\mathrm{GS}$
+%% Die sonst oft verwendete Methode $U\lind{GS}$ führt nicht selten zu Problemen.
+\newcommand{\s}[1]{\mathrm{#1}}
+
+\DeclareSIUnit{\amperehour}{Ah}
+\DeclareSIUnit{\watthour}{Wh}
+\DeclareSIUnit{\amperesecond}{As}
+\DeclareSIUnit{\kilowatthour}{kWh}
+\DeclareSIUnit{\kWp}{kW_p}
+\DeclareSIUnit{\Wp}{W_p}
+\DeclareSIUnit{\cent}{ct}
+\DeclareSIUnit{\year}{a}
+\DeclareSIUnit{\rpm}{rpm}
+
+
+
+%%=============================================================================
+%%= Mathematik
+%%=============================================================================
+
+%% Differentialoperator
+\newcommand{\diff}{\mathrm{d}}							%% upright differential operator
+\newcommand{\niceddt}[1]{\ensuremath{\nicefrac{{\mathrm{d}}#1}{{\mathrm{d}}t}}}	%% Ableitung nach der Zeit
+
+
+\newcommand{\tsup}{\textsuperscript}
+\newcommand{\tsub}{\textsubscript}
+\newcommand{\mis}[3]{\ensuremath{#1_{\text{#2}}^{\text{#3}}}}
+\newcommand{\mtis}[3]{\ensuremath{\text{#1}_{\text{#2}}^{\text{#3}}}}
+\newcommand{\mti}[2]{\ensuremath{\text{#1}_{\text{#2}}}}
+\newcommand{\ddt}[1]{\ensuremath{\frac{\textnormal{d}#1}{\textnormal{d}t}}}
+\newcommand{\sddt}[1]{\ensuremath{\sfrac{\textnormal{d}#1}{\textnormal{d}t}}}
+\newcommand{\fref}[1]{Fig.~\ref{#1}}
+
+
+%% Formatting of vectors, matrices etc.
+\newcommand{\cmplx}[1]{\underline{#1}}									%% Underline complex quantities
+\newcommand{\matr}[1]{\mathbf{#1}}											%% Use bold type for matrix quantities
+\newcommand{\vect}[1]{\text{\boldmath\ensuremath{#1}}}	%% Use bold and italic type for vectors
+
+%%= Indizes
+\newcommand{\lind}[1]{_{\mathrm{#1}}}				%% tiefgestellte Indizes nicht kursiv
+\newcommand{\Lind}[1]{_{#1}}								%% tiefgestellte Indizes kursiv
+\newcommand{\uind}[1]{^{\mathrm{#1}}}				%% hochgestellte Indizes nicht kursiv
+\newcommand{\Uind}[1]{^{#1}}								%% hochgestellte Indizes kursiv
+
+%% si-Funktion
+\DeclareMathOperator{\sinc}{sinc}
+
+
+%%= Aus alter ISEA-TeX-Vorlage 
+\newcommand{\kmatrix}[1]{\left[\matrix{#1}\right]}
+\renewcommand{\vec}{\underline}							%% Der Unterstrich wird als Vektorzeichenverwendet
+
+\newcommand{\mb}[1]{\quad\mbox{#1}\quad}
+\newcommand{\fuer}{\mb{für}}
+\renewcommand{\mit}{\mb{mit}}
+\newcommand{\und}{\mb{und}}
+
+\newcommand{\mi}[2]{\ensuremath{{#1}_{\mathrm{#2}}}}     			%math mit Index
+\newcommand{\me}[2]{\ensuremath{{#1}^{\mathrm{#2}}}}     			%math mit Exp
+\newcommand{\mie}[3]{\ensuremath{{#1}_{\mathrm{#2}}^{\mathrm{#3}}}} 		%math m. I. u. Exp
+
+\newcommand{\bint}[4]{\ensuremath{\int_{#1}^{#2}{#3{\mathrm{\,d}}#4}}}
+\newcommand{\uint}[2]{\ensuremath{\int#1{\mathrm{\,d}}#2}}
+
+\newcommand{\entspricht}{\mathrel{\widehat{=}}} 									%flacher
+
+
+
+
+%%=============================================================================
+%%= Text
+%%=============================================================================
+
+%% Abkürzung für Typewrite-Textformatierung
+\newcommand{\ttt}[1]{\texttt{#1}}
+
+%%= Backslash im Text
+\newcommand{\bs}{$\backslash$}
+
+
+%%=============================================================================
+%%= Farben
+%%=============================================================================
+
+%%= RWTH und ISEA-Farben =
+%% Textfarbe
+\definecolor{textColor}{rgb}{0, 0, 0}
+\newcommand{\textColor}{\color{textColor}}	
+
+%% Offizielle Farben, Logo "RWTH", HKS 44 (100% Sättigung)
+\definecolor{rwth_logo_blue}{cmyk}{1.0, 0.5, 0.0,0.0}
+%\definecolor{rwth_logo_blue}{rgb}{0.659, 0.792, 0.906}	
+\newcommand{\rwthLogoBlue}{\color{rwth_logo_blue}}
+\newcommand{\iseaBlue}{\color{rwth_logo_blue}}
+
+
+%% Offizielle Farbe, Logounterschrift "Aachen University", HKS 44 (30% Sättigung)
+\definecolor{rwth_light_blue}{cmyk}{0.45, 0.14, 0.0, 0.0}
+%\definecolor{rwth_light_blue}{rgb}{0.659, 0.792, 0.906}								
+\newcommand{\rwthLightBlue}{\color{rwth_light_blue}}
+\newcommand{\iseaLightBlue}{\color{rwth_light_blue}}
+

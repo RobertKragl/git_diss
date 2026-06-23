@@ -1,0 +1,24 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+
+\section{Requirements}
+
+For the current measurement some requirements must be defined for a measurement in respect to EMC.
+First-same as for the voltage measurement- a bandwidth of \SI{500}{MHz} or higher is needed.
+This makes the use of  commercial Rogowski-coils impossible, furthermore rogoskis have the disadvantage to being prone to the positioning of the coil \cite{xin_review_2022}.
+
+Furthermore, a galvanic isolated measurement is necessary, since the ground of the oscilloscope is fixed to the aluminum plate, which is also the ground of the LISNs.
+Hence, classical passives shunts, which set the oscilloscope ground to DC+ or DC- are not feasible.
+Lastly, the introduced measurement resistance must be one decade smaller than the \mi{R}{DS,on} of the DUT.
+The presented measurement setup is designed for \SI{750}{V} and \SI{1200}{V} SiC-discretes in a D2PAK where the $\mi{R}{DS,on}~~\SIrange{20}{50}{m\ohm}$. (Cite PMTW05 and PMTX03 datasheets).
+Therefore, the sense resistance must be \SI{2}{m\Omega} or smaller.
+This is a problem for conventional shunts when the bandwidth is considered.
+Every shunt resistance has some parasitic inductance and the bandwidth of the shunt corresponds to
+
+\begin{equation}
+    \mi{f}{bw,shunt} = \frac{1}{2\pi \tau_\text{shunt}} = \frac{\mi{R}{shunt}}{2\pi\mi{L}{shunt}} 
+\end{equation}
+
+Therefore, in classical shunt design higher bandwidths can be achieved with higher shunt resistance values. 
+However, this is not feasible for the EMC measurement.
+

@@ -1,0 +1,23 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+
+\section{Design}
+The two DUTs \mti{Q}{1} and \mti{Q}{2} are placed on a cooler, which is mounted on a aluminum plate, which creates the current path for the ground currents to the two LISNs.
+
+As will be seen later, a second half-bridge with \mti{Q}{1,aux} and \mti{Q}{2,aux} is placed adjacent to the DUTs.
+This half-bridge is needed, because a single double pulse test is not sufficient for EMC measurements.
+Instead multiple pulses which are averaged in post-processing are needed to decrease the thermal noise.
+However, the EM noise of the auxiliary half-bridge should not be seen on the LISN measurements and, hence, it is not placed on the aluminum plate.
+The DC ports of the auxiliary half-bridge are additionally isolated from the DUTs through the impedance of the LISNs and of the inductor.
+
+\begin{figure}[h]
+	\centering
+	\import{./figures/}{ESB_B2B.pdf_tex}
+	\caption{Equivalent circuit diagram of the back-to-back converter measurement setup. Add vds and id lp hp signals}
+	\label{fig:ESB_b2b}
+\end{figure}
+
+\subsection{Back-to-Back Converter}
+
+
+\subsection{LISN Measurement}

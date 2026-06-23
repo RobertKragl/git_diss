@@ -1,0 +1,80 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+
+\section{Switching Event Separation}
+In the analysis of the switching behavior of power electronics it is common practice to analyze the four switching events separately - active-off/passive-on and active-on/passive-off \cite{fritz_toward_2020}. 
+Here, the active device is the switch, which initiates the switching transient while the passive switch is turned off and the body diode operates during the commutation process.
+This separated analysis is also desirable for the EMC analysis to identify the switching event that is dominating the frequency spectrum for the respective frequency band of interest.
+This is enabled by-and one of the main advantages-of the measurement directly at the semiconductor ports. 
+Conventional EMC measurements at LISNs or antennas can only measure the conglomerated noise of all switching events and noise sources in the system.
+
+However, to achieve this separated analysis in the frequency domain, a method introduced in \cite{kragl_impact_2024} must be used, called snap-and-mirror function.
+
+\begin{figure}
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\import{./figures/}{3_Methods/SnapNMirror/DPT_TD.tex}
+		\subcaption{Active and passive switching signals in time domain.}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\import{./figures/}{3_Methods/SnapNMirror/DPT_FD.tex}
+		\subcaption{Spectrum of active and passive switch.}
+	\end{subfigure}
+	
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\import{./figures/}{3_Methods/SnapNMirror/Snapped_TD.tex}
+		\subcaption{Snapped and mirrored time domain signals.}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\import{./figures/}{3_Methods/SnapNMirror/Snapped_FD.tex}
+		\subcaption{Spectrum of snapped and mirrored signals.}
+	\end{subfigure}
+	\label{fig:SnM_snapped_FD}
+	\vspace{1cm}
+\end{figure}
+
+% \begin{figure}[h!]
+% 	\centering\import{./figures/}{2_SnapNMirror/DPT_TD.tex}
+% 	\caption{Principle functionality of snap and mirror function for the separated EMC analysis of all four switching events.}
+% 	\label{fig:SnapNMirror}
+% \end{figure}
+
+
+
+\begin{figure}[h!]
+	\centering\import{./figures/}{Snap_n_Mirror_vertical_v3_tex.pdf_tex}
+	\caption{Principle functionality of snap and mirror function for the separated EMC analysis of all four switching events.}
+	\label{fig:SnapNMirror}
+\end{figure}
+
+This function identifies the mid-points of each switching cycle \mi{t}{mid,n} and mirrors them around this axis, which can be formulated as
+
+\begin{equation}
+	\small 
+	\mathrm{s}_\mathrm{new}(t) = 
+	\begin{cases}
+		s(t) 					 		& \text{, for } \mi{t}{mid,n}~~~   < t < \mi{t}{mid,n+1} \\
+		s(-t + 2\cdot\mi{t}{mid,n+1}) 	& \text{, for } \mi{t}{mid,n+1} < t < \mi{t}{mid,n+2} \\
+		s(t) 					 		& \text{, for } \mi{t}{mid,n+2} < t < \mi{t}{mid,n+3} \\
+		s(-t + 2\cdot\mi{t}{mid,n+3}) 	& \text{, for } \mi{t}{mid,n+3} < t < \mi{t}{mid,n+4} \\
+		...\\
+	\end{cases}
+	\label{eq:snap}
+\end{equation}
+
+This is done for both the turn-on and turn-off event for both the active and the passive switch, thereby creating four artificial signals out of the two measured voltages of active and passive switch.
+
+Because only the signal amplitude in the frequency domain is analyzed this is a valid operation since the mirroring and the time shift of a signal has only influence on the phase of the fourier transform.
+
+\begin{equation}
+	\mathcal{F}\{s(-t)\} = S(-f) = S^\ast(f)
+\end{equation}
+
+\begin{equation}
+	\mathcal{F}\{s(t-\mi{t}{0})\} = S(f)e^{-j\omega \mi{t}{0}}
+\end{equation}

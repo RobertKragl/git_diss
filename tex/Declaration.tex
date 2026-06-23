@@ -1,0 +1,34 @@
+%%=============================================================================
+%%===   ISEA-TEX-Vorlage   ===
+%%=== Erklärung des Autors ===
+%%===       mla 2016       ===
+%%=============================================================================
+
+% disable externalize for this page if it was enabled in isea_tex_def (prevents compilation errors)
+\ifdef{\tikzexternaldisable}{
+	\tikzexternaldisable
+}{}
+
+\includepdf[pagecommand={
+	\begin{tikzpicture}[
+		remember picture,
+		overlay,
+		shift={(current page.south west)}
+	]	
+		\sffamily
+		\bfseries
+		\node[anchor=south west] at (24mm, 239mm) {\varAuthorFamily{}, \varAuthorGiven{}};
+		\node[anchor=north west, text width=160mm] at (24mm, 214mm) {\baselineskip=19.5pt \varTitle{} \\ };
+		\node[anchor=south west] at (24mm, 141.5mm) {Aachen, \varDate{}};
+		\node[anchor=south west] at (24mm, 30.8mm) {Aachen, \varDate{}};
+		\normalfont
+	\end{tikzpicture}
+	\thispagestyle{empty}
+}]{eidesstattlicheVersicherung}
+
+\cleardoubleemptypage
+
+\ifdef{\tikzexternalenable}{
+	\tikzexternalenable
+}{}
+

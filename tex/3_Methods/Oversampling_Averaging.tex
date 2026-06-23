@@ -1,0 +1,26 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+
+\section{Oversampling and Averaging}
+The previous section explains the challenges to measure high-frequency components of a signal.
+Firstly, classical digital noise reduction can be applied, which address the thermal noise \mi{v}{noise,therm}: Oversampling and averaging.
+
+By oversampling and averaging afterwards, the effective number of bits (ENOB) can be increased by \cite{silicon_laboratories_an118_2013}.
+
+\begin{equation}
+	\mti{N}{ENOB} = \mti{N}{ADC} + 0.5\cdot \log_2(\frac{\mi{f}{s}}{2\mi{f}{max}})
+\end{equation}
+
+Here \mi{N}{ADC} is the nominal ADC resolution, \mi{f}{s} is the sampling frequency of the oscilloscope and \mi{f}{max} the maximum frequency of interest.
+Furthermore, the factor of 2 in the denumerator is due to the nyquist sampling theorem.
+This can be done internally in the oscilloscope.
+
+As this cannot be pushed limitless due to hardware-restrictions of the maximum sampling speed of modern oscilloscopes, the number of signal points can be increased by not measuring one single pulse, but a pulse chain of $M$ pulses.
+This further increases the ENOB to \cite{kragl_active_2025}
+
+\begin{equation}
+	\mti{N}{ENOB} = \mti{N}{ADC} + 0.5\cdot \log_2(\frac{\mi{f}{s}}{2\mi{f}{max}}) + 0.5\log_2(M)
+\end{equation}
+
+These gains are realized only if the dominant noise is random, uncorrelated with the signal, and greater than the quantization step \cite{silicon_laboraties_an118_2013}. 
+As discussed above, in power electronics the high‑frequency voltage components often fall below or near the ADC quantization level; therefore oversampling and averaging alone are insufficient and must be combined with a high‑pass measurement method introduced next.

@@ -1,0 +1,28 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+
+\section{Design}
+
+Therefore, a replica of an active shunt of \cite{shillaber_gigahertz_2020,shillaber_ultrafast_2022} was desgined, which equivalent circuit is shown in \fref{fig:ESBActiveShunt}.
+This provides multiple advantages:
+First a small shunt value can be used, while still maintaing a rather high sense output due to the amplification of the operational amplifier.
+Furthermore, the low pass filter of the active shunt compensates the high pass characteristic of the shunt resistance achieving remarkable bandwidth.
+Lastly, the active shunts creates a \SI{50}{\ohm} signal, which can be either sent to a filter stage for high pass EMC measurements or be measured with a optical-isolated voltage probe and thereby providing galvanic isolation.
+
+\begin{figure}[h]
+	\centering
+	\import{./figures/}{CompensatedCurrentShunt.pdf_tex}
+	\caption{Schematic overview of active current shunt.}
+	\label{fig:ESBActiveShunt}
+\end{figure}
+
+
+S21 >> S12, um  passive parasitäre übertragung zu negieren.
+
+
+
+
+\subsection{Shunt}
+\subsection{Amplification}
+
+

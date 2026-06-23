@@ -1,0 +1,33 @@
+%%=============================================================================
+%%=== ISEA-TEX-Vorlage ===
+%%===   Verzeichnisse   ===
+%%===      jmu 05.07.2012     ===
+%%=============================================================================
+
+%% Hinweis: folgende Zeilen einkommentieren, wenn ein Abkürzungsverzeichnis erwünscht ist.
+
+%\ifthenelse{\equal{\varLanguage}{german}}
+%{\printglossary[type=\acronymtype,style=long,title={Abkürzungsverzeichnis},toctitle={Abkürzungsverzeichnis}]}
+%{\printglossary[type=\acronymtype,style=long,title={Glossary},toctitle={Glossary}]}
+
+
+%% Hinweis: folgende Zeilen einkommentieren, wenn ein Symbolverzeichnis verwendet wird.
+%\clearpage
+%\ifthenelse{\equal{\varLanguage}{german}}
+%{\printglossary[type=symbolslist,style=long,title={Symbolverzeichnis},toctitle={Symbolverzeichnis}]}
+%{\printglossary[type=symbolslist,style=long,title={List of Symbols},toctitle={List of Symbols}]}
+
+%% Hinweis: folgende Zeilen einkommentieren, wenn ein Fremdwortverzeichnis verwendet wird.
+%\clearpage
+%\ifthenelse{\equal{\varLanguage}{german}}
+%{\printglossary[type=fremdwort,style=long,title={Fremdwörterverzeichnis},toctitle={Fremdwörterverzeichnis}] }
+%{\printglossary[type=fremdwort,style=long,title={List of Foreign Words},toctitle={List of Foreign Words}]}
+%%Fremdworte ausgeben
+
+\listoffigures         				 	%% Abbildungsverzeichnis
+\listoftables							%% Tabellenverzeichnis
+
+%%Literaturverzeichnis	
+\printbibliography[heading=bibintoc]			%% Literaturverzeichnis erstellen
+%\newpage
+%\printindex

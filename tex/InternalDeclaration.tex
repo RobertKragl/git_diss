@@ -1,0 +1,42 @@
+%%=============================================================================
+%%===   ISEA-TEX-Vorlage   ===
+%%=== Erklärung des Autors ===
+%%===       mla 2016       ===
+%%=============================================================================
+
+%%	Diese Datei braucht i.d.R. nicht editiert zu werden
+
+\label{InternalDeclaration}
+\ifthenelse{\equal{\varLanguage}{german}}
+{% Deutsch
+	\ifthenelse{\equal{\varInstitute}{ISEA}}
+	{
+		\chapter*{Erklärung}
+		
+		Ich, \varAuthorGiven{} \varAuthorFamily{}, versichere, dass ich die vorliegende Arbeit -- bis auf die Betreuung durch das Institut für Stromrichter\-technik und Elektrische Antriebe (ISEA) der RWTH Aachen -- selbst und ohne fremde Hilfe angefertigt habe. Die benutzten Quellen und Hilfsmittel sind vollständig angegeben, Zitate sind kenntlich gemacht.
+	}
+	{
+		\chapter*{Erklärung}
+		
+		Ich, \varAuthorGiven{} \varAuthorFamily{}, versichere, dass ich die vorliegende Arbeit -- bis auf die Betreuung durch das Institute for Power Generation and Storage Systems (PGS) der RWTH Aachen -- selbst und ohne fremde Hilfe angefertigt habe. Die benutzten Quellen und Hilfsmittel sind vollständig angegeben, Zitate sind kenntlich gemacht.
+	}
+}%
+{% Englisch
+	\ifthenelse{\equal{\varInstitute}{ISEA}}
+	{
+		\chapter*{Declaration}
+		
+		I, \varAuthorGiven{} \varAuthorFamily{}, hereby declare that this submission -- except for the supervision by the Institute for Power Electronics and Electrical Drives (ISEA) of RWTH Aachen University -- is solely my own work. Information derived from the published or unpublished work of others has been acknowledged in the text and a list of references is given.
+	}
+	{
+		\chapter*{Declaration}
+		
+		I, \varAuthorGiven{} \varAuthorFamily{}, hereby declare that this submission -- except for the supervision by the Institute for Power Generation and Storage Systems (PGS) of RWTH Aachen University -- is solely my own work. Information derived from the published or unpublished work of others has been acknowledged in the text and a list of references is given.
+	}
+}%
+
+\vspace{1cm}
+Aachen, \varDate
+
+\cleardoubleemptypage
+

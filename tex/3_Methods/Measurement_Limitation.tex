@@ -1,0 +1,70 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+\section{Measurement Limitation}
+Commercially available voltage probes cannot measure the EMC-relevant frequency band of \SIrange{10}{400}{MHz} of SiC MOSFETs.
+This limitation is not due to the bandwidth or resolution constraints of the probes, but rather due to the nature of the spectrum of switched voltages and the subsequent sampling process.
+For explanation, Fig. \ref{fig:QuantNoise} illustrates a measurement of a drain-source voltage and its frequency spectrum.
+
+\begin{figure}[h!]
+    \centering\import{./figures/}{QuantizationNoise.pdf_tex}
+    \caption{Limitation of conventional voltage measurement and its impact on the frequency spectrum.}
+    \label{fig:QuantNoise}
+\end{figure}
+
+
+In the frequency range below $\sfrac{1}{\uppi \mi{T}{d}}$ the spectra corresponds to the DC component of the signal \mbox{$\mi{V}{DS}(f=0) = \text{d}\cdot\mi{V}{DC}$}.
+Above \mbox{$\mi{f}{cut1} = \sfrac{1}{\pi \mi{T}{d}}$}, the spectrum declines with \SI{-20}{dB/dec}. 
+This region is influenced by the switching frequency, modulation scheme and operating point of the converter.
+At frequencies above \mbox{$\mi{f}{cut2} = \sfrac{1}{\pi \mi{\uptau}{r}}$}, another transition occurs in the spectra, with the ideal voltage spectra falls with \SI{-40}{dB/dec}.
+This is the region, where the switching transient and, thereby, the semiconductor is the dominating factor for the spectrum behavior.
+Above \mbox{$\mi{f}{cut2} = \sfrac{1}{\pi \mi{t}{r}}$} the switching transient and, thereby, the semiconductor is the dominating factor for the spectrum.
+
+The challenge in the measurement of this frequency band, can be seen in Fig. \ref{fig:QuantNoise}.
+Above the resonance frequency, the signal drops below the noise floor, making it impossible to derive any informative value regarding the emitted noise.
+An exemplary calculation can be done with the spectra formulation from graphical analysis of a symmetric trapezoidal pulse \cite{costa_graphical_2005}.
+
+% \begin{equation}
+% \mi{V}{DS}(f) = d\,\mi{V}{DC}\,\text{sinc}(\pi f d \mi{T}{sw})\,\text{sinc}(\pi f \mi{\uptau}{r})
+% \end{equation}
+
+\begin{align}
+	\mi{V}{DS}(f) &= \text{d}\mi{V}{DC}\cdot\text{sinc}(\pi f \text{d} \mi{T}{sw})\cdot\text{sinc}(\pi f \mi{\uptau}{r})\\
+	 &\le
+ 	\left\{
+	\begin{array}{lcclc}
+		\text{d}\mi{V}{DC} 										 &,&\SI{0}{Hz} 						   &\le f < \dfrac{1}{\pi \text{d} \mi{T}{sw}} \\[6pt]
+		\dfrac{\mi{V}{DC}}{\pi f \mi{T}{sw}} 					 &,&\dfrac{1}{\pi \text{d} \mi{T}{sw}} &\le f < \dfrac{1}{\pi \mi{\uptau}{r}} \\[6pt]
+		\dfrac{\mi{V}{DC}}{\pi^{2} f^{2}\mi{T}{sw}\mi{\uptau}{r}}&,&\dfrac{1}{\pi \mi{\uptau}{r}}      &\le f  
+	\end{array}
+	\right.
+\end{align}
+
+Now, lets assume some value as: \mi{V}{DC}~=~\SI{800}{V}, d~=~0.5, \mi{f}{sw}~=~\SI{25}{kHz}, \mi{\tau}{r}~=~\SI{20}{ns} and \mi{\tau}{f}~=~\SI{50}{ns}. As a result
+\begin{equation}
+	\mi{V}{DS}(f=\SI{100}{MHz}=4000~\mi{f}{sw}) = \SI{14.2}{mV}
+\end{equation}
+
+A classical probe with an attenuation of 250 is used, which results in an ADC input voltage 
+\begin{equation}
+	\mi{v}{ADC,in} = \dfrac{\mi{v}{meas}}{\mti{a}{probe}} = \dfrac{\SI{14.18}{mV}}{250} = \SI{57}{\upmu V}
+\end{equation}
+
+The problem is evident when the minimum voltage increment of the oscilloscopes ADC is calculated, with an ADC, with an effective number of bits (ENOB) of 14
+\begin{equation}
+	\mi{v}{ADC,min} = \dfrac{\mi{V}{max}-\mi{V}{min}}{\mti{a}{probe}\cdot 2^{\mti{N}{bit}}} = \dfrac{\SI{1200}{V} - (\SI{-150}{V})}{250\cdot 2^{14}} = \SI{330}{\upmu V}.
+\end{equation} 
+
+The two values are of the same order of magnitude, which makes it for the ADC impossible to sample this voltage components.
+Additional to the quantization noise some thermal noise adds to the noise floor, creating a higher, effective noise floor, as can be seen in Fig. \ref{fig:QuantNoise}.
+\begin{equation}
+	\mi{v}{noise,eff} = \mi{v}{noise,quant} + \mi{v}{noise,therm}
+\end{equation}
+
+ add johnson noise formula 
+
+The start of the noise floor is normally a little above the resonance frequency of output capacitance of the MOSFET and commutation loop inductance, which is around \SIrange{10}{50}{MHz} for modules and \SI{100}{MHz} for discretes and, therey, much lower than the bandwidth of conventional probes.
+Hence, the limitation is not in the resolution or bandwidth of the probes, but in the sampling process of the spectrum, see Fig. \ref{fig:QuantNoise}.
+
+At this point it must be highlighted that these voltage components are only of interest for EMC considerations.
+For classical considerations, as overvoltage, the components are so small that they do not have any impact.
+

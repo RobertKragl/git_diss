@@ -1,0 +1,26 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+
+\section{High-Pass Measurement}
+To overcome this measurement limitation and measure the EMC-relevant voltage components directly at the semiconductors ports a high-pass measurement can be executed as visualized in Fig. \ref{fig:QuantNoise_wHP}.
+The high pass is designed to rise with +40dB/dec to counteract the decreasing slope of the drain-source voltage (-40dB/dec).
+As a result, the input voltage at the ADC has a flat frequency spectrum, which makes it perfect for the sample process of the ADC.
+
+Diese formeln sehen noch nicht ganz korrekt aus...
+\begin{equation}
+\mi{v}{DS,HP,raw} = \mi{a}{HP}\cdot\mi{v}{DS} 
+\end{equation}
+
+To calculate the real spectrum of the drain-source voltage, the measured signal has to be compensated with the transfer function of the probe.
+This is normally done in the frequency domain since here the compensation is a simple addition.
+\begin{equation}
+	\mi{V}{DS,HP,comp} = \mathcal{F}\!\left\{\mi{a}{HP}\cdot\mi{v}{DS}\right\} - \mi{A}{HP}
+\end{equation}
+
+\begin{figure}[h!]
+	\centering\import{./figures/}{QuantizationNoise_wHPMeas.pdf_tex}
+	\caption{Limitation of conventional voltage measurement and its impact on the frequency spectrum.}
+	\label{fig:QuantNoise_wHP}
+\end{figure}
+
+As a result, the measurement is no longer limited by the start of the noise floor, but only the bandwidth of the used probe.

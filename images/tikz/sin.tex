@@ -1,0 +1,64 @@
+% This file was created by matlab2tikz v0.4.4 running on MATLAB 8.0.
+% Copyright (c) 2008--2013, Nico Schlömer <nico.schloemer@gmail.com>
+% All rights reserved.
+% 
+% The latest updates can be retrieved from
+%   http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz
+% where you can also make suggestions and rate matlab2tikz.
+% 
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=\figurewidth,
+height=\figureheight,
+scale only axis,
+xmin=-0.1,
+xmax=10.1,
+xlabel={$t$ in $\si{\second}$},
+ymin=-12.4,
+ymax=12.4,
+ylabel={$U$ in $\si{\volt}$}
+]
+\addplot [
+color=blue,
+solid,
+forget plot
+]
+table[row sep=crcr]{
+0 0\\
+0.3 1.87381314585725\\
+0.6 3.68124552684678\\
+0.9 5.35826794978997\\
+1.2 6.84547105928689\\
+1.5 8.09016994374947\\
+1.8 9.04827052466019\\
+2.1 9.68583161128631\\
+2.4 9.98026728428272\\
+2.7 9.92114701314478\\
+3 9.51056516295154\\
+3.3 8.76306680043864\\
+3.6 7.70513242775789\\
+3.9 6.3742398974869\\
+4.2 4.81753674101715\\
+4.5 3.09016994374948\\
+4.8 1.25333233564305\\
+5.1 -0.627905195293138\\
+5.4 -2.48689887164855\\
+5.7 -4.25779291565073\\
+6 -5.87785252292473\\
+6.3 -7.28968627421412\\
+6.6 -8.44327925502015\\
+6.9 -9.29776485888251\\
+7.2 -9.82287250728689\\
+7.5 -10\\
+7.8 -9.82287250728689\\
+8.1 -9.29776485888251\\
+8.4 -8.44327925502015\\
+8.7 -7.28968627421411\\
+9 -5.87785252292473\\
+9.3 -4.25779291565072\\
+9.6 -2.48689887164855\\
+9.9 -0.627905195293133\\
+};
+\end{axis}
+\end{tikzpicture}%

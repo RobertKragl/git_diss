@@ -1,13 +1,32 @@
 \documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
 
 %!TEX root = main.tex
 \usepackage{shellesc}
+\usepackage{iftex}
+
+%%=== Font: Times New Roman ===
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{mathptmx}  % stable Times-like fallback for pdfLaTeX
+\else
+  \usepackage{fontspec}
+  \setmainfont{Times New Roman}
+\fi
+\usepackage{microtype}   % improved typography
 
 \usepackage{amsmath}
 \usepackage{url}
 \usepackage{graphicx}
-\usepackage{siunitx}									
+\usepackage[uncertainty-mode=separate]{siunitx}
+\sisetup{
+  group-separator = {},
+  group-minimum-digits = 4,
+  quotient-mode=fraction,
+  fraction-function=\frac,
+  per-mode=fraction,
+  range-phrase={~to~}
+}									
 \usepackage{lipsum}
 \usepackage{enumitem}
 \usepackage{xcolor}

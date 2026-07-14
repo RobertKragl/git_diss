@@ -12,9 +12,9 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=2.746in,
-height=2.445in,
-at={(0.461in,0.468in)},
+width=5.492in,
+height=3.067in,
+at={(0.921in,0.575in)},
 scale only axis,
 xmin=0.5,
 xmax=3,
@@ -23,7 +23,7 @@ xlabel={$\text{E}_{\text{sw,tot}}\text{ in mJ}$},
 ymin=65,
 ymax=90,
 ylabel style={font=\color{white!15!black}},
-ylabel={$\bar{V}_\mathrm{20-300MHz}^\mathrm{LS,HS}$ in dB\textmu V},
+ylabel={$\bar{V}_\mathrm{20-300\,MHz}^\mathrm{LS,HS}$ in dB\textmu V},
 axis background/.style={fill=white},
 xmajorgrids,
 ymajorgrids,
@@ -38,7 +38,7 @@ legend style={at={(0.03,0.03)}, anchor=south west, legend cell align=left, align
 2.737	70\\
 3.25	68.34516129\\
 };
-\addlegendentry{Chip A}
+\addlegendentry{Dev. A}
 
 \addplot [color=mycolor2, line width=1.5pt, mark=o, mark options={solid, mycolor2}]
   table[row sep=crcr]{%
@@ -48,7 +48,7 @@ legend style={at={(0.03,0.03)}, anchor=south west, legend cell align=left, align
 2.72	72.5\\
 3.25	67.82658393\\
 };
-\addlegendentry{Chip B}
+\addlegendentry{Dev. B}
 
 \addplot [color=mycolor3, line width=1.5pt, mark=o, mark options={solid, mycolor3}]
   table[row sep=crcr]{%
@@ -57,7 +57,7 @@ legend style={at={(0.03,0.03)}, anchor=south west, legend cell align=left, align
 2.316	80\\
 3.25	76.45675266\\
 };
-\addlegendentry{Chip C}
+\addlegendentry{Dev. C}
 
 \addplot [color=mycolor4, line width=1.5pt, mark=o, mark options={solid, mycolor4}]
   table[row sep=crcr]{%
@@ -67,7 +67,7 @@ legend style={at={(0.03,0.03)}, anchor=south west, legend cell align=left, align
 2.328	77\\
 3.25	70.85333333\\
 };
-\addlegendentry{Chip D}
+\addlegendentry{Dev. D}
 
 \end{axis}
 \end{tikzpicture}%

@@ -14,33 +14,6 @@ This filter is applied to the time-domain signal before the FFT.
 	\caption{Time-dependent noise filter to reduce noise outside the switching transient.}\label{fig:TDF}
 \end{figure}
 
-% \begin{figure*}[htb]
-% 	\centering
-% 	\begin{subfigure}{0.48\textwidth}
-% 		\centering
-% 		\input{"Methods/SnapNMirror/DPT_TD.tex"}
-% 		\caption{Time domain simulation of double pulse test.}
-% 	\end{subfigure} %
-% 	\hfill
-% 	\begin{subfigure}{0.48\textwidth}
-% 		\centering
-% 		\input{"Methods/SnapNMirror/DPT_FD.tex"}
-% 		\caption{Frequency spectrum of simulated double pulse test.}
-% 	\end{subfigure} %
-% 	\begin{subfigure}{0.48\textwidth}
-% 		\centering
-% 		\input{"Methods/SnapNMirror/Snapped_TD.tex"}
-% 		\caption{Separation into four artificial signals containing frequency components of one switching event only.}
-% 	\end{subfigure}
-% 	\hfill
-% 	\begin{subfigure}{0.48\textwidth}
-% 		\centering
-% 		\input{"Methods/SnapNMirror/Snapped_FD.tex"}
-% 		\caption{Frequency spectrum envelopes of all four switching events separated.}
-% 	\end{subfigure}
-% 	\caption{Methodology of the snap-and-mirror function for separated EMC analysis of all four switching events.}\label{fig:SnapNMirror}
-% \end{figure*}
-
 First, the transient midpoint \mi{t}{tr} is defined as the time instant at which the drain-source voltage reaches 50\% of its transition between the pre- and post-switching levels.
 An asymmetric time window \mi{W}{TDF} is then defined around \mi{t}{tr}. 
 Its leading edge extends \mi{T}{TDF}/5 before \mi{t}{tr}, and its trailing edge extends 4\mi{T}{TDF}/5 after \mi{t}{tr}.

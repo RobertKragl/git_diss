@@ -16,8 +16,9 @@ Hence, a passive shunt is not feasible.
 % Hence, classical passive shunts, which would set the oscilloscope ground to DC+ or DC$-$, are not feasible.
 \begin{figure}[ht]
 	\centering
-	\import{./figures/5_CurrentProbe/}{"CompensatedCurrentShunt.pdf_tex"}
-	\caption{Schematic overview of active current shunt.}\label{fig:ESBActiveShunt}
+	\tikzsetnextfilename{Diss_CompensatedCurrentShunt}
+	\import{./figures/5_CurrentProbe/}{"Diss_CompensatedCurrentShunt.pdf_tex"}
+	\caption{Simplified schematic overview of active current shunt.}\label{fig:ESBActiveShunt}
 \end{figure}
 
 Lastly, the introduced measurement resistance must be one decade smaller than the \mi{R}{DS,on} of the DUT.
@@ -37,7 +38,7 @@ However, this is not feasible for the EMC measurement.
 
 \begin{figure}[ht]
 	\centering
-	\import{./figures/5_CurrentProbe/}{"Pic_AShunt.pdf_tex"}
+	\import{./figures/5_CurrentProbe/}{"Diss_Pic_AShunt.pdf_tex"}
 	\caption{Photograph of active current shunt.}\label{fig:ESBActiveShuntPhoto}
 \end{figure}
 
@@ -55,33 +56,49 @@ Best results were achieved with an ``EMC shield'' made of a nickel-silver alloy,
 In addition to the shield, the transmission line between the passive shunt and the compensation amplifier was routed in the two inner PCB layers and enclosed by top and bottom ground planes connected by a via fence.
 
 
-\begin{figure}[ht]
-	\centering
-	\input{"figures/5_CurrentProbe/VNA_Shunt_LP.tex"}
-	\caption{VNA measurement of low-pass of active current shunt.}\label{fig:VNA_Shunt_LP}
-\end{figure}
-
-The VNA measurements of the low-pass and high-pass channels are shown in \fref{fig:VNA_Shunt_LP} and~\ref{fig:VNA_Shunt_HP}, respectively.
-For the low-pass channel, a bandwidth of approximately \SI{300}{MHz} is observed before the gain starts to increase.
-The high-pass channel exhibits an approximately linear gain increase of \SI{+40}{dB/dec} from \SI{10}{MHz} up to \SI{350}{MHz}.
-
-\begin{figure}[ht]
-	\centering
-	\input{"figures/5_CurrentProbe/VNA_Shunt_HP.tex"}
-	\caption{VNA measurement of high-pass of active current shunt.}\label{fig:VNA_Shunt_HP}
-\end{figure}
-
-For the transfer-function calculation of the current shunt, the \SI{50}{\ohm} VNA port termination cannot be neglected, unlike in the voltage-probe case with high input impedance in \eref{eq:TF_probe}.
-Therefore, the shunt transfer function is derived from the impedance matrix $Z$, obtained from the measured VNA $S$-parameter matrix.
-Accordingly, \mi{a}{shunt} is calculated as
-
-\begin{align}
-    \mi{a}{shunt} &= \frac{\mi{v}{LP}}{\mi{i}{shunt}} \\
-					&= \mi{Z}{21}\cdot \frac{1}{1+\frac{\mi{Z}{22}}{\SI{50}{\ohm}}}
-	\label{eq:TF_Shunt}
-\end{align}
 
 \subsection{Shunt}
-\subsection{Amplification}
 
 
+\begin{figure}[ht]
+	\centering
+	\tikzsetnextfilename{Diss_PassiveShuntPCB_3D_wSchematic}
+	\import{./figures/5_CurrentProbe/}{"Diss_PassiveShuntPCB_3D_wSchematic.pdf_tex"}
+	\caption{Design of passive part of the current shunt.}\label{fig:ESBPassiveShunt}
+\end{figure}
+
+
+
+
+
+
+\subsection{Compensation}
+
+
+
+\begin{figure}[ht]
+	\centering
+	\tikzsetnextfilename{Diss_Compensation_Shunt_ESB}
+	\import{./figures/5_CurrentProbe/}{"Diss_Compensation_Shunt_ESB.pdf_tex"}
+	\caption{Design of compensation part of the active current shunt.}\label{fig:ESBCompensation}
+\end{figure}
+
+\subsection{Amplification / Filter}
+
+\subsubsection*{Low-Pass}
+
+\begin{figure}[ht]
+	\centering
+	\tikzsetnextfilename{Diss_Lowpass_Shunt_ESB}
+	\import{./figures/5_CurrentProbe/}{"Diss_Lowpass_Shunt_ESB.pdf_tex"}
+	\caption{Design of low-pass part of the active current shunt.}\label{fig:ESBLowpass}
+\end{figure}
+
+\subsubsection*{High-Pass}
+
+\begin{figure}[ht]
+	\centering
+	\tikzsetnextfilename{Diss_Highpass_Shunt_ESB}
+	\import{./figures/5_CurrentProbe/}{"Diss_Highpass_Shunt_ESB.pdf_tex"}
+	\caption{Design of high-pass part of the active current shunt.}\label{fig:ESBHighpass}
+\end{figure}

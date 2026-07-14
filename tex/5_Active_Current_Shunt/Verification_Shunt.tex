@@ -4,3 +4,50 @@
 
 \section{Verification}
 
+\subsection{Small-Signal}
+
+\begin{figure}[ht]
+	\centering
+	\input{"figures/5_CurrentProbe/VNA_Shunt_LP.tex"}
+	\caption{VNA measurement of low-pass of active current shunt.}\label{fig:VNA_Shunt_LP}
+\end{figure}
+
+The VNA measurements of the low-pass and high-pass channels are shown in \fref{fig:VNA_Shunt_LP} and~\ref{fig:VNA_Shunt_HP}, respectively.
+For the low-pass channel, a bandwidth of approximately \SI{300}{MHz} is observed before the gain starts to increase.
+The high-pass channel exhibits an approximately linear gain increase of \SI{+40}{dB/dec} from \SI{10}{MHz} up to \SI{350}{MHz}.
+
+\begin{figure}[ht]
+	\centering
+	\input{"figures/5_CurrentProbe/VNA_Shunt_HP.tex"}
+	\caption{VNA measurement of high-pass of active current shunt.}\label{fig:VNA_Shunt_HP}
+\end{figure}
+
+For the transfer-function calculation of the current shunt, the \SI{50}{\ohm} VNA port termination cannot be neglected, unlike in the voltage-probe case with high input impedance in \eref{eq:TF_probe}.
+Therefore, the shunt transfer function is derived from the impedance matrix $Z$, obtained from the measured VNA $S$-parameter matrix.
+Accordingly, \mi{a}{shunt} is calculated as
+
+\begin{align}
+    \mi{a}{shunt} &= \frac{\mi{v}{LP}}{\mi{i}{shunt}} \\
+					&= \mi{Z}{21}\cdot \frac{1}{1+\frac{\mi{Z}{22}}{\SI{50}{\ohm}}}
+	\label{eq:TF_Shunt}
+\end{align}
+
+
+
+\subsection{Large-Signal \& Parasitic Couplings \& CM error}
+
+\begin{figure}[ht]
+	\centering
+	\tikzsetnextfilename{Diss_Pic_PShunt}
+	\includegraphics[scale=1]{figures/5_CurrentProbe/Diss_Pic_PShunt.pdf}
+	\caption{Realiazation of the passive shunt for verification.}\label{fig:Diss_Pic_PShunt}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+	\centering
+	\tikzsetnextfilename{MS_Current_AvsPShunt_TD}
+	\includegraphics[scale=1]{figures/5_CurrentProbe/MS_Current_AvsPShunt_TD.pdf}
+	\caption{Zeitbereichsverifikation mittels passivem Shunt.}\label{fig:MS_Current_AvsPShunt_TD}
+\end{figure}

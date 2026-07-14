@@ -1,0 +1,114 @@
+%% Creator: Inkscape 1.4 (86a8ad7, 2024-10-11), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Diss_VoltageDividerPCB_Querschnitt_wESB.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{510.23622047bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.61111111)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+    \put(0.25777132,0.53321074){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma 1,HV+}\end{tabular}}}}%
+    \put(0.2520482,0.47890608){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{HV+}\end{tabular}}}}%
+    \put(0.36774487,0.35528478){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma,sens+}\end{tabular}}}}%
+    \put(0.28064187,0.39988785){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mi{C}{\sigma 2,HV+}$\end{tabular}}}}%
+    \put(0.15113142,0.39904683){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{HV+}\end{tabular}}}}%
+    \put(0.53204337,0.49791527){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{sens+}\end{tabular}}}}%
+    \put(0.45008727,0.49791527){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{L}{\sigma,sens+}\end{tabular}}}}%
+    \put(0.74305556,0.33333335){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{L}{\sigma,sens+}\end{tabular}}}}%
+    \put(0.74305556,0.28611113){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma 2,sens}\end{tabular}}}}%
+    \put(0.47859166,0.3975917){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}230 \textmu m\end{tabular}}}}%
+    \put(0.4781929,0.35369133){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}300 \textmu m\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+    \put(0.00168004,0.52997289){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{HV+}\end{tabular}}}}%
+    \put(0.42339321,0.53335938){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{sens+}\end{tabular}}}}%
+    \put(0.97222222,0.42638891){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{sens+}\end{tabular}}}}%
+    \put(0.7244918,0.57137907){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{HV+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+    \put(0.25777136,0.04512371){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma 1,HV}\end{tabular}}}}%
+    \put(0.25204822,0.09942843){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{HV-}\end{tabular}}}}%
+    \put(0.36774487,0.2230498){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma,sens-}\end{tabular}}}}%
+    \put(0.28064187,0.18065232){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mi{C}{\sigma 2,HV-}$\end{tabular}}}}%
+    \put(0.15113142,0.18173281){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{HV-}\end{tabular}}}}%
+    \put(0.53204337,0.08530952){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{sens-}\end{tabular}}}}%
+    \put(0.45008731,0.08530952){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{L}{\sigma,sens-}\end{tabular}}}}%
+    \put(0.47859166,0.17314347){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}230 \textmu m\end{tabular}}}}%
+    \put(0.4781929,0.21766209){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}300 \textmu m\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+    \put(0.00168008,0.04836163){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{HV-}\end{tabular}}}}%
+    \put(0.42339321,0.04497511){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{sens+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+    \put(0.4781929,0.2850584){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}340 \textmu m\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+    \put(0.10579675,0.28680545){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma 2,sens}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+    \put(0.71527778,0.47916668){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{HV+}\end{tabular}}}}%
+    \put(0.81247474,0.51582352){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{HV1+}\end{tabular}}}}%
+    \put(0.8125,0.44444447){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{HV2+}\end{tabular}}}}%
+    \put(0.91666667,0.45833334){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mi{C}{\sigma 2,HV+}$\end{tabular}}}}%
+    \put(0.98608585,0.49499019){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mi{C}{\sigma 1,HV+}$\end{tabular}}}}%
+    \put(0.74305556,0.37500002){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{sens+}\end{tabular}}}}%
+    \put(0.8125,0.34722224){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{sens+}\end{tabular}}}}%
+    \put(0.91805556,0.34861113){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma,sens+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+    \put(0.74305556,0.24249738){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{L}{\sigma,sens-}\end{tabular}}}}%
+    \put(0.97222222,0.17638893){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{sens-}\end{tabular}}}}%
+    \put(0.7244918,0.00371568){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{HV-}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+    \put(0.71527778,0.09592819){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{HV-}\end{tabular}}}}%
+    \put(0.81247474,0.05927128){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{HV1-}\end{tabular}}}}%
+    \put(0.8125,0.13065041){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{HV2-}\end{tabular}}}}%
+    \put(0.91666667,0.11635802){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mi{C}{\sigma 2,HV-}$\end{tabular}}}}%
+    \put(0.98608585,0.07970111){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mi{C}{\sigma 1,HV-}$\end{tabular}}}}%
+    \put(0.74305556,0.20083071){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{sens-}\end{tabular}}}}%
+    \put(0.8125,0.22860849){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{sens-}\end{tabular}}}}%
+    \put(0.91805556,0.2272196){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma,sens-}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{Diss_VoltageDividerPCB_Querschnitt_wESB.pdf}}%
+  \end{picture}%
+\endgroup%

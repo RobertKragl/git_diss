@@ -104,3 +104,22 @@ Third, the measured signals are integrated into the switching-event-resolved fra
 
 To the best of the authors' knowledge, this work is the first open-literature demonstration of simultaneous measurement of intrinsic semiconductor-emission components at all three major noise sources in a single integrated setup.
 The achieved SNR supports event-resolved frequency-domain analysis in the EMC-relevant frequency range, enabling meaningful semiconductor-technology comparisons with respect to EM noise generation and supporting earlier EMC-oriented optimization of future device designs (e.g., doping profile, metallization, and trench architecture)~\cite{stephan_schwaiger_advanced_2023}.
+
+\begin{figure}[ht]
+	\begin{subfigure}{\textwidth}
+		\centering
+		\input{"figures/1_Introduction/DPT_TD_intro.tex"}
+		\caption{Time domain PSpice simulation of the drain-source voltage of a hard-switched SiC-MOSFET.}
+	\end{subfigure} %
+	\par % Line break to stack subfigures
+	\vspace{0.5cm}
+	\begin{subfigure}{\textwidth}
+	\centering
+		\includegraphics[scale = 1]{figures/1_Introduction/DPT_FD_intro.pdf}
+		% \input{"1_Introduction/DPT_FD_intro.tex"}
+		\caption{FFT of the simulated switching transient showing frequency regions dominated by different waveform phases.}
+	\end{subfigure}
+	\caption{Explanation of occurrence of noise spectrum of a switched voltage waveform.}\label{fig:IntroFullSpec}
+\end{figure}
+
+

@@ -6,15 +6,16 @@ As introduced in Section~I (Fig.~\ref{fig:IntroFullSpec}), the spectrum of a swi
 The following discussion briefly recalls this general spectral behavior before addressing its measurement consequence for a representative SiC-MOSFET switching transient.
 
 \begin{figure}[ht]
-	\begin{subfigure}{0.48\textwidth}
+	\begin{subfigure}{\textwidth}
 		\centering
-		\input{"3_Methods/Measurement_Limitation/DPT_TD_new.tex"}
+		\includegraphics[scale = 1]{figures/3_Methods/Measurement_Limitation/DPT_TD_new.pdf}
 		\caption{Time domain PSpice simulation of the drain-source voltage switching transient and the same signal contaminated with thermal and quantization noise.}
 	\end{subfigure} %
-	\hfill
-	\begin{subfigure}{0.48\textwidth}
+	\par
+	\vspace{1cm}
+	\begin{subfigure}{\textwidth}
 	\centering
-		\input{"3_Methods/Measurement_Limitation/DPT_FD_new.tex"}
+		\includegraphics[scale = 1]{figures/3_Methods/Measurement_Limitation/DPT_FD_new.pdf}
 		\caption{FFT of the simulated switching transient with and without thermal and quantization noise, shown for both a single pulse (SP) and a pulse chain (PC). Additionally, the calculated noise floors are added in dashed lines.}
 	\end{subfigure}
 	\caption{Limitation of measurement of switching transients due to quantization noise.}\label{fig:QuantNoise}

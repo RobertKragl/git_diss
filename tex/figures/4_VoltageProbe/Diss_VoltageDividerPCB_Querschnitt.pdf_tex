@@ -1,0 +1,87 @@
+%% Creator: Inkscape 1.4 (86a8ad7, 2024-10-11), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Diss_VoltageDividerPCB_Querschnitt.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{396.8503937bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.78571429)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Diss_VoltageDividerPCB_Querschnitt.pdf}}%
+    \put(0.37195691,0.75344799){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma 1,HV+}\end{tabular}}}}%
+    \put(0.36369261,0.67503113){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{HV+}\end{tabular}}}}%
+    \put(0.53076057,0.49651985){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma,sens+}\end{tabular}}}}%
+    \put(0.40498235,0.56092745){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mi{C}{\sigma 2,HV+}$\end{tabular}}}}%
+    \put(0.21796703,0.55971302){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{HV+}\end{tabular}}}}%
+    \put(0.76801044,0.70248071){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{sens+}\end{tabular}}}}%
+    \put(0.64966442,0.70248071){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{L}{\sigma,sens+}\end{tabular}}}}%
+    \put(0.69082522,0.55761178){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}230 \textmu m\end{tabular}}}}%
+    \put(0.69024942,0.49421891){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}300 \textmu m\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Diss_VoltageDividerPCB_Querschnitt.pdf}}%
+    \put(0.0021567,0.74877247){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{HV+}\end{tabular}}}}%
+    \put(0.61111772,0.75366263){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{sens+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Diss_VoltageDividerPCB_Querschnitt.pdf}}%
+    \put(0.37195696,0.04864202){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma 1,HV-}\end{tabular}}}}%
+    \put(0.36369264,0.12705896){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{HV-}\end{tabular}}}}%
+    \put(0.53076057,0.30557028){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma,sens-}\end{tabular}}}}%
+    \put(0.40498238,0.2443476){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mi{C}{\sigma 2,HV-}$\end{tabular}}}}%
+    \put(0.21796703,0.24590787){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{HV-}\end{tabular}}}}%
+    \put(0.76801044,0.10667098){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{sens-}\end{tabular}}}}%
+    \put(0.64966447,0.10667098){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{L}{\sigma,sens-}\end{tabular}}}}%
+    \put(0.69082522,0.2335047){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}230 \textmu m\end{tabular}}}}%
+    \put(0.69024942,0.29779036){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}300 \textmu m\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Diss_VoltageDividerPCB_Querschnitt.pdf}}%
+    \put(0.00215676,0.05331759){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{HV-}\end{tabular}}}}%
+    \put(0.61111772,0.04842742){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{sens-}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Diss_VoltageDividerPCB_Querschnitt.pdf}}%
+    \put(0.69024942,0.39511179){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}340 \textmu m\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Diss_VoltageDividerPCB_Querschnitt.pdf}}%
+    \put(0.152503,0.39763456){\color[rgb]{0.8,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{C}{\sigma 2,sens}\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

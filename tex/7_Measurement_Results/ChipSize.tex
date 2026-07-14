@@ -10,7 +10,7 @@ With increasing active area, the current rating, capacitances, transconductance,
 First, the time-domain switching behavior is analyzed, followed by the frequency-domain emission spectra.
 
 
-\subsubsection{Time-Domain Analysis}
+\subsection*{Time-Domain Analysis}
 
 \begin{figure}[htb]
     \centering
@@ -44,7 +44,7 @@ Notably, the rise time does not double as expected from classical ZVS theory, si
 The capacitive charging current is thus reduced by the remaining channel current: $\mi{i}{C,DS} = \mi{i}{load} - \mi{i}{channel}$~\cite{van_der_broeck_simulating_2023}.
 
 
-\subsubsection{Frequency-Domain Analysis}
+\subsection*{Frequency-Domain Analysis}
 
 Figure~\ref{fig:MR_ChipSize_FD} shows the high-pass voltage and current spectra with post-processing via the TDF filter. 
 Both devices exhibit similar spectral behavior up to \SI{10}{MHz}, where the switching transient begins to dominate. 
@@ -71,4 +71,9 @@ This increased gain of the current sensor comes with increased noise, which limi
 	\caption{Spectrum of the snapped-and-mirrored voltage of the active LS switch with \SI{5}{mm^2} active area. In contrast to the other frequency plots, this spectrum is not a pure Fourier transform; it is post-processed with a peak-detector algorithm~\cite{keller_fast_2007}.}\label{fig:MR_ChipSize_SpekZerl_FD}
 \end{figure}
 
+
+
+\section{Environment Example: Junction Temperature}
+
+\section{Operation Example: Negative Driver Voltage \mi{V}{ee,driver}}
 

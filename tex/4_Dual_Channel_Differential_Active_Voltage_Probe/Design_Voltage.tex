@@ -2,9 +2,6 @@
 %!encoding = UTF-8 Unicode
 
 \section{Design}
-
-\subsection{Frequency compensated voltage divider}
-\subsection{Amplification}
 Measuring the EMC-relevant high-frequency drain-source voltage components requires a probe with low noise, high bandwidth, and a short, well-defined electrical connection to the DUT terminals.
 In addition, the output interface must provide a \SI{50}{\ohm} output for supplying both a low-pass and a high-pass signal path for time-domain and EMC-oriented frequency-domain evaluation, respectively.
 
@@ -13,11 +10,45 @@ In particular, low output noise is often not a primary design target in conventi
 Instead, many commercial probes use a large input voltage divider to keep the operational amplifier input swing small and thereby extend the bandwidth. 
 However, this architecture, together with the subsequent amplification stage, can degrade the overall noise performance.
 
+
 \begin{figure}[ht]
 	\centering
-	\import{./figures/4_VoltageProbe/}{SchematicOverviewEMEProbe.pdf_tex}
+	\import{./figures/4_VoltageProbe/}{Diss_SchematicOverviewEMEProbe.pdf_tex}
 	\caption{Schematic overview of DAVP functionality.}\label{fig:OverviewEMEProbe}
 \end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/4_VoltageProbe/}{Diss_Pic_EMEv5c.pdf_tex}
+	\caption{Photograph of redesigned dual-channel differential active voltage probe.}\label{fig:Pic_EMEProbe}
+\end{figure}
+
+
+
+
+\subsection{Frequency Compensated Voltage Divider}
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/4_VoltageProbe/}{Diss_VoltageDividerPCB_Querschnitt.pdf_tex}
+	\caption{Cross-section of the redesigned dual-channel differential active voltage probe PCB.}\label{fig:VoltageDividerPCB}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/4_VoltageProbe/}{Diss_VoltageDividerPCB_parESB.pdf_tex}
+	\caption{Equivalent schematic of the frequency-compensated voltage divider including all parasitic elements.}\label{fig:VoltageDividerPCB_parESB}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/4_VoltageProbe/}{Diss_VoltageDividerPCB_Polygons.pdf_tex}
+	\caption{Designed polygon layout of the frequency-compensated voltage divider.}\label{fig:VoltageDividerPCB_Polygon}
+\end{figure}
+
+
+\subsection{Unity Gain}
+
 
 Therefore, a custom dual-channel differential active voltage probe (DAVP), originally introduced in~\cite{kragl_active_2025}, is used and further refined in this work. %, which is fully verified up to at least \SI{350}{MHz}.
 The DAVP is connected directly to the drain and source terminals to avoid cable-dependent impedance variations and transfer-function changes.
@@ -25,62 +56,29 @@ Figure~\ref{fig:OverviewEMEProbe} depicts a simplified circuit diagram of the pr
 
 \begin{figure}[ht]
 	\centering
-	\import{./figures/4_VoltageProbe/}{Pic_EMEv5c.pdf_tex}
-	\caption{Photograph of redesigned dual-channel differential active voltage probe.}\label{fig:Pic_EMEProbe}
+	\import{./figures/4_VoltageProbe/}{Diss_UnityGain_EME_ESB.pdf_tex}
+	\caption{Equivalent circuit diagram of the unity-gain stage, which is designed as a composite loop amplifier.}\label{fig:EME_ESB_UG}
 \end{figure}
+
+
+\subsection{Subtractor}
+
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/4_VoltageProbe/}{Diss_Lowpass_EME_ESB.pdf_tex}
+	\caption{Equivalent circuit diagram of the low-pass filter.}\label{fig:EME_ESB_LP}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/4_VoltageProbe/}{Diss_Highpass_EME_ESB.pdf_tex}
+	\caption{Equivalent circuit diagram of the high-pass filter.}\label{fig:EME_ESB_HP}
+\end{figure}
+
+
 
 In contrast to conventional differential probes, the DAVP splits the signal after a unity-gain stage and provides a subtractor circuit with a dedicated second-order high-pass channel in parallel to the low-pass subtractor.
 Compared with the previous version in~\cite{kragl_active_2025}, the updated design includes an additional shielding layer in a six-layer PCB at the $CR$ input, a trimmable HV PCB capacitor (by adjusting the effective electrode area), and a fully enclosed aluminum housing to further reduce parasitic coupling.
 The high-pass channel amplifier was also changed to a fully differential amplifier, with reduced added noise and improved common-mode rejection.
 
-
-The updated probe was validated using the methodology of~\cite{kragl_active_2025}: large-signal verification with a \SI{50}{\ohm} pulse generator, small-signal characterization with a vector network analyzer (VNA), and low-pass cross-verification against a standard passive probe to exclude unintended capacitive or inductive coupling into the active measurement path.
-The VNA results for the low-pass and high-pass channels are shown in \fref{fig:VNA_LP} and \fref{fig:VNA_HP}, respectively.
-
-\begin{figure}[ht]
-	\centering
-	\input{"figures/4_VoltageProbe/VNA_LP.tex"}
-	\caption{VNA measurement of low pass.}\label{fig:VNA_LP}
-\end{figure}
-
-The probe voltage gain \mti{a}{probe} is obtained from the S-parameter measurement as
-\begin{align}
-	\mti{a}{probe} 	&= \frac{\mi{v}{out}}{\mi{v}{HV+}-\mi{v}{HV-}} \\
-					&= \frac{\mti{S}{21}}{1 + \mti{S}{11}}.
-\label{eq:TF_probe}
-\end{align}
-
-Since \mti{S}{11} remains nearly constant because of the probe's high input impedance, \mti{S}{21} is the dominant parameter for gain evaluation.
-
-For the low-pass channel, the bandwidth is approximately \SI{250}{MHz} before the gain begins to roll off, mainly due to the output-stage operational amplifier.
-
-\begin{figure}[ht]
-	\centering
-	\input{"figures/4_VoltageProbe/VNA_HP.tex"}
-	\caption{VNA measurement of high pass.}\label{fig:VNA_HP}
-\end{figure}
-
-In the high-pass measurement shown in \fref{fig:VNA_HP}, the gain increases approximately linearly by \SI{+40}{dB/dec} from \SI{1}{MHz} to \SI{450}{MHz}, after which the unity-gain amplifier starts to roll off.
-
-In addition to the small-signal VNA characterization, the probe was validated by a large-signal measurement using a \SI{400}{V}, \SI{50}{\ohm} pulse generator.
-With a resistive \SI{40}{dB} attenuator, this setup provides a well-defined \SI{50}{\ohm} signal with an amplitude of $\sfrac{1}{100}$ of the original switching pulse.
-This signal level allows the generator output to be routed through a commercial \SI{180}{MHz}--\SI{340}{MHz} passive BNC band-pass (BP) filter, which serves as a traceable reference for the high-pass channel.
-A more detailed description is given in~\cite{kragl_active_2025}.
-The measurement results are shown in \fref{fig:MS_PulsGen}.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=1]{figures/4_VoltageProbe/MS_PulsGen.pdf}
-	\caption{Large-signal verification of the low-pass and high-pass channels using a \SI{50}{\ohm} pulse generator~\cite{kragl_active_2025}. The reference is acquired both via a conventional direct measurement and through a commercial \SI{180}{MHz}--\SI{340}{MHz} passive band-pass filter.}\label{fig:MS_PulsGen}
-\end{figure}
-
-The verification results demonstrate close agreement between the reference and the probe measurement for both the low-pass and high-pass channels in their respective frequency ranges.
-The high-pass channel exhibits a maximum deviation of \SI{1.3}{dB} at \SI{200}{MHz}.
-Above \SI{340}{MHz}, verification is no longer possible, as the commercial band-pass filter rolls off in this region.
-No commercially available band-pass filter covers the \SIrange{300}{400}{MHz} frequency region, preventing independent verification in this range.
-
-However, above \SI{340}{MHz}, the spectrum exhibits a plateau rather than the expected continuous decrease, indicating a measurement artifact that may increase the error beyond \SI{1.3}{dB} at higher frequencies.
-
-Overall, the measurements demonstrate high repeatability, and the \SI{1.3}{dB} maximum deviation is considered sufficiently small for the intended analysis.
-For the following analysis, the spectra are shown up to \SI{500}{MHz}, but the reader should be aware that the probe is only fully verified up to \SI{340}{MHz}.
-Hence, results between \SI{340}{MHz} and \SI{500}{MHz} should be interpreted comparatively rather than as absolute calibrated values.

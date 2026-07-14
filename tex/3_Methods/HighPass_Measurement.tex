@@ -8,13 +8,15 @@ This flattens the signal at the ADC input, pushing it well above the quantizatio
 The resulting filtered signal is then compensated in post-processing to recover the original voltage spectrum, as visualized in Fig.~\ref{fig:QuantNoise_wHP}.
 
 \begin{figure}[ht]
-	\begin{subfigure}{0.48\textwidth}
+	\centering
+	\begin{subfigure}{\textwidth}
 	\centering
 		\includegraphics[scale = 1]{figures/3_Methods/Highpass/TF_FD.pdf}
 		\caption{Transfer function of conventional low-pass measurement and second order high-pass.}
 	\end{subfigure}%
-	\hfill
-	\begin{subfigure}{0.48\textwidth}
+	\par
+	\vspace{1cm}
+	\begin{subfigure}{\textwidth}
 		\centering
 		\includegraphics[scale = 1]{figures/3_Methods/Highpass/ADC_sig.pdf}
 		\caption{Effective voltage spectrum of low-pass and high-pass measurements at the oscilloscope input with the respective quantization-noise floor.}

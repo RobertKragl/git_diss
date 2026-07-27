@@ -2,13 +2,43 @@
 %!encoding = UTF-8 Unicode
 \section{Dynamic Measurements for Power Electronics}
 
-\subsection*{Loading}
+In the field of power electronics, dynamic measurements are crucial for understanding the behavior of power electronic devices and systems under various operating conditions. 
+These measurements help in characterizing the performance, stability, and efficiency of power converters, inverters, and other related components.
 
-\subsection*{Small Signal Response}
+Table \ref{tab:dynamic_measurements} summarizes the key dynamic measurements commonly performed in power electronics, which are explained in detail in the following subsections.
 
-\subsection*{Large Signal Response}
+\begin{table}[htbp]
+\caption{Dynamic measurements and verification criteria}
+\label{tab:dynamic_measurements}
+{%
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+    \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+        \toprule
+        \textbf{Test} & \textbf{Verification test} & \textbf{Problems} & \textbf{Verification} \\
+        \midrule
+        Loading & Impedance measurement & Influencing DUT operation & 1 decade higher/lower \\
+        \midrule
+        Small signal response & VNA measurements & - Bandwidth \newline - gain flatness & $f_{\text{3dB}} > f_{\text{interest,max}}$ \\
+        \midrule
+        Large signal response & Pulse generator & Nonlinearities: \newline - Saturation \newline - Hysteresis \newline - ... & $t_r > t_{\text{r,meas,min}}$ \\
+        \midrule
+        Parasitic coupling & Measurement in parallel to verified sensor in setup & - Capacitive coupling of voltage transient \newline - Inductive coupling of current transient & Matching with verifying sensor \\
+        \midrule
+        Transmission line & Measurement in parallel to verified sensor in setup & - Wave reflection \newline - Signal distortion & Matching with verifying sensor \\
+        \bottomrule
+    \end{tabularx}
+}
+\end{table}
 
-\subsection*{Parasitic Coupling}
 
-\subsection*{Transmission Lines}
+
+\subsection{Probe Loading and Circuit Interaction}
+
+\subsection{Small-Signal Response and Bandwidth Criteria}
+
+\subsection{Large-Signal Response and Nonlinearities}
+
+\subsection{Parasitic Coupling Paths}
+
+\subsection{Transmission-Line Effects}
 

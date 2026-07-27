@@ -1,40 +1,15 @@
 %!TeX root = main.tex
+%!TeX root = main.tex
 %!encoding = UTF-8 Unicode
 
-\section{Design}
+\section{Active Current-Shunt Architecture and Implementation}
 
-While at lower frequencies the capacitive coupling from the switching node potential to the cooler dominates EMC concerns, recent studies indicate that inductive couplings become significant at higher frequencies as well~\cite{hamami_identifying_2026}.
-Therefore, it is necessary to measure not only the high-frequency components of the voltage transient but also of the current transient.
-
-Measuring the EMC-relevant components of the commutation current requires meeting several requirements.
-First, as with the voltage measurement, a bandwidth of at least \SI{500}{MHz} is required.
-This makes commercial Rogowski coils unsuitable, which are in the range of \SIrange{20}{50}{MHz}~\cite{xin_review_2022}.
-
-Furthermore, as with the voltage probe, a \SI{50}{\ohm} output is required to feed the signal into both a low-pass and a high-pass filter.
-Hence, a passive shunt is not feasible.
-% Furthermore, a galvanically isolated measurement is necessary, since the oscilloscope ground is fixed to the aluminum plate, which is also the ground of the LISNs.
-% Hence, classical passive shunts, which would set the oscilloscope ground to DC+ or DC$-$, are not feasible.
 \begin{figure}[ht]
 	\centering
 	\tikzsetnextfilename{Diss_CompensatedCurrentShunt}
 	\import{./figures/5_CurrentProbe/}{"Diss_CompensatedCurrentShunt.pdf_tex"}
 	\caption{Simplified schematic overview of active current shunt.}\label{fig:ESBActiveShunt}
 \end{figure}
-
-Lastly, the introduced measurement resistance must be one decade smaller than the \mi{R}{DS,on} of the DUT.
-This is because one of the main EMC-relevant characteristics of the transient is the quality factor of the excited resonance.
-The presented measurement setup is designed for \SI{750}{V} and \SI{1200}{V} SiC discretes in a D2PAK package, where $\mi{R}{DS,on} = \SI{20}{m\ohm}\dots\SI{50}{m\ohm}$~\cite{robert_bosch_gmbh_datasheet_2023,robert_bosch_gmbh_datasheet_2023-1}.
-Therefore, the sense resistance must be \SI{2}{m\ohm} or smaller.
-This creates a challenge for conventional shunts when bandwidth is considered.
-Every shunt resistance has some parasitic inductance and the bandwidth of the shunt corresponds to
-
-\begin{equation}
-    \mi{f}{bw,shunt} = \frac{1}{2\pi \tau_\text{shunt}} = \frac{\mi{R}{shunt}}{2\pi\mi{L}{shunt}} 
-\end{equation}
-
-Therefore, in classical shunt design, higher bandwidth can be achieved with higher shunt-resistance values.
-However, this is not feasible for the EMC measurement.
-
 
 \begin{figure}[ht]
 	\centering
@@ -57,7 +32,7 @@ In addition to the shield, the transmission line between the passive shunt and t
 
 
 
-\subsection{Shunt}
+\subsection{Passive Shunt Element and Layout Realization}
 
 
 \begin{figure}[ht]
@@ -72,7 +47,7 @@ In addition to the shield, the transmission line between the passive shunt and t
 
 
 
-\subsection{Compensation}
+\subsection{Active Compensation for Bandwidth Extension and Impedance Matching}
 
 
 
@@ -83,7 +58,7 @@ In addition to the shield, the transmission line between the passive shunt and t
 	\caption{Design of compensation part of the active current shunt.}\label{fig:ESBCompensation}
 \end{figure}
 
-\subsection{Amplification / Filter}
+\subsection{Amplification and Filter Path Design}
 
 \subsubsection*{Low-Pass}
 

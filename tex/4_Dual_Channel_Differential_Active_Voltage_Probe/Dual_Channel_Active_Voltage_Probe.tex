@@ -1,7 +1,18 @@
 %!TeX root = main.tex
 %!encoding = UTF-8 Unicode
 
-\chapter{Dual-Channel Differential Active Voltage Probe}
+\chapter{Dual-Channel Differential Active Voltage Probe (25 pages)}
+\label{ch:voltage}
+
+Measuring the EMC-relevant high-frequency drain-source voltage components requires a probe with low noise, high bandwidth, and a short, well-defined electrical connection to the DUT terminals.
+In addition, the output interface must provide a \SI{50}{\Omega} output for supplying both a low-pass and a high-pass signal path for time-domain and EMC-oriented frequency-domain evaluation, respectively.
+
+To the best of our knowledge, no commercially available probe fully met these requirements. 
+In particular, low output noise is often not a primary design target in conventional probe designs. 
+Instead, many commercial probes use a large input voltage divider to keep the operational amplifier input swing small and thereby extend the bandwidth. 
+However, this architecture, together with the subsequent amplification stage, can degrade the overall noise performance.
+
+
 
 \input{4_Dual_Channel_Differential_Active_Voltage_Probe/Requirements_Voltage.tex}
 \input{4_Dual_Channel_Differential_Active_Voltage_Probe/Design_Voltage.tex}

@@ -1,0 +1,74 @@
+%% Creator: Inkscape 1.4 (86a8ad7, 2024-10-11), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Diss_SchematicOverview_EME_VNA.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{453.54330709bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.53125)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Diss_SchematicOverview_EME_VNA.pdf}}%
+    \put(0.58837232,0.34279691){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Low-pass\end{tabular}}}}%
+    \put(0.58580438,0.23111825){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}High-pass\end{tabular}}}}%
+    \put(0.43854522,0.50000001){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Unity \end{tabular}}}}%
+    \put(0.44262766,0.46912903){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Gain\end{tabular}}}}%
+    \put(0.57844608,0.5){\color[rgb]{0.00392157,0.00392157,0.00392157}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Subtractors\end{tabular}}}}%
+    \put(0.29133642,0.50000001){\color[rgb]{0.00392157,0.00392157,0.00392157}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Voltage\end{tabular}}}}%
+    \put(0.290529,0.46912903){\color[rgb]{0.00392157,0.00392157,0.00392157}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Divider\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Diss_SchematicOverview_EME_VNA.pdf}}%
+    \put(0.03153554,0.40708119){\color[rgb]{0.00392157,0.00392157,0.00392157}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}VNA \\Port 1\end{tabular}}}}%
+    \put(0.21875003,0.04375003){\color[rgb]{0.00392157,0.00392157,0.00392157}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Reference\\Plane\end{tabular}}}}%
+    \put(0.96278558,0.32583121){\color[rgb]{0.00392157,0.00392157,0.00392157}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}VNA \\Port 2\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Diss_SchematicOverview_EME_VNA.pdf}}%
+    \put(0.27105471,0.1989262){\color[rgb]{0.8,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}"shorted"\\by VNA\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Diss_SchematicOverview_EME_VNA.pdf}}%
+    \put(0.78750003,0.04369997){\color[rgb]{0.00392157,0.00392157,0.00392157}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Reference\\Plane\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Diss_SchematicOverview_EME_VNA.pdf}}%
+  \end{picture}%
+\endgroup%

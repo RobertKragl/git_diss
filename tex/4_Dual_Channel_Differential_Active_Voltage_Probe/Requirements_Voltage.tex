@@ -1,4 +1,61 @@
 %!TeX root = main.tex
 %!encoding = UTF-8 Unicode
 
-\section{Requirements}
+\section{Measurement-Driven Requirements for the Active Voltage Probe}
+\label{sec:VoltageRequirements}
+
+Prior to designing the dual-channel differential active voltage probe, its requirements are established. 
+These requirements are specifically tailored for discrete SiC-MOSFETs, the primary focus of this work. 
+Should the target devices change to SiC power modules or GaN devices, some modifications are necessary. 
+The requirements are defined in accordance with the measurement limitations introduced in section \ref{sec:MeasurementLimitation}. 
+
+\subsubsection*{Small Signal Response}
+The small signal response of the probe is characterized by its bandwidth, which must exceed the maximum frequency of interest \mi{f}{interest,max} relevant to the measurements.
+As discussed in section \ref{ch:methods}, this maximum frequency differs between low-pass and high-pass measurements.
+For low-pass measurements, the bandwidth requirement corresponds to the maximum frequency of voltage components still above the noise floor.
+For high-pass measurements, the maximum frequency of interest is set to \SI{500}{MHz}, which represents the point at which EMC-related issues transition from being caused by semiconductor switching events to those arising from digital signal sources, such as microcontroller and FPGA clock signals.
+
+\subsubsection*{Large Signal Response}
+The large signal response of the probe is characterized by its maximum input voltage, which must exceed the maximum voltage of interest \mi{V}{interest,max} relevant to the measurements.
+Since the target of this work are \SI{1200}{V} SiC-MOSFETs, the maximum voltage of interest is set to \SI{1200}{V}.
+Furthermore, the minimal rise time is determined by the minimal rise time possible in a given $LC$ resonant tank.
+The stray inductance of the setup is around \SI{25}{nH}, and the output capacitance of the smallest investigated MOSFET, which is a \SI{30}{A} device is \SI{74}{pF}.
+The rise time of an underdamped LC resonant tank is given by:
+
+\begin{equation}
+t_r = \frac{\pi}{\omega_n\sqrt{1-\zeta^2}} - \frac{\arcsin(\zeta)}{\omega_n\sqrt{1-\zeta^2}}
+\end{equation}
+
+where the natural frequency is $\omega_n = \frac{1}{\sqrt{LC}}$ and the damping ratio is $\zeta = \frac{R}{2}\sqrt{\frac{C}{L}}$ for a series RLC circuit.
+
+For lightly damped systems ($\zeta \ll 1$), this simplifies to:
+
+\begin{equation}
+t_r \approx 1.8\cdot\sqrt{LC}
+\end{equation}
+
+This results in a minimal rise time of approximately \SI{2.5}{ns} for the given LC parameters.
+However, this value represents a purely passive response that assumes an infinitely fast switch, a condition that is typically observed only during uncontrolled diode snap-off events.
+In classical operation, the switching transient is predominantly determined by the gate-drive and is typically in the range of several tens of nanoseconds.
+
+
+\subsubsection*{Parasitic Coupling}
+As in any practical measurement setup, parasitic coupling can occur between the probe and the DUT.
+For the proposed voltage probe, the dominant mechanism is capacitive coupling from the switching-node potential into the sensitive amplification stage.
+Because this influence depends strongly on layout- and setup-specific conditions, it cannot be represented by a single precise quantitative requirement.
+Therefore, the final measurement results must be validated by cross-checking against a trusted reference, typically a conventional passive voltage probe.
+
+\subsubsection*{Transmission Line Effects}
+In high-frequency measurements, transmission line effects can significantly impact the accuracy of the voltage probe.
+This is explicitly a problem for voltage measurement, since the source impedance of the MOSFET is changing over the switching event and the load impedance of the probe is very high in range of ${M\Omega}$.
+The transmission line impedance of the connection is normally in the range of \SI{50}{\Omega} to \SI{75}{\Omega}, which is significantly lower than the input impedance of the probe.
+Hence, to avoid reflections and signal distortion, the connection between the probe and the DUT must be as short as possible, but maximally
+
+\begin{align}
+    \mi{l}{max} \leq \frac{\lambda_\mathrm{min}}{10} &= \frac{c_0}{10\cdot\mi{f}{max}\sqrt{\epsilon_r}} \\
+                                                    &= \frac{c_0}{10\cdot \SI{500}{MHz}\cdot \sqrt{4.25}} \\
+                                                    &= \SI{2.9}{cm}
+\end{align}
+
+This allowable distance is too short to be implemented in a practically useful setup with a cable connection.
+Therefore, the probe must be designed for a direct connection to the drain and source terminals of the DUT.

@@ -65,7 +65,7 @@
 
 %%= Titel der Arbeit (für PDF-Info und Formblatt)
 %%=	(Angabe auf Titelseite manuell, um Zeilenumbrüche selbst zu definieren)
-\newcommand{\varTitle}{Measurement Environment for the EMC Characterization of Power Semiconductor Devices}
+\newcommand{\varTitle}{Measurement Environment for the Intrinsic EMC-relevant Emissions of Power Semiconductor Devices}
 
 %%= Thema der Arbeit (für Titelseite, PDF-Info und Formblatt) 
 \newcommand{\varSubject}{Dissertation}
@@ -215,9 +215,10 @@
 \sisetup{
 % group-separator = {\thinspace},
 group-separator = {},
-group-minimum-digits = 4
+group-minimum-digits = 4,
+detect-all = true
 }
-		
+
 
 \ifthenelse{\equal{\varLanguage}{german}}
 {

@@ -1,15 +1,9 @@
 %!TeX root = main.tex
 %!encoding = UTF-8 Unicode
 
-\section{Design}
-Measuring the EMC-relevant high-frequency drain-source voltage components requires a probe with low noise, high bandwidth, and a short, well-defined electrical connection to the DUT terminals.
-In addition, the output interface must provide a \SI{50}{\ohm} output for supplying both a low-pass and a high-pass signal path for time-domain and EMC-oriented frequency-domain evaluation, respectively.
-
-To the best of our knowledge, no commercially available probe fully met these requirements. 
-In particular, low output noise is often not a primary design target in conventional probe designs. 
-Instead, many commercial probes use a large input voltage divider to keep the operational amplifier input swing small and thereby extend the bandwidth. 
-However, this architecture, together with the subsequent amplification stage, can degrade the overall noise performance.
-
+\section{Probe Architecture and Implementation}
+\label{sec:design_voltage}
+This section presents the design of the dual-channel differential active voltage probe, which implements the methods introduced in Chapter~\ref{ch:methods} and fulfills the requirements defined in Section~\ref{sec:requirements_voltage}.
 
 \begin{figure}[ht]
 	\centering
@@ -17,22 +11,42 @@ However, this architecture, together with the subsequent amplification stage, ca
 	\caption{Schematic overview of DAVP functionality.}\label{fig:OverviewEMEProbe}
 \end{figure}
 
+
+An overview of the probe is provided in \fref{fig:OverviewEMEProbe}, and a photograph of the implemented hardware is shown in \fref{fig:Pic_EMEProbe}.
+The design is organized into three main functional blocks: the frequency-compensated voltage divider, the unity-gain stage, and the subtractor.
+Each block is discussed in detail in the following, including key design considerations, encountered challenges, and the implemented solutions.
+
 \begin{figure}[ht]
 	\centering
 	\import{./figures/4_VoltageProbe/}{Diss_Pic_EMEv5c.pdf_tex}
 	\caption{Photograph of redesigned dual-channel differential active voltage probe.}\label{fig:Pic_EMEProbe}
 \end{figure}
 
-
-
-
 \subsection{Frequency Compensated Voltage Divider}
+The frequency-compensated voltage divider is the first stage of the probe and is responsible for scaling down the high-voltage signal from the DUT to a level suitable for the subsequent amplification stages.
 
-\begin{figure}[ht]
+The voltage divider is the most critical component of the probe, because of its high impedance, which creates low time constants with extremly low parasitic capacitances.
+These parasitic capacitance occure, due to the minimal phsyical distance, which are required to fulfull the requirements due to transmission line constraints, as for the necessary bandwidth constraints, which require low parasitic inductances.
+
+The design of the frequency compensated voltage divider is shown in \fref{fig:VoltageDividerPCB_Polygon} and \fref{fig:VoltageDividerPCB}, and its equivalent schematic, including all parasitic elements, is depicted in \fref{fig:VoltageDividerPCB_parESB}.
+
+The chosen intended parameter values are listed in \tref{tab:VoltageDividerParameters}, which design is explained in the following.
+
+\begin{table}
+	\caption{Parameter values of frequency compensated voltage divider}
+	\label{tab:VoltageDividerParameters}
 	\centering
-	\import{./figures/4_VoltageProbe/}{Diss_VoltageDividerPCB_Querschnitt.pdf_tex}
-	\caption{Cross-section of the redesigned dual-channel differential active voltage probe PCB.}\label{fig:VoltageDividerPCB}
-\end{figure}
+	\begin{tabular}{lll}
+		\toprule
+		\textbf{Parameter} & \textbf{Symbol} & \textbf{Value} \\
+		\midrule
+		High-voltage resistor &\mi{R}{HV} & \SI{2}{M\Omega} \\
+		Sense resistor &\mi{R}{sens} & \SI{2.5}{k\Omega} \\
+		Sense capacitor &\mi{C}{sens} & \SI{156}{pF} \\
+		High-voltage capacitor &\mi{C}{HV} & \SI{0.2}{pF} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \begin{figure}[ht]
 	\centering
@@ -40,19 +54,146 @@ However, this architecture, together with the subsequent amplification stage, ca
 	\caption{Equivalent schematic of the frequency-compensated voltage divider including all parasitic elements.}\label{fig:VoltageDividerPCB_parESB}
 \end{figure}
 
+Here, the goal of a frequency compensated voltage divider is to achieve a flat frequency response over the desired bandwidth, which is accomplished by carefully selecting the resistor and capacitor values to counteract the effects of parasitic capacitances and inductances.
+They need to have the same divider ratio
+
+\begin{equation}
+	\mi{a}{CR} = \frac{\mi{R}{sens}}{\mi{R}{sens} + \mi{R}{HV}} = \frac{\mi{C}{HV}}{\mi{C}{sens} + \mi{C}{HV}}.
+	\label{eq:divider_ratio}
+\end{equation}
+
+The component selection is, however, constrained by the limited availability of parts suitable for both high-voltage and high-frequency applications.
+The gain is designed to use the full input range of the subsequent unity-gain stage, which is \SI{2.6}{V} for a \SI{1200}{V} input signal, resulting in a divider ratio of \mi{a}{CR} = 1/460.
+
+\subsubsection*{Sense Capacitor}
+The primary bandwidth-limiting factor is the self-resonance frequency of the sense capacitor, given by
+\begin{equation}
+	\mi{f}{res} = \frac{1}{2\pi\sqrt{\mi{C}{sens}\cdot\mi{L}{\sigma,sens}}}.
+\end{equation}
+To maximize this frequency, all commercially available capacitor technologies marketed for high-frequency use were evaluated.
+The measurement results for the different technologies are shown in \fref{fig:CapacitorComparison}, obtained with a VNA and measured into the high-impedance voltage divider at port 1 and the output of the unity gain stage at port 2.
+This measurement setup allows for a measurement of the real behavior of the sense capcacitor without a high influence of the accuracy of the deembedding of the VNA calibration, which would be necessary with a 1-port measurement into the sense capacitor directly.
+Then, the remaining error of the parasitic inductance would be included in the measurement results, which would lead to a wrong evaluation of the different capacitor technologies.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=1]{figures/4_VoltageProbe/Voltage_Csense_Comp.pdf}
+	\caption{Comparison of different sense capacitor technologies.}\label{fig:CapacitorComparison}
+\end{figure}
+
+In \fref{fig:CapacitorComparison} the different capacitance values can be seen by different amplifications of the transfer function.
+Furthermore the resonance frequency can be seen, where the transfer function shows a pole, which is caused by the parasitic inductance of the sense capacitor.
+This is summarized in \tref{tab:CapComp}, which shows the measured capacitance, the resonance frequency, and the calculated parasitic inductance.
+
+\begin{table}
+	\caption{Comparison of different high-frequency capacitor technologies.}
+	\label{tab:CapComp}
+	\centering
+	\begin{tabular}{l l l l l}
+		\toprule
+		Manufacturer & Technology & Capacitance & Resonance Frequency & Calc. Inductance\\
+		\midrule
+		{Illinois} {Capacitor} & Mica & \SI{10}{pF} & -- & -- \\
+		{Illinois} {Capacitor} & Mica & \SI{39}{pF} & \SI{956}{MHz} & \SI{710}{pH} \\
+		Kemet & MLCC & \SI{100}{pF} & \SI{555}{MHz} & \SI{822}{pH} \\
+		Kyocera & MLCC & \SI{120}{pF} & \SI{540}{MHz} & \SI{723}{pH} \\
+		Kyocera & MLCC & \SI{240}{pF} & \SI{393}{MHz} & \SI{683}{pH} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+All technologies show a similar parasitic inductance, which is in the range of \SI{700}{pH} to \SI{800}{pH}.
+This leads to the explanation, that not the used technology defines the parasitic inductance, but the package size of it, which is the same for all them: a standard 0805 package.
+
+The goal is to achieve a maxmimum sense capacitance, while keeping the resonance pole well above \SI{500}{MHz}, which is the targeted bandwidth of the probe.
+
+A classical approach to increase the capacitance, without decreasing resonance frequency, is to connect multiple capacitors in parallel, which is done for the \SI{39}{pF} mica capacitor shown in \fref{fig:CsenseParallel}.
+Here, the expectation is, that the resonance capacitance value is increased by the number of parallel capacitors, while the parasitic inductance is decreased by the same factor, hence, resulting in a constant resonance frequency.
+However, the measurement results show, that the resonance frequency is decreasing for an increasing number of capacitors, which is caused by remaining parasitic inductance of the PCB between parallel-connected capacitors.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=1]{figures/4_VoltageProbe/Voltage_Csense_parallel.pdf}
+	\caption{Behavior of parallel-connected sense mica capacitors.}\label{fig:CsenseParallel}
+\end{figure}
+
+As can be seen, a maximum number of four capacitors can be connected in parallel, which results in a total capacitance of \SI{156}{pF} and a resonance frequency of \SI{670}{MHz}, which is the targeted bandwidth of the probe.
+In \fref{fig:CsenseParallel} also the calculated parasitic inductance is plotted; for a number of four parallel capacitors, the parasitic inductance has only reduced by a factor of 1.9.
+
+
+
+
+\subsubsection*{High-Voltage Capacitor \mi{C}{HV}}
+After the selection of the sense capacitor, the high-voltage capacitor \mi{C}{HV} is designed to achieve the desired divider ratio of \eref{eq:divider_ratio}.
+Here, the high-voltage capacitor is the remaining part of the high-voltage capacitance, which is necessary to achieve the desired divider ratio, which is not created by the parasitic capacitance \mi{C}{\sigma 1,HV} of the high-voltage resistor \mi{R}{HV}, see \fref{fig:VoltageDividerPCB_parESB}.
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/4_VoltageProbe/}{Diss_VoltageDividerPCB_Querschnitt.pdf_tex}
+	\caption{Cross-section of the redesigned dual-channel differential active voltage probe PCB.}\label{fig:VoltageDividerPCB}
+\end{figure}
+
+It can be calculated as:
+\begin{equation}
+	\mi{C}{HV} = \frac{\mi{C}{sens}}{\mi{a}{CR}} - \mi{C}{\sigma 1,HV}.
+\end{equation}
+Given the lack of high-voltage, high-frequency capacitor technologies, a custom PCB-integrated parallel-plate capacitor was implemented. 
+The capacitor is realized symmetrically: the positive signal path employs the copper layers between the top and second PCB layer, while the negative signal path utilizes the corresponding layers between the bottom and fifth PCB layer. 
+This symmetric implementation ensures balanced performance across both differential channels.
+Its capacitance can be calculated using the classical parallel-plate capacitor formula: cite
+\begin{equation}
+	\mi{C}{HV} = \frac{\varepsilon_0 \cdot \varepsilon_r \cdot A}{d},
+\end{equation}
+Since, both the parasitic capacitance \mi{C}{\sigma 1,HV} of the high-voltage resistor as the width of the prepreg of the PCB have significant tolerances, the effective electrode area of the PCB capacitor is designed to be trimmable by adjusting the overlap of the top and bottom copper layers.
+This is realized by the finger layout of the polygon, which can be seen in \fref{fig:VoltageDividerPCB_Polygon}.
+
 \begin{figure}[ht]
 	\centering
 	\import{./figures/4_VoltageProbe/}{Diss_VoltageDividerPCB_Polygons.pdf_tex}
-	\caption{Designed polygon layout of the frequency-compensated voltage divider.}\label{fig:VoltageDividerPCB_Polygon}
+	\caption{Finger layout of the trimmable PCB capacitor.}\label{fig:VoltageDividerPCB_Polygon}
 \end{figure}
 
+\subsubsection*{High-Voltage Resistor \mi{R}{HV} and Sense Resistor \mi{R}{sens}}
+The resistor choice is has only secondary interests for this work, since the main focus of thsi work is the high frequncy behavior of the probe, which is mainly defined by the capacitive elements of the voltage divider.
+The cut-off frequency of the voltage divider is defined by the RC time constant of the high-voltage resistor \mi{R}{HV} and the sense capacitor \mi{C}{sens}, which is given by cite
+\begin{align}	
+	\mi{f}{c} &= \frac{1}{2\pi \cdot \mi{R}{HV} \cdot \mi{C}{HV}} \\
+				&= \frac{1}{2\pi \cdot \SI{2}{M\Omega} \cdot \SI{0.2}{pF}} = \SI{500}{kHz}	
+\end{align}
 
-\subsection{Unity Gain}
+For the high-voltage resistor \mi{R}{HV}, a rather low resiatnce value was chosen in contrast to commercially available high-voltage probes, which typically use a \SI{10}{M\Omega} resistor.
+This is done due to problems with the parasitic capacitance \mi{C}{\sigma 2,HV} of the high-voltage resistor, which is causes time constants in the relevant frequency regime.
+This was reduced, by choosing a smaller resistor value, changing the resistor technology from a thick-film resistor to a thin-film resistor, and by creating a PCB cutout region just below the resistor, see \fref{fig:VoltageDividerPCB_Polygon}.
+
+\subsubsection*{Shielding}
+In a previous version the probe consists of a four-layer PCB, which caused a crosscoupling from the positive to the negative side and vice versa through the parasitic capacitance \mi{C}{\sigma 2,sens}.
+This can be reduced by adding an additional shielding layer between the positive and negative signal path, which is implemented in a six-layer PCB, see \fref{fig:VoltageDividerPCB}.
 
 
-Therefore, a custom dual-channel differential active voltage probe (DAVP), originally introduced in~\cite{kragl_active_2025}, is used and further refined in this work. %, which is fully verified up to at least \SI{350}{MHz}.
-The DAVP is connected directly to the drain and source terminals to avoid cable-dependent impedance variations and transfer-function changes.
-Figure~\ref{fig:OverviewEMEProbe} depicts a simplified circuit diagram of the probe, and \fref{fig:Pic_EMEProbe} shows a photograph of the designed hardware.
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Unity Gain Amplifier}
+The output of voltage divider is a signal of changing impedance over frequency contributed to the sense capacitance.
+To gain a constant output impedance over frequency, a unity-gain stage is implemented.
+This unity gain amplifier requires a low-noise, high-bandwidth, and high-input impedance amplifier to avoid loading the voltage divider and to maintain signal integrity.
+Furthermore, for classical analysis like overshoot, \sddt{v} and \mi{e}{sw} an accurate DC measurement is required.
+
+
+
+A composite loop amplifier architecture was selected for the probe's unity gain buffer to achieve both high DC precision and a wide bandwidth, a combination that is challenging to attain with a single amplifier. 
+Precision operational amplifiers offer excellent DC accuracy (low offset and drift) but have limited gain-bandwidth products. 
+Conversely, high-speed buffers provide multi-gigahertz bandwidth and high slew rates but typically have poorer DC characteristics. 
+The composite loop topology leverages the strengths of two different amplifiers by creating separate signal paths for low-frequency and high-frequency signal components, which are then seamlessly recombined at the output.
+The chosen composite loop amplifier architecture is depicted in \fref{fig:EME_ESB_UG}, where the low-frequency path is handled by a precision operational amplifier, while the high-frequency path is managed by a high-speed buffer.
 
 \begin{figure}[ht]
 	\centering
@@ -60,15 +201,129 @@ Figure~\ref{fig:OverviewEMEProbe} depicts a simplified circuit diagram of the pr
 	\caption{Equivalent circuit diagram of the unity-gain stage, which is designed as a composite loop amplifier.}\label{fig:EME_ESB_UG}
 \end{figure}
 
+\begin{table}[ht]
+	\caption{Parameter values of Unity Gain Amplifier}
+	\centering
+	\begin{tabular}[t]{l l}
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mti{OP}{1} & BUF802 			\\
+		\mi{R}{1} & \SI{52.2}{k\Omega}	\\
+		\mi{R}{3} & \SI{30}{\Omega}		\\		
+		\mi{R}{5} & \SI{10}{k\Omega}	\\
+		\mi{R}{8} & \SI{10}{\Omega}		\\
+		\mi{C}{1} & n.p. 				\\
+		\mi{C}{3} & \SI{27}{pF}			\\
+		\bottomrule
+	\end{tabular}
+	\hspace{1cm}
+	\begin{tabular}[t]{l l}
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mti{OP}{2} & OPA140 \\
+		\mi{R}{2} & \SI{11}{k\Omega} \\
+		\mi{R}{4} & \SI{2.44}{k\Omega} \\
+		\mi{R}{6} & \SI{2}{k\Omega} \\
+		\mi{R}{9} & \SI{80}{k\Omega}\\
+		\mi{C}{2}  & \SI{270}{pF} \\
+		\mi{C}{4} & \SI{100}{pF} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
-\subsection{Subtractor}
+The input signal is split into two paths using a frequency-dependent network.
+A series capacitor \mi{C}{2} and a resistor \mi{R}{3} on the input of the high frequency OP \mti{OP}{1} form a high-pass filter. 
+This directs high-frequency signals to the fast buffer path with the open loop gain $G$. 
+The precision amplifier \mti{OP}{2} handles the signal for the auxiliary path, which dominates the low-frequency response. 
+
+To ensure a flat frequency response across the crossover region where both amplifiers are active, the gain of the low-frequency path must precisely match the gain of the high-frequency path. 
+The datasheet specifies the condition 
+\begin{align}
+	\sfrac{\alpha}{\beta} &= G \\
+	\alpha &= \frac{\mi{R}{2}}{\mi{R}{1} + \mi{R}{2}}  \\
+	\beta &= \frac{\mi{R}{4}}{\mi{R}{4} + \mi{R}{5}}
+\end{align}
+
+where $\alpha$ is the input attenuation factor of the precision amplifier path, and $\beta$ is the feedback factor of the precision amplifier.
+Since the gain $G$ can vary between devices, the precision amplifier's feedback network must be trimmed during commissioning.
+
+Lastly, same gain must be achieved for the positive and negative unity gain amplifier.
+This is different from device to device and additionally changed due to the different load of the two unity gains due to the asymmetrical load of the subtractor, which is connected to the output of the unity gain amplifier.
+To still achieve the same gain for both unity gain amplifiers, a voltage divider by \mi{R}{8} and \mi{R}{9} is implemented, which must be trimmed during comissioning.
+Any asymmetry in the gain of the unity gain amplifiers would lead to a non-zero output of the subtractor, which directly worsens the CMRR.
 
 
 \begin{figure}[ht]
 	\centering
-	\import{./figures/4_VoltageProbe/}{Diss_Lowpass_EME_ESB.pdf_tex}
-	\caption{Equivalent circuit diagram of the low-pass filter.}\label{fig:EME_ESB_LP}
+	\input{"figures/4_VoltageProbe/VNA_rawUG.tex"}
+	\caption{VNA measurement of unity gain amplifier.}\label{fig:VNA_rawUG}
 \end{figure}
+
+\subsection{Dual-Channel Subtractor}
+Up to this point, the probe design is similar to conventional differential probes, which typically employ a single subtractor stage to generate the differential output signal.
+However, now the signal is split into two separate paths, each with its own dedicated subtractor stage.
+The low-pass - or conventional - subtractor amplifier is designed to provide a flat frequency response up to the frequency, where the signal falls below the noise floor (normally around \SI{120}{MHz})).
+The high-pass subtractor amplifier is designed to provide a frequency response of \SI{+40}{dB/dec} to enable an analysis of the EMC-relevant frequency range, as discussed in Chapter \ref{ch:Methods}.
+
+\subsubsection*{Low-Pass Subtractor}
+The equivalent circuit diagram of the low-pass subtractor is shown in \fref{fig:EME_ESB_LP} and its used parameter values in \tref{tab:ComponentsLowPass_Voltage}.
+
+\begin{figure}[ht]
+	\centering
+	\import{./figures/4_VoltageProbe/}{Diss_Lowpass_EME_ESB.pdf_tex}
+	\caption{Equivalent circuit diagram of the low-pass subtractor.}\label{fig:EME_ESB_LP}
+\end{figure}
+
+\begin{table}[ht]
+	\caption{Parameter values of the low-pass subtractor.}
+	\label{tab:ComponentsLowPass_Voltage}
+	\centering
+	\begin{tabular}[t]{l l}
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mti{OP}{LP} & OPA817 		\\
+		\mi{R}{10} & \SI{180}{\Omega}\\
+		\mi{R}{11} & \SI{180}{\Omega}\\		
+		\mi{R}{12} & \SI{180}{\Omega}\\
+		\bottomrule
+	\end{tabular}
+	\hspace{1cm}
+	\begin{tabular}[t]{l l}
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mi{R}{13} & \SI{180}{\Omega}\\
+		\mi{R}{14} & \SI{10}{\Omega} \\
+		\mi{C}{5} & n.p.			 \\
+		\mi{C}{6} & n.p.			 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The circuit follows a classical differential amplifier topology, where the output voltage is given by
+\begin{equation}
+	\mi{v}{LP} = \mi{v}{UG+}\cdot\frac{\mi{R}{11}}{\mi{R}{10}+\mi{R}{11}}\left(\frac{\mi{R}{12}}{\mi{R}{12}+\mi{R}{13}}\right) - \mi{v}{UG-}\cdot\frac{\mi{R}{13}}{\mi{R}{12}} \\
+\end{equation}
+which simplifies for a symmetric design of the resistors $\mi{R}{10} = \mi{R}{12}$ and $\mi{R}{11} = \mi{R}{13}$
+\begin{equation}
+	\mi{v}{LP} = \frac{\mi{R}{11}}{\mi{R}{10}} \cdot (\mi{v}{UG+} - \mi{v}{UG-})
+\end{equation}
+
+If a defined cut-off frequency is desired, the output can be low-pass filtered by adding capacitors \mi{C}{5} and \mi{C}{6} in parallel to the feedback resistors \mi{R}{13} and \mi{R}{14}, respectively.
+However, in the current design, these capacitors are not populated, and the roll-off is defined by the operational amplifier.
+
+\begin{figure}[ht]
+	\centering
+	\input{"figures/4_VoltageProbe/VNA_rawLP.tex"}
+	\caption{VNA measurement of low-pass substractor.}\label{fig:VNA_rawLP}
+\end{figure}
+
+\subsubsection*{High-Pass Subtractor}
+The high-pass subtractor is designed to provide a frequency response of \SI{+40}{dB/dec} to enable an analysis of the EMC-relevant frequency range, as discussed in Chapter \ref{ch:Methods}.
+The equivalent circuit diagram of the high-pass subtractor is shown in \fref{fig:EME_ESB_HP} and its used parameter values in \tref{tab:ComponentsHighPass_Voltage}.
 
 \begin{figure}[ht]
 	\centering
@@ -76,9 +331,97 @@ Figure~\ref{fig:OverviewEMEProbe} depicts a simplified circuit diagram of the pr
 	\caption{Equivalent circuit diagram of the high-pass filter.}\label{fig:EME_ESB_HP}
 \end{figure}
 
+\begin{table}[ht]
+	\caption{Parameter values of the high-pass subtractor.}
+	\label{tab:ComponentsHighPass_Voltage}
+	\centering
+	\begin{tabular}[t]{l l}
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mti{OP}{HP1} & LMH5401 		\\
+		\mi{C}{7}, \mi{C}{8} & \SI{6}{pF}\\
+		\mi{R}{15}, \mi{R}{16} & \SI{10}{\Omega}\\
+		\mi{R}{17}, \mi{R}{18} & \SI{400}{\Omega}\\	
+		\mi{R}{fb} & \SI{25}{\Omega}\\
+		\mi{R}{out} & \SI{10}{\Omega}\\
+		\mi{R}{19},\mi{R}{20} & \SI{10}{\Omega}\\
+		\bottomrule
+	\end{tabular}
+	\hspace{0.5cm}
+	\begin{tabular}[t]{l l}
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mti{OP}{HP2} & LMH5401 		\\
+		\mi{C}{9}, \mi{C}{10} & \SI{6}{pF}\\
+		\mi{R}{21}, \mi{R}{22} & \SI{10}{\Omega}\\		
+		\mi{R}{23}, \mi{R}{24} & \SI{200}{\Omega}\\		
+		\mi{R}{fb} & \SI{25}{\Omega}\\
+		\mi{R}{out} & \SI{10}{\Omega}\\
+		\mi{R}{25}, \mi{R}{26} & \SI{10}{\Omega}\\
+		\bottomrule
+	\end{tabular}
+	\hspace{0.5cm}
+	\begin{tabular}[t]{l l}
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mti{OP}{HP3} & THS4302\\
+		\mi{R}{27} & \SI{50}{\Omega}\\		
+		\mi{R}{28} & \SI{200}{\Omega}\\
+		\mi{R}{g} & \SI{50}{\Omega}\\		
+		\mi{R}{f} & \SI{200}{\Omega}\\	
+		\mi{R}{29} & \SI{10}{\Omega}\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The high-pass subtractor uses a cascaded design.
+The gain can be calculated as
+\begin{equation}
+	\mi{v}{HP} = \mi{G}{HP1} \cdot \mi{G}{HP2} \cdot \mi{G}{HP3} \cdot (\mi{v}{UG+} - \mi{v}{UG-})
+\end{equation}
+with
+\begin{align}
+	\mi{G}{HP1} &= \frac{s\omega \mi{C}{7}(\mi{R}{17}+ \mi{R}{fb})}{s\omega \mi{C}{7}\mi{R}{15}+1}\\
+	\mi{G}{HP2} &= \frac{s\omega \mi{C}{9}(\mi{R}{23}+ \mi{R}{fb})}{s\omega \mi{C}{9}\mi{R}{21}+1}\\
+	\mi{G}{HP3} &= \frac{\mi{R}{f}}{\mi{R}{g}}
+\end{align}
+
+again, for total symmetry between positive and negative signal path, the same component values are used for both channels.
+	
+
+Although a second-order high-pass response could in principle be realized with a single stage, this would result in increased signal attenuation due to the additional high-pass impedance.
+Since the voltage divider already introduces a large attenuation, compensating gain is required to raise the signal to a level suitable for the oscilloscope input while keeping it well above the oscilloscope's noise floor.
+This represents a careful design trade-off: increasing the gain of the secondary amplifier stage also amplifies its noise contribution, potentially degrading the overall signal-to-noise ratio.
+Following Friis' noise formula for cascaded systems, the noise figure of the chain is governed by
+\begin{equation}
+	\mi{F}{total} = \mi{F}{1} + \frac{\mi{F}{2}-1}{\mi{G}{1}} + \frac{\mi{F}{3}-1}{\mi{G}{1}\cdot\mi{G}{2}} + \cdots
+\end{equation}
+which shows that the first stage dominates the overall noise performance.
+Consequently, the first stage carries the highest gain, while the second stage contributes only the additional filter order required to achieve the desired \SI{+40}{dB/dec} slope.
+The final stage converts the differential signal to a single-ended output; using only one of the two differential outputs was also evaluated but resulted in a lower SNR.
 
 
-In contrast to conventional differential probes, the DAVP splits the signal after a unity-gain stage and provides a subtractor circuit with a dedicated second-order high-pass channel in parallel to the low-pass subtractor.
-Compared with the previous version in~\cite{kragl_active_2025}, the updated design includes an additional shielding layer in a six-layer PCB at the $CR$ input, a trimmable HV PCB capacitor (by adjusting the effective electrode area), and a fully enclosed aluminum housing to further reduce parasitic coupling.
-The high-pass channel amplifier was also changed to a fully differential amplifier, with reduced added noise and improved common-mode rejection.
+\begin{figure}[ht]
+	\centering
+	\input{"figures/4_VoltageProbe/VNA_rawHP.tex"}
+	\caption{VNA measurement of high-pass substractor. (xxx must be repeated)}\label{fig:VNA_rawHP}
+\end{figure}
+
+Figure~\ref{fig:VNA_rawHP} shows the measured frequency response of the high-pass subtractor, which confirms the expected \SI{+40}{dB/dec} slope up to the cutoff-frequency of the high-pass at \SI{400}{MHz}.
+At the the cutoff frequency, the final gain is \SI{27}{dB}.
+
+\subsection{Shielding Concept and Implementation}
+
+Last part of the probe for a full functional design is the shielding concept, which is necessary to avoid parasitic couplings from the environment to the probe and vice versa.
+Here, the main noise source is the switching node potential, which is in close proximity to the probe and, hence, is susceptible to capacitive couplings.
+
+Therefore, the probe is shielded by a metal housing, which is connected to the analog ground potential and thereby, the oscilloscope ground.
+A photograph of the housing is depicted in \fref{fig:Pic_EMEProbe}.
+The high-voltage and active amplification circuitries are shielded separately, however to avoid ground loops, they are manufactured as a single aluminum block, which is milled to create the necessary cavities for the functional blocks.
+
+
+xxx add measurement with and without shielding.
 

@@ -4,12 +4,25 @@
 
 \section{Active Current-Shunt Architecture and Implementation}
 
-\begin{figure}[ht]
+To meet the broadband, low-intrusion current sensing requirements defined in the previous section, an active current-shunt probe was designed. 
+The core concept is to combine a passive shunt resistor with an active compensation amplifier, as shown in the simplified schematic in \fref{fig:ESBActiveShunt} and the prototype photograph in \fref{fig:ESBActiveShuntPhoto}.
+The active shunt architecture consists of three main components: a passive shunt element, an active compensation stage, and a dual-channel filter stage.
+
+\begin{figure}[htbp]
 	\centering
 	\tikzsetnextfilename{Diss_CompensatedCurrentShunt}
 	\import{./figures/5_CurrentProbe/}{"Diss_CompensatedCurrentShunt.pdf_tex"}
 	\caption{Simplified schematic overview of active current shunt.}\label{fig:ESBActiveShunt}
 \end{figure}
+
+This architecture offers multiple key advantages over a purely passive approach:
+
+First, a small shunt resistance can be used while maintaining sufficiently high sense output voltage through operational amplifier gain, thereby reducing circuit loading and measurement intrusion on the device under test.
+
+Second, the integrated compensation network addresses the high-pass roll-off inherent to passive shunt designs, enabling flat frequency response across the measurement bandwidth with usable range limited primarily by the operational amplifier's gain-bandwidth product.
+
+Third, the amplified output signal enables flexible signal routing: either through a dual-channel filter network for simultaneous extraction of high-frequency EM noise and low-frequency power switching transients, or to an optically isolated measurement probe for galvanic isolation when required by system-level constraints.
+This architecture is adapted from \cite{shillaber_gigahertz_2020,shillaber_ultrafast_2022} and tailored to the specific requirements of this application.
 
 \begin{figure}[ht]
 	\centering
@@ -17,23 +30,19 @@
 	\caption{Photograph of active current shunt.}\label{fig:ESBActiveShuntPhoto}
 \end{figure}
 
-Therefore, a replica of the active shunt presented in~\cite{shillaber_gigahertz_2020,shillaber_ultrafast_2022} was designed. 
-Its simplified equivalent circuit is shown in \fref{fig:ESBActiveShunt}, and a photograph of the prototype is shown in \fref{fig:ESBActiveShuntPhoto}.
-This design offers multiple advantages:
-First, a small shunt resistance can be used while still maintaining a sufficiently high sense output due to the amplification of the operational amplifier.
-Furthermore, the low-pass filter of the active shunt compensates the high-pass characteristic of the shunt resistance, thereby achieving a remarkably high bandwidth.
-Lastly, the compensation operational amplifier of the active shunt produces a defined output signal, which can either be fed into a filter stage for high-pass EM noise measurements or measured with an optically isolated voltage probe, thus providing galvanic isolation.
+
+The following subsections detail the design of the passive shunt element, the active compensation stage, and the integrated shielding approach.
 
 
 
-In contrast to~\cite{shillaber_gigahertz_2020,shillaber_ultrafast_2022}, extensive effort was required to sufficiently shield the sensitive active amplification from capacitive coupling from the switching-node potential, which would otherwise contaminate the measurement.
-Best results were achieved with an ``EMC shield'' made of a nickel-silver alloy, which attenuates both capacitive and inductive coupling.
-In addition to the shield, the transmission line between the passive shunt and the compensation amplifier was routed in the two inner PCB layers and enclosed by top and bottom ground planes connected by a via fence.
+
+
 
 
 
 \subsection{Passive Shunt Element and Layout Realization}
 
+The systematic layout of the passive shunt element is shown schematically in \fref{fig:ESBPassiveShunt}, with a photograph of the realized PCB provided in the same figure.
 
 \begin{figure}[ht]
 	\centering
@@ -42,14 +51,45 @@ In addition to the shield, the transmission line between the passive shunt and t
 	\caption{Design of passive part of the current shunt.}\label{fig:ESBPassiveShunt}
 \end{figure}
 
+\begin{table}[ht]
+	\caption{Parameter values of active compensation stage}
+	\label{tab:CompensationParameters}
+	\centering
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Parameter} &  \textbf{Value} \\
+		\midrule
+		\mi{R}{shunt} & \SI{2}{m\Omega} \\
+		\mi{L}{shunt} & \SI{24}{pH} \\
+		\mi{G}{shunt} & \SI{2}{mV/A} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
+The passive shunt element is realized using ten low-inductance, low-resistance shunt resistors in a 0508 package. 
+These are metal foil resistors with a resistance of \SI{20}{m\ohm} each, which are connected in parallel to achieve a total resistance of \SI{2}{m\ohm}. 
+The key advantage of metal foil resistors for this application is that they conduct their current on the bottom side of their package, which enables an optimal integration into a coplanar layout design.
 
+The resistor placement strategy exploits this bottom-side current conduction to minimize parasitic inductance by maximising the mutual inductance.
+This is realized through a half-circle placement on the PCB, with vias positioned on the outer edge. 
+This geometry forces the return current to flow directly below the shunt resistors, minimizing loop area.
+From the resistors, the return current is routed vertically to the DC link capacitors.
+
+The layout approach is adapted from \cite{shillaber_gigahertz_2020}. 
+However, in this application the parasitic inductance introduced by the measurement is less critical than in the reference design, since characterization is performed using the given commutation loop inductance \mi{L}{\sigma} without a specified minimum inductance target.
+
+A surface-mount MMCX connector is incorporated into the design to enable measurement of the shunt's transfer function, which is essential for determining the compensating network values in the subsequent active compensation amplifier stage. 
+
+The connection to the active amplification stage is routed through the two middle PCB layers, surrounded by a via fence connecting top and bottom ground planes for shielding. 
+The ground reference used for this connection is the DC− potential of the DC link, distinct from the Kelvin source of the MOSFET under test. 
 
 
 
 \subsection{Active Compensation for Bandwidth Extension and Impedance Matching}
+After the passive shunt element, the signal is routed to an active compensation stage.
+This stage serves three functions: compensation of the shunt high-pass behavior caused by parasitic inductance, conversion of the shunt signal into a defined voltage signal, and provision of a \SI{50}{\ohm} output interface for subsequent measurement stages.
 
-
+The schematic overview of the compensation stage is shown in \fref{fig:ESBCompensation}.
 
 \begin{figure}[ht]
 	\centering
@@ -58,9 +98,107 @@ In addition to the shield, the transmission line between the passive shunt and t
 	\caption{Design of compensation part of the active current shunt.}\label{fig:ESBCompensation}
 \end{figure}
 
+
+The compensation stage employs a differential low-pass amplifier architecture to convert the shunt current signal into a buffered voltage output.
+The design parameters for this stage are listed in \tref{tab:CompensationParameters}.
+
+\begin{table}[ht]
+	\caption{Parameter values of active compensation stage}
+	\label{tab:CompensationParameters}
+	\centering
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Parameter} &  \textbf{Value} \\
+		\midrule
+		\mi{L}{comp,p}, \mi{L}{comp,n} & \SI{82}{nH} \\
+		\mi{R}{comp,p}, \mi{R}{comp,n} & \SI{13}{\Omega} \\
+		\bottomrule
+	\end{tabular}
+	\hspace{1cm}
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Parameter} &  \textbf{Value} \\
+		\midrule
+		\mti{OP}{comp} & LTC6409 \\
+		\mi{R}{1}, \mi{R}{2} & \SI{75}{\Omega} \\
+		\mi{R}{3}, \mi{R}{4} & \SI{120}{\Omega} \\
+		\mi{C}{1}, \mi{C}{2} & \SI{1.3}{pF} \\
+		\mi{R}{5}, \mi{R}{6} & \SI{10}{\ohm} \\
+		\mti{G}{comp}  & 1.6 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+To obtain a flat transfer function, the shunt pole must be compensated by a zero in the compensation stage.
+This zero is realized by the series connection of \mi{L}{comp} and \mi{R}{comp}.
+The resulting design condition is
+\begin{align}
+	\mi{f}{shunt} &\stackrel{!}{=} \mi{f}{comp} \\
+	\frac{\mi{R}{shunt}}{2\pi \mi{L}{shunt}} &= \frac{\mi{R}{comp,eff}}{2\pi \mi{L}{comp}} \label{eq:compensation}
+\end{align}
+
+where \mi{R}{comp,eff} is the effective resistance of the compensation stage:
+
+\begin{align}
+	\mi{R}{comp,eff} &= \mi{R}{comp} || (\mi{R}{1}+\mi{R}{3}) \\
+					 &\approx \mi{R}{comp} \hspace{2.5cm}, \text{for } \mi{R}{comp} \ll (\mi{R}{1}+\mi{R}{3})
+\end{align}
+
+This results in a tunable compensation inductance of
+\begin{equation}
+	\mi{L}{comp} = \mi{L}{shunt}\cdot\frac{\mi{R}{comp}}{\mi{R}{shunt}}
+\end{equation}
+
+For calibration, a VNA measurement is performed from the shunt input \mi{v}{shunt} at the MMCX connector to the compensation-stage output \mi{v}{comp}.
+For a single-ended measurement, \mi{v}{comp-} is terminated to ground with \SI{50}{\ohm}, while \mi{v}{comp+} is connected to the VNA input.
+This condition is necessary to ensure a symmetric load of the differential amplifier.
+The measurement results for uncompensated and compensated operation are shown in \fref{fig:VNA_AShunt_comp}.
+In the uncompensated case, a cut-off frequency of \SI{10}{MHz} is observed, indicating an apparent passive-shunt inductance of \SI{32}{pH}.
+This estimate contains notable uncertainty because the long signal path from the passive shunt to the compensation amplifier contributes additional parasitic inductance and therefore already introduces partial compensation.
+
+\begin{figure}[ht]
+	\centering
+	\input{"figures/5_CurrentProbe/VNA_AShunt_comp.tex"}
+	\caption{Demonstration of compensation of the high-pass characteristic of the passive shunt through active low-pass filter.}\label{fig:VNA_AShunt_comp}
+\end{figure}
+
+\fref{fig:VNA_AShunt_comp} also shows successful compensation of the shunt using a discrete inductor of \SI{82}{nH} in series with \SI{13}{\ohm} in the compensation stage.
+Combining this with a calculated path inductance of \SI{75}{nH} for buried differential traces~\cite{vielspassspaeter}, the shunt parasitic inductance can be estimated using \eref{eq:compensation}:
+
+\begin{equation}
+	\mi{L}{shunt} = \frac{\mi{R}{shunt}}{\mi{R}{comp}}\cdot \mi{L}{comp,eff} = \frac{\SI{2}{m\Omega}}{\SI{13}{\Omega}}\cdot (\SI{82}{nH}+\SI{75}{nH}) = \SI{24}{pH}
+\end{equation}
+
+After compensation, the shunt exhibits a flat frequency response up to \SI{369}{MHz}.
+To explain the remaining high-frequency limitation, \fref{fig:VNA_AShunt_comp_S} shows the S-parameter measurement of the compensation amplifier.
+Above \SI{300}{MHz}, an increase in \mti{S}{12} is observed, indicating a passive feedthrough path between amplifier input and output and therefore an unwanted additional transmission path.
+This effect could be reduced either by increasing \mi{R}{shunt} (which would violate the DUT loading requirement) or by increasing compensation-stage gain (which would reduce bandwidth because of the finite gain-bandwidth product of the operational amplifier).
+Therefore, gain is deliberately shifted to the subsequent filter stages, which are discussed in the next subsection.
+
+\begin{figure}[ht]
+	\centering
+	\input{"figures/5_CurrentProbe/VNA_AShunt_comp_S.tex"}
+	\caption{VNA measurement results of the compensation amplifier of the active current shunt.}\label{fig:VNA_AShunt_comp_S}
+\end{figure}
+
+The feedback is designed to provide a gain of
+\begin{equation}
+	\mti{G}{comp} = \frac{R3}{R1} = 1.6
+\end{equation}
+and the capacitors \mi{C}{1} and \mi{C}{2} are trimmed to compensate for the phase shift introduced by the parasitic capacitance of the amplifier input, which results in this layout for \SI{1.3}{pF}.
+
+
 \subsection{Amplification and Filter Path Design}
+In a last step, the compensated signal is routed to a dual-channel filter stage, which provides both low-pass and high-pass outputs for subsequent measurement.
+Same as for the voltage probe, the low-pass path is used to capture the power switching transient relevant for conventrional switching metrics, while the high-pass path is used to capture the EM emission relevant for EMC analysis.
 
 \subsubsection*{Low-Pass}
+
+Figure \fref{fig:ESBLowpass} shows the schematic of the low-pass filter path, which is similar to the low-pass path of the voltage probe.
+Here, an opamp with higher supply range is used with a compromise of bandwidth.
+However, the high bandwidth is not necessary due to the known noise floor behavior.
+And the higher output voltage is beneficial for a better signal-to-noise ratio at the oscilloscope input, or more precise for a better margin to the oscilloscope noise floor.
+A differential amplifier is used and a single-ended output is created with one output connected through a \SI{50}{\ohm} termination to ground, while the other output is routed to the oscilloscope input.
 
 \begin{figure}[ht]
 	\centering
@@ -69,7 +207,41 @@ In addition to the shield, the transmission line between the passive shunt and t
 	\caption{Design of low-pass part of the active current shunt.}\label{fig:ESBLowpass}
 \end{figure}
 
+\begin{table}[ht]
+	\caption{Parameter values of active compensation stage}
+	\label{tab:CompensationParameters}
+	\centering
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Parameter} &  \textbf{Value} \\
+		\midrule
+		\mti{OP}{LP} & OPA817 \\
+		\mi{R}{7}, \mi{R}{8} & \SI{30}{\Omega} \\
+		\mi{R}{9}, \mi{R}{10} & \SI{180}{\Omega} \\
+		\mi{R}{11} & \SI{10}{\Omega} \\
+		\mi{R}{12} & \SI{60}{\Omega} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+A classical transfer function of 
+\begin{equation}
+	\mti{G}{LP} = \frac{\mi{v}{LP}}{\mi{v}{comp}} = \frac{1}{2}\cdot\frac{\mi{R}{9}}{\mi{R}{7}} = 3
+\end{equation}
+where the factor of $\frac{1}{2}$ arises from the single-ended output termination.
+Before the starts to roll of.
+
+Thereby creating a total transfer function of the low-pass path of
+\begin{align}
+	\mti{G}{LP}(s) &= \frac{\mi{v}{LP}}{\mi{i}{S}} \\
+				&= \mti{G}{shunt}\cdot\mti{G}{comp}\cdot\mti{G}{LP} \\
+				&= \SI{2}{mV/A}\cdot 1.6\cdot 3 \\
+				&= \SI{9.6}{mV/A}
+\end{align}
+
 \subsubsection*{High-Pass}
+The high-pass filter of the active current shunt is designed to compensate the \SI{-40}{dB/dec} roll-off of the commutation loop current, with a second order high-pass with \SI{+40}{dB/dec}, thereby creating a flat signal at the osciloscope input.
+The schematic of the high-pass filter path is shown in \fref{fig:ESBHighpass}, which follows the design of the high-pass of the voltage probe.
 
 \begin{figure}[ht]
 	\centering
@@ -77,3 +249,109 @@ In addition to the shield, the transmission line between the passive shunt and t
 	\import{./figures/5_CurrentProbe/}{"Diss_Highpass_Shunt_ESB.pdf_tex"}
 	\caption{Design of high-pass part of the active current shunt.}\label{fig:ESBHighpass}
 \end{figure}
+
+
+
+\begin{table}[ht]
+	\caption{Parameter values of the high-pass subtractor.}
+	\label{tab:ComponentsHighPass_Shunt}
+	\centering
+	\begin{tabular}[t]{l l}
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mti{OP}{HP1} & LTC6409\\
+		\mi{C}{7}, \mi{C}{8} & \SI{6}{pF}\\
+		\mi{R}{13}, \mi{R}{14} & \SI{30}{\Omega}\\
+		\mi{R}{15}, \mi{R}{16} & \SI{260}{\Omega}\\	
+		\mi{C}{9}, \mi{C}{10} & \SI{0.8}{pF}\\
+		\mi{R}{17}, \mi{R}{18} & \SI{10}{\Omega}\\
+		\mti{G}{HP1} & ... 8.67\\
+		\bottomrule
+	\end{tabular}
+	\hspace{0.5cm}
+	\begin{tabular}[t]{l l} 
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mti{OP}{HP2} & LTC6409\\
+		\mi{C}{11}, \mi{C}{12} & \SI{6}{pF}\\
+		\mi{R}{19}, \mi{R}{20} & \SI{30}{\Omega}\\		
+		\mi{R}{21}, \mi{R}{22} & \SI{260}{\Omega}\\		
+		\mi{C}{13}, \mi{C}{14} & \SI{0.8}{pF}\\
+		\mi{R}{23}, \mi{R}{24} & \SI{10}{\Omega}\\
+		\mti{G}{HP2} & ... 8.67\\
+		\bottomrule
+	\end{tabular}
+	\hspace{0.5cm}
+	\begin{tabular}[t]{l l}
+		\toprule
+		\textbf{Parameter} & \textbf{Value}\\
+		\midrule
+		\mti{OP}{HP3} & THS4302\\
+		\mi{R}{28} & \SI{50}{\Omega}\\		
+		\mi{R}{26} & \SI{200}{\Omega}\\
+		\mi{R}{g} & \SI{50}{\Omega}\\		
+		\mi{R}{f} & \SI{200}{\Omega}\\	
+		\mi{R}{29} & \SI{10}{\Omega}\\
+		\mti{G}{HP3} & 4\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The high-pass path uses the same cascaded design principle as the voltage probe, but is adapted to the transfer behavior of the current signal after the active compensation stage.
+Two differential amplifier stages each realize one first-order high-pass response, so that the overall path exhibits the required second-order characteristic with approximately \SI{+40}{dB/dec}.
+This compensates the spectral roll-off of the commutation current and shifts the EMC-relevant frequency range to a signal level that can be measured with sufficient margin to the oscilloscope noise floor.
+
+The first stage, implemented with \mti{OP}{HP1}, provides the dominant gain contribution and the first high-pass pole.
+The second stage, implemented with \mti{OP}{HP2}, adds the second high-pass pole while keeping the gain distribution moderate enough to preserve bandwidth and avoid excessive noise amplification.
+The final stage with \mti{OP}{HP3} converts the differential signal to a single-ended \SI{50}{\ohm} output for the oscilloscope.
+As in the voltage-probe design, symmetric component values are used in the positive and negative branches to preserve common-mode rejection and minimize conversion of common-mode disturbance into differential measurement error.
+
+The corner frequency of each differential high-pass stage is chosen well above the maximum measurement frequency. For the first stage, this results in
+\begin{equation}
+	\mi{f}{HP,1} = \frac{1}{2\pi \mi{R}{13}\mi{C}{7}} = \SI{884}{MHz}
+\end{equation}
+and, because the second stage uses the same RC values, the same corner frequency is obtained for \mi{f}{HP,2}.
+Consequently, the complete high-pass path operates over the EMC-relevant frequency range on the intended rising flank with approximately \SI{+40}{dB/dec}.
+
+Above the respective corner frequencies, the asymptotic gains of the individual stages are given by
+\begin{align}
+	\mti{G}{HP1,\infty} &= \frac{\mi{R}{15}}{\mi{R}{13}} = 8.67 \\
+	\mti{G}{HP2,\infty} &= \frac{\mi{R}{21}}{\mi{R}{19}} = 8.67 \\
+	\mti{G}{HP3} &= \frac{\mi{R}{f}}{\mi{R}{g}} = 4
+\end{align}
+so that the total asymptotic gain becomes
+\begin{equation}
+	\mti{G}{HP,\infty} = \frac{\mi{v}{HP}}{\mi{v}{comp}} = \mti{G}{HP1,\infty}\cdot\mti{G}{HP2,\infty}\cdot\mti{G}{HP3} \approx 301
+\end{equation}
+This gain is reached only above the high-pass corner frequencies and therefore outside the intended operating range of the equalization path.
+Within the measurement band, the relevant design feature is the second-order high-pass slope rather than the asymptotic passband gain.
+
+
+The use of two cascaded first-order stages instead of a single second-order stage is a deliberate noise-bandwidth trade-off.
+The first stage should provide the largest share of gain, because according to Friis' noise relation for cascaded systems the noise contribution of later stages is suppressed by the preceding gain.
+At the same time, concentrating too much gain in one stage would reduce the usable bandwidth because of the finite gain-bandwidth product of the amplifier.
+The chosen distribution therefore provides sufficient gain for high-frequency current-emission measurements while maintaining the desired slope over the EMC-relevant frequency range.
+
+The resulting small-signal response is verified in the subsequent verification section by the VNA measurement in \fref{fig:VNA_Shunt_HP}.
+There, the high-pass path shows the expected approximately linear gain increase from \SI{10}{MHz} to about \SI{350}{MHz}, confirming that the design meets its intended equalization function.
+
+
+\subsection{Shielding Concept and Parasitic Coupling Mitigation}
+
+The shielding concept is based on three principles: minimization of electric-field coupling area, controlled return-current paths, and physical separation of high-field and high-gain regions.
+First, all high-impedance nodes in the compensation and filter stages are kept as short as possible and are locally surrounded by ground copper to reduce capacitive pickup.
+Second, signal transitions between functional blocks are implemented with controlled-impedance connections and immediate local return paths, preventing undefined loop currents on the PCB surface.
+Third, the active amplifier section is spatially separated from the switching-node region, and the interconnect between both regions is routed only through shielded PCB layers.
+
+Special attention is required at the interface between the passive shunt and the first active stage, because this node simultaneously carries low-level information and is exposed to the strongest common-mode disturbance.
+For this reason, a differential routing scheme with tight coupling between positive and negative traces is used, while surrounding via fences connect the reference planes at short intervals.
+This reduces both magnetic loop area and common-mode to differential-mode conversion along the transmission path.
+
+The metallic housing is referenced to the analog ground potential and therefore to the oscilloscope ground.
+To avoid parasitic ground currents through the housing, the grounding concept is implemented with a defined low-impedance reference connection instead of multiple distributed contact points.
+This preserves shielding effectiveness while preventing additional ground-loop induced measurement artifacts.
+
+Overall, the combination of material shielding, field-aware layout, and controlled grounding is essential to fully exploit the low-noise potential of the active current shunt.
+Without these measures, the residual coupling from the switching-node environment would dominate the high-frequency channels and limit the usable dynamic range of the EMC-oriented measurement.

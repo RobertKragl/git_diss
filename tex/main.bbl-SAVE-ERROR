@@ -37,6 +37,9 @@
            given={Martin},
            giveni={M\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
         {Aalborg, Denmark}%
       }
@@ -55,19 +58,15 @@
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{This paper presents a simulation approach to predict conducted electromagnetic emission of silicon carbide power modules applied in automotive inverters for electric drivetrains. The proposed time domain model is developed for standard circuit simulators and is directly adapted to the standardized measurement procedure of {CISPR} 25 from 150 {kHz} to 108 {MHz}. The main purpose of the paper and the presented model is, to verify the quality, the accuracy and the level of conﬁdence of a faster, behaviour-based approach, which uses idealized switching transients instead of detailed semiconductor models. Thus, the focus is on the detailed modeling of the power modules, the semiconductors and their switching behaviour, but not on the overall inverter characteristics. As a consequence the inverter is reduced to a buck converter. For the silicon carbide semiconductors, the provided accurate supplier {MOSFET} models are used. The electric environment of the converter is modeled by simpliﬁed equivalent circuits. Besides the differences due to the smoother waveforms of the accurate {MOSFET} models, the great impact of the voltage dependent drain source capacitance is identiﬁed and analysed. This results in a non-linear system behaviour. Finally, the model and the ﬁndings are veriﬁed by measurements.}
-      \field{booktitle}{2020 {IEEE} 21st Workshop on Control and Modeling for Power Electronics ({COMPEL})}
-      \field{day}{9}
-      \field{eventtitle}{2020 {IEEE} 21st Workshop on Control and Modeling for Power Electronics ({COMPEL})}
+      \field{abstract}{This paper presents a simulation approach to predict conducted electromagnetic emission of silicon carbide power modules applied in automotive inverters for electric drivetrains. The proposed time domain model is developed for standard circuit simulators and is directly adapted to the standardized measurement procedure of CISPR 25 from 150 kHz to 108 MHz. The main purpose of the paper and the presented model is, to verify the quality, the accuracy and the level of conﬁdence of a faster, behaviour-based approach, which uses idealized switching transients instead of detailed semiconductor models. Thus, the focus is on the detailed modeling of the power modules, the semiconductors and their switching behaviour, but not on the overall inverter characteristics. As a consequence the inverter is reduced to a buck converter. For the silicon carbide semiconductors, the provided accurate supplier MOSFET models are used. The electric environment of the converter is modeled by simpliﬁed equivalent circuits. Besides the differences due to the smoother waveforms of the accurate MOSFET models, the great impact of the voltage dependent drain source capacitance is identiﬁed and analysed. This results in a non-linear system behaviour. Finally, the model and the ﬁndings are veriﬁed by measurements.}
+      \field{booktitle}{2020 {IEEE} 21st {Workshop} on {Control} and {Modeling} for {Power} {Electronics} ({COMPEL})}
       \field{isbn}{978-1-72817-160-9}
-      \field{langid}{english}
       \field{month}{11}
-      \field{title}{Model for Conducted Emission of {SiC} Power Modules for automotive traction Inverter-Comparison to behaviour-based Model}
+      \field{title}{Model for {Conducted} {Emission} of {SiC} {Power} {Modules} for automotive traction {Inverter}-{Comparison} to behaviour-based {Model}}
       \field{urlday}{9}
       \field{urlmonth}{1}
       \field{urlyear}{2024}
       \field{year}{2020}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 8}
       \range{pages}{8}
@@ -75,7 +74,7 @@
       \verb 10.1109/COMPEL49091.2020.9265805
       \endverb
       \verb{file}
-      \verb Apelsmeier et al. - 2020 - Model for Conducted Emission of SiC Power Modules .pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\8YWGIUB6\\Apelsmeier et al. - 2020 - Model for Conducted Emission of SiC Power Modules .pdf:application/pdf
+      \verb Apelsmeier et al. - 2020 - Model for Conducted Emission of SiC Power Modules .pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\8YWGIUB6\\Model_for_Conducted_Emission_of_SiC_Power_Modules_for_automotive_traction_Inverter-Comparison_to_behaviour-based_Model.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/9265805/
@@ -104,8 +103,11 @@
            given={Luis},
            giveni={L\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
-        {Nashville, {TN}, {USA}}%
+        {Nashville, TN, USA}%
       }
       \list{publisher}{1}{%
         {IEEE}%
@@ -122,19 +124,15 @@
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{This paper proposes a generic state-space model for a generic power electronic switching cell. It determines the rate-of-change of all state variables within the switching cell, i.e. energy storing voltages and currents, as an explicit function of state variables and external voltage and current sources. Numeric integration of the model achieves the physics-based simulation of the turn-on and -off transients. The model neither uses separate state-space models for various stages of turn-on and -off transitions nor uses implicit formulations to avoid timeconsuming iterative solving as well as convergence issues. Instead, the model features a low complexity and an explicit formulation thus enabling a fast numeric simulation. Furthermore, it enables flexible device and package optimizations: A wide range of devices models and switching cell parasitics can be effectively combined to explore their interaction and evaluate a wide range of design options. The accuracy of the modeling approach is evaluated for an examplary {SiC} {MOSFET} in a comparison with {LTspice} simulations and double-pulse experiments.}
-      \field{booktitle}{2023 {IEEE} Energy Conversion Congress and Exposition ({ECCE})}
-      \field{day}{29}
-      \field{eventtitle}{2023 {IEEE} Energy Conversion Congress and Exposition ({ECCE})}
+      \field{abstract}{This paper proposes a generic state-space model for a generic power electronic switching cell. It determines the rate-of-change of all state variables within the switching cell, i.e. energy storing voltages and currents, as an explicit function of state variables and external voltage and current sources. Numeric integration of the model achieves the physics-based simulation of the turn-on and -off transients. The model neither uses separate state-space models for various stages of turn-on and -off transitions nor uses implicit formulations to avoid timeconsuming iterative solving as well as convergence issues. Instead, the model features a low complexity and an explicit formulation thus enabling a fast numeric simulation. Furthermore, it enables flexible device and package optimizations: A wide range of devices models and switching cell parasitics can be effectively combined to explore their interaction and evaluate a wide range of design options. The accuracy of the modeling approach is evaluated for an examplary SiC MOSFET in a comparison with LTspice simulations and double-pulse experiments.}
+      \field{booktitle}{2023 {IEEE} {Energy} {Conversion} {Congress} and {Exposition} ({ECCE})}
       \field{isbn}{9798350316445}
-      \field{langid}{english}
       \field{month}{10}
-      \field{title}{Simulating Switching of Power Electronic Devices via Generic State-Space Models}
+      \field{title}{Simulating {Switching} of {Power} {Electronic} {Devices} via {Generic} {State}-{Space} {Models}}
       \field{urlday}{20}
       \field{urlmonth}{3}
       \field{urlyear}{2024}
       \field{year}{2023}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{5447\bibrangedash 5454}
       \range{pages}{8}
@@ -142,7 +140,7 @@
       \verb 10.1109/ECCE53617.2023.10362718
       \endverb
       \verb{file}
-      \verb van der Broeck et al. - 2023 - Simulating Switching of Power Electronic Devices v.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\E4QEIPNS\\van der Broeck et al. - 2023 - Simulating Switching of Power Electronic Devices v.pdf:application/pdf
+      \verb van der Broeck et al. - 2023 - Simulating Switching of Power Electronic Devices v.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\E4QEIPNS\\van der Broeck et al. - 2023 - Simulating Switching of Power Electronic Devices v.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/10362718/
@@ -164,6 +162,9 @@
            given={D.},
            giveni={D\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \strng{namehash}{c2394616533bc7d3a372c4dba568b9f6}
       \strng{fullhash}{c2394616533bc7d3a372c4dba568b9f6}
       \strng{fullhashraw}{c2394616533bc7d3a372c4dba568b9f6}
@@ -176,20 +177,17 @@
       \field{sortinithash}{4d103a86280481745c9c897c925753c0}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{A new method of analysis is proposed to graphically predict the spectrum envelope of electromagnetic interference ({EMI}) emitted by power electronics equipment. Relationships between the time-domain (waveforms) and the frequency-domain (spectrum) of some typical {EMI} signals observed in power converters are pointed out. Special attention is paid to the analysis of the transient functions of {EMI} signals. It is shown they behave as ﬁltering or “smoothing” functions in the high-frequency part of the spectrum.}
+      \field{abstract}{A new method of analysis is proposed to graphically predict the spectrum envelope of electromagnetic interference (EMI) emitted by power electronics equipment. Relationships between the time-domain (waveforms) and the frequency-domain (spectrum) of some typical EMI signals observed in power converters are pointed out. Special attention is paid to the analysis of the transient functions of EMI signals. It is shown they behave as ﬁltering or “smoothing” functions in the high-frequency part of the spectrum.}
       \field{issn}{0885-8993}
-      \field{journaltitle}{{IEEE} Transactions on Power Electronics}
-      \field{langid}{english}
+      \field{journaltitle}{IEEE Transactions on Power Electronics}
       \field{month}{11}
       \field{number}{6}
-      \field{shortjournal}{{IEEE} Trans. Power Electron.}
-      \field{title}{Graphical Analysis of the Spectra of {EMI} Sources in Power Electronics}
+      \field{title}{Graphical {Analysis} of the {Spectra} of {EMI} {Sources} in {Power} {Electronics}}
       \field{urlday}{30}
       \field{urlmonth}{11}
       \field{urlyear}{2023}
       \field{volume}{20}
       \field{year}{2005}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{1491\bibrangedash 1498}
       \range{pages}{8}
@@ -197,7 +195,7 @@
       \verb 10.1109/TPEL.2005.857564
       \endverb
       \verb{file}
-      \verb Costa and Magnon - 2005 - Graphical Analysis of the Spectra of EMI Sources i.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\I3USW3BT\\Costa and Magnon - 2005 - Graphical Analysis of the Spectra of EMI Sources i.pdf:application/pdf
+      \verb Costa and Magnon - 2005 - Graphical Analysis of the Spectra of EMI Sources i.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\I3USW3BT\\Costa and Magnon - 2005 - Graphical Analysis of the Spectra of EMI Sources i.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb http://ieeexplore.ieee.org/document/1528623/
@@ -244,6 +242,9 @@
            given={Christian},
            giveni={C\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \strng{namehash}{b8b1ec449cf72500c0b71e6ec6def709}
       \strng{fullhash}{78613e6d893f39238342bd2dab98a13c}
       \strng{fullhashraw}{78613e6d893f39238342bd2dab98a13c}
@@ -256,20 +257,17 @@
       \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Increased switching speeds of wide bandgap ({WBG}) semiconductors result in a signiﬁcant magnitude of the displacement currents through power module parasitic capacitances that are inherent in packaging design. This is of increasing concern, particularly in case of newly emerging medium-voltage ({MV}) {SiC} {MOSFETs} since the magnitude of the displacement currents can be several order higher due to the fast switching transients and increased voltage magnitudes of the {SiC} {MOSFETs} compared to their Si counter parts. The severity intensiﬁes when the magnitude of the displacement current becomes comparable to a signiﬁcant fraction of {SiC} {MOSFETs} rated current, leading to the worsened impact on the converter electromagnetic interference ({EMI}) as well as performance in terms of switching losses. The key objective of this article is to provide a detail insight into the impact of the module parasitic capacitances on the {SiC} {MOSFET} switching dynamics and losses. To realize this, a welldeﬁned approach to dissect the switching energy dissipation is proposed, based on which the detailed analysis and quantitative measurements of the module parasitic capacitance impact on terms of added switching energy losses, and common-mode currents are investigated using a custom-packaged 10-{kV} halfbridge {SiC} {MOSFET} power modules. The theoretical analysis and experimental results obtained from dynamic as well as static characterization reveal that the impact of the module parasitic capacitance on the switching energy dissipation is twofold and substantially adverse such that it cannot be overlooked considering its intended application in the high-power {MV} power electronic converters.}
+      \field{abstract}{Increased switching speeds of wide bandgap (WBG) semiconductors result in a signiﬁcant magnitude of the displacement currents through power module parasitic capacitances that are inherent in packaging design. This is of increasing concern, particularly in case of newly emerging medium-voltage (MV) SiC MOSFETs since the magnitude of the displacement currents can be several order higher due to the fast switching transients and increased voltage magnitudes of the SiC MOSFETs compared to their Si counter parts. The severity intensiﬁes when the magnitude of the displacement current becomes comparable to a signiﬁcant fraction of SiC MOSFETs rated current, leading to the worsened impact on the converter electromagnetic interference (EMI) as well as performance in terms of switching losses. The key objective of this article is to provide a detail insight into the impact of the module parasitic capacitances on the SiC MOSFET switching dynamics and losses. To realize this, a welldeﬁned approach to dissect the switching energy dissipation is proposed, based on which the detailed analysis and quantitative measurements of the module parasitic capacitance impact on terms of added switching energy losses, and common-mode currents are investigated using a custom-packaged 10-kV halfbridge SiC MOSFET power modules. The theoretical analysis and experimental results obtained from dynamic as well as static characterization reveal that the impact of the module parasitic capacitance on the switching energy dissipation is twofold and substantially adverse such that it cannot be overlooked considering its intended application in the high-power MV power electronic converters.}
       \field{issn}{2168-6777, 2168-6785}
-      \field{journaltitle}{{IEEE} Journal of Emerging and Selected Topics in Power Electronics}
-      \field{langid}{english}
+      \field{journaltitle}{IEEE Journal of Emerging and Selected Topics in Power Electronics}
       \field{month}{3}
       \field{number}{1}
-      \field{shortjournal}{{IEEE} J. Emerg. Sel. Topics Power Electron.}
-      \field{title}{Impact of Power Module Parasitic Capacitances on Medium-Voltage {SiC} {MOSFETs} Switching Transients}
+      \field{title}{Impact of {Power} {Module} {Parasitic} {Capacitances} on {Medium}-{Voltage} {SiC} {MOSFETs} {Switching} {Transients}}
       \field{urlday}{27}
       \field{urlmonth}{5}
       \field{urlyear}{2025}
       \field{volume}{8}
       \field{year}{2020}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{298\bibrangedash 310}
       \range{pages}{13}
@@ -277,13 +275,108 @@
       \verb 10.1109/JESTPE.2019.2939644
       \endverb
       \verb{file}
-      \verb Dalal et al. - 2020 - Impact of Power Module Parasitic Capacitances on M.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\2QD7857Z\\Dalal et al. - 2020 - Impact of Power Module Parasitic Capacitances on M.pdf:application/pdf
+      \verb Dalal et al. - 2020 - Impact of Power Module Parasitic Capacitances on M.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\2QD7857Z\\Dalal et al. - 2020 - Impact of Power Module Parasitic Capacitances on M.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/8825808/
       \endverb
       \verb{url}
       \verb https://ieeexplore.ieee.org/document/8825808/
+      \endverb
+    \endentry
+    \entry{davari_pulse_2016}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=6dec50222b2c795d87dad26e65b26686}{%
+           family={Davari},
+           familyi={D\bibinitperiod},
+           given={Pooya},
+           giveni={P\bibinitperiod}}}%
+        {{hash=17625557d55d6124d18d52e2365b3848}{%
+           family={Zare},
+           familyi={Z\bibinitperiod},
+           given={Firuz},
+           giveni={F\bibinitperiod}}}%
+        {{hash=ef3a4a9ff466b76df8611ae446cf3ea3}{%
+           family={Blaabjerg},
+           familyi={B\bibinitperiod},
+           given={Frede},
+           giveni={F\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{ce0a2462567b3e2a263f0f457c4668ea}
+      \strng{fullhash}{bedda7c9c50bbe835f8bbb227cc6a6c2}
+      \strng{fullhashraw}{bedda7c9c50bbe835f8bbb227cc6a6c2}
+      \strng{bibnamehash}{ce0a2462567b3e2a263f0f457c4668ea}
+      \strng{authorbibnamehash}{ce0a2462567b3e2a263f0f457c4668ea}
+      \strng{authornamehash}{ce0a2462567b3e2a263f0f457c4668ea}
+      \strng{authorfullhash}{bedda7c9c50bbe835f8bbb227cc6a6c2}
+      \strng{authorfullhashraw}{bedda7c9c50bbe835f8bbb227cc6a6c2}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Generated harmonic current as a consequence of employing power electronics converter is known as an important power quality issue in distribution networks. From industry point of view, complying with international standards is mandatory; however, cost and efﬁciency are two other important features, which need to be considered in order to be competitive in the market. Therefore, having a ﬂexibility to meet various requirements imposed by the standard recommendations or costumer needs is at most desirable. This makes the generated harmonic current mitigation a challenging task especially with three-phase diodebridge rectiﬁer, which is still preferred in many power electronic systems. This paper addresses a novel current modulation strategy using a single-switch boost three-phase diode-bridge rectiﬁer. The proposed method can selectively mitigate current harmonics, which makes it suitable for different applications. The obtained results at experimental and simulation levels verify and conﬁrm the robustness of the proposed approach.}
+      \field{issn}{0093-9994, 1939-9367}
+      \field{journaltitle}{IEEE Transactions on Industry Applications}
+      \field{month}{7}
+      \field{number}{4}
+      \field{title}{Pulse {Pattern}-{Modulated} {Strategy} for {Harmonic} {Current} {Components} {Reduction} in {Three}-{Phase} {AC}–{DC} {Converters}}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{52}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \field{pages}{3182\bibrangedash 3192}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/TIA.2016.2539922
+      \endverb
+      \verb{file}
+      \verb Davari et al. - 2016 - Pulse Pattern-Modulated Strategy for Harmonic Curr.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\937Z5VEN\\Davari et al. - 2016 - Pulse Pattern-Modulated Strategy for Harmonic Curr.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://ieeexplore.ieee.org/document/7428924/
+      \endverb
+      \verb{url}
+      \verb http://ieeexplore.ieee.org/document/7428924/
+      \endverb
+    \endentry
+    \entry{domurat-linde_analysis_2012}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=424da0f2a0e0ef57c825bf390a68b11e}{%
+           family={Domurat-Linde},
+           familyi={D\bibinithyphendelim L\bibinitperiod},
+           given={Andre},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Nuremberg, Germany}%
+      }
+      \strng{namehash}{424da0f2a0e0ef57c825bf390a68b11e}
+      \strng{fullhash}{424da0f2a0e0ef57c825bf390a68b11e}
+      \strng{fullhashraw}{424da0f2a0e0ef57c825bf390a68b11e}
+      \strng{bibnamehash}{424da0f2a0e0ef57c825bf390a68b11e}
+      \strng{authorbibnamehash}{424da0f2a0e0ef57c825bf390a68b11e}
+      \strng{authornamehash}{424da0f2a0e0ef57c825bf390a68b11e}
+      \strng{authorfullhash}{424da0f2a0e0ef57c825bf390a68b11e}
+      \strng{authorfullhashraw}{424da0f2a0e0ef57c825bf390a68b11e}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The presented paper introduces a novel type of EMI optimised, balanced power modules with reduced EMI in the frequency range for radiated emissions from 30 MHz to 300 MHz. The comparison of the novel modules to a conventional module layout with same semiconductor chips shows a noise reduction up to 30 dB in the critical frequency region around 30 MHz. For frequencies above 50 MHz the noise reduction is 15 dB to 20 dB.}
+      \field{isbn}{978-3-8007-3414-6}
+      \field{month}{11}
+      \field{title}{Analysis and {Reduction} of {Radiated} {EMI} of {Power} {Modules}}
+      \field{year}{2012}
+      \verb{file}
+      \verb Domurat-Linde - Analysis and Reduction of Radiated EMI of Power Mo.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\TAG5WJSR\\Analysis_and_Reduction_of_Radiated_EMI_of_Power_Modules.pdf:application/pdf
       \endverb
     \endentry
     \entry{fritz_toward_2020}{article}{}{}
@@ -319,6 +412,9 @@
            given={Rik\bibnamedelimb W.\bibnamedelimi De},
            giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \strng{namehash}{b59bb99fea005b9117e3e50ccc2a0478}
       \strng{fullhash}{47e1076b8c50f2e61aebd0658ac88a52}
       \strng{fullhashraw}{47e1076b8c50f2e61aebd0658ac88a52}
@@ -331,20 +427,17 @@
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{This article provides in-depth insight into the commutation processes of high-speed {SiC} {MOSFETs} and investigates how they are inﬂuenced by various parasitic inductances. The switching dynamics of wide-bandgap power semiconductor devices are signiﬁcantly larger compared to those of silicon devices. Therefore, the parasitic elements in the switching cell become increasingly important, as they limit the current and voltage slopes and cause oscillations. A thorough understanding of these effects is necessary for the design of highly efﬁcient and integrated next-generation power electronic converters. However, the means of modeling hard-switched transitions, e.g., equivalent circuits, have not been adapted sufﬁciently compared to existing models on relatively slow-switching devices. This article presents the theory of commutation in high-speed semiconductor devices and outlines its key differences to traditional commutation models. These new insights are used to analyze the inﬂuence of parasitic inductances on the switching transitions. The theory is validated experimentally by double-pulse tests with variable parasitic inductances, performed on a test printed circuit board equipped with {SiC} {MOSFETs}. The results are in good agreement with the theoretical ﬁndings.}
+      \field{abstract}{This article provides in-depth insight into the commutation processes of high-speed SiC MOSFETs and investigates how they are inﬂuenced by various parasitic inductances. The switching dynamics of wide-bandgap power semiconductor devices are signiﬁcantly larger compared to those of silicon devices. Therefore, the parasitic elements in the switching cell become increasingly important, as they limit the current and voltage slopes and cause oscillations. A thorough understanding of these effects is necessary for the design of highly efﬁcient and integrated next-generation power electronic converters. However, the means of modeling hard-switched transitions, e.g., equivalent circuits, have not been adapted sufﬁciently compared to existing models on relatively slow-switching devices. This article presents the theory of commutation in high-speed semiconductor devices and outlines its key differences to traditional commutation models. These new insights are used to analyze the inﬂuence of parasitic inductances on the switching transitions. The theory is validated experimentally by double-pulse tests with variable parasitic inductances, performed on a test printed circuit board equipped with SiC MOSFETs. The results are in good agreement with the theoretical ﬁndings.}
       \field{issn}{0093-9994, 1939-9367}
-      \field{journaltitle}{{IEEE} Transactions on Industry Applications}
-      \field{langid}{english}
+      \field{journaltitle}{IEEE Transactions on Industry Applications}
       \field{month}{7}
       \field{number}{4}
-      \field{shortjournal}{{IEEE} Trans. on Ind. Applicat.}
-      \field{title}{Toward an In-Depth Understanding of the Commutation Processes in a {SiC} {MOSFET} Switching Cell Including Parasitic Elements}
+      \field{title}{Toward an {In}-{Depth} {Understanding} of the {Commutation} {Processes} in a {SiC} {MOSFET} {Switching} {Cell} {Including} {Parasitic} {Elements}}
       \field{urlday}{17}
       \field{urlmonth}{6}
       \field{urlyear}{2024}
       \field{volume}{56}
       \field{year}{2020}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{4089\bibrangedash 4101}
       \range{pages}{13}
@@ -352,13 +445,140 @@
       \verb 10.1109/TIA.2020.2995331
       \endverb
       \verb{file}
-      \verb Fritz et al. - 2020 - Toward an In-Depth Understanding of the Commutatio.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\DPAHBPNS\\Fritz et al. - 2020 - Toward an In-Depth Understanding of the Commutatio.pdf:application/pdf
+      \verb Fritz et al. - 2020 - Toward an In-Depth Understanding of the Commutatio.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\DPAHBPNS\\Toward_an_In-Depth_Understanding_of_the_Commutation_Processes_in_a_SiC_MOSFET_Switching_Cell_Including_Parasitic_Elements.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/9095228/
       \endverb
       \verb{url}
       \verb https://ieeexplore.ieee.org/document/9095228/
+      \endverb
+    \endentry
+    \entry{robert_bosch_gmbh_datasheet_2023-1}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=110823ca6b065c4ca0615ec97eb35889}{%
+           family={GmbH},
+           familyi={G\bibinitperiod},
+           given={Robert\bibnamedelima Bosch},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{fullhash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{fullhashraw}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{bibnamehash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{authorbibnamehash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{authornamehash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{authorfullhash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{authorfullhashraw}{110823ca6b065c4ca0615ec97eb35889}
+      \field{extraname}{1}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{title}{Datasheet {PMTX03SE}}
+      \field{type}{techreport}
+      \field{year}{2023}
+      \verb{file}
+      \verb DB_PMTX03SE_B0_00_01_20230616.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\UWHERSCI\\DB_PMTX03SE_B0_00_01_20230616.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.bosch-semiconductors.com/products/sic-power-devices/
+      \endverb
+      \verb{url}
+      \verb https://www.bosch-semiconductors.com/products/sic-power-devices/
+      \endverb
+    \endentry
+    \entry{robert_bosch_gmbh_datasheet_2023}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=110823ca6b065c4ca0615ec97eb35889}{%
+           family={GmbH},
+           familyi={G\bibinitperiod},
+           given={Robert\bibnamedelima Bosch},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{fullhash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{fullhashraw}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{bibnamehash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{authorbibnamehash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{authornamehash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{authorfullhash}{110823ca6b065c4ca0615ec97eb35889}
+      \strng{authorfullhashraw}{110823ca6b065c4ca0615ec97eb35889}
+      \field{extraname}{2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{title}{Datasheet {PMTX05SE}}
+      \field{type}{techreport}
+      \field{year}{2023}
+      \verb{file}
+      \verb DB_PMTX05SE_01_00_20230227.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\BF793KA3\\DB_PMTX05SE_01_00_20230227.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.bosch-semiconductors.com/products/sic-power-devices/
+      \endverb
+      \verb{url}
+      \verb https://www.bosch-semiconductors.com/products/sic-power-devices/
+      \endverb
+    \endentry
+    \entry{hamami_identifying_2026}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=90a171d5b4bab72ac545b50b67ba13e8}{%
+           family={Hamami},
+           familyi={H\bibinitperiod},
+           given={Bayan},
+           giveni={B\bibinitperiod}}}%
+        {{hash=5f9babffe5b79c62283c2b88520f5c6e}{%
+           family={Frantz},
+           familyi={F\bibinitperiod},
+           given={Genevieve},
+           giveni={G\bibinitperiod}}}%
+        {{hash=25235a423699140c4b40e44a5e902541}{%
+           family={Franchino},
+           familyi={F\bibinitperiod},
+           given={Roger},
+           giveni={R\bibinitperiod}}}%
+        {{hash=93a5522346a45fe82ff055d2e261de16}{%
+           family={Schanen},
+           familyi={S\bibinitperiod},
+           given={Jean-Luc},
+           giveni={J\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=d0da61762bf2e79a636aaff5c43463af}{%
+           family={Electric},
+           familyi={E\bibinitperiod},
+           given={Schneider},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{f3b5db5402eba6b6cd8cf291ecaa79e0}
+      \strng{fullhash}{a361e33cf744b2a1b52d63b1833af622}
+      \strng{fullhashraw}{a361e33cf744b2a1b52d63b1833af622}
+      \strng{bibnamehash}{f3b5db5402eba6b6cd8cf291ecaa79e0}
+      \strng{authorbibnamehash}{f3b5db5402eba6b6cd8cf291ecaa79e0}
+      \strng{authornamehash}{f3b5db5402eba6b6cd8cf291ecaa79e0}
+      \strng{authorfullhash}{a361e33cf744b2a1b52d63b1833af622}
+      \strng{authorfullhashraw}{a361e33cf744b2a1b52d63b1833af622}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International {Conference} on {Integrated} {Power} {Electronics} {Systems} ({CIPS} 2026)}
+      \field{month}{3}
+      \field{title}{Identifying the {Key} {Parameters} {Contributing} to the {Conducted} {Emissions} of a {Power} {Electronics} {Converter}}
+      \field{year}{2026}
+      \verb{file}
+      \verb Hamami et al. - Identifying the Key Parameters Contributing to the.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\DD9ZECLM\\Hamami et al. - Identifying the Key Parameters Contributing to the.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://hal.science/hal-05562427
+      \endverb
+      \verb{url}
+      \verb https://hal.science/hal-05562427
       \endverb
     \endentry
     \entry{hillenbrand_sensitivity_2017}{inproceedings}{}{}
@@ -384,6 +604,9 @@
            given={S.},
            giveni={S\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
         {Angers, France}%
       }
@@ -403,18 +626,15 @@
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{This contribution investigates behavioral {MOSFET} models used for the simulation of conducted and radiated electromagnetic interferences ({EMI}) of an automotive inverter. A combined simulation of an equivalent circuit and the 3D geometry for a traction inverter based on 1.2 {kV}, 40 A {SiC} {MOSFETs} is presented. The model considers the {MOSFET} as a combination of parasitic elements of the package, voltagedependent semiconductor capacitances, an internal gate resistance, the {IV} curves of the {MOSFET} and the diode. After verifying the model using measurements in the time and frequency domains, it is used to determine the influence of its parameters on the disturbance voltage at the line impedance stabilization network. The results identify the {EMI}-relevant parameters of the {MOSFET} and provide information on which data needs to be measured and which can be extracted from the datasheet of the {MOSFET}.}
-      \field{booktitle}{2017 International Symposium on Electromagnetic Compatibility - {EMC} {EUROPE}}
-      \field{eventtitle}{2017 International Symposium on Electromagnetic Compatibility - {EMC} {EUROPE}}
+      \field{abstract}{This contribution investigates behavioral MOSFET models used for the simulation of conducted and radiated electromagnetic interferences (EMI) of an automotive inverter. A combined simulation of an equivalent circuit and the 3D geometry for a traction inverter based on 1.2 kV, 40 A SiC MOSFETs is presented. The model considers the MOSFET as a combination of parasitic elements of the package, voltagedependent semiconductor capacitances, an internal gate resistance, the IV curves of the MOSFET and the diode. After verifying the model using measurements in the time and frequency domains, it is used to determine the influence of its parameters on the disturbance voltage at the line impedance stabilization network. The results identify the EMI-relevant parameters of the MOSFET and provide information on which data needs to be measured and which can be extracted from the datasheet of the MOSFET.}
+      \field{booktitle}{2017 {International} {Symposium} on {Electromagnetic} {Compatibility} - {EMC} {EUROPE}}
       \field{isbn}{978-1-5386-0689-6}
-      \field{langid}{english}
       \field{month}{9}
       \field{title}{Sensitivity analysis of behavioral {MOSFET} models in transient {EMC} simulation}
       \field{urlday}{11}
       \field{urlmonth}{1}
       \field{urlyear}{2025}
       \field{year}{2017}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 6}
       \range{pages}{6}
@@ -422,7 +642,7 @@
       \verb 10.1109/EMCEurope.2017.8094762
       \endverb
       \verb{file}
-      \verb Hillenbrand et al. - 2017 - Sensitivity analysis of behavioral MOSFET models i.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\A4HH55BL\\Hillenbrand et al. - 2017 - Sensitivity analysis of behavioral MOSFET models i.pdf:application/pdf
+      \verb Hillenbrand et al. - 2017 - Sensitivity analysis of behavioral MOSFET models i.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\A4HH55BL\\Sensitivity_analysis_of_behavioral_MOSFET_models_in_transient_EMC_simulation.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/8094762/
@@ -473,8 +693,8 @@
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{This paper proposes a frequency domain model to predict conducted electromagnetic interferences ({EMI}) caused by a converter. In the model, the nonlinear and time-variant semiconductor switches of the converter are replaced by voltage sources characterized by measurements during operation of the converter. A vector network analyzer ({VNA}) measurement method is presented to characterize the disturbance path from the voltage sources to the line impedance stabilization network ({LISN}). The approach shows that the main resonances of the disturbance voltage at the {LISN} are caused by the coupling path, which is linear and time-invariant. Based on this knowledge, a frequency domain simulation of the coupling path is performed. The simulation reproduces the measured coupling path very well. Based on the analysis of the electromagnetic potential at selected resonance frequencies, an electrical circuit is designed that accurately describes {EMC} root-causes of the converter.}
-      \field{booktitle}{2016 International Symposium on Electromagnetic Compatibility-{EMC} {EUROPE}}
+      \field{abstract}{This paper proposes a frequency domain model to predict conducted electromagnetic interferences (EMI) caused by a converter. In the model, the nonlinear and time-variant semiconductor switches of the converter are replaced by voltage sources characterized by measurements during operation of the converter. A vector network analyzer (VNA) measurement method is presented to characterize the disturbance path from the voltage sources to the line impedance stabilization network (LISN). The approach shows that the main resonances of the disturbance voltage at the LISN are caused by the coupling path, which is linear and time-invariant. Based on this knowledge, a frequency domain simulation of the coupling path is performed. The simulation reproduces the measured coupling path very well. Based on the analysis of the electromagnetic potential at selected resonance frequencies, an electrical circuit is designed that accurately describes EMC root-causes of the converter.}
+      \field{booktitle}{2016 {International} {Symposium} on {Electromagnetic} {Compatibility}-{EMC} {EUROPE}}
       \field{isbn}{978-1-5090-1416-3}
       \field{month}{11}
       \field{title}{Frequency domain {EMI}-simulation and resonance analysis of a {DCDC}-converter}
@@ -482,7 +702,6 @@
       \field{urlmonth}{9}
       \field{urlyear}{2023}
       \field{year}{2016}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{176\bibrangedash 181}
       \range{pages}{6}
@@ -490,7 +709,7 @@
       \verb 10.1109/EMCEurope.2016.7739186
       \endverb
       \verb{file}
-      \verb Frequency_domain_EMI-simulation_and_resonance_analysis_of_a_DCDC-converter.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\RQ3WF8CX\\Frequency_domain_EMI-simulation_and_resonance_analysis_of_a_DCDC-converter.pdf:application/pdf
+      \verb Frequency_domain_EMI-simulation_and_resonance_analysis_of_a_DCDC-converter.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\RQ3WF8CX\\Frequency_domain_EMI-simulation_and_resonance_analysis_of_a_DCDC-converter.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/abstract/document/7739186/
@@ -538,18 +757,17 @@
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{2019 International Symposium on Electromagnetic Compatibility-{EMC} {EUROPE}}
+      \field{booktitle}{2019 {International} {Symposium} on {Electromagnetic} {Compatibility}-{EMC} {EUROPE}}
       \field{title}{Generation of terminal equivalent circuits applied to a dc brush motor}
       \field{urlday}{1}
       \field{urlmonth}{9}
       \field{urlyear}{2023}
       \field{year}{2019}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{48\bibrangedash 53}
       \range{pages}{6}
       \verb{file}
-      \verb Generation_of_Terminal_Equivalent_Circuits_Applied_to_a_DC_Brush_Motor.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\N8V9BH4I\\Generation_of_Terminal_Equivalent_Circuits_Applied_to_a_DC_Brush_Motor.pdf:application/pdf
+      \verb Generation_of_Terminal_Equivalent_Circuits_Applied_to_a_DC_Brush_Motor.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\N8V9BH4I\\Generation_of_Terminal_Equivalent_Circuits_Applied_to_a_DC_Brush_Motor.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/abstract/document/8871967/
@@ -591,24 +809,74 @@
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{2017 19th European Conference on Power Electronics and Applications ({EPE}'17 {ECCE} Europe)}
+      \field{booktitle}{2017 19th {European} {Conference} on {Power} {Electronics} and {Applications} ({EPE}'17 {ECCE} {Europe})}
       \field{title}{Ultra-low inductive power module design with integrated common mode noise shielding}
       \field{urlday}{11}
       \field{urlmonth}{7}
       \field{urlyear}{2023}
       \field{year}{2017}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{P\bibrangedash 1}
       \range{pages}{-1}
       \verb{file}
-      \verb Ultra-low_inductive_power_module_design_with_integrated_common_mode_noise_shielding.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\ZCTBJRFA\\Ultra-low_inductive_power_module_design_with_integrated_common_mode_noise_shielding.pdf:application/pdf
+      \verb Ultra-low_inductive_power_module_design_with_integrated_common_mode_noise_shielding.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\ZCTBJRFA\\Ultra-low_inductive_power_module_design_with_integrated_common_mode_noise_shielding.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/abstract/document/8098946/
       \endverb
       \verb{url}
       \verb https://ieeexplore.ieee.org/abstract/document/8098946/
+      \endverb
+    \endentry
+    \entry{keller_fast_2007}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=89e5f4de052a736dcbacba3c57fc45d0}{%
+           family={Keller},
+           familyi={K\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+        {{hash=b15c1949b45057a041bce6c90ef2d35f}{%
+           family={Feser},
+           familyi={F\bibinitperiod},
+           given={Kurt},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{af3c3f47b78f5e70544ed544a0e80df7}
+      \strng{fullhash}{af3c3f47b78f5e70544ed544a0e80df7}
+      \strng{fullhashraw}{af3c3f47b78f5e70544ed544a0e80df7}
+      \strng{bibnamehash}{af3c3f47b78f5e70544ed544a0e80df7}
+      \strng{authorbibnamehash}{af3c3f47b78f5e70544ed544a0e80df7}
+      \strng{authornamehash}{af3c3f47b78f5e70544ed544a0e80df7}
+      \strng{authorfullhash}{af3c3f47b78f5e70544ed544a0e80df7}
+      \strng{authorfullhashraw}{af3c3f47b78f5e70544ed544a0e80df7}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0018-9375}
+      \field{journaltitle}{IEEE Transactions on Electromagnetic Compatibility}
+      \field{month}{11}
+      \field{number}{4}
+      \field{title}{Fast {Emission} {Measurement} in {Time} {Domain}}
+      \field{urlday}{1}
+      \field{urlmonth}{9}
+      \field{urlyear}{2023}
+      \field{volume}{49}
+      \field{year}{2007}
+      \field{urldateera}{ce}
+      \field{pages}{816\bibrangedash 824}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/TEMC.2007.908282
+      \endverb
+      \verb{file}
+      \verb Fast_Emission_Measurement_in_Time_Domain.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\JXD98HIN\\Fast_Emission_Measurement_in_Time_Domain.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://ieeexplore.ieee.org/document/4380419/
+      \endverb
+      \verb{url}
+      \verb http://ieeexplore.ieee.org/document/4380419/
       \endverb
     \endentry
     \entry{kragl_active_2025}{inproceedings}{}{}
@@ -639,8 +907,11 @@
            given={Ingmar},
            giveni={I\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
-        {Philadelphia, {PA}, {USA}}%
+        {Philadelphia, PA, USA}%
       }
       \list{publisher}{1}{%
         {IEEE}%
@@ -658,19 +929,15 @@
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{This paper introduces a dual-channel, differential, active voltage probe designed for direct measurement of electromagnetic noise emissions from 1200 V power semiconductors. Traditional methods, which assess {EMC}-relevant emissions at {DC} terminals, fail to capture the raw noise emissions of the semiconductor due to signal attenuation by passive components. This probe addresses these limitations, enabling accurate characterization of high-frequency noise emissions. Measurement results demonstrate its effectiveness in revealing the behavior of power semiconductors at levels up to 30 {dB} below the conventional noise floor, offering valuable insights for enhanced {EMI} mitigation strategies.}
-      \field{booktitle}{2025 {IEEE} Energy Conversion Conference Congress and Exposition ({ECCE})}
-      \field{day}{19}
-      \field{eventtitle}{2025 {IEEE} Energy Conversion Conference Congress and Exposition ({ECCE})}
+      \field{abstract}{This paper introduces a dual-channel, differential, active voltage probe designed for direct measurement of electromagnetic noise emissions from 1200 V power semiconductors. Traditional methods, which assess EMC-relevant emissions at DC terminals, fail to capture the raw noise emissions of the semiconductor due to signal attenuation by passive components. This probe addresses these limitations, enabling accurate characterization of high-frequency noise emissions. Measurement results demonstrate its effectiveness in revealing the behavior of power semiconductors at levels up to 30 dB below the conventional noise floor, offering valuable insights for enhanced EMI mitigation strategies.}
+      \field{booktitle}{2025 {IEEE} {Energy} {Conversion} {Conference} {Congress} and {Exposition} ({ECCE})}
       \field{isbn}{9798331541309}
-      \field{langid}{english}
       \field{month}{10}
-      \field{title}{Active Voltage Probe for Direct Measurement of {EMC}-Relevant Noise of Power Semiconductors}
+      \field{title}{Active {Voltage} {Probe} for {Direct} {Measurement} of {EMC}-{Relevant} {Noise} of {Power} {Semiconductors}}
       \field{urlday}{10}
       \field{urlmonth}{4}
       \field{urlyear}{2026}
       \field{year}{2025}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 8}
       \range{pages}{8}
@@ -678,7 +945,7 @@
       \verb 10.1109/ECCE58356.2025.11259863
       \endverb
       \verb{file}
-      \verb Kragl et al. - 2025 - Active Voltage Probe for Direct Measurement of EMC.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\QA7Z6RE8\\Kragl et al. - 2025 - Active Voltage Probe for Direct Measurement of EMC.pdf:application/pdf
+      \verb Kragl et al. - 2025 - Active Voltage Probe for Direct Measurement of EMC.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\QA7Z6RE8\\Kragl et al. - 2025 - Active Voltage Probe for Direct Measurement of EMC.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/11259863/
@@ -715,6 +982,9 @@
            given={Ingmar},
            giveni={I\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
         {Brisbane, Australia}%
       }
@@ -734,15 +1004,12 @@
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{2024 {IEEE} 9th Southern Power Electronics Conference ({SPEC})}
-      \field{eventtitle}{Southern Power Electronics Conference ({SPEC})}
-      \field{langid}{english}
+      \field{booktitle}{2024 {IEEE} 9th {Southern} {Power} {Electronics} {Conference} ({SPEC})}
       \field{month}{12}
-      \field{title}{Impact of Switching Behavior on the Noise Emission of Power Semiconductors}
+      \field{title}{Impact of {Switching} {Behavior} on the {Noise} {Emission} of {Power} {Semiconductors}}
       \field{year}{2024}
-      \field{dateera}{ce}
       \verb{file}
-      \verb Kragl et al. - Impact of Switching Behavior on the Noise Emission.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\B8X56YN5\\Kragl et al. - Impact of Switching Behavior on the Noise Emission.pdf:application/pdf
+      \verb Kragl et al. - Impact of Switching Behavior on the Noise Emission.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\B8X56YN5\\Kragl et al. - Impact of Switching Behavior on the Noise Emission.pdf:application/pdf
       \endverb
     \endentry
     \entry{kragl_semiconductor-focused_2025}{inproceedings}{}{}
@@ -773,6 +1040,9 @@
            given={Ingmar},
            giveni={I\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
         {Paris, France}%
       }
@@ -792,19 +1062,15 @@
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{This paper presents an analytical model for analyzing the sensitivity of silicon carbide ({SiC}) {MOSFET} parameters on noise emissions in power electronics. The study extends a state-space simulation environment to include {EMC} behavior of converters, to evaluate the impact of various {MOSFET} parameters on emitted noise. The model focuses on the frequency range of 10 {MHz} to 400 {MHz}, where switching transients dominate. Sensitive {MOSFET} parameters for noise emissions are identified such as threshold voltage, saturation transconductance, and the channel length modulation. Overall, the framework provides a comprehensive tool for {EMC} design, ensuring effective noise management in power electronic systems.}
-      \field{booktitle}{2025 International Symposium on Electromagnetic Compatibility – {EMC} Europe}
-      \field{day}{1}
-      \field{eventtitle}{2025 International Symposium on Electromagnetic Compatibility – {EMC} Europe}
+      \field{abstract}{This paper presents an analytical model for analyzing the sensitivity of silicon carbide (SiC) MOSFET parameters on noise emissions in power electronics. The study extends a state-space simulation environment to include EMC behavior of converters, to evaluate the impact of various MOSFET parameters on emitted noise. The model focuses on the frequency range of 10 MHz to 400 MHz, where switching transients dominate. Sensitive MOSFET parameters for noise emissions are identified such as threshold voltage, saturation transconductance, and the channel length modulation. Overall, the framework provides a comprehensive tool for EMC design, ensuring effective noise management in power electronic systems.}
+      \field{booktitle}{2025 {International} {Symposium} on {Electromagnetic} {Compatibility} – {EMC} {Europe}}
       \field{isbn}{9798331596453}
-      \field{langid}{english}
       \field{month}{9}
-      \field{title}{Semiconductor-Focused Simulation Environment for Emitted Noise Sensitivity of {MOSFET} Parameters}
+      \field{title}{Semiconductor-{Focused} {Simulation} {Environment} for {Emitted} {Noise} {Sensitivity} of {MOSFET} {Parameters}}
       \field{urlday}{15}
       \field{urlmonth}{10}
       \field{urlyear}{2025}
       \field{year}{2025}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{751\bibrangedash 756}
       \range{pages}{6}
@@ -812,7 +1078,7 @@
       \verb 10.1109/EMCEurope61644.2025.11176251
       \endverb
       \verb{file}
-      \verb Kragl et al. - 2025 - Semiconductor-Focused Simulation Environment for E.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\SDV5DGMP\\Kragl et al. - 2025 - Semiconductor-Focused Simulation Environment for E.pdf:application/pdf
+      \verb Kragl et al. - 2025 - Semiconductor-Focused Simulation Environment for E.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\SDV5DGMP\\Kragl et al. - 2025 - Semiconductor-Focused Simulation Environment for E.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/11176251/
@@ -821,7 +1087,7 @@
       \verb https://ieeexplore.ieee.org/document/11176251/
       \endverb
     \endentry
-    \entry{silicon_laboratories_an118_2013}{report}{}{}
+    \entry{silicon_laboratories_an118_2013}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=554e944940b0ff33601fa2757b69105e}{%
            family={Laboratories},
@@ -829,7 +1095,10 @@
            given={Silicon},
            giveni={S\bibinitperiod}}}%
       }
-      \list{institution}{1}{%
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
         {Rev. 1.3 7/13}%
       }
       \strng{namehash}{554e944940b0ff33601fa2757b69105e}
@@ -844,16 +1113,12 @@
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{If {ADC} noise can be approximated as white noise, oversampling and averaging can be used to improve the {SNR} and effective resolution of the measurement. This can be done for static dc measurements and for input signals with higher frequency components. Equation 2 shows that each additional required bit of resolution can be achieved via oversampling by a factor of four, and each additional bit will add approximately 6 db of {SNR} (Equation 3) at the cost of reduced throughput and increased {CPU} bandwidth.}
-      \field{langid}{english}
+      \field{abstract}{If ADC noise can be approximated as white noise, oversampling and averaging can be used to improve the SNR and effective resolution of the measurement. This can be done for static dc measurements and for input signals with higher frequency components. Equation 2 shows that each additional required bit of resolution can be achieved via oversampling by a factor of four, and each additional bit will add approximately 6 db of SNR (Equation 3) at the cost of reduced throughput and increased CPU bandwidth.}
       \field{month}{7}
-      \field{number}{{AN}118:}
-      \field{title}{{AN}118: Improving {ADC} Resolution by Oversampling and Averaging}
-      \field{type}{White Paper}
+      \field{title}{{AN118}: {Improving} {ADC} {Resolution} by {Oversampling} and {Averaging}}
       \field{year}{2013}
-      \field{dateera}{ce}
       \verb{file}
-      \verb AN118 Improving ADC Resolution by Oversampling an.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\D3DJB4VA\\AN118 Improving ADC Resolution by Oversampling an.pdf:application/pdf
+      \verb AN118 Improving ADC Resolution by Oversampling an.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\D3DJB4VA\\Improving_ADC_resolution_by_oversampling.pdf:application/pdf
       \endverb
     \endentry
     \entry{labrousse_switching_2011}{inproceedings}{}{}
@@ -889,18 +1154,17 @@
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{10th International Symposium on Electromagnetic Compatibility}
+      \field{booktitle}{10th {International} {Symposium} on {Electromagnetic} {Compatibility}}
       \field{title}{Switching cell {EMC} behavioral modeling by transfer function}
       \field{urlday}{1}
       \field{urlmonth}{9}
       \field{urlyear}{2023}
       \field{year}{2011}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{603\bibrangedash 606}
       \range{pages}{4}
       \verb{file}
-      \verb Switching_cell_EMC_behavioral_modeling_by_transfer_function.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\4KA6HDUT\\Switching_cell_EMC_behavioral_modeling_by_transfer_function.pdf:application/pdf
+      \verb Switching_cell_EMC_behavioral_modeling_by_transfer_function.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\4KA6HDUT\\Switching_cell_EMC_behavioral_modeling_by_transfer_function.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/abstract/document/6078590/
@@ -955,16 +1219,15 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2168-6777, 2168-6785}
-      \field{journaltitle}{{IEEE} Journal of Emerging and Selected Topics in Power Electronics}
+      \field{journaltitle}{IEEE Journal of Emerging and Selected Topics in Power Electronics}
       \field{month}{3}
       \field{number}{1}
-      \field{title}{Methodology for Characterization of Common-Mode Conducted Electromagnetic Emissions in Wide-Bandgap Converters for Ungrounded Shipboard Applications}
+      \field{title}{Methodology for {Characterization} of {Common}-{Mode} {Conducted} {Electromagnetic} {Emissions} in {Wide}-{Bandgap} {Converters} for {Ungrounded} {Shipboard} {Applications}}
       \field{urlday}{11}
       \field{urlmonth}{7}
       \field{urlyear}{2023}
       \field{volume}{6}
       \field{year}{2018}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{300\bibrangedash 314}
       \range{pages}{15}
@@ -972,7 +1235,7 @@
       \verb 10.1109/JESTPE.2017.2721429
       \endverb
       \verb{file}
-      \verb Methodology_for_Characterization_of_Common-Mode_Conducted_Electromagnetic_Emissions_in_Wide-Bandgap_Converters_for_Ungrounded_Shipboard_Applications.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\8Z849XEK\\Methodology_for_Characterization_of_Common-Mode_Conducted_Electromagnetic_Emissions_in_Wide-Bandgap_Converters_for_Ungrounded.pdf:application/pdf
+      \verb Methodology_for_Characterization_of_Common-Mode_Conducted_Electromagnetic_Emissions_in_Wide-Bandgap_Converters_for_Ungrounded_Shipboard_Applications.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\8Z849XEK\\Methodology_for_Characterization_of_Common-Mode_Conducted_Electromagnetic_Emissions_in_Wide-Bandgap_Converters_for_Ungrounded.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb http://ieeexplore.ieee.org/document/7962156/
@@ -1004,6 +1267,9 @@
            given={Z.\bibnamedelimi John},
            giveni={Z\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \strng{namehash}{1e3049f3502eb76de08349f5e31240ad}
       \strng{fullhash}{12377a65ebc2771d01f8adcff5fedce7}
       \strng{fullhashraw}{12377a65ebc2771d01f8adcff5fedce7}
@@ -1016,17 +1282,14 @@
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{{SiC} {MOSFETs} exhibit extremely fast switching characteristics, which are unfortunately accompanied by undesirable switching oscillations. In this paper, equivalent circuit models incorporating all parasitic elements are developed for the turn-{ON} and turn-{OFF} of a {SiC} {MOSFET}. Simple mathematical formulas are derived to provide the theoretical analysis of the switching oscillation phenomenon, and to guide the snubber or damping circuit design. Both circuit simulation and experimental measurement are carried out to validate these simple equivalent circuit models.}
+      \field{abstract}{SiC MOSFETs exhibit extremely fast switching characteristics, which are unfortunately accompanied by undesirable switching oscillations. In this paper, equivalent circuit models incorporating all parasitic elements are developed for the turn-ON and turn-OFF of a SiC MOSFET. Simple mathematical formulas are derived to provide the theoretical analysis of the switching oscillation phenomenon, and to guide the snubber or damping circuit design. Both circuit simulation and experimental measurement are carried out to validate these simple equivalent circuit models.}
       \field{issn}{2168-6777, 2168-6785}
-      \field{journaltitle}{{IEEE} Journal of Emerging and Selected Topics in Power Electronics}
-      \field{langid}{english}
-      \field{shortjournal}{{IEEE} J. Emerg. Sel. Topics Power Electron.}
-      \field{title}{Modeling and Analysis of {SiC} {MOSFET} Switching Oscillations}
+      \field{journaltitle}{IEEE Journal of Emerging and Selected Topics in Power Electronics}
+      \field{title}{Modeling and {Analysis} of {SiC} {MOSFET} {Switching} {Oscillations}}
       \field{urlday}{11}
       \field{urlmonth}{1}
       \field{urlyear}{2024}
       \field{year}{2016}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 1}
       \range{pages}{1}
@@ -1034,7 +1297,7 @@
       \verb 10.1109/JESTPE.2016.2587358
       \endverb
       \verb{file}
-      \verb Liu et al. - 2016 - Modeling and Analysis of SiC MOSFET Switching Osci.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\YJIZSFTR\\Liu et al. - 2016 - Modeling and Analysis of SiC MOSFET Switching Osci.pdf:application/pdf
+      \verb Liu et al. - 2016 - Modeling and Analysis of SiC MOSFET Switching Osci.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\YJIZSFTR\\Liu et al. - 2016 - Modeling and Analysis of SiC MOSFET Switching Osci.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb http://ieeexplore.ieee.org/document/7506027/
@@ -1086,24 +1349,91 @@
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{2012 15th International Power Electronics and Motion Control Conference ({EPE}/{PEMC})}
+      \field{booktitle}{2012 15th {International} {Power} {Electronics} and {Motion} {Control} {Conference} ({EPE}/{PEMC})}
       \field{title}{Modeling of switching transients for frequency-domain {EMC} analysis of power converters}
       \field{urlday}{1}
       \field{urlmonth}{9}
       \field{urlyear}{2023}
       \field{year}{2012}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{DS1e\bibrangedash 1}
       \range{pages}{-1}
       \verb{file}
-      \verb Modeling_of_switching_transients_for_frequency-domain_EMC_analysis_of_power_converters.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\X3UQAR48\\Modeling_of_switching_transients_for_frequency-domain_EMC_analysis_of_power_converters.pdf:application/pdf
+      \verb Modeling_of_switching_transients_for_frequency-domain_EMC_analysis_of_power_converters.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\X3UQAR48\\Modeling_of_switching_transients_for_frequency-domain_EMC_analysis_of_power_converters.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/abstract/document/6397241/
       \endverb
       \verb{url}
       \verb https://ieeexplore.ieee.org/abstract/document/6397241/
+      \endverb
+    \endentry
+    \entry{natarajan_state---art_2020}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=f1aa25381566125e5720c74e1a931270}{%
+           family={Natarajan},
+           familyi={N\bibinitperiod},
+           given={Sudhakar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=df038aa168727d0769bcbd2860bbacc6}{%
+           family={Sudhakar\bibnamedelima Babu},
+           familyi={S\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Thanikanti},
+           giveni={T\bibinitperiod}}}%
+        {{hash=0d309d5a43f3a19048cafa6a53fb2ef1}{%
+           family={Balasubramanian},
+           familyi={B\bibinitperiod},
+           given={Karthik},
+           giveni={K\bibinitperiod}}}%
+        {{hash=db321d08766fbd2c894d10cdd78cfd74}{%
+           family={Subramaniam},
+           familyi={S\bibinitperiod},
+           given={Umashankar},
+           giveni={U\bibinitperiod}}}%
+        {{hash=590644e51a5665780636bba7c1f8b711}{%
+           family={Almakhles},
+           familyi={A\bibinitperiod},
+           given={Dhafer\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{c43f8249e5f842595cd2c40f57f094bc}
+      \strng{fullhash}{a98c41534e01666ec2cf051501ea9a41}
+      \strng{fullhashraw}{a98c41534e01666ec2cf051501ea9a41}
+      \strng{bibnamehash}{c43f8249e5f842595cd2c40f57f094bc}
+      \strng{authorbibnamehash}{c43f8249e5f842595cd2c40f57f094bc}
+      \strng{authornamehash}{c43f8249e5f842595cd2c40f57f094bc}
+      \strng{authorfullhash}{a98c41534e01666ec2cf051501ea9a41}
+      \strng{authorfullhashraw}{a98c41534e01666ec2cf051501ea9a41}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{One of the most challenging and interesting ﬁeld in power electronics is the ability to mitigate the Electromagnetic Interference (EMI). A natural source of EMI includes the atmospheric discharge/charge phenomena and extra-terrestrial radiation. Man-made source of EMI are line radiation, auto ignition, radio frequency interference and power lines. Suppression of EMI and enhancing the Electro Magnetic Compatibility (EMC) has become essential in high frequency power electronic converters. This review article is a one stop solution for new researchers and practitioners to understand about the effects of EMI and its suppression techniques in detail.}
+      \field{issn}{2169-3536}
+      \field{journaltitle}{IEEE Access}
+      \field{title}{A {State}-of-the-{Art} {Review} on {Conducted} {Electromagnetic} {Interference} in {Non}-{Isolated} {DC} to {DC} {Converters}}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{8}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{2564\bibrangedash 2577}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1109/ACCESS.2019.2961954
+      \endverb
+      \verb{file}
+      \verb Natarajan et al. - 2020 - A State-of-the-Art Review on Conducted Electromagn.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\ZP6679U5\\Natarajan et al. - 2020 - A State-of-the-Art Review on Conducted Electromagn.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/8941119/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/8941119/
       \endverb
     \endentry
     \entry{oswald_analysis_2011}{article}{}{}
@@ -1134,6 +1464,9 @@
            given={Bill},
            giveni={B\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \strng{namehash}{2a2698b4e19a28a852a4f8b056aba875}
       \strng{fullhash}{6eaa9a7babbf983b01b30bd4c90a5ed4}
       \strng{fullhashraw}{6eaa9a7babbf983b01b30bd4c90a5ed4}
@@ -1147,20 +1480,17 @@
       \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Consideration of the higher order time derivatives of voltage and current transitions in power semiconductor devices enables the speciﬁcation of “S-shaped” switching waveforms which offer an improved tradeoff between high-frequency {EMI} generation and switching losses. In comparison with the widely used ﬁrst-order derivative trapezoidal switching waveform approximation, Fourier analysis of the proposed “S-shaped” waveform shows that it exhibits a 20 {dB}/dec steeper spectral gradient at high frequencies, resulting in a 20 {dB} greater reduction in highfrequency spectral content per decade increase in rise time. Numerical analysis of the proposed waveform shows that both peak and total {RF} power, employed as indicative {EMI} metrics, are reduced signiﬁcantly with no increase in overall switching time. Experimental investigation of the effect of introducing a frequency-selective {EMI} transmission path shows that the overall trends in the relationships between time-domain waveform parameters and high-frequency spectral content are maintained, while the values of the waveform timing parameters which minimize the two {EMI} metrics are changed.}
+      \field{abstract}{Consideration of the higher order time derivatives of voltage and current transitions in power semiconductor devices enables the speciﬁcation of “S-shaped” switching waveforms which offer an improved tradeoff between high-frequency EMI generation and switching losses. In comparison with the widely used ﬁrst-order derivative trapezoidal switching waveform approximation, Fourier analysis of the proposed “S-shaped” waveform shows that it exhibits a 20 dB/dec steeper spectral gradient at high frequencies, resulting in a 20 dB greater reduction in highfrequency spectral content per decade increase in rise time. Numerical analysis of the proposed waveform shows that both peak and total RF power, employed as indicative EMI metrics, are reduced signiﬁcantly with no increase in overall switching time. Experimental investigation of the effect of introducing a frequency-selective EMI transmission path shows that the overall trends in the relationships between time-domain waveform parameters and high-frequency spectral content are maintained, while the values of the waveform timing parameters which minimize the two EMI metrics are changed.}
       \field{issn}{0093-9994, 1939-9367}
-      \field{journaltitle}{{IEEE} Transactions on Industry Applications}
-      \field{langid}{english}
+      \field{journaltitle}{IEEE Transactions on Industry Applications}
       \field{month}{9}
       \field{number}{5}
-      \field{shortjournal}{{IEEE} Trans. on Ind. Applicat.}
-      \field{title}{Analysis of Shaped Pulse Transitions in Power Electronic Switching Waveforms for Reduced {EMI} Generation}
+      \field{title}{Analysis of {Shaped} {Pulse} {Transitions} in {Power} {Electronic} {Switching} {Waveforms} for {Reduced} {EMI} {Generation}}
       \field{urlday}{30}
       \field{urlmonth}{11}
       \field{urlyear}{2023}
       \field{volume}{47}
       \field{year}{2011}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{2154\bibrangedash 2165}
       \range{pages}{12}
@@ -1168,7 +1498,7 @@
       \verb 10.1109/TIA.2011.2161971
       \endverb
       \verb{file}
-      \verb Oswald et al. - 2011 - Analysis of Shaped Pulse Transitions in Power Elec.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\N586G586\\Oswald et al. - 2011 - Analysis of Shaped Pulse Transitions in Power Elec.pdf:application/pdf
+      \verb Oswald et al. - 2011 - Analysis of Shaped Pulse Transitions in Power Elec.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\N586G586\\Oswald et al. - 2011 - Analysis of Shaped Pulse Transitions in Power Elec.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb http://ieeexplore.ieee.org/document/5953506/
@@ -1190,7 +1520,7 @@
            given={Bernard\bibnamedelima H.},
            giveni={B\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
         {{hash=1189f518049bc7ec28c992571375dc65}{%
-           family={{McNeill}},
+           family={McNeill},
            familyi={M\bibinitperiod},
            given={Neville},
            giveni={N\bibinitperiod}}}%
@@ -1200,8 +1530,11 @@
            given={Derrick},
            giveni={D\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
-        {Phoenix, {AZ}, {USA}}%
+        {Phoenix, AZ, USA}%
       }
       \list{publisher}{1}{%
         {IEEE}%
@@ -1219,18 +1552,15 @@
       \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{The useful bandwidth of power electronic switching waveform measurements is limited by the finite resolution of measurement instrumentation and the spectral characteristics of switching waveforms, which exhibit a steep roll-off with increasing frequency. This limits the use of such measurements in {EMI} generation analysis, simulation and prediction. A method combining {PC}-based offline data processing and highpass filtering of the waveforms prior to measurement allows the useful measurement bandwidth to be extended to 100 {MHz} in the case of a 1200 V, 15 A {IGBT} operating under realistic conditions. When utilised with commercially available current probes and passive voltage probes, this method offers highfidelity measurements. However, it is more difficult to obtain repeatable measurements with high-voltage differential probes. The resulting spectra of {IGBT} collector-emitter voltage and collector current waveforms are presented; the increased bandwidth allows the high-frequency spectral gradient of -60 {dB}/decade to be observed across the 30-100 {MHz} band most critical for radiated {EMI} generation in {IGBT}-based power converters. The effect of series gate resistance variation is thus apparent, and spectral evidence is provided for the 30-100 {MHz} band being dominated by the turn-on transients with small gate resistances, and by the turn-off transients with large gate resistances.}
-      \field{booktitle}{2011 {IEEE} Energy Conversion Congress and Exposition}
-      \field{eventtitle}{2011 {IEEE} Energy Conversion Congress and Exposition ({ECCE})}
+      \field{abstract}{The useful bandwidth of power electronic switching waveform measurements is limited by the finite resolution of measurement instrumentation and the spectral characteristics of switching waveforms, which exhibit a steep roll-off with increasing frequency. This limits the use of such measurements in EMI generation analysis, simulation and prediction. A method combining PC-based offline data processing and highpass filtering of the waveforms prior to measurement allows the useful measurement bandwidth to be extended to 100 MHz in the case of a 1200 V, 15 A IGBT operating under realistic conditions. When utilised with commercially available current probes and passive voltage probes, this method offers highfidelity measurements. However, it is more difficult to obtain repeatable measurements with high-voltage differential probes. The resulting spectra of IGBT collector-emitter voltage and collector current waveforms are presented; the increased bandwidth allows the high-frequency spectral gradient of -60 dB/decade to be observed across the 30-100 MHz band most critical for radiated EMI generation in IGBT-based power converters. The effect of series gate resistance variation is thus apparent, and spectral evidence is provided for the 30-100 MHz band being dominated by the turn-on transients with small gate resistances, and by the turn-off transients with large gate resistances.}
+      \field{booktitle}{2011 {IEEE} {Energy} {Conversion} {Congress} and {Exposition}}
       \field{isbn}{978-1-4577-0542-7}
-      \field{langid}{english}
       \field{month}{9}
       \field{title}{High-bandwidth, high-fidelity in-circuit measurement of power electronic switching waveforms for {EMI} generation analysis}
       \field{urlday}{23}
       \field{urlmonth}{1}
       \field{urlyear}{2024}
       \field{year}{2011}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{3886\bibrangedash 3893}
       \range{pages}{8}
@@ -1238,7 +1568,7 @@
       \verb 10.1109/ECCE.2011.6064297
       \endverb
       \verb{file}
-      \verb Oswald et al. - 2011 - High-bandwidth, high-fidelity in-circuit measureme.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\KYLW53WC\\Oswald et al. - 2011 - High-bandwidth, high-fidelity in-circuit measureme.pdf:application/pdf
+      \verb Oswald et al. - 2011 - High-bandwidth, high-fidelity in-circuit measureme.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\KYLW53WC\\High-bandwidth_high-fidelity_in-circuit_measurement_of_power_electronic_switching_waveforms_for_EMI_generation_analysis.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb http://ieeexplore.ieee.org/document/6064297/
@@ -1303,16 +1633,15 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0093-9994, 1939-9367}
-      \field{journaltitle}{{IEEE} Transactions on Industry Applications}
+      \field{journaltitle}{IEEE Transactions on Industry Applications}
       \field{month}{5}
       \field{number}{3}
-      \field{title}{Characterization and Mitigation of Conducted Emissions in a {SiC} Based Three-Level T-Type Motor Drive for Aircraft Propulsion}
+      \field{title}{Characterization and {Mitigation} of {Conducted} {Emissions} in a {SiC} {Based} {Three}-{Level} {T}-{Type} {Motor} {Drive} for {Aircraft} {Propulsion}}
       \field{urlday}{11}
       \field{urlmonth}{7}
       \field{urlyear}{2023}
       \field{volume}{59}
       \field{year}{2023}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{3400\bibrangedash 3412}
       \range{pages}{13}
@@ -1320,7 +1649,7 @@
       \verb 10.1109/TIA.2023.3252521
       \endverb
       \verb{file}
-      \verb Characterization_and_Mitigation_of_Conducted_Emissions_in_a_SiC_based_Three-level_T-Type_Motor_Drive_for_Aircra.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\FP7ZQGEZ\\Characterization_and_Mitigation_of_Conducted_Emissions_in_a_SiC_based_Three-level_T-Type_Motor_Drive_for_Aircra.pdf:application/pdf;Definition_and_Implementation_of_an_EMI_Figure_of_Merit_for_Switching_Pattern_in_Power_Converters.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\WSSGYVFW\\Definition_and_Implementation_of_an_EMI_Figure_of_Merit_for_Switching_Pattern_in_Power_Converters.pdf:application/pdf
+      \verb Characterization_and_Mitigation_of_Conducted_Emissions_in_a_SiC_based_Three-level_T-Type_Motor_Drive_for_Aircra.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\FP7ZQGEZ\\Characterization_and_Mitigation_of_Conducted_Emissions_in_a_SiC_based_Three-level_T-Type_Motor_Drive_for_Aircra.pdf:application/pdf;Definition_and_Implementation_of_an_EMI_Figure_of_Merit_for_Switching_Pattern_in_Power_Converters.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\WSSGYVFW\\Definition_and_Implementation_of_an_EMI_Figure_of_Merit_for_Switching_Pattern_in_Power_Converters.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/10059140/
@@ -1362,6 +1691,9 @@
            given={Jiating},
            giveni={J\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
         {Wuxi, China}%
       }
@@ -1380,19 +1712,15 @@
       \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Silicon carbide metal-oxide-semiconductor fieldeffect transistors ({SiC} {MOSFETs}) are extensively utilized in highefficiency and high-frequency applications due to their exceptional performance. While the high switching speed of {SiC} {MOSFETs} significantly enhances operational efficiency, it also exacerbates electromagnetic interference ({EMI}) issues during the switching transient process. This study introduces a spectral analysis method for identifying interference sources, with a focus on highfrequency ringing in {SiC} {MOSFETs}. The method considers the impact of parasitic parameters during switching transients and uncovers the characteristics of high-frequency oscillations. By employing an asymmetric trapezoidal waveform, spectral and envelope models that account for high-frequency oscillations caused by parasitic parameters are derived, enabling the evaluation of main influencing factors to {EMI} noise. A spectral calculation approach for high-frequency ringing effects is proposed. Experimental validation demonstrates a maximum error reduction from approximately 18 {dBμV} to 8 {dBμV} when compared to traditional methods.}
-      \field{booktitle}{2025 8th International Conference on Energy, Electrical and Power Engineering ({CEEPE})}
-      \field{day}{25}
-      \field{eventtitle}{2025 8th International Conference on Energy, Electrical and Power Engineering ({CEEPE})}
+      \field{abstract}{Silicon carbide metal-oxide-semiconductor fieldeffect transistors (SiC MOSFETs) are extensively utilized in highefficiency and high-frequency applications due to their exceptional performance. While the high switching speed of SiC MOSFETs significantly enhances operational efficiency, it also exacerbates electromagnetic interference (EMI) issues during the switching transient process. This study introduces a spectral analysis method for identifying interference sources, with a focus on highfrequency ringing in SiC MOSFETs. The method considers the impact of parasitic parameters during switching transients and uncovers the characteristics of high-frequency oscillations. By employing an asymmetric trapezoidal waveform, spectral and envelope models that account for high-frequency oscillations caused by parasitic parameters are derived, enabling the evaluation of main influencing factors to EMI noise. A spectral calculation approach for high-frequency ringing effects is proposed. Experimental validation demonstrates a maximum error reduction from approximately 18 dBμV to 8 dBμV when compared to traditional methods.}
+      \field{booktitle}{2025 8th {International} {Conference} on {Energy}, {Electrical} and {Power} {Engineering} ({CEEPE})}
       \field{isbn}{9798331521844}
-      \field{langid}{english}
       \field{month}{4}
-      \field{title}{A Spectral Analysis Method for Modeling {EMI} Source Considering High-Frequency Ringing Effects in {SiC} {MOSFETs}}
+      \field{title}{A {Spectral} {Analysis} {Method} for {Modeling} {EMI} {Source} {Considering} {High}-{Frequency} {Ringing} {Effects} in {SiC} {MOSFETs}}
       \field{urlday}{26}
       \field{urlmonth}{11}
       \field{urlyear}{2025}
       \field{year}{2025}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{559\bibrangedash 564}
       \range{pages}{6}
@@ -1400,7 +1728,7 @@
       \verb 10.1109/CEEPE64987.2025.11033956
       \endverb
       \verb{file}
-      \verb Qin et al. - 2025 - A Spectral Analysis Method for Modeling EMI Source.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\92BGRVTR\\Qin et al. - 2025 - A Spectral Analysis Method for Modeling EMI Source.pdf:application/pdf
+      \verb Qin et al. - 2025 - A Spectral Analysis Method for Modeling EMI Source.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\92BGRVTR\\Qin et al. - 2025 - A Spectral Analysis Method for Modeling EMI Source.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/11033956/
@@ -1460,16 +1788,15 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0018-9375, 1558-187X}
-      \field{journaltitle}{{IEEE} Transactions on Electromagnetic Compatibility}
+      \field{journaltitle}{IEEE Transactions on Electromagnetic Compatibility}
       \field{month}{8}
       \field{number}{4}
-      \field{title}{Transfer Function Method for Predicting the Emissions in a {CISPR}-25 Test-Setup}
+      \field{title}{Transfer {Function} {Method} for {Predicting} the {Emissions} in a {CISPR}-25 {Test}-{Setup}}
       \field{urlday}{1}
       \field{urlmonth}{9}
       \field{urlyear}{2023}
       \field{volume}{56}
       \field{year}{2014}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{894\bibrangedash 902}
       \range{pages}{9}
@@ -1477,7 +1804,7 @@
       \verb 10.1109/TEMC.2013.2297303
       \endverb
       \verb{file}
-      \verb Transfer_Function_Method_for_Predicting_the_Emissions_in_a_CISPR-25_Test-Setup.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\4A2UVMB3\\Transfer_Function_Method_for_Predicting_the_Emissions_in_a_CISPR-25_Test-Setup.pdf:application/pdf
+      \verb Transfer_Function_Method_for_Predicting_the_Emissions_in_a_CISPR-25_Test-Setup.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\4A2UVMB3\\Transfer_Function_Method_for_Predicting_the_Emissions_in_a_CISPR-25_Test-Setup.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb http://ieeexplore.ieee.org/document/6722882/
@@ -1504,6 +1831,9 @@
            given={D.},
            giveni={D\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
         {Montreal, Que., Canada}%
       }
@@ -1522,17 +1852,14 @@
       \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{The standardization of power electronics that come with the power electronics building blocks ({PEBB}) is expected to expand the use of power electronics through reduced costs and higher reliability. Part of the cost reduction comes from the simplification in the design process that is obtained by using standard modules. This paper analyzes the {PEBB} based design process and discusses some ideas about the design of power converters based on power modules and appropriate tools for the design.}
-      \field{booktitle}{2006 {IEEE} Power Engineering Society General Meeting}
-      \field{eventtitle}{2006 {IEEE} Power Engineering Society General Meeting}
+      \field{abstract}{The standardization of power electronics that come with the power electronics building blocks (PEBB) is expected to expand the use of power electronics through reduced costs and higher reliability. Part of the cost reduction comes from the simplification in the design process that is obtained by using standard modules. This paper analyzes the PEBB based design process and discusses some ideas about the design of power converters based on power modules and appropriate tools for the design.}
+      \field{booktitle}{2006 {IEEE} {Power} {Engineering} {Society} {General} {Meeting}}
       \field{isbn}{978-1-4244-0493-3}
-      \field{langid}{english}
       \field{title}{Design of {PEBB} based power electronics systems}
       \field{urlday}{13}
       \field{urlmonth}{11}
       \field{urlyear}{2025}
       \field{year}{2006}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{5 pp.}
       \range{pages}{-1}
@@ -1540,13 +1867,69 @@
       \verb 10.1109/PES.2006.1709381
       \endverb
       \verb{file}
-      \verb Rosado et al. - 2006 - Design of PEBB based power electronics systems.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\R36LB2N8\\Rosado et al. - 2006 - Design of PEBB based power electronics systems.pdf:application/pdf
+      \verb Rosado et al. - 2006 - Design of PEBB based power electronics systems.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\R36LB2N8\\Rosado et al. - 2006 - Design of PEBB based power electronics systems.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb http://ieeexplore.ieee.org/document/1709381/
       \endverb
       \verb{url}
       \verb http://ieeexplore.ieee.org/document/1709381/
+      \endverb
+    \endentry
+    \entry{stephan_schwaiger_advanced_2023}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=1e90f3a10ddf05cf04f3050719d320c4}{%
+           family={Schwaiger},
+           familyi={S\bibinitperiod},
+           given={Stephan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ce16dc972cb71955dccb98ecef3e7cf6}{%
+           family={Heyers},
+           familyi={H\bibinitperiod},
+           given={Klaus},
+           giveni={K\bibinitperiod}}}%
+        {{hash=63995c6b84b6d0362b979074bbc4adfd}{%
+           family={Martinez-Limia},
+           familyi={M\bibinithyphendelim L\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9059b40f49a361f76cdaa2e3cffec521}{%
+           family={Oberdieck},
+           familyi={O\bibinitperiod},
+           given={Karl},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f66b58622a390e8c4dc5df5b232f4e99}{%
+           family={Foerster},
+           familyi={F\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Nuremberg}%
+      }
+      \strng{namehash}{b40d4da6914f1b5a9a8f2ba382744215}
+      \strng{fullhash}{f3ad19da90ffedfa7ab8ae569e821c7c}
+      \strng{fullhashraw}{f3ad19da90ffedfa7ab8ae569e821c7c}
+      \strng{bibnamehash}{b40d4da6914f1b5a9a8f2ba382744215}
+      \strng{authorbibnamehash}{b40d4da6914f1b5a9a8f2ba382744215}
+      \strng{authornamehash}{b40d4da6914f1b5a9a8f2ba382744215}
+      \strng{authorfullhash}{f3ad19da90ffedfa7ab8ae569e821c7c}
+      \strng{authorfullhashraw}{f3ad19da90ffedfa7ab8ae569e821c7c}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International {Exhibition} and {Conference} for {Power} {Electronics}, {Intelligent} {Motion}}
+      \field{month}{10}
+      \field{title}{Advanced {SiC} {Trench}-{MOS} {Technology} for {Automotive} {Application}}
+      \field{year}{2023}
+      \field{pages}{1\bibrangedash 4}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.30420/566091096
+      \endverb
+      \verb{file}
+      \verb Advanced_SiC_Trench-MOS_Technology_for_Automotive_Application.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\7EWD8V28\\Advanced_SiC_Trench-MOS_Technology_for_Automotive_Application.pdf:application/pdf
       \endverb
     \endentry
     \entry{shillaber_gigahertz_2020}{inproceedings}{}{}
@@ -1572,8 +1955,11 @@
            given={Teng},
            giveni={T\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \list{location}{1}{%
-        {Detroit, {MI}, {USA}}%
+        {Detroit, MI, USA}%
       }
       \list{publisher}{1}{%
         {IEEE}%
@@ -1591,19 +1977,15 @@
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{In order to improve efﬁciency and reduce circuit size the switching speeds of semiconductor power devices are being reduced. This is being achieved by the use of wide band-gap semiconductor devices. Traditional current measurement techniques are unable to accurately measure these new high speed switching edges, due to a lack of bandwidth and high insertion inductance. In this paper a 1.6 {GHz} bandwidth, scalable current, {SMD} shunt based current probe is developed for switching and steady state current measurements in wide band-gap power devices. By designing this shunt with an extremely low insertion inductance of less than 10 {pH} it is ensured that the measurement circuit has negligible impact on switching device operation.}
-      \field{booktitle}{2020 {IEEE} Energy Conversion Congress and Exposition ({ECCE})}
-      \field{day}{11}
-      \field{eventtitle}{2020 {IEEE} Energy Conversion Congress and Exposition ({ECCE})}
+      \field{abstract}{In order to improve efﬁciency and reduce circuit size the switching speeds of semiconductor power devices are being reduced. This is being achieved by the use of wide band-gap semiconductor devices. Traditional current measurement techniques are unable to accurately measure these new high speed switching edges, due to a lack of bandwidth and high insertion inductance. In this paper a 1.6 GHz bandwidth, scalable current, SMD shunt based current probe is developed for switching and steady state current measurements in wide band-gap power devices. By designing this shunt with an extremely low insertion inductance of less than 10 pH it is ensured that the measurement circuit has negligible impact on switching device operation.}
+      \field{booktitle}{2020 {IEEE} {Energy} {Conversion} {Congress} and {Exposition} ({ECCE})}
       \field{isbn}{978-1-72815-826-6}
-      \field{langid}{english}
       \field{month}{10}
-      \field{title}{Gigahertz Current Measurement for Wide Band-gap Devices}
+      \field{title}{Gigahertz {Current} {Measurement} for {Wide} {Band}-gap {Devices}}
       \field{urlday}{13}
       \field{urlmonth}{3}
       \field{urlyear}{2024}
       \field{year}{2020}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{2357\bibrangedash 2363}
       \range{pages}{7}
@@ -1611,7 +1993,7 @@
       \verb 10.1109/ECCE44975.2020.9235662
       \endverb
       \verb{file}
-      \verb Shillaber et al. - 2020 - Gigahertz Current Measurement for Wide Band-gap De.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\MYP9J69S\\Shillaber et al. - 2020 - Gigahertz Current Measurement for Wide Band-gap De.pdf:application/pdf
+      \verb Shillaber et al. - 2020 - Gigahertz Current Measurement for Wide Band-gap De.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\MYP9J69S\\Shillaber et al. - 2020 - Gigahertz Current Measurement for Wide Band-gap De.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/9235662/
@@ -1643,6 +2025,9 @@
            given={Teng},
            giveni={T\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \strng{namehash}{63012c3ec5493d70d0e5ff11e4d167b3}
       \strng{fullhash}{8846c1c7ea5456b47532b549bdc1340c}
       \strng{fullhashraw}{8846c1c7ea5456b47532b549bdc1340c}
@@ -1656,21 +2041,18 @@
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
-      \field{abstract}{In an effort to reduce switching loss, increase switching frequencies, and shrink passive component sizes, power device switching times are being pushed into nanosecond and subnanosecond intervals. However, these fast switching times require high rates of change of current making the power devices susceptible to overvoltage damage from parasitic inductance in the power loop. This presents challenges in measuring the device switching current accurately and, in turn, makes accurate measurements of device switching energy and stored charge difﬁcult. Traditional current measurement methods either do not have the required frequency response to view the switching edge accurately or have a high parasitic inductance that can signiﬁcantly alter switching performance and cause damage to the power device. In this article, an active current measurement system is developed. This circuit achieves up to 1.6-{GHz} bandwidth with zero overshoot. By utilizing mutual inductance cancellation, an insertion inductance down to 20 {pH} has been achieved. The research performed in this article thereby allows for an accurate measurement of device switching loss with minimal power circuit disturbance. The performance of this current measurement is experimentally veriﬁed in the frequency domain using a vector network analyzer, and time-domain switching measurements are compared with state-of-the-art current measurement.}
+      \field{abstract}{In an effort to reduce switching loss, increase switching frequencies, and shrink passive component sizes, power device switching times are being pushed into nanosecond and subnanosecond intervals. However, these fast switching times require high rates of change of current making the power devices susceptible to overvoltage damage from parasitic inductance in the power loop. This presents challenges in measuring the device switching current accurately and, in turn, makes accurate measurements of device switching energy and stored charge difﬁcult. Traditional current measurement methods either do not have the required frequency response to view the switching edge accurately or have a high parasitic inductance that can signiﬁcantly alter switching performance and cause damage to the power device. In this article, an active current measurement system is developed. This circuit achieves up to 1.6-GHz bandwidth with zero overshoot. By utilizing mutual inductance cancellation, an insertion inductance down to 20 pH has been achieved. The research performed in this article thereby allows for an accurate measurement of device switching loss with minimal power circuit disturbance. The performance of this current measurement is experimentally veriﬁed in the frequency domain using a vector network analyzer, and time-domain switching measurements are compared with state-of-the-art current measurement.}
       \field{issn}{0885-8993, 1941-0107}
-      \field{journaltitle}{{IEEE} Transactions on Power Electronics}
-      \field{langid}{english}
+      \field{journaltitle}{IEEE Transactions on Power Electronics}
       \field{month}{12}
       \field{number}{12}
-      \field{shortjournal}{{IEEE} Trans. Power Electron.}
-      \field{shorttitle}{Ultrafast Current Shunt ({UFCS})}
-      \field{title}{Ultrafast Current Shunt ({UFCS}): A Gigahertz Bandwidth Ultra-Low-Inductance Current Sensor}
+      \field{shorttitle}{Ultrafast {Current} {Shunt} ({UFCS})}
+      \field{title}{Ultrafast {Current} {Shunt} ({UFCS}): {A} {Gigahertz} {Bandwidth} {Ultra}-{Low}-{Inductance} {Current} {Sensor}}
       \field{urlday}{13}
       \field{urlmonth}{3}
       \field{urlyear}{2024}
       \field{volume}{37}
       \field{year}{2022}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{15493\bibrangedash 15504}
       \range{pages}{12}
@@ -1678,7 +2060,7 @@
       \verb 10.1109/TPEL.2022.3184638
       \endverb
       \verb{file}
-      \verb Shillaber et al. - 2022 - Ultrafast Current Shunt (UFCS) A Gigahertz Bandwi.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\PIHQCRY5\\Shillaber et al. - 2022 - Ultrafast Current Shunt (UFCS) A Gigahertz Bandwi.pdf:application/pdf
+      \verb Shillaber et al. - 2022 - Ultrafast Current Shunt (UFCS) A Gigahertz Bandwi.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\PIHQCRY5\\Shillaber et al. - 2022 - Ultrafast Current Shunt (UFCS) A Gigahertz Bandwi.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/9802752/
@@ -1692,13 +2074,16 @@
         {{hash=2dbf1d76be37f4096accc3d4fb0736c8}{%
            family={Society},
            familyi={S\bibinitperiod},
-           given={{IEEE}\bibnamedelimb Industry\bibnamedelima Applications},
+           given={IEEE\bibnamedelimb Industry\bibnamedelima Applications},
            giveni={I\bibinitperiod\bibinitdelim I\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
         {{hash=fc4e651adf4779308e416c32ca9417c3}{%
            family={Society},
            familyi={S\bibinitperiod},
-           given={{IEEE}\bibnamedelimb Power\bibnamedelima Electronics},
+           given={IEEE\bibnamedelimb Power\bibnamedelima Electronics},
            giveni={I\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
       }
       \strng{namehash}{9d1eb4f9cbae1c77a670c56480f0d9ef}
       \strng{fullhash}{9d1eb4f9cbae1c77a670c56480f0d9ef}
@@ -1712,19 +2097,16 @@
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{day}{5}
-      \field{journaltitle}{{IEEE} Std 1662-2023 (Revision of {IEEE} Std 1662-2016)}
-      \field{langid}{english}
+      \field{journaltitle}{IEEE Std 1662-2023 (Revision of IEEE Std 1662-2016)}
       \field{month}{4}
-      \field{title}{{IEEE} Std 1662™-2023, {IEEE} Recommended Practice for the Design and Application of Power Electronics in Electrical Power Systems}
-      \field{volume}{{IEEE} Std 1662-2023 (Revision of {IEEE} Std 1662-2016)}
+      \field{title}{{IEEE} {Std} 1662™-2023, {IEEE} {Recommended} {Practice} for the {Design} and {Application} of {Power} {Electronics} in {Electrical} {Power} {Systems}}
+      \field{volume}{IEEE Std 1662-2023 (Revision of IEEE Std 1662-2016)}
       \field{year}{2024}
-      \field{dateera}{ce}
       \verb{doi}
       \verb 10.1109/IEEESTD.2024.10492708
       \endverb
       \verb{file}
-      \verb IEEE Std 1662™-2023, IEEE Recommended Practice for.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\VGHAJ9QT\\IEEE Std 1662™-2023, IEEE Recommended Practice for.pdf:application/pdf
+      \verb IEEE Std 1662™-2023, IEEE Recommended Practice for.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\VGHAJ9QT\\IEEE Std 1662™-2023, IEEE Recommended Practice for.pdf:application/pdf
       \endverb
     \endentry
     \entry{takahashi_noise-source_2021}{article}{}{}
@@ -1758,16 +2140,15 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0018-9375, 1558-187X}
-      \field{journaltitle}{{IEEE} Transactions on Electromagnetic Compatibility}
+      \field{journaltitle}{IEEE Transactions on Electromagnetic Compatibility}
       \field{month}{6}
       \field{number}{3}
-      \field{title}{Noise-Source Model for Frequency-Domain {EMI} Simulation of a Single-Phased Power Circuit}
+      \field{title}{Noise-{Source} {Model} for {Frequency}-{Domain} {EMI} {Simulation} of a {Single}-{Phased} {Power} {Circuit}}
       \field{urlday}{1}
       \field{urlmonth}{9}
       \field{urlyear}{2023}
       \field{volume}{63}
       \field{year}{2021}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{772\bibrangedash 782}
       \range{pages}{11}
@@ -1775,13 +2156,48 @@
       \verb 10.1109/TEMC.2020.3022887
       \endverb
       \verb{file}
-      \verb Noise-Source_Model_for_Frequency-Domain_EMI_Simulation_of_a_Single-Phased_Power_Circuit.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\WAPZDE7H\\Noise-Source_Model_for_Frequency-Domain_EMI_Simulation_of_a_Single-Phased_Power_Circuit.pdf:application/pdf;Opportunities_Challenges_and_Potential_Solutions_in_the_Application_of_Fast-Switching_SiC_Power_Devices_and_Converters.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\AKFIN6QK\\Opportunities_Challenges_and_Potential_Solutions_in_the_Application_of_Fast-Switching_SiC_Power_Devices_and_Converters.pdf:application/pdf
+      \verb Noise-Source_Model_for_Frequency-Domain_EMI_Simulation_of_a_Single-Phased_Power_Circuit.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\WAPZDE7H\\Noise-Source_Model_for_Frequency-Domain_EMI_Simulation_of_a_Single-Phased_Power_Circuit.pdf:application/pdf;Opportunities_Challenges_and_Potential_Solutions_in_the_Application_of_Fast-Switching_SiC_Power_Devices_and_Converters.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\AKFIN6QK\\Opportunities_Challenges_and_Potential_Solutions_in_the_Application_of_Fast-Switching_SiC_Power_Devices_and_Converters.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/9203870/
       \endverb
       \verb{url}
       \verb https://ieeexplore.ieee.org/document/9203870/
+      \endverb
+    \endentry
+    \entry{tektronix_mso_2026}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=5b7cebd92f48f197e31d10ea605e9ba4}{%
+           family={Tektronix},
+           familyi={T\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Tektronix}%
+      }
+      \strng{namehash}{5b7cebd92f48f197e31d10ea605e9ba4}
+      \strng{fullhash}{5b7cebd92f48f197e31d10ea605e9ba4}
+      \strng{fullhashraw}{5b7cebd92f48f197e31d10ea605e9ba4}
+      \strng{bibnamehash}{5b7cebd92f48f197e31d10ea605e9ba4}
+      \strng{authorbibnamehash}{5b7cebd92f48f197e31d10ea605e9ba4}
+      \strng{authornamehash}{5b7cebd92f48f197e31d10ea605e9ba4}
+      \strng{authorfullhash}{5b7cebd92f48f197e31d10ea605e9ba4}
+      \strng{authorfullhashraw}{5b7cebd92f48f197e31d10ea605e9ba4}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{48G-60850-6}
+      \field{title}{{MSO} 5 {Series} {Mixed} {Signal} {Oscilloscope}}
+      \field{type}{Datasheet}
+      \field{year}{2026}
+      \verb{file}
+      \verb 5-Series-MSO-Datasheet-DE-DE-48G608506.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\SQK2VLUC\\5-Series-MSO-Datasheet-DE-DE-48G608506.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.tek.com/en/datasheet/5-series-mso
+      \endverb
+      \verb{url}
+      \verb https://www.tek.com/en/datasheet/5-series-mso
       \endverb
     \endentry
     \entry{tlig_conducted_2025}{article}{}{}
@@ -1812,6 +2228,9 @@
            given={Jaleleddine},
            giveni={J\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \strng{namehash}{7ac7e5ab01f6c8e2245941281cb7b9ed}
       \strng{fullhash}{9bc8beb348c9183a2a553d8582f0e5fc}
       \strng{fullhashraw}{9bc8beb348c9183a2a553d8582f0e5fc}
@@ -1824,19 +2243,16 @@
       \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{In this paper, we demonstrate that accelerated aging tests of power electronic components (specifically Si-based N-{MOSFETs} in our case) have an adverse effect on the conducted emissions (common and differential mode) in a 3-phase inverter used to drive an induction motor. To achieve this, we conduct electric accelerated aging tests while operating the power transistors to measure their conducted emissions before and after aging. A comparison between measurements in the time and frequency domains is presented to deduce the effect of aging on the Sibased N-{MOSFETs}. Experimental results show that after aging, there is an increase in the amplitude of conducted electromagnetic interference ({EMI}). Furthermore, this increase leads to electrical parameter degradation that has been investigated in {EMI} tests.}
+      \field{abstract}{In this paper, we demonstrate that accelerated aging tests of power electronic components (specifically Si-based N-MOSFETs in our case) have an adverse effect on the conducted emissions (common and differential mode) in a 3-phase inverter used to drive an induction motor. To achieve this, we conduct electric accelerated aging tests while operating the power transistors to measure their conducted emissions before and after aging. A comparison between measurements in the time and frequency domains is presented to deduce the effect of aging on the Sibased N-MOSFETs. Experimental results show that after aging, there is an increase in the amplitude of conducted electromagnetic interference (EMI). Furthermore, this increase leads to electrical parameter degradation that has been investigated in EMI tests.}
       \field{issn}{00262714}
       \field{journaltitle}{Microelectronics Reliability}
-      \field{langid}{english}
       \field{month}{10}
-      \field{shortjournal}{Microelectronics Reliability}
-      \field{title}{Conducted {EMI} assessment of aging power Si-{MOSFET} in 3 phase inverter}
+      \field{title}{Conducted {EMI} assessment of aging power {Si}-{MOSFET} in 3 phase inverter}
       \field{urlday}{28}
       \field{urlmonth}{7}
       \field{urlyear}{2025}
       \field{volume}{173}
       \field{year}{2025}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{115872}
       \range{pages}{1}
@@ -1844,7 +2260,7 @@
       \verb 10.1016/j.microrel.2025.115872
       \endverb
       \verb{file}
-      \verb Tlig et al. - 2025 - Conducted EMI assessment of aging power Si-MOSFET .pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\73QYTXIS\\Tlig et al. - 2025 - Conducted EMI assessment of aging power Si-MOSFET .pdf:application/pdf
+      \verb Tlig et al. - 2025 - Conducted EMI assessment of aging power Si-MOSFET .pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\73QYTXIS\\Tlig et al. - 2025 - Conducted EMI assessment of aging power Si-MOSFET .pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://linkinghub.elsevier.com/retrieve/pii/S0026271425002859
@@ -1899,16 +2315,15 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2168-6777, 2168-6785}
-      \field{journaltitle}{{IEEE} Journal of Emerging and Selected Topics in Power Electronics}
+      \field{journaltitle}{IEEE Journal of Emerging and Selected Topics in Power Electronics}
       \field{month}{9}
       \field{number}{3}
-      \field{title}{High Frequency Conducted {EMI} Investigation on Packaging and Modulation for a {SiC}-Based High Frequency Converter}
+      \field{title}{High {Frequency} {Conducted} {EMI} {Investigation} on {Packaging} and {Modulation} for a {SiC}-{Based} {High} {Frequency} {Converter}}
       \field{urlday}{1}
       \field{urlmonth}{9}
       \field{urlyear}{2023}
       \field{volume}{7}
       \field{year}{2019}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{1789\bibrangedash 1804}
       \range{pages}{16}
@@ -1916,7 +2331,7 @@
       \verb 10.1109/JESTPE.2019.2919349
       \endverb
       \verb{file}
-      \verb High_Frequency_Conducted_EMI_Investigation_on_Packaging_and_Modulation_for_a_SiC-Based_High_Frequency_Converter.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\CCRPN56P\\High_Frequency_Conducted_EMI_Investigation_on_Packaging_and_Modulation_for_a_SiC-Based_High_Frequency_Converter.pdf:application/pdf
+      \verb High_Frequency_Conducted_EMI_Investigation_on_Packaging_and_Modulation_for_a_SiC-Based_High_Frequency_Converter.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\CCRPN56P\\High_Frequency_Conducted_EMI_Investigation_on_Packaging_and_Modulation_for_a_SiC-Based_High_Frequency_Converter.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/8723382/
@@ -1948,6 +2363,9 @@
            given={Poh\bibnamedelima Chiang},
            giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \strng{namehash}{6a8f33fd7cf1b5d4165e632fc967c396}
       \strng{fullhash}{b8ea24060857178ee9ad4b01c9b7cb50}
       \strng{fullhashraw}{b8ea24060857178ee9ad4b01c9b7cb50}
@@ -1960,20 +2378,17 @@
       \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Within a power converter, multiple currents are usually measured for control, protection, and/or monitoring. They are therefore important sources of information, which must unquestionably be measured accurately to maintain continuous and reliable operation of the power converter. Accurate current measurement has however become tougher with the introduction of wide band-gap ({WBG}) devices with switching frequency tending toward the megahertz ({MHz}) range. Because of that, the installed current sensors must have a signiﬁcantly widened bandwidth. Moreover, they must be nonintrusive and compact, in order not to degrade fast switching characteristics and high power density of the {WBG} converter. Presently, these features are not collectively obtainable from existing commercial current sensors. Consequently, many new current sensing techniques have surfaced in the literature for usage with the more demanding {MHz} power converter. These new techniques, some classical techniques, and their hybrid integrations are now reviewed, after overviewing functionalities made possible by current sensors in a power converter. Last but importantly, some future developmental trends aimed at matching {MHz} current sensors with {MHz} power converters are described, before concluding the article.}
+      \field{abstract}{Within a power converter, multiple currents are usually measured for control, protection, and/or monitoring. They are therefore important sources of information, which must unquestionably be measured accurately to maintain continuous and reliable operation of the power converter. Accurate current measurement has however become tougher with the introduction of wide band-gap (WBG) devices with switching frequency tending toward the megahertz (MHz) range. Because of that, the installed current sensors must have a signiﬁcantly widened bandwidth. Moreover, they must be nonintrusive and compact, in order not to degrade fast switching characteristics and high power density of the WBG converter. Presently, these features are not collectively obtainable from existing commercial current sensors. Consequently, many new current sensing techniques have surfaced in the literature for usage with the more demanding MHz power converter. These new techniques, some classical techniques, and their hybrid integrations are now reviewed, after overviewing functionalities made possible by current sensors in a power converter. Last but importantly, some future developmental trends aimed at matching MHz current sensors with MHz power converters are described, before concluding the article.}
       \field{issn}{0885-8993, 1941-0107}
-      \field{journaltitle}{{IEEE} Transactions on Power Electronics}
-      \field{langid}{english}
+      \field{journaltitle}{IEEE Transactions on Power Electronics}
       \field{month}{6}
       \field{number}{6}
-      \field{shortjournal}{{IEEE} Trans. Power Electron.}
-      \field{title}{A Review of Megahertz Current Sensors for Megahertz Power Converters}
+      \field{title}{A {Review} of {Megahertz} {Current} {Sensors} for {Megahertz} {Power} {Converters}}
       \field{urlday}{27}
       \field{urlmonth}{5}
       \field{urlyear}{2025}
       \field{volume}{37}
       \field{year}{2022}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{6720\bibrangedash 6738}
       \range{pages}{19}
@@ -1981,7 +2396,7 @@
       \verb 10.1109/TPEL.2021.3136871
       \endverb
       \verb{file}
-      \verb Xin et al. - 2022 - A Review of Megahertz Current Sensors for Megahert.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\523PD9QT\\Xin et al. - 2022 - A Review of Megahertz Current Sensors for Megahert.pdf:application/pdf
+      \verb Xin et al. - 2022 - A Review of Megahertz Current Sensors for Megahert.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\523PD9QT\\Xin et al. - 2022 - A Review of Megahertz Current Sensors for Megahert.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/9658157/
@@ -2008,6 +2423,9 @@
            given={Niall},
            giveni={N\bibinitperiod}}}%
       }
+      \list{language}{1}{%
+        {en}%
+      }
       \strng{namehash}{17814f968fc78b455d2779aa6315ae2e}
       \strng{fullhash}{2b1cf3fce754fcaa993c89000ddc6912}
       \strng{fullhashraw}{2b1cf3fce754fcaa993c89000ddc6912}
@@ -2020,21 +2438,18 @@
       \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
-      \field{abstract}{Silicon carbide ({SiC}) Schottky diodes with zero reverse-recovery current ({RRC}) are perceived as superior due to their reduced switching losses. The absence of reverse-recovery behavior in these devices is also expected to result in reduced electromagnetic interference ({EMI}), compared with the conventional silicon (Si) {PIN} diodes. In this letter, the inﬂuence of {SiC} Schottky diodes on {EMI} generation in hard-switched power converters is investigated. A simpliﬁed analytical model enabling the spectral envelope of the diode current waveform to be predicted is presented. Numerical simulations and experimental tests are employed to validate this model. It is found that although the reverserecovery characteristics are very different between Si diodes and {SiC} Schottky diodes, the actual improvement with {SiC} diodes on the spectral content of the diode current waveforms is relatively small except at frequencies around 5 {MHz}. Factors affecting the {EMI} performance such as the peak amplitude and the “snappiness” of the {RRC} are also analyzed. Experimental measurements of the switching current waveforms for both Si diodes and {SiC} diodes are presented and their frequency spectra are compared.}
+      \field{abstract}{Silicon carbide (SiC) Schottky diodes with zero reverse-recovery current (RRC) are perceived as superior due to their reduced switching losses. The absence of reverse-recovery behavior in these devices is also expected to result in reduced electromagnetic interference (EMI), compared with the conventional silicon (Si) PIN diodes. In this letter, the inﬂuence of SiC Schottky diodes on EMI generation in hard-switched power converters is investigated. A simpliﬁed analytical model enabling the spectral envelope of the diode current waveform to be predicted is presented. Numerical simulations and experimental tests are employed to validate this model. It is found that although the reverserecovery characteristics are very different between Si diodes and SiC Schottky diodes, the actual improvement with SiC diodes on the spectral content of the diode current waveforms is relatively small except at frequencies around 5 MHz. Factors affecting the EMI performance such as the peak amplitude and the “snappiness” of the RRC are also analyzed. Experimental measurements of the switching current waveforms for both Si diodes and SiC diodes are presented and their frequency spectra are compared.}
       \field{issn}{0885-8993, 1941-0107}
-      \field{journaltitle}{{IEEE} Transactions on Power Electronics}
-      \field{langid}{english}
+      \field{journaltitle}{IEEE Transactions on Power Electronics}
       \field{month}{3}
       \field{number}{3}
-      \field{shortjournal}{{IEEE} Trans. Power Electron.}
-      \field{shorttitle}{{EMI} Generation Characteristics of {SiC} and Si Diodes}
-      \field{title}{{EMI} Generation Characteristics of {SiC} and Si Diodes: Influence of Reverse-Recovery Characteristics}
+      \field{shorttitle}{{EMI} {Generation} {Characteristics} of {SiC} and {Si} {Diodes}}
+      \field{title}{{EMI} {Generation} {Characteristics} of {SiC} and {Si} {Diodes}: {Influence} of {Reverse}-{Recovery} {Characteristics}}
       \field{urlday}{9}
       \field{urlmonth}{1}
       \field{urlyear}{2024}
       \field{volume}{30}
       \field{year}{2015}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{1131\bibrangedash 1136}
       \range{pages}{6}
@@ -2042,7 +2457,7 @@
       \verb 10.1109/TPEL.2014.2340404
       \endverb
       \verb{file}
-      \verb Yuan et al. - 2015 - EMI Generation Characteristics of SiC and Si Diode.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\EFTUQRF4\\Yuan et al. - 2015 - EMI Generation Characteristics of SiC and Si Diode.pdf:application/pdf
+      \verb Yuan et al. - 2015 - EMI Generation Characteristics of SiC and Si Diode.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\EFTUQRF4\\Yuan et al. - 2015 - EMI Generation Characteristics of SiC and Si Diode.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb http://ieeexplore.ieee.org/document/6860245/
@@ -2090,18 +2505,17 @@
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{2020 International Symposium on Electromagnetic Compatibility-{EMC} {EUROPE}}
+      \field{booktitle}{2020 {International} {Symposium} on {Electromagnetic} {Compatibility}-{EMC} {EUROPE}}
       \field{title}{Two-port noise source equivalent circuit model for {DC}/{DC} buck converter with consideration of load effect}
       \field{urlday}{1}
       \field{urlmonth}{9}
       \field{urlyear}{2023}
       \field{year}{2020}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 4}
       \range{pages}{4}
       \verb{file}
-      \verb Two-port_Noise_Source_Equivalent_Circuit_Model_for_DC_DC_Buck_Converter_with_Consideration_of_Load_Effect.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\VI2B7PTT\\Two-port_Noise_Source_Equivalent_Circuit_Model_for_DC_DC_Buck_Converter_with_Consideration_of_Load_Effect.pdf:application/pdf
+      \verb Two-port_Noise_Source_Equivalent_Circuit_Model_for_DC_DC_Buck_Converter_with_Consideration_of_Load_Effect.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\VI2B7PTT\\Two-port_Noise_Source_Equivalent_Circuit_Model_for_DC_DC_Buck_Converter_with_Consideration_of_Load_Effect.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/abstract/document/9245680/
@@ -2162,13 +2576,12 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0885-8993, 1941-0107}
-      \field{journaltitle}{{IEEE} Transactions on Power Electronics}
-      \field{title}{Comprehensive Analysis and Optimization of Parasitic Capacitance on Conducted {EMI} and Switching Losses in Hybrid Packaged {SiC} Power Modules}
+      \field{journaltitle}{IEEE Transactions on Power Electronics}
+      \field{title}{Comprehensive {Analysis} and {Optimization} of {Parasitic} {Capacitance} on {Conducted} {EMI} and {Switching} {Losses} in {Hybrid} {Packaged} {SiC} {Power} {Modules}}
       \field{urlday}{1}
       \field{urlmonth}{9}
       \field{urlyear}{2023}
       \field{year}{2023}
-      \field{dateera}{ce}
       \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 18}
       \range{pages}{18}
@@ -2176,7 +2589,7 @@
       \verb 10.1109/TPEL.2023.3306892
       \endverb
       \verb{file}
-      \verb Comprehensive_Analysis_and_Optimization_of_Parasitic_Capacitance_on_Conducted_EMI_and_Switching_Losses_in_Hybrid_Packaged_SiC_Power_Modules.pdf:C\:\\Users\\KGR81SGP\\Zotero for Bosch\\storage\\3ST8R5P5\\Comprehensive_Analysis_and_Optimization_of_Parasitic_Capacitance_on_Conducted_EMI_and_Switching_Losses_in_Hybrid_Packaged_SiC.pdf:application/pdf
+      \verb Comprehensive_Analysis_and_Optimization_of_Parasitic_Capacitance_on_Conducted_EMI_and_Switching_Losses_in_Hybrid_Packaged_SiC_Power_Modules.pdf:C\:\\Users\\kgr81sgp\\Zotero for Bosch\\storage\\3ST8R5P5\\Comprehensive_Analysis_and_Optimization_of_Parasitic_Capacitance_on_Conducted_EMI_and_Switching_Losses_in_Hybrid_Packaged_SiC.pdf:application/pdf
       \endverb
       \verb{urlraw}
       \verb https://ieeexplore.ieee.org/document/10225392/
@@ -2187,16 +2600,8 @@
     \endentry
   \enddatalist
   \missing{bi_prediction_2019}
-  \missing{davari_pulse_2016}
-  \missing{domurat-linde_analysis_2012}
-  \missing{hamami_identifying_2026}
-  \missing{keller_fast_2007}
-  \missing{natarajan_state---art_2020}
   \missing{pmk_gmbh_datasheet_2017}
-  \missing{robert_bosch_gmbh_datasheet_2023}
-  \missing{robert_bosch_gmbh_datasheet_2023-1}
-  \missing{stephan_schwaiger_advanced_2023}
-  \missing{tektronix_mso_2026}
+  \missing{wang_high_}
 \endrefsection
 \endinput
 

@@ -4,17 +4,29 @@
 
 \section{Verification}
 
+This section verifies the active current shunt in both the frequency and time domain.
+Because the shunt is intended to resolve high-frequency commutation currents while preserving the low-frequency switching waveform, the verification must demonstrate not only the expected transfer behavior of the two filter paths, but also the overall usability of the probe in a measurement setup with finite source impedance and strong common-mode disturbance.
+
+Accordingly, the verification is divided into a small-signal characterization using a vector network analyzer (VNA) and a large-signal validation using a passive shunt reference measurement.
+The small-signal tests confirm the transfer functions of the low-pass and high-pass channels, while the large-signal tests assess the probe response under realistic switching conditions and verify that the active shunt does not introduce relevant distortion into the measured waveform.
+
 \subsection{Small-Signal}
 
+The VNA measurements of the low-pass and high-pass channels are shown in \fref{fig:VNA_Shunt_LP} and \fref{fig:VNA_Shunt_HP}.
+For the low-pass path, the measured transfer includes the complete signal chain from the passive shunt through the compensation amplifier and low-pass filter to the VNA input.
+The low-pass channel exhibits a bandwidth of \mi{f}{3dB} = \SI{475}{MHz} before the gain begins to rise.
+Compared with the compensation-amplifier transfer function in \fref{fig:VNA_CompAmp}, this gain increase occurs at a higher frequency.
+The reason is that the higher gain delays the point at which the secondary parasitic transmission path becomes dominant.
+This bandwidth is more than sufficient for the intended SiC discrete-device measurements, where the noise floor typically starts to rise around \SI{100}{MHz}.
+	
 \begin{figure}[ht]
 	\centering
 	\input{"figures/5_CurrentProbe/VNA_Shunt_LP.tex"}
 	\caption{VNA measurement of low-pass of active current shunt.}\label{fig:VNA_Shunt_LP}
 \end{figure}
 
-The VNA measurements of the low-pass and high-pass channels are shown in \fref{fig:VNA_Shunt_LP} and~\ref{fig:VNA_Shunt_HP}, respectively.
-For the low-pass channel, a bandwidth of approximately \SI{300}{MHz} is observed before the gain starts to increase.
-The high-pass channel exhibits an approximately linear gain increase of \SI{+40}{dB/dec} from \SI{10}{MHz} up to \SI{350}{MHz}.
+The S-parameter measurement of the high-pass channel is shown in \fref{fig:VNA_Shunt_HP}.
+The high-pass channel exhibits an approximately linear gain increase of \SI{+40}{dB/dec} from \SI{10}{MHz} to \SI{350}{MHz}, where it begins to roll off due to the limited bandwidth of the employed amplifiers.
 
 \begin{figure}[ht]
 	\centering
@@ -22,19 +34,24 @@ The high-pass channel exhibits an approximately linear gain increase of \SI{+40}
 	\caption{VNA measurement of high-pass of active current shunt.}\label{fig:VNA_Shunt_HP}
 \end{figure}
 
-For the transfer-function calculation of the current shunt, the \SI{50}{\ohm} VNA port termination cannot be neglected, unlike in the voltage-probe case with high input impedance in \eref{eq:TF_probe}.
-Therefore, the shunt transfer function is derived from the impedance matrix $Z$, obtained from the measured VNA $S$-parameter matrix.
+For the transfer-function calculation of the current shunt, the \SI{50}{\Omega} VNA port termination cannot be neglected, unlike in the voltage-probe case with high input impedance in \eref{eq:TF_probe}.
+Therefore, the shunt transfer function is derived from the impedance matrix $Z$, which is obtained from the measured VNA $S$-parameter matrix.
 Accordingly, \mi{a}{shunt} is calculated as
 
 \begin{align}
     \mi{a}{shunt} &= \frac{\mi{v}{LP}}{\mi{i}{shunt}} \\
-					&= \mi{Z}{21}\cdot \frac{1}{1+\frac{\mi{Z}{22}}{\SI{50}{\ohm}}}
+					&= \mi{Z}{21}\cdot \frac{1}{1+\frac{\mi{Z}{22}}{\SI{50}{\Omega}}}
 	\label{eq:TF_Shunt}
 \end{align}
 
 
 
-\subsection{Large-Signal }
+\subsection{Large-Signal Verification with a High-Ohmic Passive Shunt}
+For the active current shunt, no dedicated \SI{50}{\Omega} pulse generator is available because no suitable high-frequency attenuator with low input impedance and \SI{50}{\Omega} output is available.
+For verification at \SI{60}{A}, an input resistance of approximately \SI{13}{\Omega} would be required, which is not available.
+
+Therefore, the large-signal verification is performed together with the verification of parasitic coupling and common-mode errors.
+This approach has the disadvantage that only the low-pass channel can be verified, since no reference measurement is available for the high-pass channel.
 
 \begin{figure}[ht]
 	\centering
@@ -43,11 +60,35 @@ Accordingly, \mi{a}{shunt} is calculated as
 	\caption{Realization of the passive shunt for verification.}\label{fig:Diss_Pic_PShunt}
 \end{figure}
 
+As a reference, a high-ohmic shunt with \SI{250}{m\Omega} is used.
+Its transfer function is shown in \fref{fig:VNA_PShunt}, where it exhibits a \mi{f}{3dB} bandwidth of \SI{385}{MHz}, which is sufficient for the low-pass verification.
+The shunts are placed in the commutation loop by replacing the D2PAK source connectors with SMD shunts, while a semi-rigid coaxial SMA cable is used as the pick-up.
+A photograph of the setup is shown in \fref{fig:Diss_Pic_PShunt}.
 
+\begin{figure}[ht]
+	\centering
+	\input{"figures/5_CurrentProbe/VNA_PShunt.tex"}
+	\caption{VNA measurement of \SI{250}{m\Omega} passive shunt.}\label{fig:VNA_PShunt}
+\end{figure}
+
+
+The measured current waveforms for a classical double-pulse test are shown in \fref{fig:MS_Current_AvsPShunt_TD}, comparing the low-pass of the active shunt with the passive shunt.
+In addition, the common-mode error of the active shunt is plotted.
+It is obtained by connecting both inputs of the active shunt to the same source potential, which should ideally produce zero output.
 
 \begin{figure}[ht]
 	\centering
 	\tikzsetnextfilename{MS_Current_AvsPShunt_TD}
 	\includegraphics[scale=1]{figures/5_CurrentProbe/MS_Current_AvsPShunt_TD.pdf}
-	\caption{Zeitbereichsverifikation mittels passivem Shunt.}\label{fig:MS_Current_AvsPShunt_TD}
+	\caption{Time-domain verification using a passive shunt.}\label{fig:MS_Current_AvsPShunt_TD}
 \end{figure}
+
+The measured waveforms show very good agreement between the active and passive shunts, both in the transient slope and in the observed overvoltage.
+Only a small deviation appears in the second period of the main oscillation.
+This deviation cannot be attributed to common-mode error, which is clearly much smaller.
+It is therefore most likely caused by residual capacitive coupling from the voltage transient into the current shunt.
+
+
+\subsection{Noise Behavior}
+In a last step, the noise behavior of the active shunt is evaulated.
+The measurement results are shown in \fref{fig:MS_Current_Noise}, where the noise floor of the active shunt is compared with the passive shunt.

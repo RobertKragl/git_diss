@@ -2,10 +2,9 @@
 %!encoding = UTF-8 Unicode
 
 \section{Design of the Measurement Environment}
-
-The measurement setup implements the instrumentation required to realize the methods described in the previous section.
-The goal is to measure the EMC-relevant high-frequency components of the three main noise contributors: the drain-source voltages of both high-side and low-side switches and the commutation loop current.
-In addition, a conventional conducted EMC measurement via two line impedance stabilization networks (LISNs) is included. % for direct comparison with standardized measurement results.
+The measurement setup implements the instrumentation required to satisfy the requirements defined in the previous section.
+Its purpose is to capture the EMC-relevant high-frequency components of the three dominant intrinsic noise contributors: the drain-source voltages of the high-side and low-side devices and the commutation-loop current.
+In parallel, a conventional conducted-EMC reference measurement via line impedance stabilization networks (LISNs) is integrated.
 
 \begin{figure}[ht]
 	\centering
@@ -14,8 +13,17 @@ In addition, a conventional conducted EMC measurement via two line impedance sta
 \end{figure}
 
 The setup is shown as a photograph in \fref{fig:pic_b2b_setup}, and its equivalent circuit is depicted in \fref{fig:ESB_b2b}.
-A back-to-back converter topology is employed, in which both half-bridges share the same DC link.
-This allows multiple switching events to be generated consecutively at an identical operating point, enabling the operation of a pulse chain and, thereby, increasing the accuracy of the frequency-domain emission analysis.
+The implementation follows the requirement order given above.
+
+To realize a classical inverter-like ground reference, the primary half-bridge with the devices under test (DUTs), \mti{Q}{LS} and \mti{Q}{HS}, is mechanically coupled to an aluminum plate.
+In this setup, the plate is primarily used as a defined, low-impedance return path for high-frequency ground currents toward the LISNs, thereby reproducing a physically meaningful chassis-like reference.
+
+To ensure application-representative switching behavior, a conventional layout derived from an on-board charger is used.
+This layout yields a commutation-loop inductance of \mi{L}{\sigma} = \SI{26}{nH}, which is comparatively high relative to state-of-the-art commutation loops based on purely coplanar designs.
+However, the objective of this work is not to optimize the commutation loop itself, but to characterize the intrinsic emissions of the switching device under the given parasitic conditions.
+
+To enable pulse-chain operation for thermal-noise reduction, a back-to-back converter topology is employed, in which both half-bridges share a common DC link and are separated by the main filters of the LISNs.
+This architecture allows repeated switching events to be generated at nearly identical operating conditions, thereby improving repeatability and increasing the statistical robustness of the derived frequency-domain spectra.
 
 \begin{figure}[ht]
 	\centering
@@ -23,23 +31,28 @@ This allows multiple switching events to be generated consecutively at an identi
 	\caption{Equivalent circuit diagram of the back-to-back converter measurement setup.}\label{fig:ESB_b2b}
 \end{figure}
 
-The DUTs, \mti{Q}{LS} and \mti{Q}{HS}, are mounted on the primary half-bridge, which is mechanically connected to an aluminum cooler plate.
-The cooler does not function as a heat sink here; instead, it establishes a defined, low-impedance current path for the ground currents flowing to the LISNs.
-Since the focus here is on the direct measurement of intrinsic EM noise, the interaction between the \mi{v}{DS} measurement and the LISN measurement is not discussed further; a detailed analysis is given in~\cite{kragl_impact_2024}.
+
+
+To include a standardized conducted-EMC reference, both converter sides are connected via LISNs.
+This enables direct comparison between intrinsic terminal quantities and system-level conducted-noise metrics.
+Since the focus of this dissertation is the direct characterization of intrinsic emissions, the detailed interaction between the \mi{v}{DS} measurement and the LISN result is not discussed here; an in-depth analysis is provided in~\cite{kragl_impact_2024}.
 
 % For this paper only the raw emissions are considered and hence, no LISNs measurements are shown.
 % For an analysis of the correlation between raw emissions and system-level LISN measurement, please refer to~\cite{kragl_impact_2024}.
 
-The secondary half-bridge drives the complementary switching events and consists of the auxiliary switches \mti{Q}{LS,aux} and \mti{Q}{HS,aux}.
-To minimize their contribution to the measured EM emissions, these devices are rated at twice the current of the DUTs and are operated with five times the gate resistance, which reduces their switching speed and the associated high-frequency spectral content.
-Furthermore, the auxiliary switches are positioned adjacent to the aluminum ground plate rather than mounted on it, preventing a direct coupling path into the measurement ground.
-The DC ports of both half-bridges are high-frequency isolated through the main filters of the two LISNs, ensuring that EM noise generated by the auxiliary half-bridge does not appear in the LISN reference measurements.
-All digital signals are transmitted via optical fibers, and the gate-driver power supply is provided by batteries.
+To suppress additional noise introduced by the environment, the secondary half-bridge is intentionally designed as a low-disturbance auxiliary stage.
+It consists of \mti{Q}{LS,aux} and \mti{Q}{HS,aux}, with devices rated at twice the current of the DUTs and operated at five times the gate resistance.
+This reduces the switching speed and therefore the high-frequency spectral contribution of the auxiliary branch.
+In addition, the auxiliary devices are placed adjacent to, but not directly on, the aluminum plate to avoid an unintended direct coupling path into the measurement ground.
 
-The voltage and current measurements used are described in the following subsections.
+Further mitigation measures follow directly from the requirements: high-frequency isolation between the two half-bridges is established through the LISN main filters, digital control signals are transmitted via optical links, and the gate-driver supplies are battery powered.
+Moreover, the load path is implemented as a linear air-core inductor to avoid nonlinear magnetic behavior that could distort the measured spectral content.
 
-\subsection{Back-to-Back Converter Topology}
+Finally, thermal operation is constrained to a regime in which passive cooling remains sufficient during pulse-chain measurements.
 
 
-\section{LISN-Based Conducted-EMC Reference Measurement}
+\section{LISN Measurement for System-Level Cross Reference}
 
+This section presents the results of the LISN measurement as a cross-reference to the intrinsic emission measurements.
+As an example, a \SI{1200}{V} SiC MOSFET in a D2PAK package is used as the device under test, and the standard test with variation of the gate resistance is performed.
+Since the ground connection of the oscilloscope is fixed to the aluminum base plate, no current measurement is performed in this configuration.

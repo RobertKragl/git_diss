@@ -201,17 +201,18 @@ Here, also, only a small change is measured.
 The final step of this section is not a strict verification, but rather a characterization of the probe's noise behavior.
 This analysis clarifies the probe limitations and provides context for interpreting subsequent measurement results.
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=1]{figures/4_VoltageProbe/Diss_Voltage_NoiseContribution.pdf}
-	\caption{Frequency domain measurement of the noise limiting effects of the EME voltage probe.}\label{fig:Diss_Voltage_NoiseContribution}
-\end{figure}
 
 Figure~\ref{fig:Diss_Voltage_NoiseContribution} shows the frequency-domain noise behavior for an acquisition length corresponding to the pulse chain duration used later (\SI{5}{ms}).
 First, the high-pass channel was measured at the oscilloscope resolution used for subsequent signal measurements (Probe + HV Resolution).
 Second, a noise measurement was performed at the same resolution with the probe disconnected (HV Resolution).
 Third, the measurement was repeated with the probe connected and full ADC resolution, which reduces quantization noise (Probe + Full Resolution).
 Finally, a measurement without the probe and with full ADC resolution was performed to determine the oscilloscope noise floor (Full Resolution).
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=1]{figures/4_VoltageProbe/Diss_Voltage_NoiseContribution.pdf}
+	\caption{Frequency domain measurement of the noise limiting effects of the EME voltage probe.}\label{fig:Diss_Voltage_NoiseContribution}
+\end{figure}
 
 Comparing the two no-probe measurements at different resolutions shows that quantization noise is the dominant contribution: the noise level decreases significantly from \SI{50}{dBµV} to \SI{22}{dBµV} when full ADC resolution is used.
 With the probe connected, the intrinsic probe noise remains below the quantization-noise level of the HV-resolution measurement (\SI{33}{dBµV}) up to approximately \SI{100}{MHz}.
@@ -223,3 +224,5 @@ This corresponds to the ADC interleaving frequency of the oscilloscope.
 Interleaving is a technique used in oscilloscopes to increase the effective sampling frequency by operating multiple ADCs in parallel, each sampling at a fraction of the total rate.
 Afterwards the signal is reconstructed by combining the outputs of the individual ADCs.
 When not all ADCs are perfectly matched, this process can introduce spurious frequency components at the interleaving frequency and its harmonics, which is observed in the measurement.
+
+xxxx To understand this the analytical calculation of the noise behavior is performed in the following. (matlab script) xxx

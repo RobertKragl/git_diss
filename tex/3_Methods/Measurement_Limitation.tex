@@ -33,6 +33,8 @@ Idealized trapezoidal voltages then fall with \SI{-40}{dB/dec}, while real volta
 In this region, the switching transient and, therefore, the semiconductor becomes the dominant factor shaping the spectrum.
 % Above \mbox{$\mi{f}{cut2} = \sfrac{1}{\pi \mi{t}{r}}$} the switching transient and, thereby, the semiconductor is the dominating factor for the spectrum.
 
+\subsection{Thermal Noise}
+
 Figure~\ref{fig:QuantNoise} illustrates the resulting measurement challenge by comparing a simulated voltage transient and its spectrum with a quantized, noise-contaminated counterpart, for a zoomed view of the high-frequency region.
 
 For calculation, thermal noise is taken from two sources: the oscilloscope datasheet gives \SI{1.61}{mV} at \SI{100}{mV/div}~\cite{tektronix_mso_2026}, and a conventional differential probe contributes \SI{55}{mV} at a divider ratio of \mti{a}{probe}~=~250~\cite{pmk_gmbh_datasheet_2017}.
@@ -55,6 +57,10 @@ In logarithmic form, this becomes
 \begin{equation}
 	\mi{V}{th}^{\mathrm{dBµV}} = 20 \cdot \log_{10}\left(\frac{\mi{V}{th}}{\SI{1}{\micro V}}\right)
 \end{equation}
+
+
+
+\subsection{Quantization Noise}
 
 Thermal noise is only one part of the measurement limit. 
 ADC quantization noise must also be considered.

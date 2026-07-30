@@ -2,3 +2,14 @@
 %!encoding = UTF-8 Unicode
 
 \section{Requirements for the Integrated EMC Measurement Environment}
+
+The measurement platform must fulfill several requirements to enable reproducible and EMC-relevant characterization under realistic operating conditions.
+First, it must provide a classical ground reference that represents the inverter chassis and allows physically meaningful coupling paths for high-frequency currents.
+Second, the switching behavior of the test setup must be comparable to that of real applications, so that the measured emission spectra remain representative of practical converter operation.
+Third, the platform must support the different measurement methodologies introduced in this work, in particular the operation of pulse chains with multiple consecutive switching events at a defined operating point.
+Fourth, the setup must include a conducted-EMC reference measurement based on a LISN to allow direct comparison between intrinsic device emissions and standardized system-level quantities.
+Fifth, additional noise sources introduced by the test environment must be minimized.
+This includes filtering of the supply paths via the LISN, optical transmission of control signals, battery-powered gate-driver supplies, and a linear load implementation based on an air-core inductor.
+Finally, the platform must allow stable operation during pulse-chain measurements without requiring active thermal management; therefore, passive cooling has to be sufficient for the intended operating regime.
+
+The design choices discussed in the following section are derived directly from these requirements and are presented in the same logical order.

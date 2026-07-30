@@ -5,13 +5,63 @@
 
 Prior to designing the active current shunt, the measurement-driven requirements are defined.
 As in the voltage-probe chapter, the requirements are derived from the EMC-relevant frequency range, practical measurement constraints, and expected disturbance mechanisms in the switching environment.
+The aim is to obtain a current-sensing concept that does not materially disturb the commutation loop while still reproducing the frequency content relevant for EMC analysis.
 
 \subsubsection*{Small Signal Response}
 The current-sensing path must provide a bandwidth of at least \SI{500}{MHz} to cover the EMC-relevant spectral content of the commutation current.
-This bandwidth requirement excludes commercial Rogowski coils for the present application, as their usable bandwidth is typically limited to approximately \SIrange{20}{50}{MHz}~\cite{xin_review_2022}.
+This bandwidth requirement excludes most commercial sensors, including Rogowski coils with usable bandwidths of approximately \SIrange{20}{50}{MHz}, magnetoresistive current sensors in the range of \SIrange{10}{100}{MHz}, and Hall-effect sensors in the range of \SIrange{1}{10}{MHz}~\cite{xin_review_2022}.
+Bandwidths in the required range are only practical with shunt-based current sensing or with custom Rogowski-coil implementations using very few turns to minimize parasitic parameters.
+Such Rogowski coils are, however, difficult to integrate robustly because their response is highly sensitive to positioning and orientation.
+Therefore, a shunt-based approach is chosen for the current probe design.
+
+\subsubsection*{Large Signal Response}
+The large-signal requirement defines the maximum measurable current, i.e., the peak current amplitude the probe must handle without saturation or damage.
+Unlike voltage, which is limited by a hard breakdown threshold of the device, the current limit of a MOSFET is a thermal constraint that depends on the duration of current flow.
+During a switching transient, the instantaneous current can transiently exceed the nominal rated current of the device by a significant factor.
+This is further exacerbated under high-temperature operating conditions, where bipolar degradation effects in SiC MOSFETs can lead to additional current peaks during the turn-off transient.
+
+The upper current limit was therefore determined empirically based on measurements of the investigated devices under worst-case high-temperature conditions.
+The device with the highest overcurrent under investigation is a \SI{60}{A} planar SiC MOSFET in a D2PAK package.
+As shown in Section~\ref{sec:MeasurementResults}, peak currents of up to \SI{140}{A} were observed, and accordingly the upper design limit was set to \SI{150}{A}.
+
+
+\subsubsection*{Loading and Measurement Intrusion}
+Shunt-based current measurement introduces a fundamental trade-off in EMC-oriented measurements.
+The quality factor of the excited resonances is one of the main EMC-relevant characteristics of the switching transient, with the dominant resonance being formed by the commutation-loop inductance and the parasitic capacitances of the device under test.
+
+The insertion of a shunt resistance into the commutation loop must therefore not materially alter the transient damping behavior.
+As a rule of thumb, the inserted resistance should be at least one decade below the intrinsic damping resistance of the commutation cell.
+For the present application, this value is dominated by the on-state resistance \mi{R}{DS,on} of the device under test.
+For the considered \SI{750}{V} and \SI{1200}{V} discrete SiC devices in D2PAK, \mi{R}{DS,on} is in the range of \SIrange{20}{50}{m\ohm}~\cite{robert_bosch_gmbh_datasheet_2023,robert_bosch_gmbh_datasheet_2023-1}.
+Accordingly, the sense resistance is limited to \SI{2}{m\ohm} or less.
+
+This low resistance introduces a challenge for the achievable measurement bandwidth because each shunt exhibits parasitic inductance.
+The resulting shunt bandwidth is
+
+\begin{equation}
+    \mi{f}{bw,shunt} = \frac{1}{2\pi \tau_\text{shunt}} = \frac{\mi{R}{shunt}}{2\pi\mi{L}{shunt}} 
+    \label{eq:fbw_shunt}
+\end{equation}
+
+In classical shunt design, larger shunt resistance values support higher bandwidth.
+This is shown in \fref{fig:Diss_Current_PassiveShuntCalc}, which illustrates the achievable bandwidth of a shunt with a parasitic inductance of \SI{250}{nH}, which is classical for a 0612 shunt package, as a function of the shunt resistance.
+For the present EMC application, this trade-off cannot be exploited because the insertion resistance must remain very small.
+
+\begin{figure}[ht]
+	\centering
+    \includegraphics[scale=1]{figures/5_CurrentProbe/Diss_Current_PassiveShuntCalc.pdf}
+	\caption{Achievable bandwidth of a passive current shunt with a parasitic inductance of \SI{250}{nH} as a function of the shunt resistance.}\label{fig:Diss_Current_PassiveShuntCalc}
+\end{figure}
+
+As can be seen in \fref{fig:Diss_Current_PassiveShuntCalc}, a passive shunt with a resistance of \SI{1}{m\ohm} and a parasitic inductance of \SI{250}{nH} would only achieve a bandwidth of approximately \SI{636}{kHz}.
+However, to achieve a bandwidth of \SI{500}{MHz} for the given inductance, the resistance must be bigger than \SI{1}{\ohm}.
+Another option to reduce the parasitic inductance of the shunt is limited by the physical size of the shunt and the required current-carrying capability.
+The best pasive shunt reported in the literature~\cite{wang_high_} achieved \SI{150}{pH} with a coaxial structure. 
+However, for a resistance of \SI{2}{m\Omega}, this would still result in an insufficient bandwidth of \SI{2}{MHz}.
+
 
 \subsubsection*{Output Interface and Signal Routing}
-Analogous to the voltage-probe concept, the current probe must provide a \SI{50}{\ohm} output interface.
+Analogous to the voltage-probe concept, the current probe must provide a \SI{50}{\Omega} output interface.
 This is required to route the measured signal into both low-pass and high-pass processing paths with defined impedance conditions.
 Consequently, a purely passive shunt implementation is not sufficient for the intended measurement chain.
 
@@ -20,23 +70,15 @@ For standalone current measurements, galvanic isolation is not mandatory because
 However, for simultaneous measurements with LISN disturbance voltage, galvanic isolation becomes necessary because the oscilloscope ground is fixed to the aluminum base plate.
 In this case, optical isolation of the measurement link is feasible and compatible with the required \SI{50}{\ohm} signal interface.
 
-\subsubsection*{Measurement Intrusion and Shunt Bandwidth}
-The inserted sense resistance must be at least one decade below the on-state resistance \mi{R}{DS,on} of the DUT to avoid materially altering the transient damping behavior.
-This is essential because the quality factor of the excited resonance is a key EMC-relevant characteristic.
-For the considered \SI{750}{V} and \SI{1200}{V} discrete SiC devices in D2PAK, \mi{R}{DS,on} is in the range of \SIrange{20}{50}{m\ohm}~\cite{robert_bosch_gmbh_datasheet_2023,robert_bosch_gmbh_datasheet_2023-1}.
-Accordingly, the sense resistance is limited to \SI{2}{m\ohm} or less.
 
-This low resistance directly conflicts with the bandwidth target in conventional shunt realizations, because each shunt exhibits parasitic inductance.
-The resulting shunt bandwidth is
+\subsubsection*{Transmission Line Effects}
+As in the voltage-probe case, the interconnect between the shunt element and the subsequent measurement stage must be kept short enough to avoid transmission-line effects.
+This counts true for all non-\SI{50}{\ohm} interconnects, including the shunt element itself, the compensation amplifier, and the subsequent filter stage.
+At the required bandwidth, any unnecessary cable length would introduce reflections and additional phase error, thereby distorting the measured current waveform.
+This requirement is particularly relevant for the current shunt, which is in the $\mathrm{m\Omega}$ range.
 
-\begin{equation}
-    \mi{f}{bw,shunt} = \frac{1}{2\pi \tau_\text{shunt}} = \frac{\mi{R}{shunt}}{2\pi\mi{L}{shunt}} 
-\end{equation}
 
-In classical shunt design, larger shunt resistance values support higher bandwidth.
-For the present EMC application, this trade-off cannot be exploited because the insertion resistance must remain very small.
-
-\subsubsection*{Parasitic Coupling and Interconnect Length}
-As for the voltage probe, parasitic coupling into the sensing path must be minimized, and the electrical interconnect length must be kept short enough to limit transmission-line effects.
+\subsubsection*{Parasitic Coupling}
+As for the voltage probe, parasitic coupling into the sensing path must be minimized.
 For the active current shunt, parasitic coupling is particularly critical because the circuit is placed close to the switching node and operates with higher gain than the active voltage probe.
 

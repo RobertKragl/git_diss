@@ -26,4 +26,16 @@
 *.syb
 *.syc
 *.glc
+*.fdb_latexmk
+*.fls
+*.auxlock
+main.pdf
+Main.pdf
+main.bbl-SAVE-ERROR
 Thumbs.db
+*.fdb_latexmk
+*.fls
+*.auxlock
+main.pdf
+Main.pdf
+main.bbl-SAVE-ERROR

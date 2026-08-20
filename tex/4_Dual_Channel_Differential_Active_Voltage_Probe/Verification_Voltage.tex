@@ -225,4 +225,52 @@ Interleaving is a technique used in oscilloscopes to increase the effective samp
 Afterwards the signal is reconstructed by combining the outputs of the individual ADCs.
 When not all ADCs are perfectly matched, this process can introduce spurious frequency components at the interleaving frequency and its harmonics, which is observed in the measurement.
 
-xxxx To understand this the analytical calculation of the noise behavior is performed in the following. (matlab script) xxx
+\begin{figure}[hbt]
+	\centering
+	\import{./figures/4_VoltageProbe/}{Diss_Highpass_EME_NoiseSources_ESB.pdf_tex}
+	\caption{Equivalent circuit diagram of the noise sources for the first high-pass amplification stage.}\label{fig:ESB_OP_noiseSources}
+\end{figure}
+
+To explain this behavior, an analytical noise calculation is performed for the second high-pass amplification stage.
+Figure~\ref{fig:ESB_OP_noiseSources} shows the equivalent circuit of the noise sources in the high-pass amplifier, where \mi{Z}{g} is the series connection of the feedback capacitor and resistor.
+Each resistor contributes Johnson–Nyquist thermal noise, while the capacitor itself does not generate thermal noise and only contributes through its equivalent series resistance (ESR).
+The operational amplifier adds both input voltage noise and input current noise.
+
+The relevant noise contributions are:
+\begin{itemize}
+	\item incoming noise from preceding stages,
+	\item amplifier input voltage noise,
+	\item resistor thermal noise,
+	\item amplifier input current noise.
+\end{itemize}
+
+The resistor thermal noise is given by
+\begin{equation}
+	\mi{V}{n,th} = \sqrt{4\mi{k}{B}TR\Delta f}.
+\end{equation}
+
+The effective noise gain of the high-pass stage is
+\begin{equation}
+	 NG = 1 + \frac{\mi{R}{f}}{\mi{Z}{g}}.
+\end{equation}
+
+The total output noise can then be expressed as
+\begin{equation}
+	\mi{v}{0} = \sqrt{(\mi{v}{n,in} NG)^2 + (\mi{v}{n} NG)^2 + 2(\mi{i}{n} \mi{R}{f})^2 + 2\cdot4\mi{k}{B}T\mi{R}{f}\Delta f + 2\cdot4\mi{k}{B}T\mi{R}{g}\Delta f \left(\frac{\mi{R}{f}}{\mi{Z}{g}}\right)^2}.
+\end{equation}
+
+This formulation highlights that the amplifier noise is amplified by the noise gain, and that the noise response inherits the high-pass characteristic of the stage.
+
+Figure~\ref{fig:Diss_Voltage_NoiseCalc} shows the calculated noise contributions using the datasheet values.
+The dominant noise source at low frequency is the amplifier's input current noise, while at higher frequencies the input voltage noise becomes dominant.
+Resistor thermal noise is negligible because the resistor values are only a few hundred \si{\ohm}.
+
+The input noise of the previous stage follows the same trend, it is basically the total noise of the first high-pass amplifier mulitplied with the noise gain of the second stage. 
+The second cut off at \SI{100}{MHz} is clearly visible where the noise changes from first to second order.
+
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=1]{figures/4_VoltageProbe/Diss_Voltage_Calc_Noise.pdf}
+	\caption{Calculation of the noise sources for the first high-pass amplification stage.}\label{fig:Diss_Voltage_NoiseCalc}
+\end{figure}

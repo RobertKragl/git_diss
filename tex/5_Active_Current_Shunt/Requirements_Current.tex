@@ -1,13 +1,13 @@
 %!TeX root = main.tex
 %!encoding = UTF-8 Unicode
 
-\section{Requirements for Broadband, Low-Intrusion Current Sensing}
+\section{Requirements for Broadband and Low-Intrusion Current Sensing}
 
 Prior to designing the active current shunt, the measurement-driven requirements are defined.
 As in the voltage-probe chapter, the requirements are derived from the EMC-relevant frequency range, practical measurement constraints, and expected disturbance mechanisms in the switching environment.
 The aim is to obtain a current-sensing concept that does not materially disturb the commutation loop while still reproducing the frequency content relevant for EMC analysis.
 
-\subsubsection*{Small Signal Response}
+\subsubsection*{Small-Signal Response}
 The current-sensing path must provide a bandwidth of at least \SI{500}{MHz} to cover the EMC-relevant spectral content of the commutation current.
 This bandwidth requirement excludes most commercial sensors, including Rogowski coils with usable bandwidths of approximately \SIrange{20}{50}{MHz}, magnetoresistive current sensors in the range of \SIrange{10}{100}{MHz}, and Hall-effect sensors in the range of \SIrange{1}{10}{MHz}~\cite{xin_review_2022}.
 Bandwidths in the required range are only practical with shunt-based current sensing or with custom Rogowski-coil implementations using very few turns to minimize parasitic parameters.

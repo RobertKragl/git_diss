@@ -1,14 +1,25 @@
-%!TEX TS-program = pdflatex
+
+%!TeX root = main.tex
 %!encoding = UTF-8 Unicode
-%%=============================================================================
-%%=== ISEA-TEX-Vorlage ===
-%%===     Abstract	   ===
-%%===      jmu 2011     ===
-%%=============================================================================
 
+\chapter{Abstract}
 
-%%================================================================================
-\chapter*{Abstract}
-%%================================================================================
+This thesis examines the interface between two domains of power electronics that are frequently treated as distinct, despite their fundamental interdependence.
+Although semiconductor device switching is the primary source of conducted and radiated emissions, electromagnetic compatibility (EMC) continues to be addressed predominantly as a system-level problem rather than as an intrinsic semiconductor design variable.
+This disconnect stems from a fundamental measurement limitation: conventional characterization methods of power semiconductor devices are unable to resolve the high-frequency, EMC-relevant signal components emitted by the device, as these components fall below the measurement noise floor.
+As a quantity cannot be optimized without first being measurable, this absence of characterization has prevented electromagnetic noise from being treated as an intrinsic semiconductor design target.
+Consequently, noise optimization is often deferred to later design stages, where mitigation is instead implemented through converter- or system-level measures, at the expense of efficiency, compactness, and development time.
 
-The scope of this thesis is to analyze the mechanisms that lead to the generation of X in Y. Focus lies on the identification and description of the sources of Z in a specific A. Simulations of C that result from D are made using E. On the basis of these results an improved design of Y is proposed.
+The contribution of this thesis is a measurement methodology that enables direct, low-noise characterization of intrinsic electromagnetic emissions at the semiconductor power terminals.
+This is achieved through the development of a dual-channel approach for both a differential active voltage and a current probe, combined with post-processing methods for residual-noise suppression.
+Together, these enable semiconductor-focused EMC analysis up to \SI{400}{MHz} while preserving the measurement of conventional performance indicators such as switching losses, overvoltage, and \sddt{v}.
+An additional event-resolved spectral analysis method provides deeper insight into individual noise contributions.
+Because this methodology renders a previously unobservable behavior measurable for the first time, particular emphasis is placed on verifying the measurement setup.
+
+Applying this methodology reveals broadband differences between SiC MOSFET variants and operating points, quantifying effects that were previously only assumed to be relevant.
+It further links switching behavior directly to EMC-relevant spectral components, establishing device emissions as a measurable design target.
+The developed approach is not limited to a specific technology and provides a general basis for semiconductor-focused EMC analysis at multiple stages of the development of power electronic systems: 
+(1) during device technology development, it enables the characterization of different design variants, allowing direct evaluation of trade-offs with conventional performance metrics; 
+(2) during converter design, it enables the benchmarking of candidate semiconductor devices with respect to their electromagnetic emissions for a given application; and 
+(3) during compliance testing, it enables the identification of the switching event most likely to dominate emissions and cause violations of the applicable standard limits.
+Collectively, these contributions support earlier, EMC-aware design decisions across future power semiconductor and converter development.

@@ -2,7 +2,7 @@
 %!TeX root = main.tex
 %!encoding = UTF-8 Unicode
 
-\section{Active Current-Shunt Architecture and Implementation}
+\section{Probe Architecture and Implementation}
 
 To meet the broadband, low-intrusion current sensing requirements defined in the previous section, an active current-shunt probe was designed. 
 The core concept is to combine a passive shunt resistor with an active compensation amplifier, as shown in the simplified schematic in \fref{fig:ESBActiveShunt} and the prototype photograph in \fref{fig:ESBActiveShuntPhoto}.
@@ -138,7 +138,6 @@ The resulting design condition is
 \end{align}
 
 where \mi{R}{comp,eff} is the effective resistance of the compensation stage:
-
 \begin{align}
 	\mi{R}{comp,eff} &= \mi{R}{comp} || (\mi{R}{1}+\mi{R}{3}) \\
 					 &\approx \mi{R}{comp} \hspace{2.5cm}, \text{for } \mi{R}{comp} \ll (\mi{R}{1}+\mi{R}{3})
@@ -317,13 +316,13 @@ Consequently, the complete high-pass path operates over the EMC-relevant frequen
 
 Above the respective corner frequencies, the asymptotic gains of the individual stages are given by
 \begin{align}
-	\mti{G}{HP1,\infty} &= \frac{\mi{R}{15}}{\mi{R}{13}} = 8.67 \\
-	\mti{G}{HP2,\infty} &= \frac{\mi{R}{21}}{\mi{R}{19}} = 8.67 \\
-	\mti{G}{HP3} &= \frac{\mi{R}{f}}{\mi{R}{g}} = 4
+	\mi{G}{HP1,\infty} &= \frac{\mi{R}{15}}{\mi{R}{13}} = 8.67 \\
+	\mi{G}{HP2,\infty} &= \frac{\mi{R}{21}}{\mi{R}{19}} = 8.67 \\
+	\mi{G}{HP3} &= \frac{\mi{R}{f}}{\mi{R}{g}} = 4
 \end{align}
 so that the total asymptotic gain becomes
 \begin{equation}
-	\mti{G}{HP,\infty} = \frac{\mi{v}{HP}}{\mi{v}{comp}} = \mti{G}{HP1,\infty}\cdot\mti{G}{HP2,\infty}\cdot\mti{G}{HP3} \approx 301
+	\mi{G}{HP,\infty} = \frac{\mi{v}{HP}}{\mi{v}{comp}} = \mi{G}{HP1,\infty}\cdot\mi{G}{HP2,\infty}\cdot\mi{G}{HP3} \approx 301
 \end{equation}
 This gain is reached only above the high-pass corner frequencies and therefore outside the intended operating range of the equalization path.
 Within the measurement band, the relevant design feature is the second-order high-pass slope rather than the asymptotic passband gain.

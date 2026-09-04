@@ -163,7 +163,7 @@ Together, these results confirm that the DAVP performs as designed under large-s
 
 
 
-\subsection{Parasitic Couplings \& CM error}
+\subsection{Parasitic Couplings and Common-Mode Error}
 
 In a next verification step, the probe is assessed in the intended application environment by measuring the drain-source voltage of a SiC MOSFET during switching transients with both a commercial passive probe and the proposed DAVP.
 The setup corresponds to the commutation cell used later in this work, operated in double-pulse mode with the actively switched device located in the low-side position.
@@ -194,10 +194,24 @@ Here, also, only a small change is measured.
 	\caption{Time-domain measurement results of PMTX05, at 800V, 30A room temperature, cross validation of passive probe and high-pass measurement to crosscheck inductive and capacitive coupling effects.}\label{fig:Voltage_DPT_HPvsPP_weCM_TD}
 \end{figure}
 
+To determine how much the shield of the probe influences the measurement, a measurement with and without the shield is performed, which measurements results are shown in \fref{fig:Influence_Shield_TD} and \fref{fig:Influence_Shield_FD}.
+The influence of the capacitive coupling becomes visible in the time domain, where the unshielded measurement shows a higher overshoot and ringing, which is also visible in the frequency domain, where the unshielded measurement shows a higher amplitude at higher frequencies.
+Additionally , it can be seen that the shield is still not perfect since the turned-on MOSFET still show a small oscillation and offset, which both should be zero in an ideal measurement.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=1]{figures/4_VoltageProbe/Influence_Shield_TD.pdf}
+	\caption{Time-domain measurement results of PMTX05, at 800V, 30A room temperature, influence of the shield on the measurement.}\label{fig:Influence_Shield_TD}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=1]{figures/4_VoltageProbe/Influence_Shield_FD.pdf}
+	\caption{Frequency-domain measurement results of PMTX05, at 800V, 30A room temperature, influence of the shield on the measurement.}\label{fig:Influence_Shield_FD}
+\end{figure}
 
 
-
-\subsection{Noise Behavior}
+\subsection{Noise Performance Characterization}
 The final step of this section is not a strict verification, but rather a characterization of the probe's noise behavior.
 This analysis clarifies the probe limitations and provides context for interpreting subsequent measurement results.
 

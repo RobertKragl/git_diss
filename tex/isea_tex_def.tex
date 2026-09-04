@@ -65,7 +65,12 @@
 
 %%= Titel der Arbeit (für PDF-Info und Formblatt)
 %%=	(Angabe auf Titelseite manuell, um Zeilenumbrüche selbst zu definieren)
-\newcommand{\varTitle}{Characterization of the Intrinsic EMC-relevant Emissions of Power Semiconductor Devices}
+\newcommand{\varTitle}{Methodology for Measuring Intrinsic EMC-Relevant Emissions of Power Semiconductor Devices}
+%% instead Methological Characterization/Measurement .... Methodology for the 
+%% Quantification of Intrinsic EMC-Relevant Emissions of Power Semiconductor Devices
+%% Quantifiying the Intrinsic EMC-Relevant Emissions of Power Semiconductor Devices
+
+
 
 %%= Thema der Arbeit (für Titelseite, PDF-Info und Formblatt) 
 \newcommand{\varSubject}{Dissertation}
@@ -119,16 +124,16 @@
 %%=== Layout ===
 %% Auswahl von Dokumentklasse und Optionen
 \documentclass[%				
-	BCOR=5mm,%							%% Bindekorrektur am Rand der Seite
-	DIV=15,%							%% für Satzspiegel; bestimmt Größe des Textbereichs auf der Seite
-	twoside=\varTwoside,%				%% s.o.
-	cleardoublepage=plain,%	%% \cleardoublepage erzeugt Seite im Seitenstil 'plain'
-	parskip=half,%			%% Definition von Absatzeinzug bzw. Absatzabstand
-	% parskip=never,%			%% Definition von Absatzeinzug bzw. Absatzabstand
-	headsepline,%					%% horizontale Linie unter Kopfzeile		
-	fontsize=12pt,%				%% Schriftgröße
-	listof=totoc,%				%% Eintrag ins Inhaltsverzeichnis für Abbildungs- und Tabellenverzeichnis
-	index=totoc,%					%% ... für Abkürzungs- und Symbolverzeichnis
+	BCOR=5mm,%					%% Bindekorrektur am Rand der Seite
+	DIV=15,%					%% für Satzspiegel; bestimmt Größe des Textbereichs auf der Seite
+	twoside=\varTwoside,%		%% s.o.
+	cleardoublepage=plain,		%% \cleardoublepage erzeugt Seite im Seitenstil 'plain'
+	% parskip=half,%			%% Definition von Absatzeinzug bzw. Absatzabstand
+	parskip=never,%				%% Definition von Absatzeinzug bzw. Absatzabstand
+	headsepline,%				%% horizontale Linie unter Kopfzeile		
+	fontsize=12pt,%			%% Schriftgröße
+	listof=totoc,%			%% Eintrag ins Inhaltsverzeichnis für Abbildungs- und Tabellenverzeichnis
+	index=totoc,%			%% ... für Abkürzungs- und Symbolverzeichnis
 	headings=normal,%  		%% normale Größe der Überschriften
 	numbers=noenddot,%		%% Punkte hinter Kapitel-, Tabellen- und Abbildungsnummerierungen vermeiden
 	\varClassLang			%% Spache als globale Option 
@@ -193,6 +198,7 @@
 
 %%=== Zeilenabstand ===
 \usepackage{setspace}								%% Erlaubt die Aenderung des Zeilenabstands z.B. mittels \onehalfspacing					 %% 1 1/2 facher Zeilenabstand	
+\onehalfspacing											%% 1 1/2 facher Zeilenabstand fuer den gesamten Fliesstext
 
 \setlength{\parindent}{0pt}			%% Kein Einzug des ersten Satzes nach einem Absatz
 
@@ -335,6 +341,7 @@ detect-all = true
 \usepackage{graphicx}						%% \usepackage[draft]{graphicx} --> Grafiken werden nur als leere Box ausgegeben
 \usepackage{color}
 \usepackage{pdflscape}						%% (einzelne) Seiten koennen im Querformat ins PDF gestellt werden
+\usepackage{placeins}						%% stellt \FloatBarrier bereit, um zu verhindern, dass Floats über Kapitel-/Abschnittsgrenzen wandern
 
 \definecolor{isea_blue}{rgb}{0.031, 0.020, 0.580}	%% ISEA-Blau fuer PDF links,
 	%% wird in CustomVariables.tex erneut defniniert; hier, um in PDF-links nutzbar zu sein;

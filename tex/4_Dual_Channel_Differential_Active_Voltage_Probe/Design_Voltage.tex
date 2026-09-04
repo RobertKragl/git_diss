@@ -22,11 +22,11 @@ Each block is discussed in detail in the following, including key design conside
 	\caption{Photograph of redesigned dual-channel differential active voltage probe.}\label{fig:Pic_EMEProbe}
 \end{figure}
 
-\subsection{Frequency Compensated Voltage Divider}
+\subsection{Frequency-Compensated Voltage Divider}
 The frequency-compensated voltage divider is the first stage of the probe and is responsible for scaling down the high-voltage signal from the DUT to a level suitable for the subsequent amplification stages.
 
-The voltage divider is the most critical component of the probe, because of its high impedance, which creates low time constants with extremly low parasitic capacitances.
-These parasitic capacitance occure, due to the minimal phsyical distance, which are required to fulfull the requirements due to transmission line constraints, as for the necessary bandwidth constraints, which require low parasitic inductances.
+The voltage divider is the most critical component of the probe, because of its high impedance, which creates low time constants with extremely low parasitic capacitances.
+These parasitic capacitances occur due to the minimal physical distance, which are required to fulfill the requirements due to transmission line constraints, as for the necessary bandwidth constraints, which require low parasitic inductances.
 
 The design of the frequency compensated voltage divider is shown in \fref{fig:VoltageDividerPCB_Polygon} and \fref{fig:VoltageDividerPCB}, and its equivalent schematic, including all parasitic elements, is depicted in \fref{fig:VoltageDividerPCB_parESB}.
 

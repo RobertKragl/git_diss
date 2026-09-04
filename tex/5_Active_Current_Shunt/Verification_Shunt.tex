@@ -89,6 +89,40 @@ This deviation cannot be attributed to common-mode error, which is clearly much 
 It is therefore most likely caused by residual capacitive coupling from the voltage transient into the current shunt.
 
 
-\subsection{Noise Behavior}
-In a last step, the noise behavior of the active shunt is evaulated.
-The measurement results are shown in \fref{fig:MS_Current_Noise}, where the noise floor of the active shunt is compared with the passive shunt.
+To determine how much the shield of the probe influences the measurement, a measurement with and without the shield is performed, which measurements results are shown in \fref{fig:Influence_Current_Shield_TD} and \fref{fig:Influence_Current_Shield_FD}.
+The influence of the capacitive coupling is barely visible in the time domain, where the unshielded measurement shows only a minimal higher overshoot and ringing.
+However, when the frequency domain is considered, high differences in the two measurements can be seen.
+This indicicated that the shield mainly shields the high-pass path of the active shunt, which is more sensitive to coupling due to smaller signals and higher gains.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=1]{figures/5_CurrentProbe/Influence_Shield_TD.pdf}
+	\caption{Time-domain measurement results of PMTX05, at 800V, 30A room temperature, influence of the shield on the measurement.}\label{fig:Influence_Current_Shield_TD}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=1]{figures/5_CurrentProbe/Influence_Shield_FD.pdf}
+	\caption{Frequency-domain measurement results of PMTX05, at 800V, 30A room temperature, influence of the shield on the measurement.}\label{fig:Influence_Current_Shield_FD}
+\end{figure}
+
+\subsection{Noise Performance Characterization}
+The final step of this section is not a strict verification, but rather a characterization of the shunt's noise behavior.
+This analysis is important because the active current shunt combines a low-pass path optimized for the switching waveform with a high-pass path intended to resolve the commutation transient.
+The key question is therefore whether the additional gain and bandwidth of the active path raise the noise floor in a way that degrades the measurement of either the low-frequency current waveform or the high-frequency current spike.
+
+Figure~\ref{fig:MS_Current_Noise} shows the frequency-domain noise of the active shunt for an acquisition length corresponding to the pulse-train duration used later in the measurement campaign.
+To separate probe noise from the oscilloscope contribution, the measurement is performed for four conditions: the active shunt at the oscilloscope resolution used for subsequent signal measurements, the oscilloscope alone at the same resolution, the active shunt with full ADC resolution, and the oscilloscope alone with full ADC resolution.
+This decomposition makes it possible to distinguish the intrinsic probe-noise floor from the quantization-noise floor of the acquisition system.
+
+In the low-frequency range, the observed noise is dominated by the oscilloscope quantization floor.
+With increasing frequency, however, the active shunt exhibits a gradual rise in noise that follows the gain characteristic of the high-pass channel.
+This behavior is consistent with the principle already discussed for the voltage probe: the high-pass path amplifies both the desired signal and the input-referred noise, so the noise floor follows the slope of the transfer function.
+However, because the shunt amplifiers provide higher gain than the voltage-probe stage, the thermal noise of the operational amplifiers becomes dominant over the oscilloscope quantization noise at a lower frequency, namely around \SI{120}{MHz} instead of \SI{220}{MHz}. 
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=1]{figures/5_CurrentProbe/Diss_Current_NoiseContribution.pdf}
+	\caption{Frequency-domain measurement of the noise behavior of the high-pass of the active current shunt.}\label{fig:MS_Current_Noise}
+\end{figure}
+

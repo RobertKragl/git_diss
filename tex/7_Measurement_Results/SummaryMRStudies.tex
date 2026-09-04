@@ -1,0 +1,41 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+\section{Summary of Measurement Studies}
+\label{sec:MR_Summary}
+
+\begin{table}[ht]
+	\caption{Summary of the impact of different parameters on the active-off and passive-off measurement results.}
+	\label{tab:SummaryMRStudies}
+	\centering
+	\setlength{\tabcolsep}{18pt}
+	\begin{tabular}{@{}lccl@{}}
+		\toprule
+		\textbf{Parameter} & \textbf{Active Off} & \textbf{Passive Off} & \textbf{Condition} \\
+		\midrule
+		\multirow{2}{*}{Gate drive} & -0.56 dB/$\Omega$ & -0.39 dB/$\Omega$ & \mi{R}{G} sweep \\
+		                            & -14.53 dB/mJ & -9.88 dB/mJ & \mi{R}{G} sweep \\
+		\midrule
+		\multirow{3}{*}{Chip Size $A$} & -0.92 dB/mm & -0.59 dB/mm  & Const. \mi{R}{G} \\
+		                    & -0.92 dB/mm  & -0.38 dB/mm  & Const. OV \\
+		                    & -0.67 dB/mm  & -0.08 dB/mm  & Const. \mi{E}{sw} \\
+		\midrule
+		\multirow{3}{*}{\shortstack[l]{Neg. Driver Supply\\\mi{V}{ee,driver}}} & -0.67 dB/V & -0.47 dB/V & Const. \mi{R}{G} \\
+		                                      & +0.08 dB/V & +0.23 dB/V & Const. OV \\
+		                                      & -0.15 dB/V & -0.29 dB/V & Const. \mi{E}{sw} \\
+		\midrule
+		\multirow{3}{*}{Temperature $T$} & 0.005 dB/K & 0.064 dB/K & Const. \mi{R}{G} \\
+		                    & 0.003 dB/K & 0.013 dB/K & Const. OV \\
+		                    & 0.035 dB/K & 0.071 dB/K & Const. \mi{E}{sw} \\
+		\midrule
+		\multirow{3}{*}{\shortstack[l]{Commutaion-Loop\\ Inductance \mi{L}{\sigma}}} & 0.09 dB/nH & 0.01 dB/nH & Const. \mi{R}{G} \\
+		                              & -0.41 dB/nH & -0.12 dB/nH & Const. OV \\
+		                              & 0.06 dB/nH & -0.05 dB/nH & Const. \mi{E}{sw} \\
+		\midrule
+		\multirow{3}{*}{Bosch Generation} & +3 dB/Gen & -4.5 dB/Gen & Const. \mi{R}{G} \\
+		                                  & -3.5 dB/Gen & -2.9 dB/Gen & Const. OV \\
+		                                  & -2.1 dB/Gen & -4.6 dB/Gen & Const. \mi{E}{sw} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+

@@ -4,23 +4,48 @@
 \label{ch:Conclusion}
 \section{Summary}
 
+Electromagnetic compatibility results from the product of two contributions: the generation of emissions by the switching semiconductor, and their propagation through the passive components and layout of the converter.
+While the propagation path has long been accessible to system-level design and simulation, the generation side has remained comparatively opaque, since conventional characterization methods cannot resolve the EMC-relevant, high-frequency components of the device's own switching behavior; above the device resonance frequency, these components disappear below the measurement noise floor.
+As a result, EMC is still treated predominantly as a system-level property rather than as an intrinsic semiconductor design target.
+Without a way to measure this behavior, it cannot be optimized, so noise mitigation has traditionally been deferred to later, converter-level design stages, at the expense of efficiency, power density, and development time.
 
-This paper presented a measurement environment for characterizing intrinsic electromagnetic emissions of power semiconductor devices directly at their power terminals.
-The setup combined dual-channel active voltage sensing (low-pass and high-pass path), an active current shunt, and dedicated post-processing methods to enhance the measurability of the EMC-relevant high-frequency range.
+To close this measurement gap, a dual-channel differential active voltage probe and a dual-channel active current shunt were developed, enabling the simultaneous, low-noise measurement of all three intrinsic noise sources of a switching cell, the high-side voltage, the low-side voltage, and the commutation current, well beyond their respective device resonance frequencies.
+Both sensors were derived from an explicit set of bandwidth, signal-to-noise ratio, and loading requirements rather than adapted from an existing design.
+The voltage probe combines a frequency-compensated divider, realized with a custom PCB-integrated high-voltage capacitor for a stable divider ratio of \sfrac{1}{460}, with a unity-gain and subtractor stage to reject common-mode disturbances; verification against an independent reference confirmed a low-pass bandwidth of \SI{315}{MHz} and a high-pass path usable up to \SI{340}{MHz} on an absolute, calibrated basis.
+The current shunt combines a low-inductance, parallel metal-foil resistive element with an actively compensated differential amplifier stage that cancels the shunt's own high-pass roll-off, achieving a low-pass bandwidth of \SI{475}{MHz} while keeping the insertion resistance an order of magnitude below the device's on-resistance.
+Both sensors were verified not only in the small-signal domain via network analysis, but also in the large-signal domain against independent pulse-generator and reference-shunt measurements, confirming that the improved bandwidth did not come at the expense of accuracy in the conventional figures of merit.
+Building on these sensors, post-processing methods, the time-dependent noise filter and the switching-event-resolved snap-and-mirror separation, were introduced to further suppress residual noise and to isolate the spectral contribution of individual switching events, extending the usable analysis range from around \SI{80}{MHz} for a conventional measurement to up to \SI{400}{MHz}.
+The resulting measurement environment was integrated into a power electronics standard block together with a system-level LISN reference, allowing the intrinsic semiconductor emissions and the classical figures of merit, switching losses, overvoltage, and \sddt{v}, to be recorded simultaneously and under application-representative conditions.
 
-The results showed that conventional probing became noise-limited at about \SI{115}{MHz} for the investigated switching transient.
-By adding the high-pass path, the usable range was extended to about \SI{220}{MHz}.
-With the time-dependent filter (TDF), comparative analysis became possible up to approximately \SI{500}{MHz}; however, only the range up to \SI{340}{MHz} was fully verified, and results above this limit should be interpreted comparatively rather than as absolute calibration.
-This enabled event-resolved spectral analysis of both switching voltages and the commutation current.
-
-The application examples confirmed the relevance for semiconductor benchmarking: for the investigated chip-size variation, broadband differences of up to \SI{14}{dB} were measured in the voltage spectrum, and the market comparison showed device-to-device differences of up to about \SI{7}{dB} in average EM emission levels.
-These findings demonstrate that EM emission behavior provides an additional design dimension in semiconductor development beyond the classical trade-off of conduction losses, switching losses, and short-circuit robustness.
-
-\textit{Remaining limitations:} The main remaining constraints are (1) induced noise by operational amplifiers, especially in the current measurement path at higher frequencies, which degrades SNR above \SI{270}{MHz}; (2) probe verification uncertainty above \SI{340}{MHz}; and (3) sensitivity to parasitic coupling from the switching node, which required careful shielding design. 
-Future work will therefore focus on reducing added noise through lower-noise operational amplifiers, improving the common-mode robustness, extending the verification setup to at least \SI{500}{MHz} using alternative band-pass filters, and benchmarking alternative sensor architectures (e.g., purely passive designs) with respect to noise floor, bandwidth, isolation performance, and implementation effort.
-
-
+Applying this methodology to a broad set of parameter studies confirmed that intrinsic device emissions are sensitive not only to conventional application-level parameters, but also to parameters that are exclusively under the control of the device engineer.
+Among the external parameters, the gate resistance was found to be the most effective lever available to the application engineer, while the negative gate-driver bias, the junction temperature, and the commutation-loop inductance were each shown to have a comparatively strong influence, the latter by shifting the resonance to lower frequencies rather than simply amplifying it, which exposed a structural weakness of a fixed-band spectral average as a figure of merit.
+The same weakness reappeared for the active chip area, where oversizing a device beyond the current rating strictly required by the application was shown to carry a hidden EMC cost in the form of a markedly higher resonance peak, even where the spectral average would suggest the opposite trend.
+Comparing two generations of Bosch's own SiC MOSFET portfolio further demonstrated that a considerable, several-decibel improvement in EM emissions can be achieved through technology development alone, while a benchmarking of devices from different manufacturers showed that the choice of semiconductor technology can affect the EM emissions to a similar or greater extent than the layout of the commutation loop itself.
 
 \section{Contribution}
 
+The contribution of this thesis follows the same three pillars set out in the introduction, each of which has been realized and verified over the course of this work.
+
+First, a dual-channel differential active voltage probe and a purpose-built dual-channel active current shunt were designed, built, and verified, providing simultaneous access to all three intrinsic noise sources of a switching cell at a signal-to-noise ratio sufficient for EMC-relevant analysis well beyond the device resonance frequency, a capability not previously demonstrated in the open literature in a single, integrated setup.
+Second, the high-pass compensation and time-dependent noise-filtering methods were developed and shown to extend the usable analysis range far beyond what is achievable with the sensors alone, while the switching-event-resolved snap-and-mirror separation makes the spectral contribution of the individual active-on, active-off, passive-on, and passive-off transients accessible for the first time in this context.
+Third, this measurement environment was applied to a comprehensive set of external and device parameter studies, going beyond a mere sensor demonstration to establish EM emissions as a quantifiable and comparable semiconductor design metric.
+This experimental campaign showed, for parameters ranging from the gate resistance and junction temperature to the active chip area, the technology generation, and the semiconductor manufacturer, that a considerable share of a converter's EM emissions is already determined at the semiconductor level, before any converter- or system-level countermeasure is applied, and that the spectral average figures of merit commonly used in practice can, in several of the studied cases, actively obscure this influence.
+
+Collectively, these contributions provide device engineers with direct, quantitative feedback on the EM-emission impact of their design choices alongside the classical figures of merit, and provide application engineers with a measurement basis for benchmarking candidate devices with respect to EM emissions rather than conduction and switching losses alone, thereby supporting earlier, EMC-aware decisions across future power-semiconductor and converter development.
+
 \section{Outlook}
+
+Building on the presented methodology, future research should address three main directions.
+
+(1) The measurement setup should be further improved by reducing added noise through lower-noise operational amplifiers and enhancing common-mode robustness.
+In addition, verification should be extended to at least \SI{500}{MHz} using alternative band-pass filters.
+Alternative sensor architectures, including purely passive designs, should also be benchmarked with respect to noise floor, bandwidth, isolation performance, and implementation effort.
+
+(2) A systematic measurement study of electrical and manufacturing variations in semiconductor devices should be conducted to identify design parameters that strongly influence EM emissions while only marginally affecting classical performance metrics, such as conduction losses, switching losses, and short-circuit robustness.
+
+(3) A time-variant model of the propagation path from device terminals to system-level emissions should be developed and validated using the presented measurement setup.
+This would establish a comprehensive framework for semiconductor-level EMC analysis and design.
+
+Beyond these three directions, the measurement data generated by this methodology could itself address a gap identified in the introduction of this work: the behavioral models used in simulation-based EMC studies are conventionally calibrated against double-pulse and static measurements that are noise-limited precisely in the frequency range where these models are meant to be applied.
+The presented setup could instead provide verified high-frequency training and validation data for such models, allowing their high-frequency accuracy to be confirmed rather than assumed.
+Finally, since the underlying measurement principles are not tied to a specific device technology, extending the presented parameter studies to other wide-bandgap technologies, such as GaN, and eventually correlating the resulting device-level figures of merit with system-level compliance measurements, would help translate the semiconductor-focused perspective developed in this thesis into standardized, EMC-aware device datasheets.

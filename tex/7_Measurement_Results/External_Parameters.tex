@@ -217,10 +217,11 @@ The junction temperature must therefore be regarded as one of the most important
 
 \subsection{Commutation-Loop Inductance}
 
-Unlike the previous three parameters, the commutation-loop inductance \mi{L}{\sigma} is not a free design parameter that is tuned during the development phase to trade off against other requirements, but is always minimized as far as possible, since it is determined by the physical layout of the power loop, e.g., by the parasitic inductance of the DC-link capacitors, the busbar or PCB traces, and the device packages, and can therefore only be reduced through the layout design, rather than actively adjusted.
+Unlike the previous three parameters, the commutation-loop inductance \mi{L}{\sigma} is not a free design parameter that is tuned during the development phase to trade off against other requirements, but is always minimized as far as possible. 
+It is determined by the physical layout of the power loop, e.g., by the parasitic inductance of the DC-link capacitors, the busbar or PCB traces, and the device packages, and can therefore only be reduced through the layout design.
 Together with the output capacitance \mi{C}{oss} of the turned-off device, the commutation-loop inductance forms the resonant tank that is excited by every switching transient.
-Increasing \mi{L}{\sigma} raises the characteristic impedance \mi{Z}{0} = \(\sqrt{\mi{L}{\sigma}/\mi{C}{oss}}\) of this tank, which increases the ringing amplitude for a given excitation, while simultaneously lowering the resonant frequency \mi{f}{res} = \(1/(2\pi\sqrt{\mi{L}{\sigma}\mi{C}{oss}})\).
-The commutation-loop inductance is therefore expected to primarily influence the overvoltage and the main resonance of both switching events, shifting it towards lower frequencies and increasing its amplitude, rather than to change the switching speed itself.
+Increasing \mi{L}{\sigma} raises the characteristic impedance \mi{Z}{0} = \(\sqrt{\mi{L}{\sigma}/\mi{C}{oss}}\) of this tank, which increases the ringing amplitude for a given current excitation, while simultaneously lowering the resonant frequency \mi{f}{res} = $\sfrac{1}{2\pi\sqrt{\mi{L}{\sigma}\mi{C}{oss}}}$.
+The commutation-loop inductance is therefore expected to primarily influence the overvoltage and the main resonance of both switching events, shifting it towards lower frequencies and increasing its amplitude, rather than to change the switching speed itself -- considering the speed is set to ensure constant switching losses across the sweep.
 
 \begin{figure}[ht]
 	\centering
@@ -244,8 +245,8 @@ The commutation-loop inductance is therefore expected to primarily influence the
 \end{figure}
 
 Fig.~\ref{fig:MR_L_constE_Sweep_TD} shows the time-domain results of the commutation-loop-inductance sweep, covering \SI{24}{nH}, \SI{42}{nH}, and \SI{73}{nH}.
-Because the gate resistance is co-adjusted for each inductance, the duration of the forced part of both the turn-on and the turn-off transient remains similar across the sweep.
-The ringing that follows each transition, however, changes markedly: with increasing \mi{L}{\sigma}, the peak overvoltage after turn-off grows from only a few percent above \mi{V}{DC} at \SI{24}{nH} to more than \SI{30}{\percent} at \SI{42}{nH} and \SI{73}{nH}, while the ringing frequency visibly decreases, consistent with the larger characteristic impedance and the lower resonant frequency of the \mi{L}{\sigma}-\mi{C}{oss} tank.
+Because the gate resistance is co-adjusted for each inductance, the duration of the gate-controlled part of both the turn-on and the turn-off transient remains similar across the sweep.
+The ringing that follows each transition, however, changes markedly: with increasing \mi{L}{\sigma}, the peak overvoltage after turn-off grows from \SI{940}{V} at \SI{24}{nH} to \SI{1080}{V} at \SI{73}{nH}, while the ringing frequency visibly decreases, consistent with the larger characteristic impedance and the lower resonant frequency of the \mi{L}{\sigma}-\mi{C}{oss} tank.
 A similar, though less pronounced, trend is visible for the ringing excited during turn-on.
 
 \begin{figure}[ht]
@@ -255,8 +256,8 @@ A similar, though less pronounced, trend is visible for the ringing excited duri
 \end{figure}
 
 The corresponding frequency-domain spectra, shown in \fref{fig:MR_L_constE_Sweep_FD} and separated for the active and passive device as well as the commutation current, confirm this trend.
-Below approximately \SI{10}{\mega\hertz}, the spectra of all three inductances coincide, since this range is governed by the switching frequency and duty cycle rather than by the switching transient.
-Towards higher frequencies, the spectra diverge: for \SI{24}{nH}, the main resonance appears around \SIrange{70}{100}{\mega\hertz}, whereas for \SI{73}{nH} it shifts down to approximately \SIrange{20}{30}{\mega\hertz} and reaches a distinctly higher amplitude, in agreement with the lower resonant frequency and the larger characteristic impedance of the commutation loop.
+Below approximately \SI{10}{\mega\hertz}, the spectra of all three inductances coincide.
+Towards higher frequencies, the spectra diverge: for \SI{24}{nH}, the main resonance appears at \SI{66}{\mega\hertz}, whereas for \SI{73}{nH} it shifts down to \SI{37}{\mega\hertz} and reaches a distinctly higher amplitude, in agreement with the lower resonant frequency and the larger characteristic impedance of the commutation loop.
 
 \begin{figure}[ht]
 	\centering
@@ -264,14 +265,11 @@ Towards higher frequencies, the spectra diverge: for \SI{24}{nH}, the main reson
 	\caption{Commutation-loop-inductance-dependent emission and loss analysis.}\label{fig:MR_L_constE_Emission}
 \end{figure}
 
-\fref{fig:MR_L_constE_EmissionOverLosses} shows that, unlike for the other three parameters, the switching losses could not be held fully constant across this sweep: because \mi{L}{\sigma} directly limits the achievable \mi{di}{dt} for a given gate-driving voltage, re-tuning the gate resistance alone was not sufficient to fully decouple the switching losses from the inductance, so that \mi{E}{on} increases from \SI{1.9}{mJ} to \SI{2.35}{mJ} and \mi{E}{off} increases from \SI{2.0}{mJ} to \SI{2.5}{}-\SI{2.8}{mJ} between \SI{24}{nH} and \SI{73}{nH}.
-Part of the emission differences discussed below may therefore also reflect this residual increase in switching losses, in addition to the influence of the commutation-loop inductance itself.
-
 This is quantified in \fref{fig:MR_L_constE_Emission}, where the average FOM and the resonance peak value are plotted against the commutation-loop inductance, separated for the active and passive device and for turn-on and turn-off.
 Interestingly, the average FOM does not follow the pronounced increase of the overvoltage observed in the time domain: the passive-off transient, which shows the highest average FOM of all four transients throughout the entire sweep, even decreases slightly, from \SI{78}{dB\micro V} to \SI{75.5}{dB\micro V}, the active-on transient decreases from \SI{64}{dB\micro V} to \SI{57}{dB\micro V}, and the active-off and passive-on transients remain within a narrow band of \SIrange{55}{61}{dB\micro V}.
 This apparent contradiction is resolved by the resonance peak value: both the active-off and the passive-off resonance peak increase markedly with the commutation-loop inductance, by approximately \SI{15}{dB} and \SI{9}{dB}, respectively.
-Because a larger \mi{L}{\sigma} simultaneously lowers the resonant frequency, the main resonance shifts towards the lower edge of, or even below, the \SIrange{30}{200}{\mega\hertz} averaging window used for the average FOM, so that its growing amplitude is only partially captured, or missed entirely, by this broadband metric.
-This highlights an important limitation of a fixed-band average FOM: for parameters that shift the frequency location of the main resonance, such as the commutation-loop inductance, the resonance-peak FOM is the more reliable and physically meaningful indicator of the EM emission behavior.
+The reason is that increasing \mi{L}{\sigma} does not add emission energy, but merely shifts it from higher to lower frequencies, following the falling resonant frequency of the \mi{L}{\sigma}-\mi{C}{oss} tank; such a shift within the averaging window is what the spectral average cannot capture, since it weighs all frequencies within its \SIrange{30}{200}{\mega\hertz} range equally, regardless of where the emissions actually occur.
+This highlights an important limitation of a fixed-band average FOM.
 
-Considering that the resonance-peak value is affected far more strongly by the commutation-loop inductance than by any of the other three external parameters discussed in this section, by up to \SI{15}{dB} between the smallest and the largest layout investigated, the commutation-loop inductance must be regarded as the most critical external parameter for the intrinsic EM emissions of the switching cell.
+Although increasing \mi{L}{\sigma} thereby lowers the emissions at higher frequencies, this seems very unlikely to ever be exploited deliberately as a means to reduce EM emissions, since it comes at the cost of both increased low-frequency emissions and a higher overvoltage.
 Since \mi{L}{\sigma} is fixed by the power-stage layout rather than by the gate driver or the device, this influence cannot be corrected during operation; it must therefore be addressed already during the layout design of the commutation loop, for instance by minimizing the enclosed loop area and by placing the DC-link capacitors as close as possible to the switching devices.

@@ -3,6 +3,11 @@
 \section{Summary of Measurement Studies}
 \label{sec:MR_Summary}
 
+Building on the individual comparisons discussed in Sections~\ref{sec:MR_External} and~\ref{sec:MR_MOSFET}, this final section condenses the influence of all investigated parameters into a single, compact overview.
+For each parameter, a linear sensitivity of the average FOM is derived from the measured data, separately for the active-off and passive-off transients, since these two switching events are, according to the discussions above, the dominant contributors to the overall EM emissions.
+Table~\ref{tab:SummaryMRStudies} reports this sensitivity for three different measurement constraints: constant gate resistance (Const. \mi{R}{G}), constant peak overvoltage (Const. OV), and constant switching-loss energy (Const. \mi{E}{sw}); the latter is the constraint discussed throughout the main text of this chapter, while the former two are documented only in Appendix~\ref{app:additional_measurements} but are included here for completeness.
+The gate resistance itself is the only parameter for which no such constraint applies, since it is the swept quantity itself rather than a co-adjusted compensation variable; its sensitivity is therefore reported directly in \si{dB/\ohm}, as well as related to the switching-loss energy it trades off, in \si{dB/mJ}, which quantifies the cost, in terms of EM emissions.
+
 \begin{table}[ht]
 	\caption{Summary of the impact of different parameters on the active-off and passive-off measurement results.}
 	\label{tab:SummaryMRStudies}
@@ -38,4 +43,37 @@
 	\end{tabular}
 \end{table}
 
+Because these sensitivities are expressed per unit of each parameter, and the physically or economically accessible range of each parameter differs enormously between one another, from a single manufacturing step for the SiC technology generation to a swing of more than \SI{100}{K} for the junction temperature, the raw slopes reported in Table~\ref{tab:SummaryMRStudies} must not be compared directly across parameters to rank their importance: a numerically large sensitivity per generation, for instance, is not automatically more relevant in practice than a numerically small sensitivity per kelvin, once it is considered that the accessible temperature swing is more than two orders of magnitude larger than the single generation step it would otherwise be compared to.
+A fair comparison instead requires weighting each sensitivity by the range over which the corresponding parameter can realistically vary in an application; \tref{tab:SummaryMRStudiesRange} performs this weighting explicitly, by multiplying the constant-\mi{E}{sw} sensitivity of each parameter, or, for the gate resistance, its raw sensitivity in \si{dB/\ohm}, since no such constraint applies to it, with the full practically relevant range of that parameter, thereby reporting the maximum achievable change in the average FOM over the entire operating range.
+The present table is therefore best used to compare a given parameter across the three measurement constraints, rather than to compare different parameters against each other.
+
+\begin{table}[ht]
+	\caption{Maximum change in average FOM over the full practical operating range of each parameter, obtained by scaling the constant-\mi{E}{sw} sensitivities of \tref{tab:SummaryMRStudies} with the stated operating range.}
+	\label{tab:SummaryMRStudiesRange}
+	\centering
+	{%
+	\renewcommand{\tabularxcolumn}[1]{>{\centering\arraybackslash}m{#1}}
+	\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}XXXX@{}}
+		\toprule
+		\textbf{Parameter} & \textbf{Operating Range} & \textbf{Active Off} & \textbf{Passive Off} \\
+		\midrule
+		Gate resistance \mi{R}{G} & \SIrange{1}{50}{\ohm} & -27.4 dB & -19.1 dB \\
+		Active chip area $A$ & \SIrange{5}{50}{mm^2} & -30.2 dB & -3.6 dB \\
+		Neg. driver supply \mi{V}{ee,driver} & \SIrange{-10}{0}{V} & -1.5 dB & -2.9 dB \\
+		Temperature $T$ & \SIrange{25}{175}{\celsius} & +5.3 dB & +10.7 dB \\
+		Inductance \mi{L}{\sigma} & \SIrange{5}{100}{nH} & +5.7 dB & -4.8 dB \\
+		Bosch generation & 1 -- 2 & -2.1 dB & -4.6 dB \\
+		\bottomrule
+	\end{tabularx}
+	}
+\end{table}
+
+Over their full practical operating ranges, the gate resistance and the active chip area emerge as the two parameters with by far the largest achievable impact on the average FOM, at approximately \SI{-27}{dB} to \SI{-30}{dB} for the active-off transient, whereas the SiC technology generation and the negative gate-driver bias, whose accessible range is inherently limited to a single manufacturing step and to a few volts, respectively, remain confined to a few decibels even at their extreme settings.
+The junction temperature and the commutation-loop inductance fall in between, each capable of shifting the average FOM by roughly \SI{5}{}-\SI{11}{dB} across their full practical range, despite their comparatively modest per-unit sensitivities in \tref{tab:SummaryMRStudies}.
+It must be emphasized that these figures are obtained by linearly extrapolating the fitted sensitivities beyond the narrower ranges that were actually measured for some parameters, most notably the chip area, the temperature, and the commutation-loop inductance, and should therefore be interpreted as first-order estimates of the maximum achievable impact rather than as validated measurement results; in particular, nonlinear effects such as the measurement noise floor at low emission levels, discussed for the gate resistance in Section~\ref{sec:MR_External}, are not captured by this linear extrapolation and may cause the true achievable change to deviate from the values reported here.
+
+Comparing the three measurement constraints further reveals that the sign and magnitude of a parameter's apparent sensitivity can depend strongly on which other quantity is held constant: the negative gate-driver bias, for instance, decreases the average FOM under constant gate resistance and constant switching-loss energy, but increases it under constant overvoltage, and the SiC technology generation even reverses sign for the active-off transient between the constant-\mi{R}{G} and the constant-\mi{E}{sw} conditions.
+This sensitivity to the chosen constraint confirms, once more, the central premise of this chapter: any statement about the EM-emission impact of a single parameter is only meaningful once the quantities that are held constant, or allowed to vary, alongside it are clearly specified.
+
+Taken together, this summary demonstrates that the measurement methodology and the spectral FOM framework developed in this thesis can not only characterize the EM emissions of a single device or converter, but also quantify and rank the often competing physical mechanisms that govern these emissions across a wide range of design and operating parameters, providing both the converter designer and the device engineer with a quantitative basis for weighing EM performance against the classical trade-offs of switching losses and blocking-voltage margin.
 

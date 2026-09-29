@@ -4,11 +4,11 @@
 \label{sec:MR_MOSFET}
 
 This section examines the influence of parameters that are determined by the device engineer during MOSFET design, rather than by the application engineer during converter design.
-In principle, the presented measurement methodology could be used to investigate more fundamental design-of-experiment parameters, such as the doping concentration, the cell pitch, or the gate-oxide thickness, that are typically only accessible to the device engineer at the wafer level.
-However, since the presented measurement setup is built around the D2PAK package, only finished, commercially available devices can be currently measured, rather than dedicated engineering samples with such tailored design variations.
+In principle, the presented measurement methodology could be used to investigate more fundamental design-of-experiment parameters, such as the doping concentration, the cell pitch, or the gate-oxide thickness, that are typically only accessible to the device engineer.
+However, since the presented measurement setup is built around the D2PAK package, only packaged chips can be currently measured, rather than dedicated engineering samples with such tailored design variations, which normally come as bare-dies on various adapter PCBs.
 Consequently, this section is limited to those parameters that vary among commercially available finished products, namely the active chip area, reflected in the current rating, the SiC technology generation within Bosch's own device portfolio, and the semiconductor manufacturer.
-The active chip area and the SiC technology generation directly affect the device's parasitic capacitances and the resulting switching trajectory, so unlike the external parameters discussed in Section~\ref{sec:MR_External}, they cannot be tuned by the application engineer once a device has been selected.
-For each of these two parameters, a comparison is performed while the switching losses are kept constant, so that the differences observed in the frequency-domain spectra can be attributed to the parameter itself rather than to a shift in the switching trajectory.
+The active chip area and the SiC technology generation directly affect the intrinsic switching behvior, and unlike the external parameters discussed in Section~\ref{sec:MR_External}, they cannot be tuned by the application engineer once a device has been selected.
+For each of these two parameters, a comparison is performed while the switching losses are kept constant, so that the differences observed in the frequency-domain spectra can be attributed to the parameter itself rather than to a shift in the switching speed.
 
 \subsection{Active Chip Area}
 
@@ -73,11 +73,11 @@ Since the active chip area is primarily selected by the application engineer to 
 
 \FloatBarrier
 
-\subsection{SiC Technology Generation}
+\subsection{SiC Device Technology}
 
-To investigate generation-to-generation improvements within Bosch's own device portfolio, two devices from the first and second SiC MOSFET generation, matched in package and voltage and current rating, are compared while the switching-loss energies are again closely matched between the two devices.
-The specific design and process changes made between the two generations are proprietary and are therefore not disclosed in this work; rather than a root-cause analysis, this comparison is intended as a demonstration of what the presented measurement methodology can reveal about generation-to-generation improvements, and thus serves as a teaser for what can be achieved on the device-technology side of EM emission reduction.
-Beyond this comparison within Bosch's own device history, Section~\ref{sec:benchmark} closes with a comparative benchmarking across different semiconductor manufacturers, extending the analysis from Bosch's internal device generations to the wider SiC MOSFET market.
+To highlight the influence of the device structure on the EM emissions, two devices from the first and second SiC MOSFET generation of the Robert Bosch SiC MOSFET portfolio are selected, matched in package, voltage rating, and current rating, and compared while the switching-loss energies are again matched between the two devices.
+The specific design and process changes made between the two generations are proprietary and are therefore not disclosed in this work; rather than a root-cause analysis, this comparison is intended as a demonstration of what the presented measurement methodology can reveal about device improvements, and thus serves as a teaser for the potential of power device optimization for EM emission reduction.
+Beyond this comparison within Bosch's own device history, Section~\ref{sec:benchmark} extends the analysis to a comparative benchmarking across different semiconductor manufacturers, spanning the wider SiC MOSFET market.
 
 \begin{figure}[ht]
 	\centering
@@ -110,8 +110,10 @@ The overall switching trajectories of both generations are very similar, consist
 \end{figure}
 
 The corresponding frequency-domain spectra, shown in \fref{fig:MR_Gen_constE_Sweep_FD}, reveal a more substantial difference between the two generations than was visible in the time domain.
-In both device voltages, the second generation shows a lower resonance peak than the first generation, by roughly \SI{7}{dB} in \mi{V}{DS,LS} (from approximately \SI{102}{dB\micro V} to \SI{96}{dB\micro V}) and by roughly \SI{2}{dB} in \mi{V}{DS,HS} (from approximately \SI{110}{dB\micro V} to \SI{108}{dB\micro V}), together with a broadly lower spectral content of up to \SI{7}{dB} for the high-side.
+In both device voltages, the second generation shows a lower resonance peak than the first generation, by roughly \SI{7}{dB} in \mi{V}{DS,LS} (from approximately \SI{102}{dB\micro V} to \SI{96}{dB\micro V}) and by roughly \SI{2}{dB} in \mi{V}{DS,HS} (from approximately \SI{110}{dB\micro V} to \SI{108}{dB\micro V}).
+The broadband behavior of the active device remains the same between the two generations, while the broadband content of the passive device decreases by up to \SI{9}{dB} in the second generation, consistent with the lower resonance peak.
 Interestingly, the second generation shows a small second resonance at \SI{149}{MHz} in the high-side voltage, which is absent in the first generation.
+This is apparent in all measurements and increases with higher temperatures, suggesting that it is a real effect rather than a measurement artifact, but its origin cannot be traced back to a specific root cause in this work.
 
 In the commutation current, the second generation shows a similar improvement: the resonance peak decreases by roughly \SI{3}{dB}, from \SI{87}{dB\micro A} to \SI{84}{dB\micro A}, and the broadband content away from the resonance decreases by up to \SI{6}{dB}, consistent with the improvement already observed for the device voltages.
 This consistent improvement across both device voltages and the commutation current suggests that the underlying technology change benefits the switching transient broadly, rather than trading off one metric against another.
@@ -125,7 +127,7 @@ This consistent improvement across both device voltages and the commutation curr
 
 This is quantified in \fref{fig:MR_Gen_constE_Emission}, where the average FOM and the resonance peak value of the device voltages are plotted for both generations.
 The average FOM improves slightly but consistently from the first to the second generation for all four transients, most notably for the passive-off transient, which decreases from approximately \SI{89.5}{dB\micro V} to \SI{85}{dB\micro V}, while the remaining three transients improve by roughly \SI{1}{}-\SI{2}{dB}.
-The resonance peak value improves even more markedly for the active-off transient, decreasing from approximately \SI{106.5}{dB\micro V} to \SI{100}{dB\micro V}, while the passive-off resonance peak decreases only slightly, from approximately \SI{115}{dB\micro V} to \SI{114}{dB\micro V}.
+The resonance peak value improves even more markedly for the active-off transient.
 Taken together, unlike for the active chip area in the previous subsection, the second generation improves both the average FOM and the resonance peak of the device voltages, without a trade-off between the two metrics.
 
 Since the underlying design and process changes between the two generations are not disclosed here, this comparison cannot be traced back to a specific root cause.
@@ -134,12 +136,13 @@ Nevertheless, it demonstrates that a considerable improvement in EM emissions, u
 \FloatBarrier
 
 
-\subsection*{Benchmarking of SiC MOSFET Manufacturers}
+\subsection{Benchmarking of SiC MOSFET Manufacturers}
 \label{sec:benchmark}
-Beyond comparisons within Bosch's own device portfolio, the presented measurement environment also enables a comparative benchmarking of different semiconductor manufacturers, extending the analysis to the wider SiC MOSFET market.
+Having examined the active chip area and the SiC technology generation, this final subsection turns to a last approach to highlight device influence: the semiconductor manufacturer.
+Unlike the chip-area and technology-generation comparisons, which isolate the parameter of interest by matching a single switching-loss operating point, comparing manufacturers at just one such point would conflate the parameter under study with each device's individual loss-emission trade-off; instead, this comparison spans the entire trade-off curve of each device.
 For this purpose, four \SI{1200}{V} SiC MOSFETs in D2PAK packages from different manufacturers, matched in current rating to $\SI{60}{A}\pm\SI{5}{A}$, are compared, operated at $\mi{V}{DC}~=~\SI{800}{V}$ and $\mi{I}{L}~=~\SI{60}{A}$ at room temperature.
-To show the different trade-offs between switching energy and EM emissions between the different technologies, a gate-resistance sweep of $\mi{R}{G,ext} = [1, 5, 10, 20, 30, 50]~\si{\ohm}$ is performed for each device, with an overvoltage limit of \SI{1200}{V} as the stopping criterion; this sweep visualizes the trade-off between switching losses and EM noise emission for a given technology.
-For each operating point, the switching-loss energy \mi{E}{sw,tot} is calculated together with the average spectral emission of the active and passive switch voltages.
+To trace out this trade-off curve for each device, a gate-resistance sweep of $\mi{R}{G,ext} = [1, 5, 10, 20, 30, 50]~\si{\ohm}$ is performed, with an overvoltage limit of \SI{1200}{V} as the stopping criterion.
+For each operating point, the average FOM is calculated for the active and passive switch voltages, together with the switching-loss energy \mi{E}{sw,tot}.
 
 \begin{figure}[h]
 	\centering
@@ -148,7 +151,7 @@ For each operating point, the switching-loss energy \mi{E}{sw,tot} is calculated
 	\label{fig:MR_CompetitorAnalysis}
 \end{figure}
 
-The resulting comparison, plotted in \fref{fig:MR_CompetitorAnalysis}, confirms the expected trend of increasing average spectral emission with decreasing switching-loss energy for all four devices.
+The resulting comparison, plotted in \fref{fig:MR_CompetitorAnalysis}, confirms the expected trend of increasing average FOM with decreasing switching-loss energy for all four devices.
 However, at a given switching-loss energy, the four devices do not trade off losses for EM emissions equally well: at the lowest switching-loss energy of approximately \SI{0.7}{mJ}, the four devices emit within roughly \SI{2.5}{dB} of each other, whereas at the highest switching-loss energy of \SI{3.25}{mJ}, the spread widens to up to \SI{7}{dB}, driven primarily by one device trading off losses for EM emissions markedly worse than the other three.
 When this is compared to the sensitivity of the average FOM to the external parameters discussed in Section~\ref{sec:MR_External}, where a change of \SI{5}{dB} was observed for a change of \SI{10}{nH} in the commutation-loop inductance, it becomes clear that the choice of semiconductor technology can have a similar or even larger impact on EM emissions than the layout design of the commutation loop.
 This establishes EM noise emission as an additional design dimension alongside the classical trade-off between switching and conduction losses, and demonstrates the capability of the introduced measurement environment to benchmark competing semiconductor technologies on this basis.

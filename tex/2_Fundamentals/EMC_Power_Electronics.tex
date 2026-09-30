@@ -25,42 +25,51 @@ The subsequent discussion then considers how these emissions propagate through t
 \FloatBarrier
 
 \subsection{Emission Generation}
-Understanding how EM emissions arise from power-semiconductor devices requires linking the time-domain switching waveform to its frequency spectrum. 
-This link is established both analytically and graphically, where the latter makes the underlying mechanism easier to understand. 
-This subsection therefore adopts the graphical approach, first introduced by François Costa in \cite{graphical_costa_2008}. 
-The approach is first reviewed, and its differences from a real, measured spectrum are then discussed.
+The rapid voltage and current changes produced by switching power-semiconductor devices excite electromagnetic disturbances in the surrounding circuit.
+Understanding their frequency content requires relating the repetition rate and shape of the switching waveform to its spectrum.
+Following the graphical approach presented by Costa~\cite{graphical_costa_2008}, this subsection first establishes the spectrum of a periodic rectangular pulse and then examines the effects of finite transition times, waveform asymmetry, and resonance.
+Gaussian smoothing provides a theoretical reference for the influence of transition smoothness, while a simulated waveform illustrates the combined effects and the need for experimental validation.
+The analysis concerns the switching-voltage spectrum at the source, rather than the emissions at a system port, which additionally depend on the propagation paths discussed in the next subsection.
 
-\textbf{Zero-Order Element:} The simplest representation of a switching waveform is a rectangular function, shown in \fref{fig:Diss_SpectrumCreation_zeroOrder} and expressed as:
+\subsubsection*{From a Switching Pulse to a Periodic Spectrum}
+\textbf{Rectangular Pulse:} The rectangular pulse provides the simplest representation of a switching waveform and serves as the starting point for the analysis:
 
 \begin{equation}
 	s(t) = \mi{V}{DC}\cdot\text{rect}\left(\frac{t}{\text{d}\mi{T}{s}}\right), 
 \end{equation}
-with the DC-link voltage \mi{V}{DC}, the duty cycle \text{d}, and the switching period \mi{T}{s}.
-The waveform is transformed into the frequency domain using the Fourier transform, which results in a si-function where $\text{si}(x) = \frac{\sin(x)}{x}$.
+where \mi{V}{DC} is the DC-link voltage, $\text{d}$ is the duty cycle, and \mi{T}{s} is the switching period.
+Using the Fourier-transform convention with kernel $e^{-j2\pi ft}$ gives
 \begin{equation}
 	S(f) = \mi{V}{DC}\cdot\text{d}\mi{T}{s}\cdot\text{si}\left(\pi f\text{d}\mi{T}{s}\right),
 \end{equation}
-For a clearer graphical analysis this is converted to a double-logarithmic scale via
-\begin{equation}
-	S_\text{dB}(f) = \SI{20}{dB} \cdot \log_{10} \left| S(f) \right|.
-\end{equation}
-This representation is plotted on the right-hand side of the Figures~\ref{fig:Diss_SpectrumCreation_zeroOrder} to \ref{fig:Diss_SpectrumCreation_Heisenberg}.
-For the zero-order approximation (rect), the spectrum is constant at the DC component $\text{d}\mi{V}{DC}$ of the pulse up to the cut-off frequency
-\begin{equation}
-	\mi{f}{cut1} = \frac{1}{\pi\text{d}\mi{T}{s}},
-\end{equation}
-beyond which it follows the $\sfrac{1}{f}$ envelope of the si function, decreasing with a slope of \SI{-20}{dB/dec}.
-Graphically, \mi{f}{cut1} corresponds to the intersection of the DC-level asymptote and the \SI{-20}{dB/dec} slope.
+where $\text{si}(x) = \sin(x)/x$ and $\text{si}(0) = 1$.
+This expression describes the continuous spectrum of an isolated pulse and has units of voltage multiplied by time; it must therefore be distinguished from the voltage amplitudes of a periodic signal.
 
-For an infinitely long pulse chain, the single rectangular function is convolved with a Dirac comb:
+\textbf{Periodic Repetition:} To represent steady-state switching at a fixed duty cycle and switching frequency, the isolated pulse is repeated by convolution with a Dirac comb:
 \begin{equation}
-	\mi{s}{PC}(t) = s(t) * \sum_{n=-\infty}^{\infty} \delta(t-n\mi{T}{s})
+	\mi{s}{PC}(t) = s(t) * \sum_{n=-\infty}^{\infty} \delta(t-n\mi{T}{s}).
 \end{equation}
-which condenses the continuous spectrum into the classical discrete spikes at multiples of the switching frequency.
-Additionally, the factor \mi{T}{s} cancels out:
+With $\mi{f}{s} = 1/\mi{T}{s}$, its Fourier transform becomes
 \begin{equation}
-	\mi{S}{PC}(f) = S(f)\cdot\frac{1}{\mi{T}{s}}\sum_{n=-\infty}^{\infty} \delta(f-n\mi{f}{s})
+	\mi{S}{PC}(f) = \sum_{n=-\infty}^{\infty} \frac{S(n\mi{f}{s})}{\mi{T}{s}}\,\delta(f-n\mi{f}{s}).
 \end{equation}
+Periodic repetition thus produces discrete spectral lines at integer multiples of the switching frequency.
+Their complex Fourier-series coefficients are $S(n\mi{f}{s})/\mi{T}{s}$, with the DC coefficient equal to the mean voltage $\text{d}\mi{V}{DC}$.
+The magnitudes of these coefficients sample the continuous function $A(f) = |S(f)|/\mi{T}{s}$.
+The following discussion uses this two-sided convention; in a one-sided peak-amplitude spectrum, the magnitudes at positive frequencies are doubled, while the DC component remains unchanged.
+
+\textbf{Spectral Envelope:} For the graphical analysis, $A(f)$ is expressed relative to a voltage reference \mi{V}{ref} and plotted against logarithmic frequency:
+\begin{equation}
+	A_\text{dB}(f) = 20\log_{10}\left(\frac{A(f)}{\mi{V}{ref}}\right).
+\end{equation}
+Choosing $\mi{V}{ref} = \SI{1}{\micro\volt}$ gives a level in dB\textmu V.
+The low-frequency asymptote is $\text{d}\mi{V}{DC}$, while the high-frequency envelope decreases in proportion to $1/f$, corresponding to \SI{-20}{dB/dec}.
+Their intersection defines the first corner frequency,
+\begin{equation}
+	\mi{f}{cut1} = \frac{1}{\pi\text{d}\mi{T}{s}}.
+\end{equation}
+The corner marks the intersection of two asymptotes, rather than a sharp change in the exact spectrum, which contains the lobes and zeros of the si function.
+This distinction between the spectral envelope and individual spectral components underlies the graphical representations, beginning with the rectangular waveform in \fref{fig:Diss_SpectrumCreation_zeroOrder}.
 
 \begin{figure}[h]
 	\centering
@@ -70,22 +79,23 @@ Additionally, the factor \mi{T}{s} cancels out:
 \end{figure}
 \FloatBarrier
 
-\textbf{First-Order Element:} Since a real semiconductor is not a perfect switch and exhibits finite rise and fall times, the rectangular approximation of the switching waveform is not entirely accurate. 
-This behavior is better captured by a first-order hold element, as shown in \fref{fig:Diss_SpectrumCreation_firstOrder}.
-Here, the trapezoidal waveform is created by the convolution of two rectangular pulses, where one has the width of the duty cycle while the other has the width of the rise and fall times.
-This can be expressed as:
+\subsubsection*{Influence of the Transition Shape}
+\textbf{Equal Rise and Fall Times:} The rectangular approximation neglects the finite switching speed of real semiconductor devices.
+Introducing linear transitions of equal duration \mi{t}{r} gives a trapezoidal pulse, obtained by convolving the rectangular pulse with a unit-area rectangular smoothing kernel:
 \begin{equation}
 	s(t) = \mi{V}{DC}\cdot\text{rect}\left(\frac{t}{\text{d}\mi{T}{s}}\right) *\frac{1}{\mi{t}{r}} \text{rect}\left(\frac{t}{\mi{t}{r}}\right).
 \end{equation}
-The convolution in the time domain simplifies to a multiplication in the frequency domain, making the analysis of the emission spectrum more straightforward.
+The convolution smooths the switching edges while preserving the pulse area.
+Convolution in the time domain corresponds to multiplication in the frequency domain:
 \begin{equation}
 	S(f) = \mi{V}{DC}\cdot\text{d}\mi{T}{s}\cdot\text{si}\left(\pi f\text{d}\mi{T}{s}\right) \cdot \text{si}\left(\pi f \mi{t}{r}\right)
 \end{equation}
-The two resulting spectra are both si functions, but with different cut-off frequencies corresponding to the duty-cycle and rise/fall-time pulse widths, respectively; their multiplication therefore produces an emission spectrum with two distinct cut-off frequencies.
-After the second cut-off frequency, the emission spectrum decreases at a rate of \SI{-40}{dB/dec}.
+The second si factor introduces an additional corner frequency,
 \begin{equation}
-	\mi{f}{cut2} = \sfrac{1}{\pi\mi{t}{r}}
+	\mi{f}{cut2} = \frac{1}{\pi\mi{t}{r}}.
 \end{equation}
+For $\mi{t}{r} \ll \text{d}\mi{T}{s}$, the envelope has three distinct regions: an approximately constant low-frequency region, a \SI{-20}{dB/dec} region, and a \SI{-40}{dB/dec} region above \mi{f}{cut2}.
+As illustrated in \fref{fig:Diss_SpectrumCreation_firstOrder}, the pulse duration and transition duration therefore control different parts of the envelope: the former sets the first corner, while the latter determines the onset of the additional high-frequency attenuation.
 
 \begin{figure}[h]
 	\centering
@@ -94,55 +104,58 @@ After the second cut-off frequency, the emission spectrum decreases at a rate of
 	\label{fig:Diss_SpectrumCreation_firstOrder}
 \end{figure}
 
-\textbf{Asymmetric First-Order Element:} 
-Since a semiconductor is generally not switched at the same speed during turn-on and turn-off, the resulting transient is asymmetrical, exhibiting different rise and fall times.
-This is expressed through two convolutions of the rectangular function -- one from the right with the rise time, and one from the left with the fall time -- representing the rise and fall transients, respectively.
-To prevent interference with the opposite transition, a smooth exponential decay is applied to each convolution, ensuring that the rise and fall transients remain well separated.
-% TODO: verify citation key -- \cite{costa} vs. \cite{graphical_costa_2008} used above; confirm both refer to the intended source(s).
-A detailed discussion of the derivation and implications of this expression can be found in \cite{costa}.
-The principle is illustrated in \fref{fig:Diss_SpectrumCreation_asymTr} and can be expressed as:
+\textbf{Unequal Rise and Fall Times:}
+Power-semiconductor devices generally exhibit different switching speeds during turn-on and turn-off, resulting in unequal rise and fall times.
+To account for this asymmetry, the convolution-based approximation introduces separate transition-shaping terms for the rising and falling edges:
 \begin{equation}
 	s(t) = \mi{V}{DC} \cdot \text{rect}\left(\frac{t}{\text{d}\mi{T}{s}}\right) * \left(\mi{s}{sw,r} + \mi{s}{sw,f}\right)
 \end{equation}
-which results in the frequency domain in a sum of two first-order terms:
+where \mi{s}{sw,r} and \mi{s}{sw,f} represent the respective transition-shaping terms.
+In the graphical spectral approximation, the corresponding contributions are expressed as the sum of two si~functions:
 \begin{equation}
 	S(f) = \mi{V}{DC}\cdot\text{d}\mi{T}{s}\cdot\text{si}\left(\pi f\text{d}\mi{T}{s}\right) \cdot \left(\text{si}\left(\pi f \mi{t}{r}\right) + \text{si}\left(\pi f \mi{t}{f}\right)\right)
 \end{equation}
-The resulting spectrum has three cut-off frequencies, resulting from the switching frequency and the rise and fall times.
-Between the latter two, the spectrum falls off at rates of \SI{-20}{dB/dec} and \SI{-40}{dB/dec}, respectively.
-The width of these frequency regions depends on how different the rise and fall times are, which can be readily seen in the graphical representation in \fref{fig:Diss_SpectrumCreation_asymTr}.
+
+The two transition durations introduce distinct characteristic frequencies, $1/(\pi\mi{t}{r})$ and $1/(\pi\mi{t}{f})$.
+The longer transition begins to attenuate its spectral contribution at a lower frequency, allowing the faster edge to dominate between the two corners.
+Above both corners, the asymptotic envelope decreases at \SI{-40}{dB/dec}.
+Thus, unequal rise and fall times modify the intermediate-frequency behavior without changing the high-frequency asymptotic slope, as illustrated in \fref{fig:Diss_SpectrumCreation_asymTr}.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale = 1]{figures/2_Fundamentals/Diss_SpectrumCreation_asymTr.pdf}
-	\caption{Graphical representation of the creation of the emission spectrum from an asymptotic transient approximation of the switching transient.}
+	\caption{Switching waveform and spectral envelope for unequal rise and fall times.}
 	\label{fig:Diss_SpectrumCreation_asymTr}
 \end{figure}
 
-\textbf{Two-Slope First-Order Element:} 
-A very similar approach can be used if the transient is approximated not as a single linear rise but as a rise with two distinct slopes.
-This yields, for example, an idealized representation of the turn-on, where the initial voltage is defined by the commutation-loop inductance and the current rise, while the second slope represents the real voltage transient controlled by the gate driver.
-Again, this can be expressed by the convolution of two rectangular pulses with a third rectangular pulse:
+\textbf{Two-Slope Transitions:}
+Whereas the preceding approximation distinguishes the rising and falling edges, a two-slope approximation accounts for changes in slope within an individual transition.
+During turn-on, for example, the initial drain-source voltage change is influenced by the commutation-loop inductance and the current rise, while the subsequent voltage fall is governed by the gate drive and device capacitances.
+This behavior is represented by convolving the rectangular pulse with the sum of two rectangular smoothing functions of different durations:
 \begin{equation}
 	s(t) = \mi{V}{DC} \cdot \text{rect}\left(\frac{t}{\text{d}\mi{T}{s}}\right) * \left(\frac{1}{\mi{t}{r1}} \text{rect}\left(\frac{t}{\mi{t}{r1}}\right) + \frac{1}{\mi{t}{r2}} \text{rect}\left(\frac{t}{\mi{t}{r2}}\right)\right)
 \end{equation}
-which interestingly results in the same frequency-domain behavior as the asymmetric transient approximation.
+The corresponding frequency-domain expression is
 \begin{equation}
-	S(f) = \mi{V}{DC}\cdot\text{d}\mi{T}{s}\cdot\text{si}\left(\pi f\text{d}\mi{T}{s}\right) \cdot \left(\text{si}\left(\pi f \mi{t}{r1}\right) + \text{si}\left(\pi f \mi{t}{r2}\right)\right)	
+	S(f) = \mi{V}{DC}\cdot\text{d}\mi{T}{s}\cdot\text{si}\left(\pi f\text{d}\mi{T}{s}\right) \cdot \left(\text{si}\left(\pi f \mi{t}{r1}\right) + \text{si}\left(\pi f \mi{t}{r2}\right)\right)
 \end{equation}
+
+This expression has the same mathematical form as the preceding graphical approximation, but the two durations now characterize contributions within a switching edge rather than separate rising and falling edges.
+Their influence on the spectral envelope is illustrated in \fref{fig:Diss_SpectrumCreation_twoTr}.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale = 1]{figures/2_Fundamentals/Diss_SpectrumCreation_twoTr.pdf}
-	\caption{Graphical representation of the creation of the emission spectrum from a two-transient approximation of the switching transient.}
+	\caption{Switching waveform and spectral envelope for a two-slope transition approximation.}
 	\label{fig:Diss_SpectrumCreation_twoTr}
 \end{figure}
 
-\textbf{Asymmetric first-Order Element with Resonant Element:} 
-The next step towards a more realistic switching transient is to consider the resonant behavior of the circuit, arising mainly from the resonance between the commutation-loop inductance and the output capacitance of the turned-off device.
-This resonance differs slightly between the turn-on and turn-off transients, resulting in mismatched oscillation frequencies \mi{f}{on} and \mi{f}{off}.
-This effect was predicted and modeled in \cite{xu} and is observed consistently in the measurements presented in this thesis.
-The root cause is a different coupling of the oscillation to the passive device at turn-on compared with the active device at turn-off.
+\subsubsection*{Resonant Contributions}
+Whereas the preceding models describe monotonic transitions, practical switching waveforms often exhibit overshoot followed by damped oscillations.
+The underlying resonances arise from the interaction between the commutation-loop inductance and the output capacitance of the device in the off state.
+Their excitation adds spectral contributions at the resonance frequencies, with the magnitude and width governed by the excitation strength and damping.
+Differences in the effective capacitances and circuit conditions during turn-on and turn-off can produce distinct oscillation frequencies \mi{f}{on} and \mi{f}{off}, as modeled and predicted in~\cite{xu} and observed in the measurements presented in this thesis.
+\fref{fig:Diss_SpectrumCreation_res} illustrates the resulting modification of the switching-edge spectrum.
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale = 1]{figures/2_Fundamentals/Diss_SpectrumCreation_res.pdf}
@@ -150,27 +163,33 @@ The root cause is a different coupling of the oscillation to the passive device 
 	\label{fig:Diss_SpectrumCreation_res}
 \end{figure}
 
-The graphical analysis could be extended with further complexity; however, a real transient does not follow these idealized approximations exactly, which is unsurprising given the complex behavior of MOSFET models, including parasitic capacitances and non-linearities that influence the switching transient.
-% TODO: add citation for Nicolas Patin's Heisenberg-Gabor optimum (currently uncited).
+Taken together, the transition and resonance models explain individual features of the spectrum without reproducing the complete switching process.
+Voltage-dependent capacitances and interactions between the gate and power circuits further modify the waveform, limiting the quantitative accuracy of these idealized representations.
 
-\textbf{Optimal Switching Transient:} 
-Before presenting how the frequency spectrum of a real switching transient can actually be measured, a brief discussion of the Heisenberg-Gabor optimum, presented by Nicolas Patin, is given.
-It describes the mathematically optimal switching transient, with respect to its EM emission, for a given transition duration.
-The latter must be fixed, since otherwise every slower transient would emit less.
-% TODO: clarify this statement and add supporting citation -- the meaning of 'a minimal amount n derivatives' is unclear.
-Prior to this optimum, smooth transients were commonly characterized simply by having a minimal value of the n\textsuperscript{th} derivative of the switching waveform.
-Patin instead defines the optimal transient as a convolution of a rectangular pulse with a Gaussian function:
+\subsubsection*{Gaussian Smoothing as a Theoretical Reference}
+The preceding models also show why transition duration alone is insufficient to characterize high-frequency emissions: spectral decay depends on waveform smoothness.
+Piecewise-linear waveforms have discontinuities in their first derivatives, resulting in high-frequency spectral envelopes that decrease in proportion to $1/f^2$.
+For comparison, convolution with a Gaussian kernel produces an infinitely smooth waveform:
 \begin{equation}
-	s(t) = \mi{V}{DC} \cdot \text{rect}\left(\frac{t}{\text{d}\mi{T}{s}}\right) * \left(\frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{t^2}{2 \sigma^2}}\right)
+	s(t) = \mi{V}{DC} \cdot \text{rect}\left(\frac{t}{\text{d}\mi{T}{s}}\right) * \left(\frac{1}{\sqrt{2\pi}\sigma_t}e^{-\frac{t^2}{2\sigma_t^2}}\right),
 \end{equation}
-which yields, in the frequency domain:
+where $\sigma_t$ is the standard deviation of the smoothing kernel.
+Its Fourier transform yields
 \begin{equation}
-	S(f) = \mi{V}{DC} \cdot \text{d}\mi{T}{s} \cdot \text{si}(\pi f \text{d}\mi{T}{s}) \cdot e^{-\pi^2 \sigma_t^2 \omega^2} 
+	S(f) = \mi{V}{DC} \cdot \text{d}\mi{T}{s} \cdot \text{si}(\pi f\text{d}\mi{T}{s}) \cdot e^{-2\pi^2\sigma_t^2 f^2}.
 \end{equation}
+The Gaussian factor decays faster than any inverse power of frequency, contributing a term proportional to $-f^2$ to the logarithmic magnitude rather than a constant slope in dB/dec.
+In graphical terms, its slope becomes increasingly steep as frequency increases, rather than approaching the constant slope of the piecewise-linear approximations.
+\fref{fig:Diss_SpectrumCreation_Heisenberg} illustrates this distinction from the piecewise-linear models.
 
-In contrast to the other approximations, this spectrum has no linear slope but decreases with $f^2/\text{dec}$.
-Although this transient behavior would be catastrophic for switching losses -- since it slows the transition during the interval when both high voltage and high current are applied to the device -- it is optimal from an EM-emission perspective.
-For the detailed discussion of the Heisenberg-Gabor optimum, the reader is highly encouraged to study the original publication by Nicolas Patin~\cite{Patin_HeisenbergGabor}.
+As discussed by Patin~\cite{Patin_HeisenbergGabor}, the Gaussian kernel attains the Heisenberg-Gabor minimum time-frequency uncertainty product when temporal and spectral widths are defined by their RMS spreads.
+In this sense, it achieves the narrowest spectral spread for a given temporal spread.
+To distinguish the benefit of waveform shaping from that of simply slowing the transition, comparisons must use a consistent measure of transition duration.
+Because the Gaussian function has no finite beginning or end, an effective duration, such as the 10\%--90\% transition interval, is needed for practical comparisons with finite ramps.
+
+While this represents the mathematical optimum for emitted EM noise, this switching transient would be catastrophic for switching losses.
+This shape prolongs the interval during which substantial voltage and current are simultaneously present in the device.
+The Gaussian waveform therefore provides a theoretical reference for spectral concentration, while practical optimization must balance the spectral benefit against switching losses.
 
 \begin{figure}[h]
 	\centering
@@ -179,20 +198,17 @@ For the detailed discussion of the Heisenberg-Gabor optimum, the reader is highl
 	\label{fig:Diss_SpectrumCreation_Heisenberg}
 \end{figure}
 
-\textbf{Simulated Switching Transients:}
-The preceding discussion presented the theoretical graphical analysis of switching transients and their emission spectra, providing an intuitive understanding of how the time-domain switching behavior maps to the frequency-domain emission spectrum.
-This paragraph builds on that analysis by using simulated switching transients to illustrate how a more realistic emission spectrum is likely to look compared to the idealized graphical approximations discussed above.
-Such simulations provide a valid basis for a qualitative, first-order analysis of the emission spectrum.
-
-However, these simulations must be interpreted with caution in the high-frequency range -- here defined as all frequencies above the resonance frequency -- for two reasons.
-First, the simulation models are fitted to conventional measurement data, predominantly the double-pulse test, which fails to capture signal components below the noise floor, as introduced in Subsection \ref{sec:MeasurementLimitation}; a model without training data in a given region can only extrapolate from the available data, so, prior to this work, the frequency-domain simulation results of a SiC MOSFET could not be verified in the high-frequency range.
-Second, the high-frequency behavior of the spectrum strongly depends on the solver used in the simulation environment: conventional solvers approximate the transient between simulation steps using linear interpolation, which -- consistent with the first-order hold approximation discussed above -- yields the second-worst spectral roll-off, better only than a direct step.
+\subsubsection*{Simulated Spectra and the Need for Measurement}
+\textbf{Interpretation of a Simulated Waveform:}
+\fref{fig:IntroFullSpec} shows the PSpice-simulated drain-source voltage of a hard-switched \SI{1200}{\volt} SiC MOSFET and its spectrum.
+Unlike the preceding piecewise-linear approximations, the simulated transitions follow a complex, nonlinear MOSFET model that describes the device behavior and its interaction with the surrounding circuit.
+The graphical approximations therefore serve as a guide for interpreting the spectrum, rather than an exact description of the simulated waveform.
 
 \begin{figure}[ht]
 	\begin{subfigure}{\textwidth}
 		\centering
 		\input{"figures/1_Introduction/DPT_TD_intro.tex"}
-		\caption{Time domain PSpice simulation of the drain-source voltage of a hard-switched SiC-MOSFET.}
+		\caption{PSpice-simulated drain-source voltage of a hard-switched SiC MOSFET.}
 	\end{subfigure} %
 	\par % Line break to stack subfigures
 	\vspace{0.5cm}
@@ -200,28 +216,47 @@ Second, the high-frequency behavior of the spectrum strongly depends on the solv
 		\includegraphics[scale = 1]{figures/1_Introduction/DPT_FD_intro.png}
 		\caption{FFT of the simulated switching transient showing frequency regions dominated by different waveform phases.}
 	\end{subfigure}
-	\caption{Explanation of occurrence of noise spectrum of a switched voltage waveform.}\label{fig:IntroFullSpec}
+	\caption{Time-domain switching waveform and corresponding simulated voltage spectrum.}\label{fig:IntroFullSpec}
 \end{figure}
 
-The PSPICE-simulated waveform of a \SI{1200}{\volt} hard-switched SiC MOSFET in an ideal commutation loop is shown in \fref{fig:IntroFullSpec}, both for its time-domain and frequency-domain behavior.
-As predicted by the theoretical analysis above, the DC-component and the \SI{-20}{dB/dec} region are clearly visible in the frequency-domain plot.
-While the DC-component is fixed by the application ($\text{d}\mi{V}{DC}$), the \SI{-20}{dB/dec} region can be shifted by the switching frequency and the modulation scheme, providing valuable spectral improvements at little or no cost to the overall system behavior -- one such example, introduced in \cite{some_paper}, is a slight random variation of the switching frequency, which spreads the spectral lines and reduces peak emissions.
-Beyond the second cut-off frequency, the high-frequency behavior of the spectrum is instead predominantly determined by the switching behavior of the power-semiconductor device itself, resulting in a more complex spectral shape than the constant \SI{-60}{dB/dec} roll-off predicted by a purely linear approximation.
-Not all features of the simulated spectrum are physical, however: the peak at \SI{900}{MHz}, for instance, is merely a numerical artifact of the solver rather than a property of the device.
+The low-frequency level and approximately \SI{-20}{dB/dec} region follow the rectangular-pulse approximation, whereas the spectrum exhibits a more complex structure at higher frequencies.
 
-Accurately capturing this genuine high-frequency behavior -- rather than extrapolated model behavior and solver artifacts -- is therefore essential for trustworthy simulation models and reliable predictions of the emission spectrum, and is a central aim of this thesis, ultimately enabling future optimization of the switching performance of power-semiconductor devices.
+The regions labeled ``DC'', ``Operating Point'', and ``Transient'' in \fref{fig:IntroFullSpec} highlight the dominant influences on the spectrum and the corresponding possibilities for modifying it.
+The ``DC'' region represents the low-frequency plateau of the envelope, whose level is set by the DC-link voltage and duty cycle.
+In the ``Operating Point'' region, the spectrum can be modified through the switching frequency, duty cycle, and modulation strategy.
+In the ``Transient'' region, the duration and shape of the switching edges and the associated oscillations become particularly important, making the gate drive, device characteristics, and circuit parasitics relevant parameters for spectral optimization.
+These regions indicate dominant influences rather than an exclusive separation: changes in operating conditions can also affect the switching transients, while the DC-link voltage scales the spectrum as a whole.
+
+\textbf{Limits of the Prediction:}
+A physically plausible time-domain waveform does not establish the accuracy of its high-frequency spectrum, particularly above the dominant switching resonance.
+The first limitation concerns model validation: calibration against conventional double-pulse measurements does not validate spectral components below the measurement noise floor, as discussed in the upcoming Subsection~\ref{sec:MeasurementLimitation}.
+Agreement in switching time and overshoot can therefore coexist with substantial errors in much smaller high-frequency components.
+The second limitation concerns numerical processing: solver tolerances, time steps, resampling, and the FFT record length and window all affect the computed spectrum.
+Piecewise-linear interpolation, for example, can introduce derivative discontinuities and an artificial high-frequency tail.
+The peak near \SI{900}{MHz} in \fref{fig:IntroFullSpec} illustrates the need to distinguish physical effects from numerical artifacts.
+No physical mechanism could be identified to explain this peak, and it could be altered by changing the solver settings, indicating a numerical rather than a physical origin.
+Such features should therefore be checked by refining the simulation settings, for example by reducing the time step and tightening solver tolerances.
+Even if the spectrum remains unchanged under these checks, comparison with measurements is still required to validate the underlying model.
+
+The graphical models provide a basis for interpreting the source spectrum, and simulation combines the underlying mechanisms within a circuit model.
+Establishing the accuracy of the resulting predictions nevertheless requires measurements with sufficient bandwidth and dynamic range to resolve the relevant spectral components.
+In the absence of a suitable measurement environment, none of the models considered here has yet been experimentally validated for predicting these small high-frequency spectral components.
+Providing this experimental basis for model validation and the subsequent optimization of power-semiconductor switching behavior is a central aim of this thesis.
 
 \FloatBarrier
-\subsection{Propagation Paths in Generic Inverter Application}
-This subsection shortly discusses the classical propagation paths in an inverter application, which transports the EM noise, generated by the semiconductor devices outside of the inverter two the systems ports.
-Since EM noise is only relevant for the interaction between electrical systems, the system-level emissions are in the end the only relevant ones.
-If there was a perfect mitigation of the propagation paths to keep the noise within the inverter, the generation of the noise would become irrelevant - however that is practically impossible, motivating this work.
+\subsection{Propagation Paths in a Generic Inverter Application}
+The switching transients discussed above excite noise currents that propagate through the inverter and its connected components to the external system ports.
+The resulting conducted emissions depend on both the semiconductor switching behavior and the frequency-dependent impedances of these propagation paths.
+Although filtering and careful layout can reduce the coupling to external systems, complete suppression over the entire frequency range is not practically achievable.
+Characterizing the noise source therefore remains essential for understanding and mitigating system-level emissions.
 
-The equivalent circuit of a classical machine inverter application is shown for one of the three phases in \fref{fig:ESB_CMDM_Propagation}.
-It consists of a inverter half-bridge, the machine represented by the machine windinds as a inductive load, its parasitic capacitances, and induced voltage of the rotation of rotor.
-Additionally a Line Impedance Stabilization Network (LISN) is included to give a fixed impedance return path for the ground currents.
-It consits of a classical \pi filter, with a series inductor and two shunt capacitors to provide a low-impedance path for high-frequency noise while keeping outside noise (mainly of the power supply) outside of the system.
-The $CR$ network on the DUT side additionally provides a measurement port over the resistance for the measurement of the ground currents.
+\fref{fig:ESB_CMDM_Propagation} shows a simplified equivalent circuit for one phase of a three-phase machine inverter.
+The circuit comprises an inverter half-bridge, the DC supply cables, and a machine represented by its winding impedance, the back electromotive force induced by rotor rotation, and parasitic capacitances to ground.
+In an electric vehicle, this ground reference typically corresponds to the chassis rather than either DC supply conductor.
+A line impedance stabilization network (LISN) is inserted between the power supply and the device under test (DUT) to establish a defined, frequency-dependent impedance within the specified measurement band and to attenuate disturbances from the supply.
+In the illustrated equivalent circuit, the LISN is represented by a $\pi$-type filter with a series inductor and shunt capacitive branches.
+The series $RC$ branch on the DUT side couples high-frequency disturbances to the measurement port, where the voltage across the termination resistance is measured.
+This voltage is related to the noise current through the LISN transfer impedance; it is not a direct measurement of the total chassis current.
 
 \begin{figure}[h]
 	\centering
@@ -230,54 +265,123 @@ The $CR$ network on the DUT side additionally provides a measurement port over t
 	\label{fig:ESB_CMDM_Propagation}
 \end{figure}
 
-Additionally to the conventional schemtic of an inverter, the parsitic ground capacitances \mi{C}{DC+}, \mi{C}{DC-}, \mi{C}{SwN} and \mi{C}{SP} are included, which create the respective paths for common-mode noise to propagate to the system ground.
+The conducted noise currents at the DC supply interface can be decomposed into differential-mode (DM) and common-mode (CM) components.
+DM currents flow in opposite directions in the two supply conductors and close their loop through the power circuit, without requiring a ground return path.
+They arise from switching-related fluctuations in the inverter input current; their propagation toward the supply depends, among other factors, on the impedance of the DC-link capacitor and the supply wiring.
+CM currents, by contrast, flow in the same direction in both supply conductors and return through the chassis and capacitive or intentional connections to ground.
+
+The parasitic capacitances \mi{C}{DC+} and \mi{C}{DC-} couple the positive and negative DC rails to ground, while \mi{C}{SwN} and \mi{C}{SP} represent the ground coupling of the switching node and the machine star point, respectively.
+Rapid changes in the voltage across these capacitances drive displacement currents according to $i_C = C\,\sddt{\mi{v}{C}}$.
+Their contributions therefore depend on both the capacitance values and the local voltage transients, rather than on capacitance alone.
+The relative capacitance values are application-dependent, so no universal ordering can be assumed.
+For equal DC-rail capacitances, equal and opposite rail-voltage variations relative to ground produce cancelling ground-current contributions.
+If both rail voltages instead rise or fall together relative to the chassis, the currents through the two capacitances flow in the same direction and add rather than cancel, thereby contributing to the common-mode current even when the capacitances are equal.
+
+The switching-node capacitance provides a direct coupling path from the rapidly changing switching voltage to the chassis.
+In contrast, noise currents flowing through the machine star-point capacitance must first pass through the motor windings.
+The winding impedance can therefore limit the current through this path, with the degree of attenuation depending on frequency.
+Consequently, a larger star-point capacitance does not necessarily imply a larger contribution at the measurement port.
+The chassis currents divide among the available return paths according to their impedances; in the illustrated setup, the LISN branches and DC supply cables provide defined paths back to the inverter.
+This lumped equivalent circuit illustrates the principal coupling mechanisms, but accurate high-frequency predictions for a real system require a more detailed model that accounts for distributed cable and winding effects.
+
+For the modal decomposition, \mi{I}{LISNp} and \mi{I}{LISNn} denote the noise currents in the positive and negative DC supply conductors at the LISN interface, with both reference directions chosen from the supply toward the inverter.
+The DM and CM components are then defined as
+\begin{equation}
+	\mi{I}{DM} = \frac{\mi{I}{LISNp} - \mi{I}{LISNn}}{2}
+\end{equation}
+and
+\begin{equation}
+	\mi{I}{CM} = \frac{\mi{I}{LISNp} + \mi{I}{LISNn}}{2}.
+\end{equation}
+With this convention, \mi{I}{CM} is the common-mode component per conductor, and the sum of the two conductor currents is $2\mi{I}{CM}$.
+Applying these equations to measured currents separates the DM and CM contributions at the LISN interface.
+Because this separation relies on adding and subtracting the two currents, their relative timing or phase must be known.
+These relations apply to instantaneous currents or complex frequency-domain quantities, not to independently measured spectral magnitudes, because the relative phase must be retained.
+The resulting DM and CM spectra each reflect both the excitation by the semiconductor devices and the transfer through the corresponding propagation paths.
 
 
-\subsection{Electromagnetic Noise on System-Level}
-This thesis aims to investigate the intrinsic EM emissions of power semiconductor devices.
-In the end, these are only relevant for the compliance with EMC standards, which are defined by international committees such as CISPR (Comité International Spécial des Perturbations Radioélectriques).
-CISPR is the international committee, operating under the International Electrotechnical Commission (IEC), that develops standards for the measurement and limitation of electromagnetic disturbances. 
-These standards define the test setup, measurement equipment, and disturbance limits that a device under test (DUT) must comply with. 
-For automotive applications, CISPR 25 specifies the conducted and radiated emission limits and test methods for components installed in vehicles, while CISPR 16 specifies the measurement equipment, such as the LISN and the measurement receiver, that these test methods rely on. 
-The following section describes this test environment and how it is applied to characterize the EM emissions of the power-electronic converter investigated in this thesis.
+\subsection{From Switching Sources to System-Level Emissions}
+The preceding subsections considered the generation and propagation of electromagnetic disturbances separately.
+\fref{fig:SourceToSystem} combines these two aspects to illustrate how the switching waveforms of a half-bridge converter contribute to the voltage spectrum at a LISN measurement port.
+The example uses simulated switching waveforms and artificial transfer functions to demonstrate the interaction between the noise sources and their propagation paths, rather than to predict the emissions of a specific prototype.
+
+\fref{fig:SourceToSystem_TD} shows the drain-source voltages of the actively switched device and the complementary, passively commutated device.
+Their different transition shapes and oscillations produce the source spectra shown in \fref{fig:SourceToSystem_Spectra}.
+These spectra describe the disturbances at the devices, but do not directly indicate their contributions at the LISN measurement port.
+As illustrated by the equivalent circuit in \fref{fig:SourceToSystem_Circuit}, each source is coupled to the measurement port through a different path.
+
+The corresponding transfer functions in \fref{fig:SourceToSystem_Transfer} describe how strongly each frequency component is transmitted to the LISN measurement port.
+Multiplying each complex source spectrum by its transfer function gives its contribution to the port voltage.
+The total voltage is then obtained by adding these contributions with their relative phase retained, not by adding the plotted spectral magnitudes.
 
 \begin{figure}
-	\begin{subfigure}[t][][]{0.48\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\centering
 		\raisebox{7mm}{\import{./figures/}{1_Introduction/NoiseGenerationSystem/DPT_TD.tex}}
-		\subcaption{Active and passive switching signals in time domain.}
-		\label{fig:SnM_DPT_TD}
+		\subcaption{Drain-source voltages of the active and passive devices.}
+		\label{fig:SourceToSystem_TD}
 	\end{subfigure}
 	\hfill
-    \begin{subfigure}[t][][]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
 		\centering
 		% \import{./figures/}{Snap_n_Mirror_vertical_v3_tex.pdf_tex}
 		\import{./figures/}{GenerationVSpropagation_Converter.pdf_tex}
-		\subcaption{Simplified circuit diagram of half-bridge converter.}
-		\label{fig:SnM_DPT_TD}
+		\subcaption{Simplified equivalent circuit of the half-bridge converter.}
+		\label{fig:SourceToSystem_Circuit}
 	\end{subfigure}
 
 	\vspace{0.5cm}
 	\begin{subfigure}[t]{0.48\textwidth}
 		\centering
 		\import{./figures/}{1_Introduction/NoiseGenerationSystem/DPT_FD.tex}
-		\subcaption{Spectrum of active and passive switch.}
-		\label{fig:SnM_snapped_TD}
+		\subcaption{Voltage spectra of the active and passive devices.}
+		\label{fig:SourceToSystem_Spectra}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.48\textwidth}
 		\centering
 		\import{./figures/}{1_Introduction/NoiseGenerationSystem/TF_FD.tex}
-		\subcaption{Artificial transfer function from passive and active switch to LISN measurement port.}
-		\label{fig:SnM_snapped_FD}
+		\subcaption{Artificial transfer functions from the devices to the LISN measurement port.}
+		\label{fig:SourceToSystem_Transfer}
 	\end{subfigure}
     
 	\vspace{0.5cm}
     \begin{subfigure}[t]{0.98\textwidth}
 		\centering
 		\import{./figures/}{1_Introduction/NoiseGenerationSystem/System_FD.tex}
-		\subcaption{Effective LISN spectrum generated by passive and active switch.}
-		\label{fig:SnM_snapped_FD}
+		\subcaption{Individual contributions and total LISN voltage spectrum with a hypothetical emission limit.}
+		\label{fig:SourceToSystem_LISN}
 	\end{subfigure}
-	\caption{Schematic explanation of noise propagation within a half-bridge converter. Simulated switching waveforms and artificial transfer functions.}
+	\caption{Interaction of switching noise sources and propagation paths in a half-bridge converter, illustrated using simulated waveforms and artificial transfer functions. The dashed limit is hypothetical and does not represent a CISPR compliance assessment.}
+	\label{fig:SourceToSystem}
 \end{figure}
+
+\fref{fig:SourceToSystem_LISN} shows the individual contributions and the resulting LISN voltage spectrum.
+The frequency dependence of the propagation paths changes the relative importance of the two sources and introduces spectral peaks and attenuation.
+Consequently, a prominent feature at the measurement port need not correspond to a prominent feature in either source spectrum alone.
+Reducing system-level emissions therefore requires considering both the switching behavior and the paths through which its disturbances propagate.
+Whether the resulting emissions are acceptable is assessed using standardized measurement procedures and limits, introduced in the following subsection.
+
+\subsection{Standardized EMC Measurements and Limits}
+Standardized emission measurements provide reproducible conditions for assessing the disturbances generated by a device under test (DUT).
+CISPR, the International Special Committee on Radio Interference within the International Electrotechnical Commission (IEC), develops standards for such measurements and their limits.
+For automotive applications, CISPR 25 specifies methods and limits for conducted and radiated disturbances.
+The CISPR 16 series provides basic specifications for measuring apparatus and measurement methods, which are referenced where applicable by product standards.
+
+Conducted emission measurements assess disturbances coupled into the connected wiring.
+In the voltage method, a LISN establishes a defined supply impedance and couples the disturbance voltage to a measurement receiver.
+Radiated emission measurements instead use antennas to measure the electromagnetic field produced by the DUT and its wiring under specified test conditions.
+The antenna type, position, and polarization, together with the arrangement of the DUT and cables, are prescribed to obtain reproducible results.
+
+In many EMC test schemes, conducted emissions are assessed up to approximately \SI{30}{\mega\hertz}, while radiated measurements cover higher frequencies into the gigahertz range.
+This division is not universal: the applicable frequency ranges depend on the product standard and measurement method, and automotive conducted-emission tests can extend beyond \SI{30}{\mega\hertz}.
+
+Automotive inverter and converter suppliers may also be required to meet customer-specific conducted-emission limits up to \SI{100}{\mega\hertz} or higher.
+Such requirements can supplement standardized tests with additional frequency ranges or stricter limits defined by the vehicle manufacturer rather than by the standard itself.
+Their purpose is to reduce interference risks during component integration and to provide margin for the final vehicle-level EMC assessment.
+Compliance at component level therefore supports, but does not guarantee, compliance of the complete vehicle, whose emission behavior also depends on the installed wiring and interactions between components.
+
+The measured levels are compared with frequency-dependent limits for the applicable test method and limit class.
+These limits must be used together with the specified receiver bandwidth and detector, such as peak, quasi-peak, or average, as applicable.
+A simulated FFT spectrum cannot therefore be compared directly with a compliance limit unless the measurement conditions and receiver response are represented consistently.
+The hypothetical limit in \fref{fig:SourceToSystem_LISN} is not taken from a standard; it serves only to illustrate how the resulting LISN voltage spectrum can exceed a chosen threshold in particular frequency ranges.

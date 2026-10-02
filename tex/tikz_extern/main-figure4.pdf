@@ -3613,7 +3613,7 @@ q
 BT
 /F16 11.95517 Tf
 1 0 0 1 12.137 38.29 Tm [(V)81(oltage)-325(in)-327(dB)]TJ
-/F133 11.95517 Tf
+/F131 11.95517 Tf
 1 0 0 1 82.855 38.29 Tm [(\265)]TJ
 /F16 11.95517 Tf
 1 0 0 1 89.359 38.29 Tm [(V)]TJ
@@ -3819,7 +3819,7 @@ endobj
 << /D [ 5 0 R /XYZ 76.48 73.558 null ] >>
 endobj
 6 0 obj
-<<  /ColorSpace 3 0 R /Pattern 2 0 R /ExtGState 1 0 R  /Font << /F16 9 0 R /F46 10 0 R /F133 11 0 R /F49 12 0 R /F47 13 0 R /F53 14 0 R >> /ProcSet [ /PDF /Text ] >>
+<<  /ColorSpace 3 0 R /Pattern 2 0 R /ExtGState 1 0 R  /Font << /F16 9 0 R /F46 10 0 R /F131 11 0 R /F49 12 0 R /F47 13 0 R /F53 14 0 R >> /ProcSet [ /PDF /Text ] >>
 endobj
 1 0 obj
 <<>>
@@ -4302,16 +4302,16 @@ endobj
 << /Type /Pages  /Count 1 /Kids [ 5 0 R ] >>
 endobj
 35 0 obj
-<< /Names [ (page.6) 8 0 R ] /Limits [ (page.6) (page.6) ] >>
+<< /Names [ (page.14) 8 0 R ] /Limits [ (page.14) (page.14) ] >>
 endobj
 36 0 obj
 << /Dests 35 0 R >>
 endobj
 37 0 obj
-<< /Type /Catalog /Pages 15 0 R /Names 36 0 R /PageMode/UseOutlines/ViewerPreferences<</Duplex/DuplexFlipLongEdge>>/PageLabels<</Nums[0<</S/D /St 6>>]>> /OpenAction 4 0 R >>
+<< /Type /Catalog /Pages 15 0 R /Names 36 0 R /PageMode/UseOutlines/ViewerPreferences<</Duplex/DuplexFlipLongEdge>>/PageLabels<</Nums[0<</S/D /St 14>>]>> /OpenAction 4 0 R >>
 endobj
 38 0 obj
-<< /Author(\376\377\000R\000o\000b\000e\000r\000t\000\040\000K\000r\000a\000g\000l)/Title(\376\377\000M\000e\000t\000h\000o\000d\000o\000l\000o\000g\000y\000\040\000f\000o\000r\000\040\000M\000e\000a\000s\000u\000r\000i\000n\000g\000\040\000I\000n\000t\000r\000i\000n\000s\000i\000c\000\040\000E\000M\000C\000-\000R\000e\000l\000e\000v\000a\000n\000t\000\040\000E\000m\000i\000s\000s\000i\000o\000n\000s\000\040\000o\000f\000\040\000P\000o\000w\000e\000r\000\040\000S\000e\000m\000i\000c\000o\000n\000d\000u\000c\000t\000o\000r\000\040\000D\000e\000v\000i\000c\000e\000s)/Subject(\376\377\000D\000i\000s\000s\000e\000r\000t\000a\000t\000i\000o\000n)/Creator(LaTeX with hyperref)/Keywords(\376\377\000I\000n\000s\000t\000i\000t\000u\000t\000e\000\040\000o\000f\000\040\000R\000o\000b\000u\000s\000t\000\040\000P\000o\000w\000e\000r\000\040\000S\000e\000m\000i\000c\000o\000n\000d\000u\000c\000t\000o\000r\000\040\000S\000y\000s\000t\000e\000m\000s) /Producer (LuaTeX-1.24.0) /CreationDate (D:20260924144414+02'00') /ModDate (D:20260924144414+02'00') /Trapped /False /PTEX.FullBanner (This is LuaHBTeX, Version 1.24.0 (MiKTeX 26.2)) >>
+<< /Author(\376\377\000R\000o\000b\000e\000r\000t\000\040\000K\000r\000a\000g\000l)/Title(\376\377\000M\000e\000t\000r\000o\000l\000o\000g\000y\000\040\000f\000o\000r\000\040\000I\000n\000t\000r\000i\000n\000s\000i\000c\000\040\000E\000M\000C\000-\000R\000e\000l\000e\000v\000a\000n\000t\000\040\000E\000m\000i\000s\000s\000i\000o\000n\000s\000\040\000o\000f\000\040\000P\000o\000w\000e\000r\000\040\000S\000e\000m\000i\000c\000o\000n\000d\000u\000c\000t\000o\000r\000\040\000D\000e\000v\000i\000c\000e\000s)/Subject(\376\377\000D\000i\000s\000s\000e\000r\000t\000a\000t\000i\000o\000n)/Creator(LaTeX with hyperref)/Keywords(\376\377\000I\000n\000s\000t\000i\000t\000u\000t\000e\000\040\000o\000f\000\040\000R\000o\000b\000u\000s\000t\000\040\000P\000o\000w\000e\000r\000\040\000S\000e\000m\000i\000c\000o\000n\000d\000u\000c\000t\000o\000r\000\040\000S\000y\000s\000t\000e\000m\000s) /Producer (LuaTeX-1.24.0) /CreationDate (D:20261001144600+02'00') /ModDate (D:20261001144600+02'00') /Trapped /False /PTEX.FullBanner (This is LuaHBTeX, Version 1.24.0 (MiKTeX 26.2)) >>
 endobj
 xref
 0 39
@@ -4351,11 +4351,11 @@ xref
 0000132714 00000 n 
 0000129352 00000 n 
 0000134572 00000 n 
-0000134650 00000 n 
-0000134686 00000 n 
-0000134876 00000 n 
+0000134653 00000 n 
+0000134689 00000 n 
+0000134880 00000 n 
 trailer
-<< /Size 39 /Root 37 0 R /Info 38 0 R /ID [ <2FB3EC127BDA6BCA6E565AB4FE9D29E5> <2FB3EC127BDA6BCA6E565AB4FE9D29E5> ] >>
+<< /Size 39 /Root 37 0 R /Info 38 0 R /ID [ <1A0AAA4536AB848433B15A914DF69F8B> <1A0AAA4536AB848433B15A914DF69F8B> ] >>
 startxref
-136026
+135967
 %%EOF

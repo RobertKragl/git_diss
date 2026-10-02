@@ -10,7 +10,7 @@ Because the shunt is intended to resolve high-frequency commutation currents whi
 Accordingly, the verification is divided into a small-signal characterization using a vector network analyzer (VNA) and a large-signal validation using a passive shunt reference measurement.
 The small-signal tests confirm the transfer functions of the low-pass and high-pass channels, while the large-signal tests assess the probe response under realistic switching conditions and verify that the active shunt does not introduce relevant distortion into the measured waveform.
 
-\subsection{Small-Signal}
+\subsection*{Small-Signal}
 
 The VNA measurements of the low-pass and high-pass channels are shown in \fref{fig:VNA_Shunt_LP} and \fref{fig:VNA_Shunt_HP}.
 For the low-pass path, the measured transfer includes the complete signal chain from the passive shunt through the compensation amplifier and low-pass filter to the VNA input.
@@ -46,7 +46,7 @@ Accordingly, \mi{a}{shunt} is calculated as
 
 
 
-\subsection{Large-Signal Verification with a High-Ohmic Passive Shunt}
+\subsection*{Large-Signal Verification with a High-Ohmic Passive Shunt}
 For the active current shunt, no dedicated \SI{50}{\Omega} pulse generator is available because no suitable high-frequency attenuator with low input impedance and \SI{50}{\Omega} output is available.
 For verification at \SI{60}{A}, an input resistance of approximately \SI{13}{\Omega} would be required, which is not available.
 
@@ -106,7 +106,7 @@ This indicicated that the shield mainly shields the high-pass path of the active
 	\caption{Frequency-domain measurement results of PMTX05, at 800V, 30A room temperature, influence of the shield on the measurement.}\label{fig:Influence_Current_Shield_FD}
 \end{figure}
 
-\subsection{Noise Performance Characterization}
+\subsection*{Noise Performance Characterization}
 The final step of this section is not a strict verification, but rather a characterization of the shunt's noise behavior.
 This analysis is important because the active current shunt combines a low-pass path optimized for the switching waveform with a high-pass path intended to resolve the commutation transient.
 The key question is therefore whether the additional gain and bandwidth of the active path raise the noise floor in a way that degrades the measurement of either the low-frequency current waveform or the high-frequency current spike.

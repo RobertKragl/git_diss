@@ -1,0 +1,67 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+\section{State of the Art: Semiconductor-Focused Electromagnetic Emission Measurements}
+
+In EMC analysis, it is well established that the switching operation of power semiconductor devices is the primary source of both conducted and radiated emissions~\cite{qin_spectral_2025,oswald_analysis_2011}. 
+However, noise propagation within the system depends on passive components and layout, which can be represented as a transfer function from the chip terminals to the LISN or antenna ports~\cite{xie_high_2019,phukan_characterization_2023}. 
+Therefore, EMC analysis can be divided into two categories: (1) electromagnetic (EM) noise generation by the semiconductor device and (2) EM noise propagation through passive circuit elements to the measurement ports~\cite{hillenbrand_frequency_2016, takahashi_noise-source_2021, marlier_modeling_2012}. 
+This distinction is central to this thesis: the propagation path determines what is observed at an EMC port, whereas the semiconductor switching event determines the intrinsic excitation of that path.
+
+
+With respect to noise propagation, substantial research has focused on mitigating the propagation path within the system.
+Examples include optimization of the passive commutation-loop layout~\cite{domurat-linde_analysis_2012}, EMC filters~\cite{hillenbrand_frequency_2016, hillenbrand_generation_2019}, integration of additional ground capacitance~\cite{dalal_impact_2020, xie_high_2019}, and shielding layers~\cite{zhang_comprehensive_2023, huber_ultra-low_2017}.
+
+With respect to the noise source, two frequency ranges must be considered separately.
+For frequencies below \SI{10}{MHz}, the switched voltages and currents can be modeled using idealized trapezoidal waveforms~\cite{costa_graphical_2005, oswald_analysis_2011}. 
+Their spectra decrease linearly at \SI{-20}{dB/decade} (see Fig.~1), providing adequate accuracy for EMC evaluation in this frequency range.
+Engineers can improve EM noise generation in this frequency region by modifying converter operation, for example by adjusting switching frequency~\cite{xie_high_2019} or the modulation strategy~\cite{natarajan_state---art_2020,davari_pulse_2016}.
+
+
+However, at frequencies above \SI{10}{MHz}, EMC analysis becomes significantly more complex. 
+In this regime, the intrinsic switching characteristics of semiconductor devices dominate the emission spectrum, making accurate modeling and prediction more difficult~\cite{kragl_impact_2024}. 
+This dependence on switching behavior introduces challenges, such as production-induced variability and operating-point sensitivity. 
+At the same time, it creates opportunities for targeted EM noise optimization in future device and system developments.
+
+As a result, extensive research has focused on characterizing and modeling these high-frequency effects. 
+Broadly, this research can be divided into two methodological approaches: system-level experimental measurements and model-based simulations.
+
+\subsection*{System-Level Measurements}
+In experimental setups, various semiconductor technologies are tested within a commutation cell, and their emissions are measured using a LISN~\cite{apelsmeier_model_2020, takahashi_noise-source_2021, zhang_two-port_2020, tlig_conducted_2025, lemmon_methodology_2018, huber_ultra-low_2017} or antenna~\cite{radchenko_transfer_2014,domurat-linde_analysis_2012}. 
+This approach enables broad comparisons across semiconductor technologies.
+However, these measurements only capture the aggregated noise from all noise sources of the system, making it impossible to distinguish between individual switches or even specific switching events within the same device. 
+Consequently, the influence of individual device parameters on the EMC performance cannot be directly analyzed.
+Moreover, the results are highly sensitive to the passive setup surrounding the semiconductor device, which influences the noise propagation.
+Therefore, highly accurate calibration of the transfer functions is required. 
+
+\subsection*{Simulation-Based Approaches}
+To gain deeper insight into the influence of semiconductor behavior on EM noise generation, some researchers have turned to simulation-based approaches. 
+In these studies, behavioral models are parameterized to identify which device properties drive emissions in specific frequency bands~\cite{hillenbrand_sensitivity_2017, kragl_semiconductor-focused_2025, liu_modeling_2016, yuan_emi_2015}.
+However, such models are typically calibrated using data from conventional double-pulse tests and static measurements~\cite{van_der_broeck_simulating_2023,kragl_semiconductor-focused_2025}.
+As shown in this work, these calibration data are noise-limited in the high-frequency range, leaving the models without training data and preventing verification against measurements in this region.
+As a result, the accuracy of these simulations remains unconfirmed for EM noise analysis.
+
+This represents a fundamental challenge in current semiconductor-focused EMC analysis: existing experimental methods cannot isolate individual device contributions, while simulation approaches lack verified high-frequency behavior. 
+A measurement methodology is needed that directly characterizes intrinsic EM emissions at the semiconductor power terminals with sufficient bandwidth and signal-to-noise ratio (SNR).
+
+
+Standard drain-source voltage measurements with passive or differential probes become noise-limited above the device resonance frequency around \SI{100}{MHz}~\cite{labrousse_switching_2011, kragl_impact_2024}, while EMC issues in practice can occur up to \SIrange{400}{500}{MHz}.
+This upper limit reflects practical EMC laboratory experience rather than established scientific criteria.
+Above this range, observed EMC issues are typically driven by digital clocking (e.g., microcontrollers, FPGAs) rather than by power semiconductor switching.
+% Therefore, a measurement methodology covering up to approximately \SI{400}{MHz} is considered sufficient for characterizing EMC-relevant semiconductor emissions.
+
+\subsection*{Direct Measurement at Device Terminals}
+An initial approach for measuring device noise spectra above the resonance frequency was introduced for a discrete IGBT in~\cite{oswald_high-bandwidth_2011}. 
+This method employed a passive probe combined with a high-pass filter to isolate high-frequency components of the switching event.
+Building on this concept,~\cite{kragl_active_2025} introduced an extended setup to simultaneously measure both high-side and low-side SiC-MOSFETs using differential probes.
+
+This work provides three main contributions.
+First, sensors are developed for simultaneous measurement of all three intrinsic noise sources of a switching cell (high-side voltage, low-side voltage, and commutation current), with emphasis on achieving sufficient SNR.
+To this end, the voltage sensor of~\cite{kragl_active_2025} is redesigned for lower noise and reduced parasitic coupling, and is combined with a purpose-built high-frequency current sensor based on~\cite{shillaber_gigahertz_2020}.
+Second, dedicated post-processing algorithms are integrated to further reduce the residual noise floor and extend the usable analysis range beyond device resonance.
+Third, the measured signals are integrated into the switching-event-resolved framework of~\cite{kragl_impact_2024}, enabling direct correlation between intrinsic semiconductor emissions and switching-behavior parameters.
+
+To the best of the authors' knowledge, this work is the first open-literature demonstration of simultaneous measurement of intrinsic semiconductor-emission components at all three major noise sources in a single integrated setup.
+The achieved SNR supports event-resolved frequency-domain analysis in the EMC-relevant frequency range, enabling meaningful semiconductor-technology comparisons with respect to EM noise generation and supporting earlier EMC-oriented optimization of future device designs (e.g., doping profile, metallization, and trench architecture)~\cite{stephan_schwaiger_advanced_2023}.
+
+
+

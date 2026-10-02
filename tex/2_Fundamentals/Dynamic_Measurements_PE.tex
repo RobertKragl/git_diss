@@ -2,10 +2,151 @@
 %!encoding = UTF-8 Unicode
 \section{Dynamic Measurements for Power Electronics}
 
-In the field of power electronics, dynamic measurements are crucial for understanding the behavior of power electronic devices and systems under various operating conditions. 
-These measurements help in characterizing the performance, stability, and efficiency of power converters, inverters, and other related components.
+Dynamic characterization of power semiconductor devices is commonly performed in a half-bridge, where the devices are exposed to fast voltage and current transitions. 
+Measuring these transients is challenging because the measurement system is connected directly to the circuit under test: it can alter the switching behavior, and its finite or non-ideal response can make the recorded waveforms differ from the actual device voltages and currents. 
+The resulting errors arise from probe loading and circuit interaction, limited small-signal bandwidth, large-signal nonlinearities, parasitic capacitive and inductive coupling, transmission-line effects, and insufficient common-mode rejection. 
+These mechanisms are illustrated in \fref{fig:ESB_MeasurementError} and are treated individually below. Establishing them as verification criteria is essential for assessing whether the measurement probes provide reliable measurements under the electrical and dynamic conditions of the half-bridge.
+This discussion is directly relevant to this thesis, which develops a dual-channel differential active voltage probe and an active current shunt for measuring switching transients. 
+The error mechanisms therefore provide the basis for defining the probes' design requirements and verification tests. 
+Understanding them is also necessary to distinguish measurement-system artifacts from the actual behavior of the power semiconductor devices and to make reliable conclusions from the measured waveforms.
 
-Table \ref{tab:dynamic_measurements} summarizes the key dynamic measurements commonly performed in power electronics, which are explained in detail in the following subsections.
+The figure shows the measurement of a high-side voltage and low-side current shunt measurement in a half-bridge including the different parasitics, couplings and effect which can alter the true device voltages and currents.
+Here, the truth device voltages and currents are presented by the voltage applied directly at the power terminals of the devices, however these can never be measured directly for verification.
+
+\begin{figure}
+	\centering\import{./figures/2_Fundamentals/}{Diss_ESB_MeasurementErrors.pdf_tex}
+	\caption{Circuit diagram of different sources of measurement error in a half-bridge circuit.}
+	\label{fig:ESB_MeasurementError}
+\end{figure}
+
+\subsubsection*{Probe Loading and Circuit Interaction}
+Any measurement sensor presents a finite impedance to the circuit under test and can therefore alter the quantity being measured. 
+A voltage probe is connected in parallel with the circuit and should have a high input impedance, whereas a current sensor is inserted in series and should add as little impedance as possible.
+
+For drain-source voltage measurements, the input capacitance of the probe is connected in parallel with the device output capacitance. 
+Since the latter is typically on the order of hundreds of picofarads, it can reduce the relative influence of the probe capacitance. 
+This does not eliminate loading, but it generally makes input capacitance less restrictive than it would be in a measurement with a much smaller load capacitance, as for example the measurement of the switching-node in relation to GND.
+
+Current measurement in the commutation loop presents a different challenge. 
+The loop inductance is deliberately minimized because it contributes to switching overvoltage and losses, and can be only a few nanohenries. 
+The parasitic inductance introduced by a series current shunt may therefore be comparable to the loop inductance itself and perturb the current transient being measured.
+
+The significance of a sensor's ohmic resistance also depends on the measurement objective. 
+In conventional switching characterization, its effect may be secondary to that of parasitic inductance. In EMC-relevant measurements, however, the shunt resistance can affect the measured current and the circuit under test; this issue is discussed further in Chapter~\ref{ch:AShunt}.
+
+As a practical loading criterion, the input impedance of a voltage probe should be at least one decade greater than the impedance of the measured source. 
+Conversely, the series impedance of a current sensor should be at least one decade lower than the impedance of the circuit into which it is inserted. 
+These criteria limit, but do not by themselves eliminate, measurement-induced changes to the circuit.
+
+\subsubsection*{Small-Signal Response and Bandwidth Criteria}
+The small-signal response describes how a measurement probe transfers input signals over frequency when operated within its linear range. 
+It is commonly represented by the transfer function, whose magnitude determines the frequency-dependent gain and whose phase describes the relative phase shift between the input and output. 
+Although switching transients are large-signal events in the time domain, their shape contains frequency components across a broad range. 
+Consequently, the probe's small-signal frequency response provides a first measure of whether those components are reproduced faithfully.
+
+If the probe bandwidth is insufficient, higher-frequency components are attenuated, which can make measured edges appear slower and can suppress high-frequency ringing. 
+Gain variation within the frequency range of interest can likewise alter the relative amplitudes of spectral components. 
+Frequency-dependent phase shift can further change the reconstructed waveform. Thus, a probe may produce a plausible waveform while still misrepresenting the amplitude or timing of fast features.
+
+The bandwidth requirement should be related to the maximum frequency of interest in the measurement, rather than to the fastest frequency the instrument can display. 
+A common criterion is that the probe's $-3$\,dB bandwidth exceed this maximum frequency. 
+This criterion places the frequency of interest below the point at which the response magnitude has fallen to approximately $0.707$ of its reference value; it does not, by itself, guarantee flat gain or negligible phase distortion throughout the band. 
+
+Small-signal frequency response is typically characterized with a vector network analyzer (VNA), which measures the probe's transfer response under a low-level sinusoidal excitation over a swept frequency range. 
+The resulting magnitude response can be used to evaluate gain flatness and bandwidth. 
+This test characterizes linear frequency-dependent behavior; it does not establish that the probe remains linear under large input amplitudes, which must be assessed separately.
+
+\subsubsection*{Large-Signal Response and Nonlinearities}
+
+Small-signal characterization does not establish that a probe remains accurate at the amplitudes encountered in operation. 
+VNA measurements are typically performed with millivolt-level excitation, well below the signal levels experienced by the sensor during normal use. 
+Active sensors may become nonlinear as their input or output stages approach voltage or current limits; finite slew rate and overload recovery can also distort fast transitions. 
+Magnetic sensors may additionally exhibit hysteresis or saturation, making their response dependent on signal amplitude and, in the case of hysteresis, on their prior magnetic state. 
+These effects can cause gain compression, clipping, altered edge shapes, or delayed settling and cannot be inferred from a low-level frequency-response measurement.
+
+Large-signal verification therefore requires excitation representative of both the intended signal amplitude and transient speed, together with an independent reference measurement. 
+Such a test can reveal gain compression, clipping, hysteresis, and overload recovery. 
+Its conclusions apply only to the amplitudes and transient speeds tested.
+In practice, producing a representative signal and obtaining a reliable reference measurement are often the main challenges.
+
+
+\subsubsection*{Parasitic Coupling Paths}
+Parasitic coupling provides unintended paths for switching transients to enter a sensor without passing through its intended sensing element. In a half-bridge, fast voltage transitions drive displacement currents through stray capacitances, while rapidly changing commutation-loop currents induce voltages through mutual inductance. In \fref{fig:ESB_MeasurementError}, these paths are modeled by the parasitic capacitances \mi{C}{\sigma+} and \mi{C}{\sigma-} and the mutual inductances \mi{L}{\mathrm{m,i}} and \mi{L}{\mathrm{m,v}}. Coupling strength depends on the circuit layout and sensor placement, and generally increases with the rate of voltage or current change.
+
+For the current-sensing arrangement in \fref{fig:ESB_MeasurementError}, the measured sense voltage can be written as the sum of the desired shunt voltage and the coupled contributions:
+\begin{equation}
+    \mi{v}{sense} = \mi{R}{shunt} \mi{i}{S} - \mi{L}{\mathrm{m,i}} \ddt{\mi{i}{S}} - \mi{R}{shunt}\mi{C}{\sigma}  \ddt{\mi{v}{DS}}
+    \label{eq:parasitic_coupling_current_sense}
+\end{equation}
+assuming an ohmic shunt and the reference directions shown in the figure. 
+The second term represents inductive pickup from the changing current. 
+The final term represents capacitive feedthrough from the drain-source voltage; it is proportional to the imbalance between the two coupling capacitances. 
+Thus, matched capacitances cancel in this model, whereas any mismatch converts part of the voltage slew rate into an apparent shunt voltage.
+
+The coupling error can be difficult to identify from the waveform alone. 
+Both the desired current and the parasitic contributions are driven by the same switching event, so the measured signal may remain synchronized with the expected current waveform and appear plausible. Nevertheless, the coupled terms can change its amplitude and spectral content, or produce transient features that are incorrectly attributed to the device under test. 
+Detection therefore requires comparison with an independent reference. 
+Sensitivity can also be assessed by changing sensor position, orientation, or shielding while holding the circuit conditions constant; a resulting change in the measurement indicates susceptibility to parasitic coupling.
+
+\subsubsection*{Transmission-Line Effects}
+Measurement cables possess distributed resistance, inductance, and capacitance. Once the cable length is no longer negligible compared with the wavelength of the signal components of interest, it must be treated as a transmission line rather than as an ideal connection. The signal then propagates along the cable at the velocity
+\begin{equation}
+    \mi{c}{W} = \frac{1}{\sqrt{\mi{L}{W}\mi{C}{W}}},
+    \qquad
+    \mi{Z}{W} = \sqrt{\frac{\mi{L}{W}}{\mi{C}{W}}},
+    \qquad
+    \lambda = \frac{\mi{c}{W}}{f},
+\end{equation}
+where \mi{L}{W} and \mi{C}{W} denote the cable's inductance and capacitance per unit length, \mi{Z}{W} is its characteristic impedance, and \mi{c}{W} is its propagation velocity. A cable of length $l$ thus introduces a one-way propagation delay $\tau = l/\mi{c}{W}$.
+
+At each cable termination, any mismatch between the termination impedance and \mi{Z}{W} causes part of the incident voltage wave to be reflected. The voltage reflection coefficient at termination $k$ is
+\begin{equation}
+    \mi{\Gamma}{k}(t) = \frac{\mi{Z}{k}(t) - \mi{Z}{W}}{\mi{Z}{k}(t) + \mi{Z}{W}},
+    \qquad k \in \{L,Q\},
+\end{equation}
+where \mi{Z}{L} is the load impedance and \mi{Z}{Q} is the effective MOSFET impedance seen by the cable, as shown in \fref{fig:TransmissionLineMeasurementCable}. In a drain-source voltage measurement, \mi{Z}{Q} changes as the MOSFET switches between its off-state, transition, and on-state conditions, so the source-side reflection coefficient varies throughout the switching event. If either termination is mismatched, the reflected wave travels back along the cable and may be reflected again at the opposite end. These repeated reflections can produce overshoot, ringing, and delayed settling, distorting the amplitude and shape of fast transitions; this effect becomes significant once the propagation delay is comparable with the transition time.
+
+\begin{figure}
+	\centering\import{./figures/2_Fundamentals/}{SourceImpedanceMOSFET_cable.pdf_tex}
+	\caption{Equivalent circuit illustrating cable reflections and the time-varying MOSFET impedance in a drain-source voltage measurement.}
+	\label{fig:TransmissionLineMeasurementCable}
+\end{figure}
+
+Impedance matching, typically achieved by terminating the cable in its characteristic impedance, minimizes these reflections. When matching is not applied, the cable should instead be kept electrically short over the frequency range of interest. A common criterion is
+\begin{equation}
+    l < \frac{\lambda_{\min}}{10} = \frac{\mi{c}{W}}{10 f_{\max}},
+\end{equation}
+where $f_{\max}$ is the highest frequency component that must be measured faithfully and $\lambda_{\min}$ is the corresponding wavelength in the cable. Under this condition, the cable can generally be approximated as a lumped interconnect, although the residual error still depends on the source and load impedances and on the required measurement accuracy. For fast switching transients, the relevant frequency range is set by the edge content of interest rather than by the switching repetition frequency alone.
+
+\FloatBarrier
+\subsubsection*{Common-Mode Rejection}
+A measurement referenced to the oscilloscope ground adds any difference between its own local ground potential and the oscilloscope's ground potential directly onto the measured signal. 
+This common-mode voltage \mi{v}{cm} is attenuated, but not eliminated, by the measurement system's common-mode rejection ratio,
+\begin{equation}
+    \mathrm{CMRR} = \frac{\mi{A}{diff}}{\mi{A}{cm}},
+\end{equation}
+defined as the ratio of the differential-mode gain \mi{A}{diff} to the common-mode gain \mi{A}{cm}. Referred to the input, the resulting measurement error is
+\begin{equation}
+    \mi{e}{cm} = \frac{\mi{v}{cm}}{\mathrm{CMRR}}.
+\end{equation}
+
+Common-mode rejection is most critical for the gate-source voltage measurement, since the gate driver's reference potential is tied to the switching MOSFET's source terminal, which itself swings with the switching-node voltage; the resulting common-mode voltage can become comparable to, or even exceed, the gate-source signal of interest. 
+This measurement is not performed in this thesis.
+
+For the drain-source voltage and current-shunt measurements treated here, the dominant common-mode disturbance instead arises from a ground bounce: the commutation-loop current \mi{i}{S} driven through the stray inductance \mi{L}{\sigma} of the common return path displaces the oscilloscope's local ground reference relative to the true circuit ground by
+\begin{equation}
+    \mi{v}{cm} \approx \mi{L}{\sigma}\ddt{\mi{i}{S}}.
+\end{equation}
+This ground bounce is not necessarily negligible, as the shunt signal itself can also be small. 
+A sufficient criterion is that the common-mode error remain below the required measurement accuracy $e_{\max}$, that is
+\begin{equation}
+    \mathrm{CMRR} \geq \frac{\mi{v}{cm}}{e_{\max}} = \frac{\mi{L}{\sigma}\ddt{\mi{i}{S}}}{e_{\max}}.
+\end{equation}
+
+
+\subsubsection*{Summary of Measurement Errors and Verification Criteria}
+
+Table \ref{tab:dynamic_measurements} summarizes the error mechanisms discussed above, together with a suitable verification test, the problem it reveals, and the resulting criterion. The criteria differ in character: loading, bandwidth, and large-signal behavior can be assessed from the probe's own specifications and a dedicated calibration measurement, whereas parasitic coupling and transmission-line effects depend on the specific setup and therefore require a comparative measurement against an independent reference.
 
 \begin{table}[htbp]
 \caption{Dynamic measurements and verification criteria}
@@ -30,15 +171,6 @@ Table \ref{tab:dynamic_measurements} summarizes the key dynamic measurements com
 }
 \end{table}
 
-
-
-\subsection*{Probe Loading and Circuit Interaction}
-
-\subsection*{Small-Signal Response and Bandwidth Criteria}
-
-\subsection*{Large-Signal Response and Nonlinearities}
-
-\subsection*{Parasitic Coupling Paths}
-
-\subsection*{Transmission-Line Effects}
-
+No single test covers all mechanisms: a probe that passes the loading and bandwidth criteria can still be compromised by parasitic coupling or an unterminated cable, and vice versa. 
+The criteria must therefore be verified individually, each with its own excitation and reference measurement, with thresholds adapted to the frequency and amplitude range relevant to the measurement task at hand. 
+Only once all criteria are satisfied jointly can the subsequent measurements be treated as representative of the true device voltages and currents, rather than as artifacts of the measurement system itself.

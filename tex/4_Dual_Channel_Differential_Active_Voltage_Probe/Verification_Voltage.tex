@@ -16,7 +16,7 @@ The updated probe was validated using the methodology of~\cite{kragl_active_2025
 
 
 
-\subsection{Small-Signal Verification for Differential Probes}
+\subsection*{Small-Signal Verification for Differential Probes}
 The first test is a small-signal verification using a VNA to measure the frequency response of both the low-pass and high-pass channels.
 The VNA was calibrated using an Open-Short-Load procedure at the probe input, with the VNA source impedance set to \SI{50}{\Omega}.
 Measurements focus on the magnitude response to validate gain flatness for the low-pass channel and to verify bandwidth performance for both channels.
@@ -90,7 +90,7 @@ In both measurements, a pole of the voltage divider is apparent at \SI{695}{MHz}
 
 
 
-\subsection{Large-Signal Verification with High-Voltage \SI{50}{\Omega} Pulse Generator}
+\subsection*{Large-Signal Verification with High-Voltage \SI{50}{\Omega} Pulse Generator}
 In addition to the small-signal VNA characterization, the probe was validated by a large-signal measurement using a \SI{400}{V}, \SI{50}{\ohm} pulse generator.
 The schematic of the measurement setup is shown in \fref{fig:MS_PulsGen_SchematicOverview}.
 
@@ -163,7 +163,7 @@ Together, these results confirm that the DAVP performs as designed under large-s
 
 
 
-\subsection{Parasitic Couplings and Common-Mode Error}
+\subsection*{Parasitic Couplings and Common-Mode Error}
 
 In a next verification step, the probe is assessed in the intended application environment by measuring the drain-source voltage of a SiC MOSFET during switching transients with both a commercial passive probe and the proposed DAVP.
 The setup corresponds to the commutation cell used later in this work, operated in double-pulse mode with the actively switched device located in the low-side position.
@@ -211,7 +211,7 @@ Additionally , it can be seen that the shield is still not perfect since the tur
 \end{figure}
 
 
-\subsection{Noise Performance Characterization}
+\subsection*{Noise Performance Characterization}
 The final step of this section is not a strict verification, but rather a characterization of the probe's noise behavior.
 This analysis clarifies the probe limitations and provides context for interpreting subsequent measurement results.
 

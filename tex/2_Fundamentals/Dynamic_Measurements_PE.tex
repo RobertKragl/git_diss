@@ -27,6 +27,15 @@ For drain-source voltage measurements, the input capacitance of the probe is con
 Since the latter is typically on the order of hundreds of picofarads, it can reduce the relative influence of the probe capacitance. 
 This does not eliminate loading, but it generally makes input capacitance less restrictive than it would be in a measurement with a much smaller load capacitance, as for example the measurement of the switching-node in relation to GND.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale = 1]{figures/2_Fundamentals/MeasurementErrors_Plots/Fundamental_Loading_TDFD.pdf}
+	\caption{Simulation results of capacitive loading with $\mi{C}{probe} = 0.1 \mi{C}{oss}(\SI{800}{V})$.}
+	\label{fig:Fundamental_Loading_TDFD}
+\end{figure}
+  
+% Streit_ECCE_Asia
+                  
 Current measurement in the commutation loop presents a different challenge. 
 The loop inductance is deliberately minimized because it contributes to switching overvoltage and losses, and can be only a few nanohenries. 
 The parasitic inductance introduced by a series current shunt may therefore be comparable to the loop inductance itself and perturb the current transient being measured.
@@ -47,6 +56,15 @@ Consequently, the probe's small-signal frequency response provides a first measu
 If the probe bandwidth is insufficient, higher-frequency components are attenuated, which can make measured edges appear slower and can suppress high-frequency ringing. 
 Gain variation within the frequency range of interest can likewise alter the relative amplitudes of spectral components. 
 Frequency-dependent phase shift can further change the reconstructed waveform. Thus, a probe may produce a plausible waveform while still misrepresenting the amplitude or timing of fast features.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale = 1]{figures/2_Fundamentals/MeasurementErrors_Plots/Fundamental_100MHz_TDFD.pdf}
+	\caption{Simulation results of probe small-signal frequency response with $\mi{f}{probe} =\SI{100}{MHz}$.}
+	\label{fig:Fundamental_Loading_TDFD}
+\end{figure}
+
+
 
 The bandwidth requirement should be related to the maximum frequency of interest in the measurement, rather than to the fastest frequency the instrument can display. 
 A common criterion is that the probe's $-3$\,dB bandwidth exceed this maximum frequency. 
@@ -83,6 +101,13 @@ The second term represents inductive pickup from the changing current.
 The final term represents capacitive feedthrough from the drain-source voltage; it is proportional to the imbalance between the two coupling capacitances. 
 Thus, matched capacitances cancel in this model, whereas any mismatch converts part of the voltage slew rate into an apparent shunt voltage.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale = 1]{figures/2_Fundamentals/MeasurementErrors_Plots/Fundamental_Coupling1n_TDFD.pdf}
+	\caption{Simulation results of inductive coupling with \SI{1}{nH} and a coupling factor of 1.}
+	\label{fig:Fundamental_Coupling_TDFD}
+\end{figure}
+
 The coupling error can be difficult to identify from the waveform alone. 
 Both the desired current and the parasitic contributions are driven by the same switching event, so the measured signal may remain synchronized with the expected current waveform and appear plausible. Nevertheless, the coupled terms can change its amplitude and spectral content, or produce transient features that are incorrectly attributed to the device under test. 
 Detection therefore requires comparison with an independent reference. 
@@ -118,7 +143,16 @@ Impedance matching, typically achieved by terminating the cable in its character
 \end{equation}
 where $f_{\max}$ is the highest frequency component that must be measured faithfully and $\lambda_{\min}$ is the corresponding wavelength in the cable. Under this condition, the cable can generally be approximated as a lumped interconnect, although the residual error still depends on the source and load impedances and on the required measurement accuracy. For fast switching transients, the relevant frequency range is set by the edge content of interest rather than by the switching repetition frequency alone.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale = 1]{figures/2_Fundamentals/MeasurementErrors_Plots/Fundamental_cable_TDFD.pdf}
+	\caption{Simulation results of voltage measurement with \SI{1}{m} and \SI{50}{\Omega} coaxial cable.}
+	\label{fig:Fundamental_Cable_TDFD}
+\end{figure}
+
+
 \FloatBarrier
+
 \subsubsection*{Common-Mode Rejection}
 A measurement referenced to the oscilloscope ground adds any difference between its own local ground potential and the oscilloscope's ground potential directly onto the measured signal. 
 This common-mode voltage \mi{v}{cm} is attenuated, but not eliminated, by the measurement system's common-mode rejection ratio,

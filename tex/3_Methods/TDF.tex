@@ -1,14 +1,17 @@
 %!TeX root = main.tex
 %!encoding = UTF-8 Unicode
 
-\section{Digital Methods for EMC-Relevant Signal Measurement}
+\section{Digital Processing for EMC-Relevant Signal Analysis}
+
+Following acquisition, digital processing serves two complementary purposes: reducing the noise contribution in the measured waveform and enabling a more detailed analysis of the intrinsic EM emission behavior of power semiconductor devices.
+This section first introduces a time-dependent noise filter for noise reduction and then presents an event-resolved spectral separation method that distinguishes the EMC-relevant contributions of individual switching events.
 
 \subsection{Time-Dependent Noise Filter}
 
 Up to this point, the noise-mitigation steps are generally applicable to arbitrary signals.
 Further noise reduction is possible because the EMC-relevant voltage components are concentrated within a limited time interval around the switching event.
 Based on this observation, a time-dependent noise filter is introduced that suppresses noise outside the transient, as illustrated for the low-pass signal in Fig.~\ref{fig:TDF}.
-This filter is applied to the time-domain signal before the FFT.
+In the measurement procedure, the low-pass waveform is used to locate the switching transients, while the filter is applied to the high-pass waveform before spectral evaluation.
 
 \begin{figure}[ht]
 	\centering
@@ -17,32 +20,33 @@ This filter is applied to the time-domain signal before the FFT.
 \end{figure}
 
 First, the transient midpoint \mi{t}{tr} is defined as the time instant at which the drain-source voltage reaches 50\% of its transition between the pre- and post-switching levels.
-An asymmetric time window \mi{W}{TDF} is then defined around \mi{t}{tr}. 
-Its leading edge extends \mi{T}{TDF}/5 before \mi{t}{tr}, and its trailing edge extends 4\mi{T}{TDF}/5 after \mi{t}{tr}.
+An asymmetric time interval \mi{I}{TDF} is then defined around \mi{t}{tr}.
+It extends from \mi{T}{TDF}/5 before \mi{t}{tr} to 4\mi{T}{TDF}/5 after \mi{t}{tr}:
 
 \begin{equation}
-	\mi{I}{TDF} = \left[\mi{t}{tr}-\frac{\mi{T}{TDF}}{5},\,\mi{t}{tr}+\frac{4\mi{T}{TDF}}{5}\right],
+	\mi{I}{TDF} = \left[\mi{t}{tr}-\frac{\mi{T}{TDF}}{5},\,\mi{t}{tr}+\frac{4\mi{T}{TDF}}{5}\right].
 \end{equation}
 
 In this work, the window length \mi{T}{TDF} is set to \SI{500}{ns}, but it should be adjusted to approximately match the observed settling time of the resonant oscillation for the specific device under test.
 
-Afterward, strong filtering is applied only outside the switching transient; within the transient window, the signal remains unfiltered.
+Strong low-pass filtering is applied outside this interval, while the signal within it remains unfiltered.
+For an input waveform $s(t)$, the filtered waveform is defined as
 
 \begin{equation}
 	\text{TDF}(s) =
 	\begin{cases}
-		s(t), & t \in \mi{W}{TDF} \\
-		\mi{h}{LP,TDF}(t)\ast s(t), & t \notin \mi{W}{TDF}
-	\end{cases}
+		s(t), & t \in \mi{I}{TDF} \\
+		\mi{h}{LP,TDF}(t)\ast s(t), & t \notin \mi{I}{TDF}
+	\end{cases}.
 \end{equation}
 
-Here, \mi{h}{LP,TDF} is a second-order Butterworth low-pass filter with a cutoff frequency of \SI{1}{MHz}.
-% However, even a stronger filter or a constant setting of the signal to zero outside the switching transient is thinkable.
+Here, $\mi{h}{LP,TDF}(t)$ is the impulse response of a second-order Butterworth low-pass filter with a cutoff frequency of \SI{1}{MHz}.
+The interval is defined separately for each switching transient.
+At the interval boundaries, discontinuities between the filtered and unfiltered waveforms should be avoided to prevent additional spectral components.
+Alternatively, stronger low-pass filtering or setting the signal to zero outside the transient intervals could be considered, provided that discontinuities at the interval boundaries are avoided.
 
-This filter is applied to the high-pass measurement, while the switching transients are detected in the low-pass measurement.
-Thereby, the noise floor is reduced by:
+For approximately white, uncorrelated noise, and neglecting the residual filtered noise outside the transient intervals, the RMS spectral noise per bin in the frequency range well above the filter cutoff can be approximated as
 
 \begin{equation}
 	\mi{V}{n,th,TDF} = \frac{\mi{T}{TDF}}{\mi{T}{sw}} \cdot \mi{V}{n,th}
 \end{equation}
-

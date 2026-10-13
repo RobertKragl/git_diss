@@ -2,34 +2,56 @@
 %!encoding = UTF-8 Unicode
 \section{Analog Methods for EMC-Relevant Signal Measurement}
 
-\subsection{Oversampling and Averaging}
-The previous section discussed how small high-frequency components fall below the noise floor quickly after the resonance frequency.
-As a first countermeasure, classical digital noise-reduction techniques are applied: oversampling and averaging.
+Resolving small EMC-relevant signal components at high frequencies requires measurement methods that address both thermal and quantization noise.
+This section first examines the potential and limitations of oversampling and averaging for reducing the thermal-noise floor.
+It then introduces an analog high-pass measurement method to mitigate quantization-noise limitations.
+By attenuating the dominant low-frequency components before digitization, this method enables more effective use of the available ADC range for the high-frequency components of interest.
 
-Oversampling and subsequent averaging increases the effective number of bits (ENOB)~\cite{silicon_laboratories_an118_2013}:
+\subsection{Oversampling and Pulse-Chain Acquisition}
+Section~\ref{sec:MeasurementLimitation} showed that the noise floor of a conventional measurement chain can obscure small high-frequency components of the switching voltage.
+Before introducing a dedicated analog measurement method, the extent to which conventional noise reduction are considered.
+Two approaches are distinguished: oversampling with subsequent bandwidth-limited averaging, and spectral evaluation of a longer record containing repeated switching pulses.
+
+\subsubsection*{Oversampling:}
+Oversampling acquires the signal at a sampling frequency higher than the minimum required by the analysis bandwidth.
+Subsequent low-pass filtering and averaging suppress noise outside this bandwidth while retaining the signal components of interest.
+For an ideal ADC with white, uncorrelated quantization error, the corresponding effective number of bits (ENOB) is~\cite{silicon_laboratories_an118_2013}
 
 \begin{equation}
-	\mti{N}{ENOB} = \mti{N}{ADC} + 0.5\cdot \log_2\left(\frac{\mi{f}{s}}{2\mi{f}{max}}\right)
+	\mti{N}{ENOB} = \mti{N}{ADC} + 0.5\cdot \log_2\left(\frac{\mi{f}{s}}{2\mi{f}{max}}\right).
 \end{equation}
 
 Here, \mti{N}{ADC} is the nominal ADC resolution, \mi{f}{s} is the sampling frequency, and \mi{f}{max} is the highest frequency of interest.
-The factor of 2 follows from the Nyquist criterion.
-In practice, this improvement is limited by the maximum sampling rate of the oscilloscope and by the required analysis bandwidth, which is set to \SI{500}{MHz} in this work.
+With \eref{eq:quantization}, this can be translated into an effective quantization step.
 
-In addition, the effective noise floor can be reduced by recording a pulse chain (PC) with $M$ pulses instead of a single pulse (SP).
-For FFT-based evaluation, this increases the number of samples and lowers the thermal-noise floor by
+The argument of the logarithm $(\sfrac{\mi{f}{s}}{2\mi{f}{max}})$ is the oversampling factor, with the factor of two following from the Nyquist criterion.
+For the present analysis, the required bandwidth is set to $\mi{f}{max} = \SI{500}{MHz}$, whereas \mi{f}{s} is limited by the maximum sampling rate of the oscilloscope.
+
+The oscilloscope achieves its high sampling rate by using time-interleaved ADCs.
+These converters sample the same input signal at staggered sampling instants, and their outputs are combined into a single sample sequence with a higher aggregate sampling rate.
+Modern oscilloscopes will typically preset the high resolution mode to provide optimal oversampling and averaging settings automatically.
+
+\subsubsection*{Pulse-Chain Acquisition:}
+Whereas oversampling uses a higher sampling frequency relative to the required signal bandwidth, a complementary approach reduces the spectral noise floor by extending the acquisition duration.
+For a repeatable switching waveform, this is achieved by recording a pulse chain (PC) containing $M$ repetitions instead of a single pulse (SP).
+At an unchanged sampling frequency, the acquisition duration and record length therefore increase by a factor of $M$.
+For the same FFT window type, the equivalent noise bandwidth of each bin decreases by this factor.
+According to Eq.~\ref{eq:RMStoAmplitudePlot}, the RMS thermal-noise contribution per bin consequently becomes
 
 \begin{equation}
-	\mi{V}{th,PC} = \frac{\mi{V}{th,SP}}{\sqrt{M}}
+	\mi{V}{th,PC} = \frac{\mi{V}{th,SP}}{\sqrt{M}}.
 \end{equation}
 
-according to Eq.~\ref{eq:RMStoAmplitudePlot}.
-Consequently, the SNR improves by the same factor $\sqrt{M}$, because random noise is spread over the spectrum while deterministic switching components remain at fixed frequencies (multiples of \mi{f}{sw}).
-The maximum usable value of $M$ is constrained by the oscilloscope single-shot memory.
+This reduction concerns the spectral noise per bin, not the total time-domain RMS noise.
+For repeatable switching pulses and coherent acquisition with consistent amplitude normalization, the spectral components at multiples of \mi{f}{sw} retain their amplitudes, whereas the uncorrelated noise contribution per bin decreases.
+The thermal-noise-limited SNR therefore improves by a factor of $\sqrt{M}$.
+In practice, the usable record length is constrained by the oscilloscope acquisition memory and by the requirement that the switching conditions remain unchanged throughout the pulse chain.
 
-Figure~\ref{fig:QuantNoise} illustrates this behavior by comparing a single-pulse spectrum $Q(\mi{V}{DS,SP}+\mi{V}{n,th})$ with a 100-pulse spectrum $Q(\mi{V}{DS,PC}+\mi{V}{n,th})$ and with the corresponding non-quantized pulse chain $\mi{V}{DS,PC}+\mi{V}{n,th}$.
-An SNR improvement of about \SI{20}{dB} is obtained for the pulse chain.
-However, once thermal noise is sufficiently suppressed, quantization noise becomes dominant and limits further improvement.
-Hence, as also reported in~\cite{silicon_laboratories_an118_2013}, oversampling and averaging are effective only while thermal noise dominates and remains larger than the quantization step.
-To access the full EMC-relevant frequency range, an additional measure is required.
-Therefore, the next subsection introduces a high-pass measurement method.
+The pulse-chain spectra in Fig.~\ref{fig:QuantNoise}, illustrate this improvement for $M=100$.
+The quantized single-pulse spectrum, $Q(\mi{V}{DS,SP}+\mi{V}{n,th})$, is shown in blue, while the quantized pulse-chain spectrum, $Q(\mi{V}{DS,PC}+\mi{V}{n,th})$, is shown in orange.
+Their comparison shows an SNR improvement of approximately \SI{20}{dB} in the thermal-noise-dominated region, consistent with the expected factor of $\sqrt{100}=10$.
+The corresponding non-quantized pulse-chain spectrum, $\mi{V}{DS,PC}+\mi{V}{n,th}$, shown in yellow, still exhibits a lower noise floor than its quantized counterpart, demonstrating the remaining contribution of quantization noise.
+
+However, once thermal noise is sufficiently suppressed in the simulation considered here, quantization noise becomes dominant and limits further improvement.
+The introduced noise reduction alone therefore do not ensure that the small signal components can be resolved over the full EMC-relevant frequency range.
+The following subsection introduces high-pass measurement to make more effective use of the ADC input range for these components before digitization.

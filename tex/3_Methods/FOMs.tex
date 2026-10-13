@@ -17,7 +17,7 @@ For power electronics, this is particularly the resonance between the output cap
 Most used, mainly because of the simplicity, is the rise time \mi{t}{r,10-90\%} of the signal.
 It describes the time duration, which the signal needs to rise from 10\% of its final value to 90\%.
 
-Fig. \ref{fig:IdealVsReal} shows the spectra for the drain-source voltage \mi{v}{DS} in a simple SPICE double pulse test compared to an often used simplification of an asymmetric first-order hold element \cite{costa_graphical_2005}.
+Fig.  shows the spectra for the drain-source voltage \mi{v}{DS} in a simple SPICE double pulse test compared to an often used simplification of an asymmetric first-order hold element \cite{costa_graphical_2005}.
 This model reduces the switching event to the information of the rise and fall times.
 It can be seen that the model describes the noise emission of \mi{v}{DS} well up to the second cutoff-frequency, where the slope decreases from \SI{-20}{dB/dec} to \SI{-40}{dB/dec}.
 The two frequencies are defined as 
@@ -57,18 +57,18 @@ And the time differential $\mathrm{d}t$ correlates with \mi{t}{10-90\%}.
 
 
 \subsubsection*{Heisenberg-Gabor Inequality (HGI)}
-In \cite{patin_power_2015} a theoretical noise optimal transient waveform was described by a so called \textit{Heisenberg-Gabor Inequality}. 
-It was shown, that the optimal spectrum can be achieved with a switching transient of
+In \cite{patin_power_2015}, a theoretically noise-optimal transient waveform is described by a so-called \textit{Heisenberg-Gabor Inequality}. 
+It was shown that the optimal spectrum can be achieved with a switching transient of
 \begin{equation}
 	g(t) = \frac{1}{\sigma_t \sqrt{2\pi}}\cdot e^{-\dfrac{t^2}{2\sigma_t^2}},
 \end{equation}
-where the resulting semiconductor voltage results from the convolution
+where the resulting semiconductor voltage follows from the convolution
 \begin{equation}
 	\mi{v}{DS,opt} = \mi{V}{DC}\cdot\mathrm{rect}(\frac{t}{\mathrm{d}T_\mathrm{s}}) * g(t)
 \end{equation}
 The resulting waveform for $\sigma_t = \SI{10}{ns}$ is shown in Fig. \ref{fig:IdealVsReal}.
 
-In \cite{martinez-padron_definition_2022} this optimum was used to define a FOM for the emitted noise of switching events.
+In \cite{martinez-padron_definition_2022}, this optimum is used to define a FOM for the emitted noise of switching events.
 It is calculated from the transient function $\lambda = \frac{\text{d}\mi{v}{DS}}{\text{d}t}$, which is the derivative of the voltage transient.
 This function is used to calculate both the time and frequency dispersion.
 
@@ -81,18 +81,18 @@ This function is used to calculate both the time and frequency dispersion.
 \end{equation}
 
 Here, $\Lambda(\omega)$ is the Fourier Transform of $\lambda(t)$.
-Both, can be used to calculate the FOM 
+Both can be used to calculate the FOM 
 \begin{equation}
 	HGI = \sigma_f \cdot \sigma_t \geq 0.5.
 \end{equation}
 
-HGI is derived from a theoretical approach, to minimize the noise spectrum components for higher frequencies.
-It describes, how far away the transient waveform is from ideal switching.
-Ideal switching is an S-formed Gauss-Integral.
+HGI is derived from a theoretical approach that minimizes the noise-spectrum components at higher frequencies.
+It describes how far the transient waveform is from ideal switching.
+Ideal switching follows an S-shaped Gaussian-integral waveform.
 HGI does not take into account that resonances occur after the switching event.
 
 \subsubsection*{$\bar{V}_{\Delta f}$}
-With the goal, to give a broadband FOM for frequencies above the second cutoff frequency, an average of all Fourier coefficients can be defined as:
+With the goal of providing a broadband FOM for frequencies above the second cutoff frequency, an average of all Fourier coefficients can be defined as:
 
 \begin{equation}
 	\bar{v}_{10-150 \mathrm{MHz}} = \frac{1}{\Delta f_{tot}} \sum_{n = n_{10 \mathrm{MHz}}}^{n_{150 \mathrm{MHz}}} \Delta f_n \cdot a_n
@@ -105,17 +105,17 @@ Most problems in EMC occur due to peaks in the noise spectrum.
 These can be either caused by the noise source \mi{v}{DS} itself, or by a pole in the transfer function TF(f) due to passive components or the layout.
 $\hat{V}_\mathrm{res}$ is defined as the Fourier coefficient at a selective frequency.
 
-The calculation and the respective information of all FOMs is summarized in Tab. \ref{tab:FOMs} and their influence on the spectrum is visualized in Fig. \ref{fig:FOM_in_spectrum}.
+The calculation and the respective information of all FOMs are summarized in Tab. \ref{tab:FOMs} and their influence on the spectrum is visualized in Fig. \ref{fig:FOM_in_spectrum}.
 
 \begin{table}[ht]
 	\centering
-	\caption{Summary of all considered FOM for emitted noise performance of a switching event.}
+	\caption{Summary of all considered FOMs for the emitted-noise performance of a switching event.}
 	\begin{tabular}{c|c|c}		
 		FOM	& domain &  information \\
 		\hline
 		\mi{t}{10-90\%} & time & $2^\mathrm{nd}$ cut-off frequency \\
-		$\sddt{u}_\mathrm{max}$ & time & correlates with \mi{V}{DC} \& \mi{t}{10-90\%}\\
-		HGU & hybrid & difference to EMC optimum \\
+		$\sddt{v}_\mathrm{max}$ & time & correlates with \mi{V}{DC} \& \mi{t}{10-90\%}\\
+		HGI & hybrid & difference to EMC optimum \\
 		$\bar{V}_{\Delta f}$ & frequency & total noise emission \\
 		$\hat{V}_\mathrm{res}$ & frequency & resonance \\
 	\end{tabular}

@@ -1,0 +1,27 @@
+%!TeX root = main.tex
+%!encoding = UTF-8 Unicode
+
+% \chapter{Platform for Combined Component- and System-Level EMC Measurements}
+% \label{ch:TestBench}
+
+\section{Measurement Environment}
+The measurement platform aims to incorporate the discussed sensors into a classical power electronic application, while enabling the realization of the different measurement methoodologies for the the intrinsic EM emissions of the switching device.
+Furthermore, a crosscheck with classical EMC measurements, namely a LISN measurement, is deployed in the measurement environment.
+
+A picture of the measurement setup is shown in \fref{fig:pic_b2b_setup}.
+
+\input{6_Test_Bench/Requirements_Bench.tex}
+\input{6_Test_Bench/Design_Bench.tex}
+
+\chapter{Methodological Validation and Quantification of Electromagnetic Emissions}
+
+Having realized the methodology of Chapter~\ref{ch:Methods} through the instrumentation and platform of the preceding chapter, this chapter validates the resulting measurement environment on real switching events before it is applied to the parameter studies of the next chapter.
+First, the impact of the individual noise-reduction steps, oversampling and averaging, high-pass compensation, and the TDF, is demonstrated on a measured spectrum.
+The intrinsic emission measurements are then cross-referenced against a classical system-level LISN measurement to confirm their consistency with established EMC practice.
+Finally, the switching-event-resolved frequency-domain analysis is demonstrated, isolating the spectral contribution of the active-on, active-off, passive-on, and passive-off switching events.
+
+\input{6_Test_Bench/Demonstration_Methodology.tex}
+\input{6_Test_Bench/Measurement_Bench.tex}
+\input{6_Test_Bench/Demonstration_SpectrumSeparation.tex}
+
+

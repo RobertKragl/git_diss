@@ -12,19 +12,19 @@ The design of power electronic systems inherently involves trade-offs among seve
 Historically, efficiency and power density are prioritized during the primary design phase, while EMC is treated as a late-stage verification issue.
 
 However, this traditional design paradigm is becoming increasingly challenging with the adoption of wide-bandgap (WBG) semiconductors, such as silicon-carbide (SiC) MOSFETs and gallium-nitride (GaN) devices. 
-WBG devices feature low conduction and switching losses, enabling faster transient switching times, but these fast transients come at the cost of also emitting stronger EM noise. 
+WBG devices feature low conduction and switching losses, enabling faster switching transients, but these faster transients also emit stronger EM noise. 
 Since the applicable EMC standards and limits remain unchanged, these higher emissions directly complicate EMC compliance.
-Additionally, the efficiency gains enabled by WBG technologies allow for highly compact converter designs. This physical miniaturization reduces the spatial distances between active components, cooling structures, and mechanical housings. 
+Additionally, the efficiency gains of WBG technologies enable highly compact converter designs. This physical miniaturization reduces the spatial distances between active components, cooling structures, and mechanical housings. 
 Consequently, parasitic capacitive and inductive coupling paths are strengthened, further exacerbating the propagation of electromagnetic noise throughout the system.
 
-Because EMC is still resolved at this late stage despite these worsening emissions, addressing it after the electrical and physical layout has been finalized requires expensive corrective measures. 
-Redesigning a non-compliant converter includes changes of the gate-drive, commutation loop, passive components, cooling concept, mechanical construction, and input/output filtering. 
+Because EMC is still addressed only after the electrical and physical layout has been finalized, corrective measures become increasingly expensive as emissions worsen. 
+Redesigning a non-compliant converter includes changes to the gate-drive, commutation loop, passive components, cooling concept, mechanical construction, and input/output filtering. 
 These late-stage modifications typically require iterative prototyping and additional qualification cycles, which dramatically increase development time and costs. 
 Furthermore, they frequently compromise previously optimized electrical, thermal, and mechanical design targets.
 
 Faced with tight market deadlines, engineers often resort to a common late-stage remedy: slowing down the semiconductor switching speed by increasing the gate resistance. 
 While this effectively reduces high-frequency emissions, it directly increases switching losses and degrades efficiency. 
-Thus, late-stage mitigation behaves as a severe design compromise rather than an optimal engineering solution.
+Thus, late-stage mitigation represents a severe design compromise rather than an optimal engineering solution.
 
 Yet no established methodology characterizes semiconductor devices at this early stage: conventional EMC measurements evaluate only the finished system and cannot isolate the intrinsic behavior of an individual device. If the EM emissions of power semiconductor devices could be characterized early, at the component level, this would open up two key opportunities:
 
@@ -39,11 +39,11 @@ Devices with near-identical nominal switching losses can still vary considerably
 Consequently, second-source qualification and device benchmarking rely on repeating the complete system-level EMC compliance test for each candidate device, increasing both cost and development time.
 
 Both opportunities, however, share the same prerequisite: resolving the intrinsic emissions of individual switching events directly at the component level.
-Conventional, system-level EMC measurements cannot provide this resolution: designed for compliance testing, they inherently blend the emissions of all noise sources within the system, making it impossible to attribute a measured spectral component to a specific device, package, or operating parameter.
+Conventional system-level EMC measurements cannot provide this resolution: designed for compliance testing, they inherently blend the emissions of all noise sources within the system, making it impossible to attribute a measured spectral component to a specific device, package, or operating parameter.
 
 This thesis directly addresses this gap by transitioning EMC characterization from a late-stage compliance constraint into an early-stage, quantitative design metric.
 
-To achieve this, this thesis introduces a component-level measurement methodology designed to isolate and characterize the intrinsic electromagnetic emissions directly at the semiconductor terminals, while maintaining a traceable link to system-level EMC behavior. 
+To this end, the thesis introduces a component-level measurement methodology designed to isolate and characterize the intrinsic electromagnetic emissions directly at the semiconductor terminals, while maintaining a traceable link to system-level EMC behavior. 
 The developed methodology is generally applicable to all semiconductor technologies, including silicon IGBTs, SiC MOSFETs, GaN devices, and future device architectures. 
 However, the experimental validation in this work focuses on discrete SiC MOSFETs.
 
@@ -54,8 +54,8 @@ The preceding considerations lead to the central objective of this thesis: to es
 To achieve this overall objective, the thesis pursues the following research objectives:
 \begin{enumerate}
 	\item To establish the relationship between semiconductor switching behavior and electromagnetic emissions, with particular consideration of the frequency range in which idealized switching-waveform models are no longer sufficient.
-	\item To develop a measurement methodology that directly characterizes the high-frequency signal components directly at the power terminals of the switching devices with sufficient bandwidth and signal-to-noise ratio.
-	\item To measure the three relevant, intrinsic noise sources of a switching cell separately, including the high-side voltage, low-side voltage, and commutation current, so that their individual contributions to the overall emission behavior can be analyzed.
+	\item To develop a measurement methodology that characterizes the high-frequency signal components directly at the power terminals of the switching devices with sufficient bandwidth and signal-to-noise ratio.
+	\item To measure the three relevant, intrinsic noise sources of a switching cell separately, namely the high-side voltage, low-side voltage, and commutation current, so that their individual contributions to the overall emission behavior can be analyzed.
 	\item To develop and apply signal-processing methods that reduce the measurement noise floor, separate relevant switching events, and extend the usable analysis range.
 	\item To integrate the sensors and processing methods into a measurement platform that permits a cross-check between intrinsic-emission measurements and conventional system-level EMC measurements, such as LISN measurements.
 	\item To demonstrate how the resulting event-resolved measurements can support the comparison of semiconductor devices and the identification of device or process parameters that influence electromagnetic emissions.
@@ -69,29 +69,20 @@ This enables semiconductor, component, and converter engineers to assess EMC-rel
 
 Chapter~\ref{ch:Fundamentals} introduces the fundamentals of EMC in power electronic systems and establishes the relationship between the switching behavior of power semiconductor devices and their electromagnetic emissions. 
 It distinguishes between noise generation at the semiconductor terminals and noise propagation through the surrounding converter. 
-The chapter also reviews existing system-level and simulation-based approaches for semiconductor-focused emission analysis and identifies the limitations that motivate the measurement approach developed in this thesis. 
+The chapter also examines errors in dynamic voltage and current measurements and establishes criteria for verifying the measurement sensors.
 This chapter provides the physical and analytical basis for semiconductor and device engineers who seek to include EMC in the development of new technologies and device structures.
 
 Chapter~\ref{ch:Methods} develops the methodology for measuring the EMC-relevant signal components of transient switching events. 
+It first reviews existing approaches to semiconductor-focused emission characterization and identifies the methodological gap addressed in this thesis.
 It addresses the limitations of conventional measurements at high frequencies and introduces the concepts used to improve the usable signal-to-noise ratio, isolate the relevant frequency components, and separate individual switching events. 
 The chapter also defines the figures of merit and evaluation procedures used in the subsequent experimental investigations. 
 
-Chapter~\ref{ch:voltage} presents the design and verification of the dual-channel differential active voltage probe. 
-The probe is developed for the simultaneous measurement of the high-side and low-side voltage transients at the semiconductor terminals. 
-The chapter derives the electrical requirements, describes the sensor architecture and its low-noise signal paths, and verifies its small-signal and large-signal behavior. 
-The resulting sensor provides the voltage measurements required for resolving the capacitive noise sources of the switching cell.
+Chapter~\ref{ch:Sensors} presents the hardware developed to realize the measurement methodology: a dual-channel differential active voltage probe for the high-side and low-side switching-node voltages, a complementary dual-channel active current probe for the commutation current, and the measurement platform that integrates both sensors into a representative power-electronic application, including a conventional line impedance stabilization network (LISN) for a crosscheck with classical system-level EMC measurements. 
+For each sensor, the chapter derives the electrical requirements, describes the sensor architecture, and characterizes its measurement performance.
 
-Chapter~\ref{ch:AShunt} complements the voltage measurement with the design and verification of a dual-channel active current probe. 
-The chapter motivates the measurement of high-frequency commutation current as an additional source of EM emissions, particularly when inductive coupling becomes relevant. 
-It presents the requirements, the low-inductance shunt and active compensation concept, and the experimental verification of the sensor. 
-Together, Chapters~\ref{ch:voltage} and~\ref{ch:AShunt} provide the measurement hardware needed for the measurement methodology.
-	
-Chapter~\ref{ch:TestBench} integrates the voltage and current sensors into a representative power-electronic test platform. 
-The chapter describes the requirements and design of the platform and demonstrates the different measurement methodologies under application-relevant operating conditions. 
-In addition, the intrinsic-emission measurements are compared with a conventional line impedance stabilization network (LISN) measurement. 
+Chapter~\ref{ch:Validation} validates the resulting measurement environment on real switching events, demonstrating the impact of the individual noise-reduction steps and cross-referencing the intrinsic-emission measurements against the LISN measurement to confirm their consistency with established EMC practice.
 This establishes the connection between the signals generated at the semiconductor terminals and the emissions observed at system level, which is relevant to converter and EMC engineers during system development and validation.
-
-Chapter~\ref{ch:Results} applies the complete measurement methodology to the characterization of intrinsic SiC MOSFET emissions. 
+The chapter then applies the complete measurement methodology to the characterization of intrinsic SiC MOSFET emissions. 
 The investigated parameters are divided into external parameters controlled by the application engineer and semiconductor parameters controlled by the device engineer. 
 The influence of these parameters is evaluated under defined constraints, including constant switching losses, to enable a meaningful comparison of their EMC impact. 
 The chapter demonstrates how the proposed method can be used to compare device variants, identify influential design parameters, and assess EM emissions as an additional semiconductor design metric.

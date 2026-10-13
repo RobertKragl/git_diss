@@ -5,12 +5,19 @@
 \chapter{Methodology for Measuring the EMC-Relevant Signal Components of Transient Switching Events}
 \label{ch:Methods}
 
-Direct measurement of intrinsic EM noise emissions at the power terminals of semiconductor devices requires dedicated methods, because conventional measurements become noise-limited at high frequencies.
+Accurate measurement of the EMC-relevant signal components of transient switching events is essential for characterizing the intrinsic EM emission behavior of power semiconductor devices.
+Even when the conventional measurement errors discussed in Section~\ref{ch:MeasurementErrors} are minimized, these components can be obscured by thermal and quantization noise at high frequencies.
+Dedicated measurement methods are therefore required to resolve the relevant signal components beyond the limitations of conventional measurement setups.
+
+This chapter first reviews existing approaches to semiconductor-focused emission characterization and identifies the methodological gap addressed in this thesis.
+It then quantifies the noise-induced limitations of conventional terminal measurements.
+On this basis, it presents methods that combine analogue measurement techniques and digital signal processing to improve measurement accuracy at high frequencies.
+Subsequently, methods for separating the spectral contributions of individual switching events are introduced to enable a more detailed analysis of EM noise generation.
+The chapter concludes by defining figures of merit for evaluating the EMC-relevant characteristics of switching transients.
 
 
-
-\input{3_Methods/Measurement_Limitation.tex}
 \input{3_Methods/State_of_Art.tex}
+\input{3_Methods/Measurement_Limitation.tex}
 \input{3_Methods/Oversampling_Averaging.tex}
 \input{3_Methods/HighPass_Measurement.tex}
 \input{3_Methods/TDF.tex}

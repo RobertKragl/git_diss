@@ -25,3 +25,28 @@ The developed approach is not limited to a specific semiconductor device technol
 (2) during converter design, it enables benchmarking of candidate semiconductor devices with respect to their electromagnetic emissions for a given application; and
 (3) during compliance testing, it enables identification of the switching event most likely to dominate emissions and cause violations of the applicable standard limits.
 Collectively, these contributions support earlier, EMC-aware design decisions across future power semiconductor and converter development.
+
+\chapter{Kurzzusammenfassung}
+
+Diese Dissertation untersucht die Schnittstelle zwischen zwei Bereichen der Leistungselektronik, die trotz ihrer grundlegenden wechselseitigen Abhängigkeit häufig getrennt betrachtet werden.
+Obwohl die Schaltvorgänge von Leistungshalbleitern die primäre Quelle leitungsgebundener und gestrahlter Störaussendungen sind, wird die elektromagnetische Verträglichkeit (EMV) überwiegend als Problem auf Systemebene und nicht als intrinsische Designgröße des Halbleiters behandelt.
+Diese Trennung beruht auf einer grundlegenden messtechnischen Einschränkung: Herkömmliche Charakterisierungsmethoden für Leistungshalbleiter können die vom Bauelement erzeugten hochfrequenten, EMV-relevanten Signalanteile nicht auflösen, da diese unterhalb des Messrauschpegels liegen.
+Da eine Größe erst optimiert werden kann, wenn sie messbar ist, hat die fehlende Charakterisierung bislang verhindert, elektromagnetische Störaussendungen als intrinsische Zielgröße des Halbleiterdesigns zu optimieren.
+Die Optimierung des Störverhaltens wird daher häufig auf spätere Entwicklungsphasen verschoben, in denen Maßnahmen auf Umrichter- oder Systemebene die Störaussendungen reduzieren, jedoch zulasten von Effizienz, Kompaktheit und Entwicklungszeit gehen.
+
+Die Dissertation leistet einen Beitrag durch eine Messmethodik, die eine direkte, rauscharme Charakterisierung intrinsischer elektromagnetischer Störaussendungen an den Leistungsanschlüssen des Halbleiters ermöglicht.
+Während herkömmliche Methoden die EMV-relevanten Signale nicht auflösen können, da diese durch thermisches Rauschen und Quantisierungsrauschen verdeckt werden und somit nicht beobachtbar sind, ermöglicht die vorgeschlagene Methodik deren direkte Messung und Analyse.
+Der Ansatz basiert auf einem Zweikanalkonzept sowohl für einen aktiven Differenzspannungstastkopf als auch für einen Stromsensor. Dabei verstärkt ein dedizierter Hochfrequenzpfad, der unabhängig vom konventionellen Niederfrequenzmesspfad optimiert wird, die EMV-relevanten Signalanteile über den Rauschpegel des Messsystems hinaus.
+Das verbleibende Rauschen wird durch eine digitale Nachverarbeitung weiter unterdrückt, die Überabtastung und Mittelung mit einem zeitabhängigen Rauschfilter kombiniert. Dieses konzentriert die Filterung auf die Zeitbereiche außerhalb des Schalttransienten und lässt den Transienten selbst unverändert.
+Zusammen ermöglichen diese Methoden eine halbleiterbezogene EMV-Analyse bis \SI{400}{MHz}, wobei konventionelle Leistungskenngrößen wie Schaltverluste, Überspannung und \sddt{v} erhalten bleiben.
+Ein zusätzliches Verfahren zur ereignisaufgelösten Spektralanalyse bietet vertiefte Einblicke in einzelne Störbeiträge.
+Da die Methodik ein zuvor nicht beobachtbares Verhalten erstmals messbar macht, liegt ein besonderer Schwerpunkt auf der Verifikation der Messmethodik und der zugehörigen Analyseverfahren.
+
+Die Anwendung der Methodik zeigt im Frequenzbereich von \SIrange{10}{400}{MHz} Unterschiede zwischen SiC-MOSFET-Varianten und Betriebspunkten und quantifiziert damit Effekte, deren Relevanz zuvor lediglich angenommen wurde.
+Darüber hinaus verknüpft sie das Schaltverhalten unmittelbar mit EMV-relevanten Spektralanteilen und etabliert die Störaussendungen des Bauelements als messbare Entwurfszielgröße.
+Der entwickelte Ansatz ist nicht auf eine bestimmte Halbleitertechnologie beschränkt und schafft eine allgemeine Grundlage für die halbleiterbezogene EMV-Analyse in verschiedenen Phasen der Entwicklung leistungselektronischer Systeme:
+(1) Bei der Entwicklung der Halbleitertechnologie ermöglicht er die Charakterisierung verschiedener Entwurfsvarianten und die direkte Bewertung von Zielkonflikten mit konventionellen Leistungskenngrößen;
+(2) beim Umrichterentwurf ermöglicht er den Vergleich infrage kommender Leistungshalbleiter hinsichtlich ihrer elektromagnetischen Störaussendungen für eine gegebene Anwendung; und
+(3) bei Konformitätsprüfungen ermöglicht er die Identifikation des Schaltvorgangs, der mit größter Wahrscheinlichkeit die Störaussendungen dominiert und Überschreitungen der geltenden normativen Grenzwerte verursacht.
+Insgesamt unterstützen diese Beiträge frühzeitige, EMV-bewusste Entwurfsentscheidungen bei der künftigen Entwicklung von Leistungshalbleitern und Umrichtern.
+

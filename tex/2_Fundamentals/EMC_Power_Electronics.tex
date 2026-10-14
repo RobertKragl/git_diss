@@ -96,6 +96,7 @@ Convolution in the time domain corresponds to multiplication in the frequency do
 The second si factor introduces an additional corner frequency,
 \begin{equation}
 	\mi{f}{c2} = \frac{1}{\pi\mi{t}{r}}.
+\label{eq:fc2_rise_time}
 \end{equation}
 For $\mi{t}{r} \ll \text{d}\mi{T}{s}$, the envelope has three distinct regions: an approximately constant low-frequency region, a \SI{-20}{dB/dec} region, and a \SI{-40}{dB/dec} region above \mi{f}{c2}.
 As illustrated in \fref{fig:Diss_SpectrumCreation_firstOrder}, the pulse duration and transition duration therefore control different parts of the envelope: the former sets the first corner, while the latter determines the onset of the additional high-frequency attenuation.
@@ -180,6 +181,7 @@ where $\sigma_t$ is the standard deviation of the smoothing kernel.
 Its Fourier transform yields
 \begin{equation}
 	S(f) = \mi{V}{DC} \cdot \text{d}\mi{T}{s} \cdot \text{si}(\pi f\text{d}\mi{T}{s}) \cdot e^{-(2\pi\sigma_t f)^2}.
+	\label{eq:gaussian_spectrum}
 \end{equation}
 The Gaussian factor causes increasingly strong attenuation as frequency rises, so its envelope curves downward on a logarithmic-frequency plot instead of following a constant dB/decade slope, as illustrated in \fref{fig:Diss_SpectrumCreation_Heisenberg}:
 For RMS measures of temporal and spectral width, the Gaussian kernel minimizes their product (the Heisenberg-Gabor limit) and thus provides a theoretical reference for minimizing spectral spread at a given temporal spread~\cite{signal_theory}.

@@ -4,58 +4,67 @@
 \subsection{Design Constraints and Measurement Requirements}
 \label{sec:VoltageRequirements}
 
-Prior to designing the dual-channel differential active voltage probe, its requirements are established. 
-These requirements are specifically tailored for discrete SiC-MOSFETs, the primary focus of this work. 
-Should the target devices change to SiC power modules or GaN devices, some modifications are necessary. 
+The following requirements specify the dual-channel differential active voltage probe for measurements on discrete SiC MOSFETs. 
+They build on the general measurement-error mechanisms and verification criteria introduced in Section~\ref{sec:fundamental_measurement_errors}. 
+Requirements may need to be revised for SiC power modules or GaN devices. 
 The requirements are defined in accordance with the measurement limitations introduced in section \ref{sec:MeasurementLimitation}. 
 
 \subsubsection*{Small Signal Response}
-The small signal response of the probe is characterized by its bandwidth, which must exceed the maximum frequency of interest \mi{f}{interest,max} relevant to the measurements.
-As discussed in section \ref{ch:Methods}, this maximum frequency differs between low-pass and high-pass measurements.
-For low-pass measurements, the bandwidth requirement corresponds to the maximum frequency of voltage components still above the noise floor.
-For high-pass measurements, the maximum frequency of interest is set to \SI{500}{MHz}, which represents the point at which EMC-related issues transition from being caused by semiconductor switching events to those arising from digital signal sources, such as microcontroller and FPGA clock signals.
+The probe's small-signal response must be characterized over the frequency range required by each measurement method. For low-pass measurements, the upper frequency limit is the highest voltage-component frequency that remains distinguishable above the noise floor. 
+For high-pass measurements, the range extends to \SI{500}{MHz}. 
+This upper limit is an empirical scope for the present analysis: above it, emissions observed in the EMC chamber are often dominated by digital clock signals rather than semiconductor switching, as discussed in Section~\ref{sec:MeasurementLimitation}. 
+In accordance with the bandwidth criterion in Section~\ref{sec:fundamental_measurement_errors}, the probe's $-3$\,dB bandwidth must exceed the maximum frequency of interest \mi{f}{interest,max}.
 
 \subsubsection*{Large Signal Response}
-The large signal response of the probe is characterized by its maximum input voltage, which must exceed the maximum voltage of interest \mi{V}{interest,max} relevant to the measurements.
-Since the targets of this work are \SI{1200}{V} SiC-MOSFETs, the maximum voltage of interest is set to \SI{1200}{V}.
-Furthermore, the minimal rise time is determined by the minimal rise time possible in a given $LC$ resonant tank.
-The stray inductance of the setup is around \SI{25}{nH}, and the output capacitance of the smallest investigated MOSFET, which is a \SI{30}{A} device, is \SI{74}{pF}.
-The rise time of an underdamped LC resonant tank is given by:
-
-\begin{equation}
-t_r = \frac{\pi}{\omega_n\sqrt{1-\zeta^2}} - \frac{\arcsin(\zeta)}{\omega_n\sqrt{1-\zeta^2}}
-\end{equation}
-
-where the natural frequency is $\omega_n = \frac{1}{\sqrt{LC}}$ and the damping ratio is $\zeta = \frac{R}{2}\sqrt{\frac{C}{L}}$ for a series RLC circuit.
-
-For lightly damped systems ($\zeta \ll 1$), this simplifies to:
-
-\begin{equation}
-t_r \approx 1.8\cdot\sqrt{LC}
-\end{equation}
-
-This results in a minimal rise time of approximately \SI{2.5}{ns} for the given LC parameters.
-However, this value represents a purely passive response that assumes an infinitely fast switch, a condition that is typically observed only during uncontrolled diode snap-off events.
-In classical operation, the switching transient is predominantly determined by the gate-drive and is typically in the range of several tens of nanoseconds.
+The probe must measure drain-source voltages up to \SI{1200}{V}, corresponding to the rated voltage of the devices investigated. 
+Its minimum measurable rise time is set by the fastest transient expected in the test circuit. 
+For the estimated stray inductance of \SI{25}{nH} and the \SI{74}{pF} output capacitance of the smallest investigated MOSFET (a \SI{30}{A} device), the lightly damped LC estimate $t_r \approx 1.8\sqrt{LC}$ gives approximately \SI{2.5}{ns}. 
+This is an idealized lower bound assuming an infinitely fast switch; gate-controlled transitions are typically several tens of nanoseconds, while similarly fast transients may occur during uncontrolled diode snap-off. 
+The amplitude and rise-time limits are to be verified under representative large-signal conditions, as described in Section~\ref{sec:fundamental_measurement_errors}.
 
 
 \subsubsection*{Parasitic Coupling}
-As in any practical measurement setup, parasitic coupling can occur between the probe and the DUT.
-For the proposed voltage probe, the dominant mechanism is capacitive coupling from the switching-node potential into the sensitive amplification stage.
-Because this influence depends strongly on layout- and setup-specific conditions, it cannot be represented by a single precise quantitative requirement.
-Therefore, the final measurement results must be validated by cross-checking against a trusted reference, typically a conventional passive voltage probe.
+The general capacitive and inductive coupling mechanisms are described in Section~\ref{sec:fundamental_measurement_errors}. 
+For this probe, coupling from the switching node into the sensitive amplification stage is of particular concern. 
+Since its magnitude depends on the probe layout and test setup, it is assessed experimentally rather than assigned a universal numerical limit. 
+Validation must use an independent reference or controlled changes to the coupling geometry, accounting for the reference's own measurement errors.
 
 \subsubsection*{Transmission Line Effects}
-In high-frequency measurements, transmission line effects can significantly impact the accuracy of the voltage probe.
-This is particularly a problem for voltage measurement, since the source impedance of the MOSFET is changing over the switching event and the load impedance of the probe is very high, in the \si{M\Omega} range.
-The transmission line impedance of the connection is normally in the range of \SI{50}{\Omega} to \SI{75}{\Omega}, which is significantly lower than the input impedance of the probe.
-Hence, to avoid reflections and signal distortion, the connection between the probe and the DUT must be as short as possible, but maximally
+Transmission-line reflections and the short-line criterion are discussed in Section~\ref{sec:fundamental_measurement_errors}. Applying the criterion $l < \lambda_{\min}/10$ at \SI{500}{MHz}, with an effective relative permittivity of $\epsilon_r=4.25$, limits the connection length to
 
 \begin{align}
-    \mi{l}{max} \leq \frac{\lambda_\mathrm{min}}{10} &= \frac{c_0}{10\cdot\mi{f}{max}\sqrt{\epsilon_r}} \\
-                                                    &= \frac{c_0}{10\cdot \SI{500}{MHz}\cdot \sqrt{4.25}} \\
-                                                    &= \SI{2.9}{cm}
+    \mi{l}{max} \leq \frac{c_0}{10\cdot\mi{f}{max}\sqrt{\epsilon_r}}
+    = \frac{c_0}{10\cdot \SI{500}{MHz}\cdot \sqrt{4.25}}
+    = \SI{2.9}{cm}.
 \end{align}
 
-This allowable distance is too short to be implemented in a practically useful setup with a cable connection.
-Therefore, the probe must be designed for a direct connection to the drain and source terminals of the DUT.
+This limit is too short for a practical cable connection; the probe must therefore connect directly to the DUT drain and source terminals.
+
+\begin{table}[htbp]
+\centering
+\caption{Summary of the dual-channel differential active voltage-probe requirements.}
+\label{tab:VoltageProbeRequirements}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{0.9\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} >{\centering\arraybackslash}X}
+    \toprule
+    \textbf{Requirement} & \textbf{Design limit} \\
+    \midrule
+    Small-signal bandwidth & $\begin{gathered}
+        f_{\mathrm{3dB}}>f_{\mathrm{interest,max}}\\
+        f_{\mathrm{interest,max,LP}}=\max\{f:\\
+        V_{\mathrm{sig}}(f)>V_{\mathrm{noise}}(f)\}\\
+        f_{\mathrm{interest,max,HP}}=\SI{500}{MHz}
+    \end{gathered}$ \\
+    Input voltage & $V_{\mathrm{DS,max}}\geq\SI{1200}{V}$ \\
+    Rise-time capability & $\begin{gathered}
+        t_{\mathrm{r,meas,min}}\leq\SI{2.5}{ns}\\
+        t_r\approx1.8\sqrt{LC},\quad L=\SI{25}{nH},\ C=\SI{74}{pF}
+    \end{gathered}$ \\
+    Parasitic coupling & Reference comparison; vary coupling geometry \\
+    DUT connection & $\begin{gathered}
+        l_{\max}\leq\dfrac{c_0}{10f_{\max}\sqrt{\epsilon_r}}=\SI{2.9}{cm}\\
+        f_{\max}=\SI{500}{MHz},\quad \epsilon_r=4.25
+    \end{gathered}$; direct connection \\
+    \bottomrule
+\end{tabularx}
+\end{table}

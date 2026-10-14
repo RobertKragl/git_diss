@@ -2,63 +2,36 @@
 %!encoding = UTF-8 Unicode
 
 \section{Figures of Merit for Electromagnetic Emission Spectra}
-Dependent on the specific use-case, it may be necessary to quantify the noise emission of a switching transient using a single value, known as a Figure of Merit (FOM).
-One practical application is a noise analysis of a system over time. 
-Performing a classical spectral analysis for this purpose can be challenging, as it results in complex 3D plots that can be difficult to interpret. 
-In order to simplify the visualization of noise emission over time, a FOM can be employed to evaluate a single switching event. 
-Unfortunately, there is not a single FOM, which can condense an entire spectrum plot into a single value. 
-Instead, a combination of multiple FOMs must be utilized.
+A figure of merit (FOM) is a single quantitative value used to characterize the performance of a system, device, or process with respect to a defined objective. 
+It condenses relevant performance into a value that can be compared across designs or operating conditions. 
+In this thesis, FOMs are used to assess and compare the EMC-relevant performance of switching transients. 
+They may be derived from the time-domain waveform, the frequency-domain spectrum, or both, and applied to comparisons across operating points, parameter variations, or changes over time. 
+When such a sweep includes many conditions, direct comparison of all corresponding spectra can become challenging, and FOMs provide a compact basis for comparison. 
+However, a single value cannot represent all information in a waveform or spectrum: each FOM comes at the cost of a loss of information.
 
-These FOMs can be categorized into two groups based on the specific area of the spectrum they provide information about.
-The first category describes the broadband behavior of the spectrum, while the second category focuses on selective frequencies.
-For power electronics, this is particularly the resonance between the output capacitance of the semiconductor and the parasitic inductance of the commutation cell.
+The FOMs considered here cover time-domain, hybrid, and frequency-domain characteristics. 
+The Heisenberg-Gabor Inequality combines temporal and spectral characteristics, while the frequency-domain FOMs describe broadband behavior or focus on selected frequencies, including resonances between the semiconductor output capacitance and the parasitic inductance of the commutation cell.
 
-\subsubsection*{\mi{t}{10-90\%}}
-Most used, mainly because of the simplicity, is the rise time \mi{t}{r,10-90\%} of the signal.
-It describes the time duration, which the signal needs to rise from 10\% of its final value to 90\%.
-
-Fig.  shows the spectra for the drain-source voltage \mi{v}{DS} in a simple SPICE double pulse test compared to an often used simplification of an asymmetric first-order hold element \cite{costa_graphical_2005}.
-This model reduces the switching event to the information of the rise and fall times.
-It can be seen that the model describes the noise emission of \mi{v}{DS} well up to the second cutoff-frequency, where the slope decreases from \SI{-20}{dB/dec} to \SI{-40}{dB/dec}.
-The two frequencies are defined as 
-\begin{equation}
-	\mi{f}{cut1} = \dfrac{1}{\pi \mathrm{d}T_\mathrm{s}} =  \SI{290}{kHz}
-\end{equation}
-\begin{equation}
-	\mi{f}{cut2} = \dfrac{1}{\pi \cdot 1.25\cdot\mi{t}{10\%-90\%}} = \SI{12.7}{MHz}\\
-\end{equation}
-
-Above \mi{f}{cut2} the simulated \mi{v}{DS} falls below the first-order hold element, because the transitions into the slope have a smoothed behavior.
-At \mi{f}{res} the output capacitance resonates with leakage inductance of the commutation loop
-
-\begin{equation}
-\mi{f}{res} = \dfrac{1}{2\pi \cdot \sqrt{\mi{C}{oss}\mi{L}{\sigma}}} = \SI{58}{MHz}.\\
-\end{equation}
+\subsubsection*{Rise time {\boldmath\mi{t}{10-90\%}}}
+For transients with the same overall shape, rise time provides a useful basis for comparison because the second spectral corner shifts to lower frequencies as the transition duration increases, as described by \eref{eq:fc2_rise_time} and illustrated in \fref{fig:Diss_SpectrumCreation_firstOrder}. 
+However, rise time alone does not characterize waveform shape and is therefore insufficient for reliable comparisons between different transient types, such as active-off and passive-off events, or between operating conditions when a parameter change alters the transient shape. 
+Piecewise-linear and Gaussian-smoothed transitions can have substantially different spectral decay even at the same rise time; the contrast is illustrated in \fref{fig:Diss_SpectrumCreation_Heisenberg}, and reflected in \eref{eq:gaussian_spectrum}.
 
 
 
-% \begin{figure}[h!]
-% 	\centering
-% 	\input{SPEC24_UdsSpectrum_IdealvsReal_comb2.tex}
-% 	\caption{Simulation results for simple SPICE double pulse test compared with extracted asymmetric first order model and gaussian transient. Lower plot shows spectra for all signals with a signal period $T_\mathrm{s} = \SI{1.5}{\micro s}$.}
-% 	\label{fig:IdealVsReal}
-% \end{figure}
+\subsubsection*{Maximum Slew Rate {$\boldmath\sddt{v}_\mathrm{max}$}}
+The maximum voltage slew rate, $\sddt{v}_\mathrm{max}$, quantifies the steepest rate of voltage change during a switching transient. 
+However, it does not map directly to a spectral behavior; its value is influenced by the voltage change, related to the DC-link voltage \mi{V}{DC}, and by the transition duration, related to the rise time \mi{t}{10-90\%}. 
+Like the rise time, it is therefore most useful for comparing transients of similar shape.
 
-\subsubsection*{$\sddt{v}_\mathrm{max}$}
-Another often used value is $\sddt{v}_\mathrm{max}$, which describes the differential at the steepest point of the transient.
-However, it has no direct representation in the spectrum.
-The voltage differential $\mathrm{d}v$ correlates with the system voltage \mi{V}{DC}, which is the starting value in the spectrum
-
-\begin{equation}
-	\mi{V}{DS}(f\rightarrow \SI{0}{Hz}) = \SI{20}{dB} \log(\dfrac{\mathrm{d}\mi{V}{DC}}{\SI{1}{\micro V}}) = \SI{175}{dB\micro V}
-\end{equation}
-
-And the time differential $\mathrm{d}t$ correlates with \mi{t}{10-90\%}.
-
+Although slew rate is commonly used to quantify switching-related EM emissions, the author considers it unsuitable for this purpose. 
+Instead, it should only be used when specifying driver-isolation requirements. 
+A voltage transient across the isolation capacitance generates a displacement current, $i = C_\mathrm{iso}\sfrac{\mathrm{d}v}{\mathrm{d}t}$, which can interfere with the driver's normal operation.
 
 \subsubsection*{Heisenberg-Gabor Inequality (HGI)}
-In \cite{patin_power_2015}, a theoretically noise-optimal transient waveform is described by a so-called \textit{Heisenberg-Gabor Inequality}. 
-It was shown that the optimal spectrum can be achieved with a switching transient of
+As discussed in Section~\ref{sec:Fundamental_Generation}, a Gaussian-smoothed switching transient has been proposed as a theoretically EM-noise-optimal waveform. 
+The Heisenberg-Gabor Inequality (HGI) uses this optimum as a reference for assessing switching transients based on their temporal and spectral dispersion~\cite{patin_power_2015,martinez-padron_definition_2022}. 
+The Gaussian smoothing function is
 \begin{equation}
 	g(t) = \frac{1}{\sigma_t \sqrt{2\pi}}\cdot e^{-\dfrac{t^2}{2\sigma_t^2}},
 \end{equation}
@@ -68,9 +41,7 @@ where the resulting semiconductor voltage follows from the convolution
 \end{equation}
 The resulting waveform for $\sigma_t = \SI{10}{ns}$ is shown in Fig. \ref{fig:IdealVsReal}.
 
-In \cite{martinez-padron_definition_2022}, this optimum is used to define a FOM for the emitted noise of switching events.
-It is calculated from the transient function $\lambda = \frac{\text{d}\mi{v}{DS}}{\text{d}t}$, which is the derivative of the voltage transient.
-This function is used to calculate both the time and frequency dispersion.
+The dispersions are calculated from the transient function $\lambda = \frac{\text{d}\mi{v}{DS}}{\text{d}t}$, the derivative of the voltage transient.
 
 \begin{equation}
 	\sigma_t = \sqrt{\frac{\int (t-\mi{t}{b})^2 \cdot |\lambda(t)|^2 \text{d}t}{\int |\lambda(t)|^2 \text{d}t}}\text{, with } \mi{t}{b} = \int t\cdot\lambda(t) \text{d}t
@@ -86,26 +57,27 @@ Both can be used to calculate the FOM
 	HGI = \sigma_f \cdot \sigma_t \geq 0.5.
 \end{equation}
 
-HGI is derived from a theoretical approach that minimizes the noise-spectrum components at higher frequencies.
-It describes how far the transient waveform is from ideal switching.
-Ideal switching follows an S-shaped Gaussian-integral waveform.
-HGI does not take into account that resonances occur after the switching event.
+The lower bound of 0.5 is attained by a Gaussian waveform. 
+HGI therefore indicates the time--frequency spread product of the transient relative to this theoretical limit; a larger value corresponds to a larger product, not necessarily to greater high-frequency emission in every frequency band.
 
-\subsubsection*{$\bar{V}_{\Delta f}$}
-With the goal of providing a broadband FOM for frequencies above the second cutoff frequency, an average of all Fourier coefficients can be defined as:
+\subsubsection*{Band-Averaged Spectral Magnitude {\boldmath$\bar{V}_{\Delta f}$}}
+To quantify broadband emission over a selected frequency band, the frequency-bin-width-weighted mean of the spectral magnitudes is defined as:
 
 \begin{equation}
 	\bar{v}_{10-150 \mathrm{MHz}} = \frac{1}{\Delta f_{tot}} \sum_{n = n_{10 \mathrm{MHz}}}^{n_{150 \mathrm{MHz}}} \Delta f_n \cdot a_n
 \end{equation}
 
-The frequency band of interest $\Delta f$ can be chosen according to \mi{f}{sw} and \mi{f}{res}.
+Here, $a_n$ is the magnitude of the Fourier coefficient in frequency bin $n$, $\Delta f_n$ is the width of that bin, and $\Delta f_{tot}=\sum_n\Delta f_n$ is the total bandwidth. 
+The lower and upper frequency limits are selected for the region of interest, taking into account \mi{f}{sw} and \mi{f}{res}; the equation above uses the band from \SI{10}{MHz} to \SI{150}{MHz}.
 
-\subsubsection*{$\hat{V}_\mathrm{res}$}
-Most problems in EMC occur due to peaks in the noise spectrum.
-These can be either caused by the noise source \mi{v}{DS} itself, or by a pole in the transfer function TF(f) due to passive components or the layout.
-$\hat{V}_\mathrm{res}$ is defined as the Fourier coefficient at a selective frequency.
+\subsubsection*{Amplitude of Resonance Frequency {\boldmath$\hat{V}_\mathrm{res}$}}
+Peaks in the emission spectrum may originate from the source spectrum of \mi{v}{DS} or from resonances in the transfer function introduced by passive components and layout parasitics. 
+The resonance FOM, $\hat{V}_\mathrm{res}$, quantifies the spectral component at a selected resonance frequency.
+Most of the time, this will be the main resonance, which is created by the oscillation between the output capacitance of the turned-off device and the parasitic inductance of the commutation loop.
 
-The calculation and the respective information of all FOMs are summarized in Tab. \ref{tab:FOMs} and their influence on the spectrum is visualized in Fig. \ref{fig:FOM_in_spectrum}.
+\subsubsection*{Summary of FOMs}
+The considered FOMs and the information they provide are summarized in Tab. \ref{tab:FOMs}; their influence on the spectrum is illustrated in Fig. \ref{fig:FOM_in_spectrum}.
+
 
 \begin{table}[ht]
 	\centering
@@ -122,23 +94,24 @@ The calculation and the respective information of all FOMs are summarized in Tab
 	\label{tab:FOMs}
 \end{table}
 
-
 \begin{figure}
 	\centering\import{./figures/3_Methods/FOM/}{Diss_FOM_in_Spectrum.pdf_tex}
 	\caption{Influence of FOM in spectrum.}
 	\label{fig:FOM_in_spectrum}
 \end{figure}
-
 \FloatBarrier
-\subsubsection*{Single Pulse Analysis in Frequency Domain}
-While the time domain FOMs can be calculated for individual transient events, the frequency domain FOMs are affected by the duty cycle. 
-Therefore, analyzing a single transient does not provide meaningful results.
-Instead, a moving filter is used to calculate the spectrum for n switching periods, thereby separating consecutive events, see Fig.~\ref{fig:Moving_FD_FOM}. 
-Afterwards, the signal snippet is repeated multiple times to give a sufficient signal length for the FFT algorithm.
-This analysis can be conducted on the original data or on generated signals of the "snap-and-mirror" function.
+
+
+\subsubsection*{Time-Resolved Frequency-Domain Analysis}
+When a parameter varies during a measurement, the frequency-domain FOMs can be evaluated over time to track the corresponding changes in the emission spectrum. 
+A spectrum calculated over the entire record would combine measurements from different parameter values and obscure this evolution. 
+Because the spectrum also depends on the switching duty cycle, it is not meaningful to calculate these FOMs from an isolated transient. 
+Instead, a moving window is used to calculate the spectrum over $n$ switching periods while separating consecutive events, as illustrated in \fref{fig:Moving_FD_FOM}, and the resulting signal segment is repeated to provide sufficient length for the FFT. 
+This procedure can be applied either to the original waveform or to event-separated signals generated by the snap-and-mirror method.
 
 \begin{figure}
 	\centering\import{./figures/3_Methods/FOM/}{Moving_FD_FOM.pdf_tex}
 	\caption{Moving window for calculation of FD FOM over time with a window length of n = 1.}
 	\label{fig:Moving_FD_FOM}
 \end{figure}
+

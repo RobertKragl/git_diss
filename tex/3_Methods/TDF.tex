@@ -2,9 +2,13 @@
 %!encoding = UTF-8 Unicode
 
 \section{Digital Processing for EMC-Relevant Signal Analysis}
+In addition to the measurement methods described above, digital processing can further improve the analysis of switching transients. 
+This section presents a time-dependent noise filter, which suppresses noise outside the transient interval, and an event-resolved spectral separation method, which isolates the spectral contributions of individual switching events. 
+Together, these methods enable a more detailed analysis of the intrinsic EM emission behavior of power semiconductor devices.
 
-Following acquisition, digital processing serves two complementary purposes: reducing the noise contribution in the measured waveform and enabling a more detailed analysis of the intrinsic EM emission behavior of power semiconductor devices.
-This section first introduces a time-dependent noise filter for noise reduction and then presents an event-resolved spectral separation method that distinguishes the EMC-relevant contributions of individual switching events.
+
+
+
 
 \subsection{Time-Dependent Noise Filter}
 
@@ -48,5 +52,7 @@ Alternatively, stronger low-pass filtering or setting the signal to zero outside
 For approximately white, uncorrelated noise, and neglecting the residual filtered noise outside the transient intervals, the RMS spectral noise per bin in the frequency range well above the filter cutoff can be approximated as
 
 \begin{equation}
-	\mi{V}{n,th,TDF} = \frac{\mi{T}{TDF}}{\mi{T}{sw}} \cdot \mi{V}{n,th}
+	\mi{V}{n,th,TDF} = \frac{2\mi{T}{TDF}}{\mi{T}{sw}} \cdot \mi{V}{n,th}
 \end{equation}
+
+The factor of 2 accounts for the two switching transients per switching period (turn-on and turn-off).

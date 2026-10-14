@@ -10,15 +10,19 @@ This chapter presents the hardware developed to realize this methodology: a dual
 \section{Dual-Channel Differential Active Voltage Probe}
 \label{ch:voltage}
 
-Measuring the EMC-relevant high-frequency drain-source voltage components requires a probe with low noise, high bandwidth, and a short, well-defined electrical connection to the DUT terminals.
-In addition, the output interface must provide a \SI{50}{\Omega} output for supplying both a low-pass and a high-pass signal path for time-domain and EMC-oriented frequency-domain evaluation, respectively.
+Measuring the EMC-relevant high-frequency drain-source voltage components requires a probe with low noise, high bandwidth, and a short, well-defined electrical connection to the DUT terminals. 
+The output interface must also provide a \SI{50}{\Omega} connection to supply both low-pass and high-pass signal paths for time-domain and EMC-oriented frequency-domain evaluation, respectively.
 
-To the best of our knowledge, no commercially available probe fully met these requirements. 
-In particular, low output noise is often not a primary design target in conventional probe designs. 
-Instead, many commercial probes use a large input voltage divider to keep the operational amplifier input swing small and thereby extend the bandwidth. 
-However, this architecture, together with the subsequent amplification stage, can degrade the overall noise performance.
+When the probe requirements were defined, no commercially available probe was known to meet them in full. 
+However, during the development of this work, several manufacturers introduced a new generation of optically isolated voltage probes that appear promising. 
+However, their linearity in transferring the small voltage components of interest here has not yet been tested. 
+Furthermore, some optical probes transmit a digitized signal and reconstruct it with a DAC at the receiving end, reintroducing quantization noise that again limit the resolution of small high-frequency components. 
+For the measurement approach pursued here, analog signal transmission is a strict requirement.
 
-
+With previous differential probes, a challenge is the requirement for low output noise. 
+This is often not a primary design target in conventional probe architectures due to its unimportance for conventional switching metrics.
+To extend bandwidth while limiting the operational-amplifier input swing, these probes often use a large input voltage divider. 
+The resulting signal attenuation requires greater gain in subsequent stages, which can degrade the probe's overall noise performance.
 
 \input{4_Sensors/Requirements_Voltage.tex}
 \input{4_Sensors/Design_Voltage.tex}

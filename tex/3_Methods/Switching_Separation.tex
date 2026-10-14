@@ -5,10 +5,11 @@
 \label{subsec:SpectralSeparation}
 Whereas the time-dependent noise filter improves the SNR of the measured waveform, event-resolved spectral separation distinguishes the contributions of individual switching transients.
 
-In power electronics analysis, it is standard practice to evaluate four distinct switching transients separately: active-on (device turn-on), active-off (device turn-off), passive-on (body-diode turn-on), and passive-off (body-diode turn-off)~\cite{fritz_toward_2020}. Here, the active device initiates the transient while the passive device (conducting body diode) is turned off during commutation.
+In power electronics analysis, it is standard practice to evaluate the four distinct switching transients separately: active-on (device turn-on), active-off (device turn-off), passive-on (body-diode turn-on), and passive-off (body-diode turn-off)~\cite{fritz_toward_2020}. 
+Here, the active device initiates the transient while the passive device (conducting body diode) is turned off during commutation.
 
 For EMC analysis, this separation is particularly valuable: it identifies which switching event dominates in each frequency band, enabling targeted understanding of noise generation mechanisms. 
-Direct measurement at the semiconductor ports enables this separation, a key advantage unavailable in conventional system level EMC measurements, which capture only the aggregated noise from all events.
+Direct measurement at the semiconductor ports enables this separation, a key advantage of the methodology presented in this thesis unavailable in conventional system level EMC measurements, which capture only the aggregated noise from all events.
 
  \begin{figure*}[htb]
 	\centering
@@ -26,7 +27,7 @@ Direct measurement at the semiconductor ports enables this separation, a key adv
 	\begin{subfigure}{0.48\textwidth}
 		\centering
 		\input{"3_Methods/SnapNMirror/Snapped_TD.tex"}
-		\caption{Four artificial signals containing frequency components of one switching event only.}
+		\caption{Four synthetic signals containing frequency components of one switching event only.}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}{0.48\textwidth}
@@ -39,9 +40,7 @@ Direct measurement at the semiconductor ports enables this separation, a key adv
 
 
 To achieve event-resolved separation in the frequency domain, the snap-and-mirror method is applied~\cite{kragl_impact_2024}, whose operating principle is shown in \fref{fig:SnapNMirror}. 
-The procedure works by mirroring the measured signal around each switching cycle midpoint, producing four synthetic signals (one per event type), which can then be analyzed separately.
-
-This function identifies the midpoints of each switching cycle \mi{t}{m,n} and mirrors the signal around this axis, which can be formulated as
+The method identifies the midpoints of each switching cycle \mi{t}{m,n} and mirrors the measured signal around these points to produce four synthetic signals, one for each event type. This transformation is expressed as
 
 \begin{equation}
 	s_\mathrm{new}(t) = 
@@ -67,8 +66,10 @@ This transformation is valid for amplitude-spectrum analysis because time mirror
 
 Therefore, the amplitude spectrum $|S(f)|$ remains unchanged. 
 
-This method performs best when the spectrum is evaluated with a peak detector in post-processing.
-If a normal FFT or an average detector is used, the spectral content is increased by a factor of up to 2, because the mirrored signal adds to the original signal.
+When the four event-resolved spectra are compared with the spectrum of the original voltage waveform, a peak detector is preferred. 
+Each switching event occurs once per switching period in the original waveform but twice per switching period in the corresponding synthetic signal. 
+Consequently, a conventional FFT or an averaged spectrum can give disproportionate weight to repeated transient contributions, increasing the apparent spectral magnitude by up to a factor of two. 
+Peak detection retains the maximum level at each frequency rather than averaging these differently weighted contributions, making it better suited to this comparison.
 
 
 

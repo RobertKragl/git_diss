@@ -7,30 +7,31 @@
 The following requirements specify the dual-channel differential active voltage probe for measurements on discrete SiC MOSFETs. 
 They build on the general measurement-error mechanisms and verification criteria introduced in Section~\ref{sec:fundamental_measurement_errors}. 
 Requirements may need to be revised for SiC power modules or GaN devices. 
-The requirements are defined in accordance with the measurement limitations introduced in section \ref{sec:MeasurementLimitation}. 
+The requirements are defined in accordance with the measurement limitations introduced in Section \ref{sec:MeasurementLimitation}. 
 
 \subsubsection*{Small Signal Response}
 The probe's small-signal response must be characterized over the frequency range required by each measurement method. For low-pass measurements, the upper frequency limit is the highest voltage-component frequency that remains distinguishable above the noise floor. 
+
 For high-pass measurements, the range extends to \SI{500}{MHz}. 
 This upper limit is an empirical scope for the present analysis: above it, emissions observed in the EMC chamber are often dominated by digital clock signals rather than semiconductor switching, as discussed in Section~\ref{sec:MeasurementLimitation}. 
-In accordance with the bandwidth criterion in Section~\ref{sec:fundamental_measurement_errors}, the probe's $-3$\,dB bandwidth must exceed the maximum frequency of interest \mi{f}{interest,max}.
+In accordance with the bandwidth criterion in Section~\ref{sec:fundamental_measurement_errors}, the probe's \SI{-3}{dB} bandwidth must exceed the maximum frequency of interest \mi{f}{interest,max}.
 
 \subsubsection*{Large Signal Response}
 The probe must measure drain-source voltages up to \SI{1200}{V}, corresponding to the rated voltage of the devices investigated. 
 Its minimum measurable rise time is set by the fastest transient expected in the test circuit. 
 For the estimated stray inductance of \SI{25}{nH} and the \SI{74}{pF} output capacitance of the smallest investigated MOSFET (a \SI{30}{A} device), the lightly damped LC estimate $t_r \approx 1.8\sqrt{LC}$ gives approximately \SI{2.5}{ns}. 
-This is an idealized lower bound assuming an infinitely fast switch; gate-controlled transitions are typically several tens of nanoseconds, while similarly fast transients may occur during uncontrolled diode snap-off. 
-The amplitude and rise-time limits are to be verified under representative large-signal conditions, as described in Section~\ref{sec:fundamental_measurement_errors}.
+This estimate is an idealized lower bound because it assumes an infinitely fast switch exciting the main resonance. 
+Gate-controlled transitions are typically several tens of nanoseconds. 
+However, similarly fast transients may occur during uncontrolled diode snap-off. 
 
 
 \subsubsection*{Parasitic Coupling}
 The general capacitive and inductive coupling mechanisms are described in Section~\ref{sec:fundamental_measurement_errors}. 
 For this probe, coupling from the switching node into the sensitive amplification stage is of particular concern. 
-Since its magnitude depends on the probe layout and test setup, it is assessed experimentally rather than assigned a universal numerical limit. 
-Validation must use an independent reference or controlled changes to the coupling geometry, accounting for the reference's own measurement errors.
+Validation must use an independent reference, and the measurement error must remain below the tolerated error of \SI{5}{\%}.
 
 \subsubsection*{Transmission Line Effects}
-Transmission-line reflections and the short-line criterion are discussed in Section~\ref{sec:fundamental_measurement_errors}. Applying the criterion $l < \lambda_{\min}/10$ at \SI{500}{MHz}, with an effective relative permittivity of $\epsilon_r=4.25$, limits the connection length to
+Transmission-line reflections and the short-line criterion are discussed in Section~\ref{sec:fundamental_measurement_errors}. Applying the criterion $l < \lambda_{\min}/10$ at \SI{500}{MHz}, with an effective relative permittivity of $\epsilon_r=4.25$ of FR4, limits the connection length to
 
 \begin{align}
     \mi{l}{max} \leq \frac{c_0}{10\cdot\mi{f}{max}\sqrt{\epsilon_r}}
@@ -39,32 +40,27 @@ Transmission-line reflections and the short-line criterion are discussed in Sect
 \end{align}
 
 This limit is too short for a practical cable connection; the probe must therefore connect directly to the DUT drain and source terminals.
+\\
+\\
+The design requirements are summarized in \tref{tab:VoltageProbeRequirements}.
 
 \begin{table}[htbp]
 \centering
 \caption{Summary of the dual-channel differential active voltage-probe requirements.}
 \label{tab:VoltageProbeRequirements}
 \renewcommand{\arraystretch}{1.25}
-\begin{tabularx}{0.9\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} >{\centering\arraybackslash}X}
+\begin{tabularx}{0.8\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} >{\centering\arraybackslash}X}
     \toprule
     \textbf{Requirement} & \textbf{Design limit} \\
     \midrule
-    Small-signal bandwidth & $\begin{gathered}
-        f_{\mathrm{3dB}}>f_{\mathrm{interest,max}}\\
-        f_{\mathrm{interest,max,LP}}=\max\{f:\\
-        V_{\mathrm{sig}}(f)>V_{\mathrm{noise}}(f)\}\\
-        f_{\mathrm{interest,max,HP}}=\SI{500}{MHz}
-    \end{gathered}$ \\
+    Small-signal & $\begin{gathered}                        
+                        f_{\mathrm{interest,max,LP}}=\max\{f: V_{\mathrm{sig}}(f)>V_{\mathrm{noise}}(f)\}\\
+                        f_{\mathrm{interest,max,HP}}=\SI{500}{MHz}
+                    \end{gathered}$ \\
     Input voltage & $V_{\mathrm{DS,max}}\geq\SI{1200}{V}$ \\
-    Rise-time capability & $\begin{gathered}
-        t_{\mathrm{r,meas,min}}\leq\SI{2.5}{ns}\\
-        t_r\approx1.8\sqrt{LC},\quad L=\SI{25}{nH},\ C=\SI{74}{pF}
-    \end{gathered}$ \\
-    Parasitic coupling & Reference comparison; vary coupling geometry \\
-    DUT connection & $\begin{gathered}
-        l_{\max}\leq\dfrac{c_0}{10f_{\max}\sqrt{\epsilon_r}}=\SI{2.9}{cm}\\
-        f_{\max}=\SI{500}{MHz},\quad \epsilon_r=4.25
-    \end{gathered}$; direct connection \\
+    Rise-time capability & $t_{\mathrm{r,meas,min}}\approx\SI{2.5}{ns}$\\
+    Parasitic coupling & $\sfrac{v-\mi{v}{ref}}{\mi{v}{ref}} \leq 0.05$\\
+    DUT connection & $l_{\max}\leq\SI{2.9}{cm}$\\
     \bottomrule
 \end{tabularx}
 \end{table}

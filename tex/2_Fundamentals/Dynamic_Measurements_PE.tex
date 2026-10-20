@@ -29,7 +29,6 @@ For drain-source voltage measurements, the differential input capacitance of the
 The latter can be on the order of hundreds of picofarads, depending on the device and bias voltage, so a small probe capacitance may have only a limited relative influence.
 Nevertheless, the strongly voltage-dependent output capacitance must be considered throughout the transition.
 Capacitance from the probe terminals to ground creates an additional common-mode path and must be assessed separately, particularly when the unperturbed switching-node capacitance to ground is small.
-% Streit_ECCE_Asia
                   
 Current measurement in the commutation loop presents a different challenge. 
 The loop inductance is deliberately minimized because it contributes to switching overvoltage and losses, and can be only a few nanohenries. 
@@ -208,12 +207,12 @@ For each frequency component, the magnitude of the input-referred error is
 
 Common-mode rejection is particularly demanding for a high-side gate-source measurement: the source terminal follows the switching-node voltage, whose excursion can greatly exceed the gate-source voltage of interest.
 
-An additional disturbance, particularly relevant to low-side voltage and shunt measurements, is ground bounce.
-The commutation current \mi{i}{S} flowing through a shared return-path inductance \mi{L}{\sigma} produces an approximate reference-potential displacement
+An additional disturbance is ground bounce.
+The commutation current \mi{i}{S} flowing through a shared return-path inductance produces an approximate reference-potential displacement
 \begin{equation}
-    \mi{v}{cm} \approx \mi{L}{\sigma}\ddt{\mi{i}{S}}.
+    \mi{v}{cm} \approx \frac{\mi{L}{\sigma}}{a}\ddt{\mi{i}{S}},
 \end{equation}
-This ground bounce is not necessarily negligible, as the shunt signal itself can also be small. 
+where $a$ describes how much of the commutation loop is shared.
 
 If common-mode conversion can be approximated by a frequency-independent gain over the relevant band, a time-domain screening criterion is
 \begin{equation}

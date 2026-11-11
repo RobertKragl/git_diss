@@ -7,12 +7,15 @@ Because the high-pass channel targets drain-source voltage components that are d
 The tests address the relevant error mechanisms introduced in Section~\ref{sec:fundamental_measurement_errors}, including limited bandwidth, large-signal distortion, parasitic coupling, and noise.
 Together, these tests establish the conditions under which the subsequent analysis of device behavior can be interpreted.
 
-The verification proceeds from controlled reference measurements to tests in the intended switching environment.
-A vector network analyzer (VNA) first characterizes the small-signal frequency response of both channels.
-A resistively loaded \SI{50}{\ohm} pulse generator and the associated verification methodology were developed in this work and presented in~\cite{kragl_active_2025}.
-Beyond verifying the overall large-signal response, the pulse generator enables independent verification of small high-frequency voltage components.
-Switching measurements then assess parasitic coupling, common-mode errors, and shielding effectiveness.
-The final noise characterization identifies the mechanisms that limit the usable measurement range.
+The verification proceeds from controlled source measurements to tests in the intended switching environment.
+Controlled sources separate the probe response from errors introduced by the switching environment.
+A VNA measurement first characterizes the small-signal frequency response of both channels.
+Next, a resistively loaded \SI{50}{\ohm} pulse generator tests the large-signal response.
+By selecting a suitable band-pass filter, the same setup provides an independent reference for small high-frequency voltage components in any frequency band of interest.
+Subsequent tests in the commutation cell used later in this work assess parasitic coupling, common-mode errors, and shielding effectiveness.
+Here, a passive probe provides the measurement reference for the low-pass signal.
+The high-pass signal does not have a reference.
+Finally, noise characterization describes the probe's frequency-dependent noise behavior.
 
 
 
@@ -23,17 +26,16 @@ The final noise characterization identifies the mechanisms that limit the usable
 
 
 \subsubsection*{Small-Signal Verification}
-The small-signal verification determines the frequency response and input-path symmetry of both channels.
-The VNA magnitude measurements assess the low-pass gain flatness and the usable frequency range of both channels.
-The design targets are a bandwidth exceeding \SI{120}{MHz} for the low-pass channel and \SI{500}{MHz} for the high-pass channel.
-The low-pass target covers the range in which conventional switching measurements typically remain above the noise floor.
-Assessing these targets requires separate measurements of the two differential input paths.
+Small-signal verification checks whether both probe channels meet their frequency-response targets.
+Both channels are characterized with a VNA to assess their bandwidth and the flatness of the low-pass response.
+The target bandwidths exceed \SI{120}{MHz} for the low-pass channel and \SI{500}{MHz} for the high-pass channel.
+For the low-pass channel, the target covers the range in which conventional switching measurements of SiC MOSFETs typically remain above the noise floor.
+In a differential probe, these characteristics must be established for both input paths.
 
-The available two-port VNA requires the differential probe to be measured in two single-ended configurations.
-The VNA was calibrated at the probe input using an Open-Short-Load procedure with a \SI{50}{\Omega} source impedance.
-As shown in \fref{fig:EME_VNA_SchematicOverview}, the shared ground of the two VNA ports shorts on side of probe (either positive or negative).
-Swapping the positive and negative input connections therefore yields the response of each path separately.
-Comparing these responses assesses the input-path symmetry needed for common-mode rejection.
+With the available two-port VNA, the two input paths are measured in separate single-ended configurations.
+The shared ground of the VNA ports shorts the inactive input, as shown in \fref{fig:EME_VNA_SchematicOverview}.
+Repeating the measurement with the positive and negative input connections swapped gives the response of the other path.
+Comparing the resulting path gains then reveals any mismatch between the differential inputs.
 
 \begin{figure}[ht]
 	\centering
@@ -41,10 +43,10 @@ Comparing these responses assesses the input-path symmetry needed for common-mod
 	\caption{Small-signal verification setup: single-ended VNA measurement of one differential input at a time. The VNA ground connection shorts the inactive differential input; the measurement is repeated with swapped connections to characterize both input paths.}\label{fig:EME_VNA_SchematicOverview}
 \end{figure}
 
-The VNA results show the responses of both input paths for each output channel.
-The positive and negative paths are plotted as solid and dashed lines in \fref{fig:VNA_LP} and \fref{fig:VNA_HP}, respectively.
-The source power was \SI{0}{dBm} for the positive input and \SI{-10}{dBm} for the negative input.
-The corresponding noise floors in \mti{S}{11,LP} are approximately \SI{-100}{dB} and \SI{-80}{dB}, respectively.
+Measurements were performed after Open-Short-Load calibration at the probe input.
+Excitation power was \SI{0}{dBm} for the positive input and \SI{-10}{dBm} for the negative input.
+At these power levels, the noise floors are approximately \SI{-100}{dB} and \SI{-80}{dB}, respectively.
+In the following plots, solid and dashed lines identify the positive and negative paths, respectively.
 
 \begin{figure}[ht]
 	\centering
@@ -52,31 +54,32 @@ The corresponding noise floors in \mti{S}{11,LP} are approximately \SI{-100}{dB}
 	\caption{VNA measurement of positive (LPp) and negative (LPn) low-pass paths, crosscheck~\fref{fig:EME_VNA_SchematicOverview}.}\label{fig:VNA_LP}
 \end{figure}
 
-The measured S-parameters also determine the probe voltage gain \mti{a}{probe}.
-The input reflection coefficient accounts for the voltage at the probe input, giving
+The measured S-parameters determine the probe voltage gain \mi{a}{probe}.
+Accounting for input reflection gives
 \begin{align}
-	\mti{a}{probe} 	&= \frac{\mi{v}{out}}{\mi{v}{HV+}-\mi{v}{HV-}} \\
-					&= \frac{\mti{S}{21}}{1 + \mti{S}{11}}.
+	\mi{a}{probe} 	&= \frac{\mi{v}{out}}{\mi{v}{HV+}-\mi{v}{HV-}} \\
+					&= \frac{\mi{S}{21}}{1 + \mi{S}{11}}.
 \label{eq:TF_probe}
 \end{align}
-
-Since \mti{S}{11} remains nearly constant because of the high input impedance, \mti{S}{21} determines most of the frequency dependence of the gain.
+Since \mi{S}{11} remains nearly constant at \SI{0}{dB} because of the high input impedance, \mi{S}{21} determines the frequency dependence of the gain.
 Applying this single-ended equation to differential measurements assumes equal gains in both input paths.
 A gain mismatch makes the output depend additionally on the common-mode voltage relative to oscilloscope ground.
+Input-path agreement must therefore be considered when interpreting the measured gain.
 
 
 
 The low-pass channel exceeds its bandwidth target and shows close agreement between the input paths.
 Its flat passband gain of \SI{-53}{dB} corresponds to a voltage division ratio of 446, close to the divider design value.
 The \SI{3}{dB} bandwidth is \SI{315}{MHz} and is primarily limited by the low-pass subtractor operational amplifier (see \fref{fig:VNA_rawLP}).
-The maximum input-path gain deviation is \SI{0.2}{dB} at \SI{3}{MHz}.
+At \SI{3}{MHz}, the input-path gain deviation reaches its maximum of \SI{0.2}{dB}.
 These results support differential measurements up to and beyond the \SI{120}{MHz} design target.
 
 The high-pass channel provides the intended rising response, but input-path agreement deteriorates near the upper frequency limit.
-As shown in \fref{fig:VNA_HP}, the magnitude slope is approximately \SI{+40}{dB/dec} from \SI{1}{MHz} to \SI{450}{MHz}, beyond which the unity-gain output amplifier begins to roll off, compare \fref{fig:VNA_rawUG}.
-The input-path gain deviation remains below \SI{0.8}{dB} in this rising region.
-The deviation increases to \SI{2.8}{dB} at \SI{490}{MHz} as the paths approach their respective roll-off frequencies.
-The measured \SI{3}{dB} bandwidth exceeds \SI{400}{MHz}, but the growing mismatch limits common-mode rejection near the \SI{500}{MHz} target.
+As shown in \fref{fig:VNA_HP}, the magnitude slope is approximately \SI{+40}{dB/dec} from \SI{1}{MHz} to \SI{450}{MHz}.
+Above this range, the unity-gain output amplifier begins to roll off (see \fref{fig:VNA_rawUG}).
+Within the rising region, the input-path gain deviation remains below \SI{0.8}{dB}.
+As the paths approach their respective roll-off frequencies, the deviation increases to \SI{2.8}{dB} at \SI{490}{MHz}.
+This growing mismatch limits common-mode rejection near the \SI{500}{MHz} target.
 
 \begin{figure}[ht]
 	\centering
@@ -84,12 +87,13 @@ The measured \SI{3}{dB} bandwidth exceeds \SI{400}{MHz}, but the growing mismatc
 	\caption{VNA measurement of positive (HPp) and negative (HPn) high-pass paths, crosscheck~\fref{fig:EME_VNA_SchematicOverview}.}\label{fig:VNA_HP}
 \end{figure}
 
-The remaining S-parameters characterize the probe interfaces and residual reverse coupling.
-Both channel measurements show a voltage-divider feature at \SI{695}{MHz}.
-The output reflection coefficient \mti{S}{22} is consistent with the specified \SI{10}{\Omega} output resistance.
-The input reflection coefficient \mti{S}{11} is approximately \SI{0}{dB}, consistent with the high input impedance of the divider.
-The reverse transmission \mti{S}{12} reveals residual passive coupling from output to input.
-These measurements describe the small-signal behavior; the following pulse-generator tests assess performance at switching-voltage amplitudes.
+The remaining $S$-parameters characterize the probe interfaces and residual reverse coupling.
+Both channel measurements show a voltage-divider pole at \SI{695}{MHz}.
+At the output, the reflection coefficient \mi{S}{22} is consistent with the specified \SI{10}{\Omega} putput resistance.
+The input reflection coefficient \mi{S}{11} is approximately \SI{0}{dB}, consistent with the high input impedance of the divider.
+Reverse transmission \mi{S}{12} reveals residual passive coupling from output to input.
+Together, the VNA measurements characterize the probe's small-signal behavior.
+The following pulse-generator tests assess whether this response is preserved at switching-voltage amplitudes.
 
 
 
@@ -104,10 +108,11 @@ These measurements describe the small-signal behavior; the following pulse-gener
 
 
 \subsubsection*{Large-Signal Verification}
-The large-signal verification tests whether the probe preserves both the switching waveform and its small high-frequency components at high input voltage.
-Small-signal VNA measurements alone cannot establish this performance because amplifier distortion depends on signal amplitude.
-The reference source is the \SI{400}{V}, \SI{50}{\ohm} pulse generator developed for this purpose.
-Its resistive load allows a reference measurement independent of the voltage probe, as shown in \fref{fig:MS_PulsGen_ESB}.
+Large-signal verification assesses the probe's accuracy at switching-voltage amplitudes.
+At these amplitudes, amplifier distortion can alter both the switching waveform and its small high-frequency components.
+Such distortion is not characterized by the small-signal VNA measurements.
+A \SI{400}{V}, \SI{50}{\ohm} pulse generator was therefore developed to test the probe under large-signal excitation.
+Its resistive load permits a reference measurement independent of the probe under test, as shown in \fref{fig:MS_PulsGen_ESB}.
 
 \begin{figure}[ht]
 	\centering
@@ -115,11 +120,11 @@ Its resistive load allows a reference measurement independent of the voltage pro
 	\caption{Large-signal verification of the low-pass and high-pass channels using a \SI{50}{\ohm} pulse generator~\cite{kragl_active_2025}. The reference is acquired both via a conventional direct measurement and through a commercial \SI{180}{MHz}--\SI{340}{MHz} passive band-pass filter.}\label{fig:MS_PulsGen_ESB}
 \end{figure}
 
-The pulse-generator setup provides a directly measurable reference for the switching voltage.
-A \SI{40}{dB} attenuator serves as the \SI{50}{\Omega} load and permits direct connection to the oscilloscope.
-The oscilloscope bandwidth is \SI{2}{GHz}.
-The physical arrangement is shown in \fref{fig:MS_PulsGen_Pic}.
-The reference can therefore be acquired without an additional high-voltage probe.
+In the pulse-generator setup, a broadband attenuator enables reference acquisition without an additional high-voltage probe.
+A \SI{40}{dB} attenuator with a bandwidth of \SI{6}{GHz} serves as the \SI{50}{\Omega} load.
+Its attenuated output is measured directly with a \SI{2}{GHz} oscilloscope.
+Switching the resistive load with a \SI{750}{V} GaN-HEMT produces rise times below \SI{10}{ns}.
+\fref{fig:MS_PulsGen_Pic} shows the a photograph of the arrangement.
 
 \begin{figure}[ht]
 	\centering
@@ -127,24 +132,17 @@ The reference can therefore be acquired without an additional high-voltage probe
 	\caption{Large-signal verification of the low-pass and high-pass channels using a \SI{50}{\ohm} pulse generator~\cite{kragl_active_2025}. The reference is acquired both via a conventional direct measurement and through a commercial \SI{180}{MHz}--\SI{340}{MHz} passive band-pass filter.}\label{fig:MS_PulsGen_Pic}
 \end{figure}
 
-The pulse generator produces fast transitions for testing the probe's large-signal response.
-It uses \SI{750}{V} GaN-HEMTs to switch the resistive load, producing rise times below \SI{10}{ns}.
-These transitions expose amplitude-dependent limitations that are not captured by the VNA measurement.
-The \SI{50}{\Omega} interface also accepts commercial BNC band-pass filters, thereby filtering the frequency range of interest and diminishing the problem of quantization noise.
-The setup thus supports both time-domain verification of the switching edge and frequency-domain verification of small high-frequency components.
-
-
-The low-pass channel captures the initial switching edge but exhibits a distorted settling response.
-\fref{fig:MS_PulsGen_TD} compares the DAVP low-pass output with the attenuated pulse-generator reference and a commercial passive high-voltage probe.
-The initial rising edge agrees with the reference, whereas the transient tail shows second-order (PT2) behavior.
-The output settles to its final value after approximately \SI{20}{ns}.
-The small-signal bandwidth of \SI{315}{MHz} therefore does not fully describe the low-pass channel's transient accuracy.
+The attenuated pulse-generator output provides the reference for assessing the low-pass channel's large-signal transient response.
+\fref{fig:MS_PulsGen_TD} compares the DAVP low-pass measurement with this reference and a commercial passive high-voltage probe.
+During the initial rising edge, the low-pass output agrees with the reference.
+The transient tail, however, exhibits second-order (PT2) behavior.
+Settling to the final value takes approximately \SI{20}{ns}.
+This settling behavior shows that the small-signal bandwidth of \SI{315}{MHz} alone does not establish the low-pass channel's large-signal transient accuracy.
 
 The settling distortion is attributed to the amplitude-dependent response of the low-pass subtractor amplifier.
 According to its datasheet, the bandwidth decreases from \SI{800}{MHz} at \SI{100}{mVpp} to \SI{250}{MHz} at \SI{2}{Vpp} and \SI{140}{MHz} at \SI{4}{Vpp}.
-The shared unity-gain buffer retains measured bandwidths of \SI{3.1}{GHz} at \SI{100}{mVpp} and \SI{1.6}{GHz} at \SI{2}{Vpp}.
+By contrast, the shared unity-gain buffer retains measured bandwidths of \SI{3.1}{GHz} at \SI{100}{mVpp} and \SI{1.6}{GHz} at \SI{2}{Vpp}.
 The observed distortion is thus associated with the low-pass subtractor rather than the shared buffer.
-The separate high-pass path is assessed using a band-limited reference measurement.
 
 
 \begin{figure}[ht]
@@ -154,11 +152,13 @@ The separate high-pass path is assessed using a band-limited reference measureme
 \end{figure}
 
 The high-pass channel is verified against a band-pass-filtered reference that isolates the small high-frequency voltage components.
-A commercial passive BNC filter passes \SIrange{180}{340}{MHz} while attenuating the dominant DC and low-frequency content.
-The filter and the high-pass channel have different time-domain responses, so the comparison uses calibrated frequency-domain results.
+A commercial passive BNC filter with a passband of \SIrange{180}{340}{MHz} connects to the \SI{50}{\Omega} interface.
+By attenuating the dominant DC and low-frequency content, the filter reduces the effect of quantization noise on the reference measurement.
+The filter and the high-pass channel have different time-domain responses, which makes a direct time-domain comparison pointless.
+Calibrated frequency-domain results are used instead for the comparison.
+A pulse chain is used to obtain comparable quantization-noise floors in the reference and measurement channels.
 \fref{fig:MS_PulsGen_Meas} compares the unfiltered reference, the filtered reference, and both DAVP channels.
-A pulse sequence is used to obtain comparable quantization-noise floors in the reference and measurement channels.
-The resulting spectra allow the high-pass amplitude accuracy to be assessed within the reference passband.
+These spectra allow the high-pass amplitude accuracy to be assessed within the reference passband.
 
 \begin{figure}[ht]
 	\centering
@@ -166,23 +166,29 @@ The resulting spectra allow the high-pass amplitude accuracy to be assessed with
 	\caption{Large-signal verification of the low-pass and high-pass channels using a \SI{50}{\ohm} pulse generator~\cite{kragl_active_2025}. The reference is acquired both via a conventional direct measurement and through a commercial \SI{180}{MHz}--\SI{340}{MHz} passive band-pass filter.}\label{fig:MS_PulsGen_Meas}
 \end{figure}
 
-The high-pass channel agrees with the independent reference within the band-pass filter's passband.
+The high-pass channel agrees with both the unfiltered reference in the low frequency region below \SI{150}{MHz} and the band-pass filtered reference within the band-pass filter's passband of \SIrange{180}{340}{MHz}.
 Across \SIrange{180}{340}{MHz}, the maximum deviation is \SI{1.3}{dB} at \SI{200}{MHz}.
 The deviation remains below \SI{1}{dB} across most of that band.
-Agreement with the unfiltered reference and the low-pass channel is also observed where those spectra remain above their noise floors.
 Below \SI{10}{MHz}, the high-pass deviation increases as the signal is increasingly attenuated.
-The band-pass comparison therefore provides the independent evidence for resolving small high-frequency components under large-signal excitation.
+This comparison demonstrates the high-pass channel's central capability: resolving small high-frequency voltage components in the presence of a large switching-voltage excursion.
+The independent reference verifies this capability within \SIrange{180}{340}{MHz}, the main frequency range of interest for the SiC MOSFET emission measurements in this work.
+The band-pass test therefore provides the primary experimental verification of the high-pass channel and establishes confidence in the accuracy of its measurement results within the verified frequency band.
 
 Independent large-signal verification is limited to \SI{340}{MHz} by the available reference filter.
-No suitable commercial band-pass filter extending the reference measurement through the \SIrange{300}{400}{MHz} region was available for this setup.
+No suitable commercial band-pass filter extending the reference measurement through the \SIrange{340}{500}{MHz} region was available for this setup.
 Above \SI{340}{MHz}, the measured spectrum forms a plateau rather than the expected continuous roll-off.
-This feature indicates a possible measurement artifact, so the \SI{1.3}{dB} deviation cannot be extended to that range.
-For the rest of this work, results are presented up to \SI{500}{MHz}, but values above \SI{340}{MHz} have to be interpreted as comparative rather than independently verified absolute values.
+This feature indicates a possible measurement artifact.
+The \SI{1.3}{dB} maximum deviation therefore cannot be assumed above the independently verified band.
+For the rest of this work, results are presented up to \SI{500}{MHz}.
+However, values above \SI{340}{MHz} must therefore be interpreted as comparative rather than independently verified absolute values.
 
-The pulse-generator measurements establish different limits for the two channels.
-The low-pass channel resolves the initial edge but requires approximately \SI{20}{ns} to settle.
-The high-pass channel resolves the small components in the independent reference band with a maximum deviation of \SI{1.3}{dB}.
-These controlled tests do not reproduce all coupling paths of a commutation cell, which are assessed next under switching conditions.
+The pulse-generator measurements show overall sufficiently good large-signal behavior in the two channels.
+For the low-pass channel, the initial edge is resolved, but settling takes approximately \SI{20}{ns}, therefore transients faster than this timescale may not be accurately captured.
+The high-pass channel resolves high-frequency components in the up to \SI{340}{MHz} with a maximum deviation of \SI{1.3}{dB}.
+
+These controlled tests establish the probe's measurement accuracy within the verified limits.
+Accurate measurements in a commutation cell additionally require robustness against parasitic coupling and common-mode excitation.
+The following tests therefore assess whether these effects introduce additional measurement errors under switching conditions.
 
 
 
@@ -196,17 +202,14 @@ These controlled tests do not reproduce all coupling paths of a commutation cell
 
 \subsubsection*{Parasitic Coupling and Common-Mode Error}
 
-The switching tests assess errors caused by the probe's interaction with the intended application environment.
-Parasitic coupling and common-mode feedthrough can distort the drain-source voltage even when the differential response agrees with a controlled reference.
-The DAVP and a commercial passive probe therefore measure a SiC MOSFET in the commutation cell used later in this work.
-The cell operates in double-pulse test with the actively switched device in the low-side position.
-This arrangement permits a waveform comparison and a separate common-mode error measurement under the relevant switching conditions.
+Parasitic coupling and common-mode feedthrough can introduce additional errors when the DAVP is used in the commutation cell.
+Measurements with the VNA and pulse generator do not quantify these errors because they do not reproduce the coupling paths of the commutation cell.
+To assess these effects under switching conditions, the DAVP is tested on a SiC MOSFET in the measurement environment described in Section~\ref{sec:Environment}.
 
-The passive-probe comparison and the common-mode test address different error contributions.
-The waveform comparison is primarily performed in the time domain because quantization noise limits the passive reference at high frequencies.
-For the common-mode test, both DAVP inputs are connected to the MOSFET source terminal.
-With no applied differential voltage, the remaining output measures the residual error under common-mode excitation.
-The results in \fref{fig:Voltage_DPT_LPvsPP_weCM_TD} and \fref{fig:Voltage_DPT_HPvsPP_weCM_TD} must therefore be interpreted according to the purpose of each test.
+The first test assesses parasitic coupling by comparing the DAVP signal with a passive probe reference.
+Although the passive probe is also susceptible to parasitic coupling, identical coupling errors in both probes are unlikely.
+Agreement between the measured signals therefore provides evidence against a substantial coupling error in the DAVP measurement.
+Such agreement does not, however, establish the absence of residual error.
 
 \begin{figure}[ht]
 	\centering
@@ -214,18 +217,23 @@ The results in \fref{fig:Voltage_DPT_LPvsPP_weCM_TD} and \fref{fig:Voltage_DPT_H
 	\caption{Time-domain measurement results of PMTX05, at 800V, 30A room temperature, cross validation of passive probe and low-pass measurement to crosscheck inductive and capacitive coupling effects.}\label{fig:Voltage_DPT_LPvsPP_weCM_TD}
 \end{figure}
 
-The low-pass waveform agrees closely with the passive reference under switching conditions.
-The remaining deviation is consistent with the previously observed large-signal settling limitation.
-The settling interval is approximately \SI{14}{ns} during active-on and \SI{32}{ns} during active-off switching.
-The comparison does not reveal additional coupling that materially changes the overall waveform, but it does not independently verify the small high-frequency components of the high-pass measurement.
+A second test measures the residual output under common-mode excitation with zero differential input voltage.
+For this test, both DAVP inputs are connected to the MOSFET source terminal.
+Disconnecting the passive probe removes the direct ground connection between the half-bridge and the oscilloscope.
+In steady state, the remaining resistive path through the voltage divider pulls the oscilloscope ground toward the negative DC-link potential.
+During switching transients, however, the oscilloscope ground potential can shift relative to the negative DC-link terminal.
+With no differential input voltage, any remaining output represents residual measurement error under this common-mode excitation.
+Results from both tests are shown together in \fref{fig:Voltage_DPT_LPvsPP_weCM_TD}.
 
-The dedicated common-mode test quantifies the residual error that is not separated by the waveform comparison.
-The error remains below \SI{4}{V} during active-off and below \SI{14}{V} during active-on switching.
-These values correspond to less than \SI{1.8}{\percent} of the measured voltage.
-Common-mode feedthrough is therefore small relative to the overall switching-voltage amplitude, although that ratio alone does not establish its significance for small high-frequency components.
+The low-pass signal shows overall agreement with the passive reference under switching conditions.
+Transient deviations are consistent with the previously observed large-signal settling limitation.
+As shown in \fref{fig:Voltage_DPT_LPvsPP_weCM_TD}, settling takes approximately \SI{14}{ns} during active-on and \SI{32}{ns} during active-off switching.
+Maximum mismatch amplitudes reach \SI{22}{V} during active-off and \SI{45}{V} during active-on switching.
+Although the pulse-generator results support large-signal settling as a cause of the mismatch, an additional contribution from parasitic coupling cannot be excluded.
 
-The high-pass measurements provide a corresponding time-domain check of residual common-mode errors.
-\fref{fig:Voltage_DPT_HPvsPP_weCM_TD} shows the differential response and the output under common-mode excitation.
+The common-mode test shows a low-pass error that is small relative to the overall switching-voltage amplitude.
+During active-off and active-on switching, the error remains below \SI{4}{V} and \SI{14}{V}, respectively.
+These values correspond to less than \SI{1.8}{\percent} of the measured voltage amplitude.
 
 \begin{figure}[ht]
 	\centering
@@ -233,13 +241,31 @@ The high-pass measurements provide a corresponding time-domain check of residual
 	\caption{Time-domain measurement results of PMTX05, at 800V, 30A room temperature, cross validation of passive probe and high-pass measurement to crosscheck inductive and capacitive coupling effects.}\label{fig:Voltage_DPT_HPvsPP_weCM_TD}
 \end{figure}
 
-To highlight the influence of parasitic coupling, a test with and without shielding is conducted, as shown in \fref{fig:Influence_Shield_TD} and \fref{fig:Influence_Shield_FD}.
-Without shielding, the time-domain waveform exhibits greater overshoot and ringing.
-The corresponding spectrum also shows higher amplitudes at high frequencies.
-These differences support the use of the shield to reduce environmental coupling.
+The high-pass channel cannot be checked against a passive probe reference because quantization noise limits the reference at high frequencies.
+Instead, \fref{fig:Voltage_DPT_HPvsPP_weCM_TD} compares the differential response with the output under common-mode excitation.
+During turn-off, the residual output is not clearly distinguishable from noise, so a reliable peak error cannot be determined.
+At turn-on, the common-mode error reaches a peak magnitude of \SI{100}{mV}.
+This peak corresponds to \SI{25}{\percent} of the observed high-pass signal amplitude.
 
-Shielding reduces the observed interference but does not eliminate all residual waveform deviations.
-Small oscillations and an offset remain while the MOSFET is on.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=1]{figures/4_VoltageProbe/Voltage_DPT_HPvsPP_weCM_FD.pdf}
+	\caption{Frequency-domain measurement results of common-mode error.}\label{fig:Voltage_DPT_HPvsPP_weCM_FD}
+\end{figure}
+
+Frequency-domain analysis assesses whether common-mode feedthrough limits the interpretation of the measured high-pass spectrum.
+For this purpose, \fref{fig:Voltage_DPT_HPvsPP_weCM_FD} compares the signal spectrum with the common-mode error and the noise floor.
+Up to \SI{200}{MHz}, the signal remains \SI{10}{dB} above both the common-mode error and the noise floor.
+At higher frequencies, the signal decreases and comes closer to the common-mode error and noise floor.
+In no frequency range does the common-mode error dominate the signal.
+Therefore, common-mode feedthrough is not a limitation of the measured high-pass spectrum under the tested conditions.
+
+The aluminium enclosure contributes to the low sensitivity to parasitic coupling observed in the preceding tests.
+Its shielding effect for parasitic coupling is demonstrated by comparing measurements with and without the enclosure.
+Without shielding, the waveform exhibits greater overshoot and ringing, as shown in \fref{fig:Influence_Shield_TD}.
+The corresponding spectrum in \fref{fig:Influence_Shield_FD} also shows higher amplitudes at high frequencies.
+Small oscillations and an offset remain while the MOSFET is on, even with shielding.
+These results demonstrate that the aluminium enclosure effectively reduces parasitic coupling from the switching environment, although some waveform deviations remain.
 
 \begin{figure}[ht]
 	\centering
@@ -253,19 +279,25 @@ Small oscillations and an offset remain while the MOSFET is on.
 	\caption{Frequency-domain measurement results of PMTX05, at 800V, 30A room temperature, influence of the shield on the measurement.}\label{fig:Influence_Shield_FD}
 \end{figure}
 
+Together, the switching tests support the use of the shielded DAVP in the commutation cell.
+Despite its settling distortion, the low-pass channel remains sufficiently accurate to characterize conventional switching metrics.
+The main focus of this work, however, is the high-pass channel's ability to resolve small high-frequency voltage components.
+For this channel, the common-mode and enclosure comparisons support robustness against coupling under the tested conditions.
+The following characterization examines the noise contributions and their implications for resolving small voltage components.
+\FloatBarrier
 
 \subsubsection*{Noise Performance Characterization}
-The noise characterization determines which noise sources limit the resolution of small voltage components.
-Unlike the preceding reference comparisons, this analysis does not directly verify signal accuracy.
-Measurements with and without the probe separate its contribution from the oscilloscope noise, while different acquisition ranges expose the quantization-noise contribution.
-The results establish the noise limits needed to interpret the subsequent device measurements.
+Noise characterization assesses how the DAVP and the oscilloscope affect the measurement of small high-frequency voltage components.
+Measurements first distinguish the probe's noise contribution from the oscilloscope noise.
+An analytical model then explains the frequency dependence of intrinsic probe noise.
+These results show which noise sources dominate and how their contributions can be reduced.
 
 
-Four acquisition configurations separate probe noise from oscilloscope noise.
-The acquisition length is \SI{5}{ms}, matching the pulse-chain duration used later.
-\fref{fig:Diss_Voltage_NoiseContribution} first compares measurements at the vertical resolution used for the switching signals, with the probe connected (Probe + HV Resolution) and disconnected (HV Resolution).
-The measurements are then repeated with full ADC resolution, again with the probe connected (Probe + Full Resolution) and disconnected (Full Resolution).
-Comparing these configurations identifies the noise contribution that dominates in each frequency range.
+Four measurement configurations separate the probe noise contribution from the oscilloscope's noise at two vertical resolution settings.
+Each configuration uses an acquisition length of \SI{5}{ms}, matching the pulse-chain duration used later.
+At the oscilloscope's vertical resolution range needed for the switching signals, \fref{fig:Diss_Voltage_NoiseContribution} compares measurements with the probe connected (Probe +{HV Resolution}) and disconnected (HV Resolution).
+The same comparison is repeated using the full ADC range (\mbox{Probe + Full Resolution} and \mbox{Full Resolution}).
+Together, these configurations reveal when the quantization noise and when the thermal noise of the probe dominate the measured noise floor.
 
 \begin{figure}[hbt]
 	\centering
@@ -273,79 +305,106 @@ Comparing these configurations identifies the noise contribution that dominates 
 	\caption{Frequency domain measurement of the noise limiting effects of the EME voltage probe.}\label{fig:Diss_Voltage_NoiseContribution}
 \end{figure}
 
-Quantization noise limits the oscilloscope measurement at the acquisition range used for the switching signals.
-Without the probe, using full ADC resolution reduces the measured noise level from \SI{50}{dBµV} to \SI{22}{dBµV}.
-With the probe connected, its intrinsic noise remains below the HV-resolution quantization-noise level of \SI{33}{dBµV} up to approximately \SI{100}{MHz}.
-The probe contribution then rises with frequency and exceeds the quantization-noise contribution at approximately \SI{200}{MHz}.
-Intrinsic probe noise therefore limits the measurement at higher frequencies, even when quantization noise is reduced.
+The broadband measurements show that better ADC utilization reduces quantization noise but leaves intrinsic probe noise unchanged.
+Without the probe, using full ADC resolution lowers the measured noise level from \SI{32}{dBµV} to \SI{4}{dBµV}, indicating a substantial quantization-noise contribution at the vertical resolution needed for switching signals.
+The intrinsic probe noise level of \SI{17}{dBµV} lies below the HV-resolution quantization-noise level of \SI{32}{dBµV}.
+With increasing frequency, the probe contribution rises and exceeds the quantization-noise contribution at approximately \SI{200}{MHz}.
+Above this frequency, intrinsic probe noise rather than ADC utilization determines the dominant broadband noise.
 
-Discrete spectral peaks reveal an additional oscilloscope contribution that is distinct from the broadband noise floor.
-The peaks occur at \SI{196}{MHz} and its harmonics, corresponding to the oscilloscope's ADC interleaving frequency.
-Interleaving combines time-offset samples from several ADCs to increase the effective sampling rate.
+In addition to the broadband background, the oscilloscope introduces discrete spectral peaks through ADC interleaving.
+ADC interleaving combines time-offset samples from several parallel ADCs to increase the effective sampling rate.
 Mismatch between the ADCs can introduce periodic errors and corresponding spectral components.
-These peaks must therefore be distinguished from both intrinsic probe noise and device-related spectral features.
+The observed peaks at \SI{196}{MHz} and its harmonics correspond to the oscilloscope's ADC interleaving frequency.
+These instrument-generated peaks must therefore be distinguished from device-related spectral features rather than treated as broadband probe noise.
+
+An analytical noise model explains the rise in broadband probe noise by examining the second high-pass amplification stage of \mti{OP}{HP2} (see \fref{fig:EME_ESB_HP}).
+This stage illustrates the combined effect of locally generated noise and further amplification of noise already shaped by the preceding stages' high-pass response.
+The final stage of \mti{OP}{HP3}, in contrast, provides no high-pass gain and adds only an approximately frequency-independent noise contribution.
+
+\fref{fig:ESB_OP_noiseSources} shows the equivalent circuit used to calculate the second stage's output noise.
+It includes resistor thermal noise \mi{v}{n,Rx}, operational-amplifier input voltage noise \mi{v}{n,OP} and current noise \mi{i}{n,OP}, and noise arriving from the preceding stage \mi{v}{n,in}.
+Here, \mi{Z}{G} represents series resistor-capacitor networks, with each resistor contributing Johnson-Nyquist thermal noise.
+Capacitors are treated as ideal, so noise associated with their equivalent series resistance (ESR) is neglected.
 
 \begin{figure}[hbt]
 	\centering
 	\import{./figures/4_VoltageProbe/}{Diss_Highpass_EME_NoiseSources_ESB.pdf_tex}
-	\caption{Equivalent circuit diagram of the noise sources for the first high-pass amplification stage.}\label{fig:ESB_OP_noiseSources}
+	\caption{Equivalent circuit diagram of the noise sources for the second high-pass amplification stage.}\label{fig:ESB_OP_noiseSources}
 \end{figure}
 
-An analytical calculation of the second high-pass amplification stage explains the frequency dependence of the intrinsic probe noise.
-\fref{fig:ESB_OP_noiseSources} shows the noise-source model of a high-pass stage, where \mi{Z}{g} represents the series capacitor and resistor network.
-Each resistor contributes Johnson--Nyquist thermal noise.
-The ideal capacitor generates no thermal noise; a real capacitor contributes through its equivalent series resistance (ESR).
-The operational amplifier adds input voltage noise and input current noise.
-The calculation therefore includes the following contributions:
-\begin{itemize}
-	\item incoming noise from preceding stages,
-	\item amplifier input voltage noise,
-	\item resistor thermal noise,
-	\item amplifier input current noise.
-\end{itemize}
-
-The resistor thermal noise is given by
+The output-noise calculation weights each source by its transfer function and combines the uncorrelated contributions in quadrature.
+For a resistor, the RMS thermal noise over the bandwidth $\Delta f$ is
 \begin{equation}
 	\mi{V}{n,th} = \sqrt{4\mi{k}{B}TR\Delta f}.
 \end{equation}
-
-The effective noise gain of the high-pass stage is
+The frequency-dependent noise gain (NG) of the high-pass stage is
 \begin{equation}
 	 NG = 1 + \frac{\mi{R}{f}}{\mi{Z}{g}}.
 \end{equation}
+Using the corresponding transfer functions for the remaining sources gives the total output noise:
 
-The total output noise can then be expressed as
+\begingroup
+% \small
 \begin{equation}
-	\mi{v}{0} = \sqrt{(\mi{v}{n,in} NG)^2 + (\mi{v}{n} NG)^2 + 2(\mi{i}{n} \mi{R}{f})^2 + 2\cdot4\mi{k}{B}T\mi{R}{f}\Delta f + 2\cdot4\mi{k}{B}T\mi{R}{g}\Delta f \left(\frac{\mi{R}{f}}{\mi{Z}{g}}\right)^2}.
+	\mi{v}{n,out} = \sqrt{
+		\vphantom{\left(\frac{\mi{R}{f}}{\mi{Z}{g}}\right)^2}
+		\smash[b]{\underbrace{(\mi{v}{n,in} \mi{G}{HP2})^2}_{\substack{\text{Input}\\\text{noise}}}}
+		+ \smash[b]{\underbrace{(\mi{v}{n} NG)^2}_{\substack{\text{OP voltage}\\\text{noise}}}}
+		+ \smash[b]{\underbrace{2(\mi{i}{n} \mi{R}{f})^2}_{\substack{\text{OP current}\\\text{noise}}}}
+		+ \smash[b]{\underbrace{8\mi{k}{B}T\mi{R}{f}\Delta f}_{\substack{\mi{R}{f}\\\text{thermal noise}}}}
+		+ \smash[b]{\underbrace{8\mi{k}{B}T\mi{R}{g}\Delta f \left(\frac{\mi{R}{f}}{\mi{Z}{g}}\right)^2}_{\substack{\mi{R}{g}\\\text{thermal noise}}}}
+	}\vphantom{\underbrace{\left(\frac{\mi{R}{f}}{\mi{Z}{g}}\right)^2}_{\substack{\mi{R}{g}\\\text{thermal noise}}}}.
 \end{equation}
+\endgroup
 
-The frequency-dependent noise gain shapes the amplifier's output-noise contribution.
-The expression combines amplifier noise, resistor noise, and noise arriving from the preceding stage.
-The resulting contributions can be compared to identify the source of the measured high-frequency noise rise.
+\fref{fig:Diss_Voltage_NoiseCalc} compares the individual contributions at the stage output, calculated using datasheet values.
+Its upper panel also shows the input and output signal spectra together with the stage gain \mi{G}{HP2}.
+An idealized trapezoidal waveform is used at the voltage-divider input for the signal calculation.
 
-The calculated contributions identify amplifier noise as the main intrinsic limitation.
-Using datasheet values, \fref{fig:Diss_Voltage_NoiseCalc} shows that input current noise dominates at low frequencies and input voltage noise dominates at higher frequencies.
-Resistor thermal noise contributes little for the selected resistance values of a few hundred \si{\ohm}.
-Noise from the preceding stage also increases with frequency as it propagates through the cascade.
-The calculated response changes from first- to second-order behavior near \SI{100}{MHz}.
-The calculation thus explains why the intrinsic noise contribution rises toward the upper measurement range.
+Operational-amplifier noise dominates the locally generated noise, as shown by the calculated contributions in the lower panel.
+Thermal noise from \mi{R}{f} and \mi{R}{g} is combined in quadrature as \mi{V}{n,out,Rg+Rf}.
+For the selected resistance values of a few hundred \si{\ohm}, the combined thermal contribution remains below both operational-amplifier noise contributions throughout the evaluated frequency range.
+Input current noise dominates the locally generated noise at low frequencies.
+Above \SI{80}{MHz}, input voltage noise becomes the larger local contribution because it is amplified by the frequency-dependent noise gain.
+However, the total output noise also includes noise arriving from the preceding stage.
+
+At frequencies above \SI{55}{MHz}, amplification of noise from the preceding stage dominates the total output noise \mi{V}{n,out}.
+Noise arriving at the second stage has already been shaped by the preceding stage's high-pass response.
+Further amplification follows the signal gain \mi{G}{HP2}, rather than the noise gain NG.
+Near \SI{80}{MHz}, the additional high-pass amplification changes its frequency dependence from first- to second-order high-pass behavior.
+Cascaded amplification therefore explains the rise in intrinsic probe noise with frequency.
 
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=1]{figures/4_VoltageProbe/Diss_Voltage_Calc_Noise.pdf}
-	\caption{Calculation of the noise sources for the first high-pass amplification stage.}\label{fig:Diss_Voltage_NoiseCalc}
+	\caption{Calculation of the noise sources for the second high-pass amplification stage.}\label{fig:Diss_Voltage_NoiseCalc}
 \end{figure}
 
+Despite rising probe noise, the high-pass channel still improves ADC utilization.
+Suppressing the dominant DC and low-frequency voltage components allows a smaller oscilloscope vertical resolution, reducing the quantization-noise contribution.
+Measurement sensitivity depends on the signal-to-noise ratio at each frequency.
+High-pass measurements therefore remain useful where the signal is sufficiently above the noise floor.
+
+Thermal probe noise can be reduced through pulse-chain averaging rather than treated as a fixed resolution limit.
+Because this noise is uncorrelated between switching events, averaging reduces its contribution while preserving the repeatable switching-related signal.
+Longer pulse chains can therefore improve the signal-to-noise ratio without changing the probe hardware.
+Subsequent emission analysis must account for the noise floor under the chosen acquisition and averaging conditions.
+Therefore, for all subsequent measurements, the noise floor is measured separately and included in each plot for reference.
 
 
 \subsubsection*{Verification Summary and Measurement Limits}
-The verification establishes a usable measurement range that depends on both frequency and signal amplitude.
-The low-pass channel has a small-signal bandwidth of \SI{315}{MHz}, but its large-signal settling response limits the accuracy of the transient tail.
-The pulse-generator method independently verifies small high-frequency components within \SIrange{180}{340}{MHz}, with a maximum observed deviation of \SI{1.3}{dB}.
-Measurements above \SI{340}{MHz} remain comparative rather than independently verified absolute results.
+The verification establishes frequency- and amplitude-dependent limits for the accuracy of both DAVP channels.
+Small-signal bandwidth characterizes the probe response, but large-signal reference measurements are needed to assess its accuracy at switching-voltage amplitudes.
+Despite its \SI{315}{MHz} small-signal bandwidth, the low-pass channel requires approximately \SI{20}{ns} to settle in the pulse-generator test, limiting the accuracy of the transient tail.
+For the high-pass channel, the band-pass-filtered reference independently verifies small high-frequency components within \SIrange{180}{340}{MHz}, with a maximum observed deviation of \SI{1.3}{dB}.
+The verified accuracy therefore applies only within this reference band; results above \SI{340}{MHz}, presented up to \SI{500}{MHz}, remain comparative rather than independently verified absolute values.
 
-The application measurements must also account for residual common-mode errors, environmental coupling, and noise.
-The switching tests show close low-pass agreement with a passive reference and reduced interference with shielding, but neither result establishes an error-free high-frequency measurement.
-Intrinsic probe noise becomes dominant above approximately \SI{200}{MHz}, and ADC interleaving adds discrete spectral peaks.
-Subsequent device comparisons are therefore interpreted within these verification and noise limits.
+The switching tests support the use of the aluminium-enclosed DAVP in the commutation cell under the tested conditions.
+Agreement with the passive low-pass reference provides evidence against substantial parasitic coupling errors.
+Common-mode and shielding comparisons further support the probe's robustness in this environment.
+Interpretation of small high-frequency components nevertheless requires sufficient separation from residual error and noise.
+
+Noise characterization establishes additional conditions for interpreting the measured spectra.
+Intrinsic probe noise dominates over oscilloscope quantization noise above approximately \SI{200}{MHz}.
+Averaging more switching events reduces its uncorrelated contribution.

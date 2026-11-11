@@ -64,8 +64,8 @@
     \put(0.2929688,0.12109378){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{comp}\end{tabular}}}}%
     \put(0.13046877,0.25859324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{R}{shunt}\end{tabular}}}}%
     \put(0.13046877,0.14140629){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{L}{shunt}\end{tabular}}}}%
-    \put(0.94921881,0.23339764){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{i}{LP}\end{tabular}}}}%
-    \put(0.94921881,0.17962491){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{i}{HP}\end{tabular}}}}%
+    \put(0.94921881,0.23806963){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{i,LP}\end{tabular}}}}%
+    \put(0.94921881,0.17241383){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{i,HP}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{Diss_CompensatedCurrentShunt.pdf}}%
     \put(0.70030925,0.30349611){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Low-pass\end{tabular}}}}%
     \put(0.69709926,0.16389788){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}High-pass\end{tabular}}}}%

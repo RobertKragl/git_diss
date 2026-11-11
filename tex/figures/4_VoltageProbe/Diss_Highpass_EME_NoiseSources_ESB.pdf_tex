@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{189.92125984bp}%
+    \setlength{\unitlength}{212.5984252bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,11 +50,11 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.74626866)%
+  \begin{picture}(1,0.73333333)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{Diss_Highpass_EME_NoiseSources_ESB.pdf}}%
-    \put(0.86567165,0.52238806){\color[rgb]{0.00392157,0.00392157,0.00392157}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Noiseless\\OP\end{tabular}}}}%
+    \put(0.88000001,0.53333333){\color[rgb]{0.00392157,0.00392157,0.00392157}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Noiseless\\OP\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{Diss_Highpass_EME_NoiseSources_ESB.pdf}}%
   \end{picture}%
 \endgroup%

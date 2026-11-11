@@ -3,6 +3,7 @@
 
 
 \subsection{Verification}
+\label{sec:CurrentVerification}
 
 This section verifies the active current shunt in both the frequency and time domain.
 Because the shunt is intended to resolve high-frequency commutation currents while preserving the low-frequency switching waveform, the verification must demonstrate not only the expected transfer behavior of the two filter paths, but also the overall usability of the probe in a measurement setup with finite source impedance and strong common-mode disturbance.
@@ -27,6 +28,7 @@ This bandwidth is more than sufficient for the intended SiC discrete-device meas
 
 The S-parameter measurement of the high-pass channel is shown in \fref{fig:VNA_Shunt_HP}.
 The high-pass channel exhibits an approximately linear gain increase of \SI{+40}{dB/dec} from \SI{10}{MHz} to \SI{350}{MHz}, where it begins to roll off due to the limited bandwidth of the employed amplifiers.
+The rising response therefore does not extend to the \SI{500}{MHz} design target.
 
 \begin{figure}[ht]
 	\centering

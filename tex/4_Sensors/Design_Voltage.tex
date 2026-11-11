@@ -378,6 +378,12 @@ For a symmetric resistor design, where $\mi{R}{10} = \mi{R}{12}$ and $\mi{R}{11}
 	\mi{v}{LP} = \frac{\mi{R}{11}}{\mi{R}{10}} \cdot (\mi{v}{UG+} - \mi{v}{UG-})
 \end{equation}
 The equal resistor values in \tref{tab:ComponentsLowPass_Voltage} therefore give a nominal differential gain of unity.
+This gain describes the subtractor output before the series resistor \mi{R}{14}.
+With a \SI{50}{\ohm} oscilloscope input, the voltage measured at the low-pass output is
+\begin{equation}
+	\mi{v}{LP,osci} = \mi{v}{LP}\cdot\frac{\mi{R}{osci}}{\mi{R}{14}+\mi{R}{osci}} = \mi{v}{LP}\cdot\frac{50}{10+50} \approx 0.83\mi{v}{LP},
+\end{equation}
+where \mi{R}{osci} is the oscilloscope input resistance.
 
 Optional capacitors \mi{C}{5} and \mi{C}{6} allow additional low-pass filtering within the subtractor circuit.
 These capacitors are not populated in the current design.
@@ -459,17 +465,19 @@ Corresponding components in the positive and negative signal paths have equal no
 	\end{tabular}
 \end{table}
 
-The overall differential response is determined by the product of the three stage voltage gains.
+The voltage at the oscilloscope is determined by the three stage gains and the output-loading factor.
 It can be calculated as
 \begin{equation}
-	\mi{v}{HP} = \mi{G}{HP1} \cdot \mi{G}{HP2} \cdot \mi{G}{HP3} \cdot (\mi{v}{UG+} - \mi{v}{UG-})
+	\mi{v}{HP,osci} = \mi{G}{HP1} \cdot \mi{G}{HP2} \cdot \mi{G}{HP3} \cdot \mti{G}{out} \cdot (\mi{v}{UG+} - \mi{v}{UG-})
 \end{equation}
-with the stage voltage gains
+with the stage voltage gains and output-loading factor
 \begin{align}
 	\mi{G}{HP1}(s) &= \frac{s\mi{C}{7}(\mi{R}{17}+ \mi{R}{fb})}{1+s\mi{C}{7}\mi{R}{15}}\\
 	\mi{G}{HP2}(s) &= \frac{s\mi{C}{9}(\mi{R}{23}+ \mi{R}{fb})}{1+s\mi{C}{9}(\mi{R}{out}+\mi{R}{19}+\mi{R}{21})}\\
-	\mi{G}{HP3} &= \frac{\mi{R}{f}}{\mi{R}{out}+\mi{R}{26}+\mi{R}{g}}
+	\mi{G}{HP3} &= \frac{\mi{R}{f}}{\mi{R}{out}+\mi{R}{26}+\mi{R}{g}}\\
+	\mti{G}{out} &= \frac{\mi{R}{osci}}{\mi{R}{29}+\mi{R}{osci}} = \frac{50}{10+50} \approx 0.83.
 \end{align}
+Here, \mi{R}{osci} is the \SI{50}{\ohm} oscilloscope input resistance and \mi{R}{29} is the final series resistor.
 Well below both $RC$ pole frequencies, each of the first two stages contributes an approximately \SI{+20}{dB/dec} magnitude slope.
 Their product therefore yields the target \SI{+40}{dB/dec} response, while the third stage provides frequency-independent gain in this idealized representation.
 

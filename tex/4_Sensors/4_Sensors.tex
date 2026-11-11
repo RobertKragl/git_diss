@@ -1,7 +1,7 @@
 %!TeX root = main.tex
 %!encoding = UTF-8 Unicode
 
-\chapter{Sensor and Platform Design for Methodological Implementation}
+\chapter{Design and Verification of Instrumentation for Methodological Implementation}
 \label{ch:Sensors}
 
 The methodology introduced in Chapter~\ref{ch:Methods} requires dedicated instrumentation to resolve the EMC-relevant, high-frequency components of the drain-source voltages and the commutation current of a switching cell for the EMC-relevant frequency range.
@@ -32,8 +32,15 @@ The resulting signal attenuation requires greater gain in subsequent stages, whi
 \section{Dual-Channel Active Current Probe}
 \label{ch:AShunt}
 
-While at lower frequencies the capacitive coupling from the switching node potential to the cooler dominates EMC concerns, recent studies indicate that inductive couplings become significant at higher frequencies as well~\cite{hamami_identifying_2026}.
-Therefore, it is necessary to measure not only the high-frequency components of the voltage transient but also of the current transient.
+Characterizing high-frequency emissions requires consideration of both the drain-source voltages and the commutation current.
+Voltage transients drive capacitive coupling, whereas current transients drive inductive coupling.
+Conventional EMC analysis often gives less attention to current transients because closely spaced forward and return current paths keep the commutation loop area small.
+This small loop area limits magnetic coupling to structures outside the inverter.
+Nevertheless, recent studies show that inductive coupling can contribute significantly to high-frequency emissions~\cite{hamami_identifying_2026}.
+
+Motivated by these findings, this thesis also examines the small high-frequency components of the commutation current, although the main focus remains on the capacitive coupling of voltage transitions.
+An active shunt is developed for this purpose, using the same dual-channel structure as the voltage probe.
+Its low-pass signal path supports conventional switching analysis, while the high-pass path enables high-frequency emission analysis.
 
 \input{4_Sensors/Requirements_Current.tex}
 \input{4_Sensors/Design_Current.tex}

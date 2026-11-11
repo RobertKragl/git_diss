@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{425.19685039bp}%
+    \setlength{\unitlength}{396.8503937bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,22 +50,24 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.76666667)%
+  \begin{picture}(1,0.64642857)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{Diss_Pic_AShunt.pdf}}%
-    \put(0.05461174,0.35464701){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Lowpass\end{tabular}}}}%
-    \put(0.05415699,0.51972221){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Compensation\end{tabular}}}}%
-    \put(0.0547082,0.67398437){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Power Supply\\\end{tabular}}}}%
-    \put(0.77744787,0.53316404){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Voltage probe\\\end{tabular}}}}%
-    \put(0.05469442,0.27484482){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Highpass\end{tabular}}}}%
-    \put(0.77722738,0.31726079){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Passive shunt\end{tabular}}}}%
-    \put(0.77593201,0.23792714){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Shield attachment \end{tabular}}}}%
-    \put(0.77765462,0.38547373){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mti{Q}{LS}\end{tabular}}}}%
-    \put(0.0551354,0.15137258){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{iS,HP}\end{tabular}}}}%
-    \put(0.0551354,0.40713648){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{iS,LP}\end{tabular}}}}%
+    \put(0.08642661,0.30559951){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Lowpass\end{tabular}}}}%
+    \put(0.08593938,0.46437904){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Compensation\end{tabular}}}}%
+    \put(0.08652997,0.58980932){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Power Supply\\\end{tabular}}}}%
+    \put(0.42614746,0.61645543){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Gate Drive\end{tabular}}}}%
+    \put(0.7765728,0.44479269){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Voltage probe\\\end{tabular}}}}%
+    \put(0.0865152,0.23847921){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Highpass\end{tabular}}}}%
+    \put(0.77633651,0.27710367){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Passive shunt\end{tabular}}}}%
+    \put(0.77494867,0.20150841){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Shield attachment \end{tabular}}}}%
+    \put(0.77679422,0.34324951){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mti{Q}{LS}\end{tabular}}}}%
+    \put(0.08698767,0.12508638){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{iS,HP}\end{tabular}}}}%
+    \put(0.08698767,0.35396865){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{iS,LP}\end{tabular}}}}%
+    \put(0.77679422,0.57865781){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\mi{v}{phase}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{Diss_Pic_AShunt.pdf}}%
-    \put(0.85510712,0.50295151){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}connector\end{tabular}}}}%
-    \put(0.13443453,0.6412409){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}+ Filtering\end{tabular}}}}%
+    \put(0.85977914,0.41159526){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}connector\end{tabular}}}}%
+    \put(0.17195105,0.55472702){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}+ Filtering\end{tabular}}}}%
   \end{picture}%
 \endgroup%
